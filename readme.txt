@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: tomhemsley
+Contributors: megamenu
 Tags: menu, mega menu, megamenu, widget, dropdown menu
 Requires at least: 3.9
 Tested up to: 3.9
@@ -7,7 +7,7 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Mega Menu Plugin for WordPress. Create menu panels using the built in drag and drop widget editor.
+Mega Menu Plugin for WordPress.
 
 == Description ==
 
