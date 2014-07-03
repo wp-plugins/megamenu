@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: megamenu
-Tags: menu, mega menu, megamenu, widget, dropdown menu
+Tags: menu, mega menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor
 Requires at least: 3.9
 Tested up to: 3.9
 Stable tag: 1.0
@@ -26,7 +26,7 @@ Features:
 * Create your own themes using a built in theme editor
 * Works with multiple menu's on the same page
 * Works with menu's tagged to multiple Theme Locations
-* Less than 1kb JavaScript (also works when JS is disabled)
+* Less than 1kb JavaScript when gzipped (also works when JS is disabled)
 * Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
 * Responsive
 * Retina Ready
