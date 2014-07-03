@@ -63,9 +63,11 @@ http://www.megamenu.co.uk
 
 == Screenshots ==
 
+See http://www.megamenu.co.uk for more screenshots
+
 1. New menu changes
 2. Drag and Drop widget editor
-3. Front end (dark theme)
+3. Front end
 
 == Changelog ==
 
