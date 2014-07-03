@@ -14,6 +14,7 @@ Mega Menu Plugin for WordPress. Create menu panels using the built in drag and d
 Mega Menu Plugin for WordPress. Use the built in drag and drop widget editor to build your mega panels.
 
 Features:
+
 * Build your menu panels using a drag and drop Widget area
 * Choose Flyout (traditional) or Mega Menu menu dropdowns
 * Choose menu activation on either hover or click
@@ -30,6 +31,7 @@ Features:
 * Safe: You can uninstall and go back to your old menu
 
 The technical stuff:
+
 * Mega Menu will not pick up styling from your old menu, but the built in theme editor will allow you to tailor your Mega Menu styling to your theme.
 * Your theme will need a registered Theme Location to work
 * The menu CSS is dynamically parsed SCSS. Developers can create their own SCSS file if needed - just copy the megamenu.css file to your theme directory and make any required edits.
@@ -67,7 +69,6 @@ See http://www.megamenu.co.uk for more screenshots
 
 1. New menu changes
 2. Drag and Drop widget editor
-3. Front end
 
 == Changelog ==
 
