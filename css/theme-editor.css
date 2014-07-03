@@ -1,0 +1,183 @@
+
+/**
+ * theme EDITOR
+ */
+.appearance_page_megamenu_theme_editor .megamenu_wrap {
+	width: 100%;
+	float: left;
+}
+.appearance_page_megamenu_theme_editor .megamenu_left {
+	float: left;
+	width: 190px;
+	margin-left: -100%;
+	margin-top: 20px;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_left h4 {
+	margin: 0 0 10px 2px;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_left ul li {
+	border: 1px solid #ccc;
+	background: white;
+	
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_left ul li a {
+	text-decoration: none;
+	color: #333;
+	width: 100%;
+	display: block;
+	padding: 5px 10px;
+	box-sizing: border-box;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_left ul li.error {
+	border-left: 3px solid #dd3d36;
+}
+.appearance_page_megamenu_theme_editor .megamenu_left ul li.mega_active {
+	font-weight: bold;
+}
+.appearance_page_megamenu_theme_editor .megamenu_left ul li.mega_active a:after {
+	right: 0;
+	content: '\f139';
+	border: 0;
+	background: 0 0;
+	font: 400 20px/1 dashicons;
+	speak: none;
+	float: right;
+	padding: 0;
+	text-indent: 0;
+	text-align: center;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-decoration: none!important;
+	margin-right: 0;
+}
+.nav-tab-active {
+	background: white;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right {
+	margin-left: 190px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right h4 {
+	clear: both;
+	border-bottom: 1px solid #cccccc;
+	padding: 0 0 10px 0;
+	font-size: 1.2em;
+	margin: 1.33em 0 0.7em 0;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row textarea,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row input,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row select {
+	float: left;
+	font-size: 0.9em;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .duplicate {
+	margin-left: 15px;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row input {
+	width: 70px;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings {
+	background: white;
+	padding: 10px 20px 30px 20px;
+	border: 1px solid #ccc;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .nav-tab-active {
+	background: white;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row {
+	line-height: 34px;
+	vertical-align: middle;
+	height: 34px;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.title input {
+	width: 100px;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.custom_css {
+	vertical-align: top;
+	height: 150px;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.custom_css textarea {
+	width: 100%;
+	height: 150px;
+	font-family: monospace;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.container_padding_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.container_border_radius_top_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_background_hover_from,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_spacing,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_link_border_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_link_font,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_link_color_hover,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_link_padding_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_link_border_color,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.menu_item_link_border_radius_top_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.panel_padding_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.panel_header_padding_top,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.panel_widget_padding_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.panel_header_color,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.panel_background_from,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.arrow_up,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.responsive_breakpoint,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.font_size,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.flyout_link_padding_left,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.flyout_link_weight,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.flyout_link_height,
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.flyout_background_from {
+	margin-top: 15px;
+}
+
+.appearance_page_megamenu_theme_editor .sp-replacer {
+	margin: 0 0 8px 1px;
+}
+.appearance_page_megamenu_theme_editor .sp-replacer .sp-preview {
+	border: 1px solid #ccc;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row.custom_css h5 {
+	display: none;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row h5 {
+	margin: 0;
+	font-weight: normal;
+	float: left;
+	width: 250px;
+	font-size: 1em;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .row .pixel_value {
+	float: left;
+	margin-left: 10px;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .fail {
+	border: 1px solid #ccc;
+	border-left: 4px solid #dd3d36;
+	background: #fff;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+	padding: 10px 0 11px 15px;
+	padding: 7px 0 7px 15px;
+}
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .success {
+	border: 1px solid #ccc;
+	border-left: 4px solid #7ad03a;
+	background: #fff;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+	padding: 10px 0 11px 15px;
+	padding: 7px 0 7px 15px;
+}
+
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .selected_icon::before {
+	font: 400 20px/1 dashicons;
+	speak: none;
+	padding: 5px 0 0 5px;
+	display: inline-block;
+	vertical-align: top;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
