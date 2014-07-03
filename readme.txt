@@ -13,6 +13,8 @@ Mega Menu Plugin for WordPress.
 
 Mega Menu Plugin for WordPress. Use the built in drag and drop widget editor to build your mega panels.
 
+Documentation: http://www.megamenu.co.uk
+
 Features:
 
 * Build your menu panels using a drag and drop Widget area
@@ -38,8 +40,6 @@ The technical stuff:
 * The parsed SCSS is cached for performance. The cache is refreshed when a menu is saved or a theme has been created/updated.
 * Mega Menu is compatible with Widget & Menu Output Cache plugin (https://wordpress.org/plugins/widget-output-cache/) as well as WP Super Cache.
 * Behind the scenes, all menu widgets are stored as standard WordPress widgets in a new widget area that the plugin creates.
-
-Documentation: http://www.megamenu.co.uk
 
 Recommended Widgets:
 
@@ -69,6 +69,8 @@ See http://www.megamenu.co.uk for more screenshots
 
 1. New menu changes
 2. Drag and Drop widget editor
+3. Front end: Mega Menu
+4. Front end: Flyout Menu
 
 == Changelog ==
 
