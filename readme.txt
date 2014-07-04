@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: megamenu
-Tags: menu, mega menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor
+Tags: menu, mega menu, menu icons, menu style, responsive menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor
 Requires at least: 3.9
 Tested up to: 3.9
 Stable tag: 1.0
@@ -49,9 +49,9 @@ Recommended Widgets:
 
 Tested with the 20 most popular themes, all compatible with the exceptions of:
 
-Tesla: compatible but requires edits: open header.php and remove the second call to wp_nav_menu (line 130 - 147)
-Vantage: compatible (but hover only)
-Stargazer: compatible (but hover only)
+* Tesla: compatible but requires edits: open header.php and remove the second call to wp_nav_menu (line 130 - 147)
+* Vantage: compatible (but hover only)
+* Stargazer: compatible (but hover only)
 
 == Installation ==
 
