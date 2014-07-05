@@ -401,7 +401,7 @@ class Mega_Menu_theme_Editor {
         
         ?>
 
-        <form action="<? echo admin_url('admin-post.php'); ?>" method="post">
+        <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
             <input type="hidden" name="theme_id" value="<?php echo $this->id; ?>" />
             <input type="hidden" name="action" value="megamenu_save_theme" />
             <?php wp_nonce_field( 'megamenu_save_theme' ); ?>
