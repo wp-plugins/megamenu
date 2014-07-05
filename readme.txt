@@ -74,7 +74,12 @@ See http://www.megamenu.co.uk for more screenshots
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Fix PHP Short Tag (thanks for the report by polderme)
+
 = 1.0 =
+
 * Initial version
 
 == Upgrade Notice ==
