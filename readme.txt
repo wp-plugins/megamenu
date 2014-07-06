@@ -17,14 +17,14 @@ Documentation: http://www.megamenu.co.uk
 
 Features:
 
-* Build your menu panels using a drag & drop widget editor. 
+* Drag & drop widget editor 
 * 6 column panels (wigets can span multiple columns)
-* Choose Flyout (traditional) or Mega Menu menu dropdowns
-* Choose menu activation on either hover or click
+* Flyout (traditional) or Mega Menu menu styles
+* Menu Icons
+* Activate Menu on either hover (intent) or click
 * Compatible with touch screen devices
-* Choose an icon (dashicons) to show next to each menu item
-* Choose from 3 'down' arrow icon styles
-* Create your own themes using a built in theme editor
+* 3 'down' arrow icon styles
+* Built in theme editor
 * Works with multiple menu's on the same page
 * Works with menu's tagged to multiple Theme Locations
 * Less than 1kb JavaScript when gzipped (also works when JS is disabled)
