@@ -19,7 +19,7 @@ Features:
 
 * Zero theme edits
 * Drag & drop widget editor 
-* 6 column panels (wigets can span multiple columns)
+* 6 column panels (widgets can span multiple columns)
 * Flyout (traditional) or Mega Menu menu styles
 * Menu Icons
 * Activate Menu on either hover (intent) or click
