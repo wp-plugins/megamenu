@@ -1,37 +1,37 @@
 === Plugin Name ===
 Contributors: megamenu
 Tags: menu, mega menu, menu icons, menu style, responsive menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor
-Requires at least: 3.9
+Requires at least: 3.8
 Tested up to: 3.9
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Fully featured Mega Menu plugin with a unique, easy to use drag & drop Menu builder. Integrates with your existing menus. Responsive & retina ready.
+Easy to use drag & drop mega menu builder. Integrates with the existing WordPress 3 menu system. Responsive, retina & touch ready.
 
 == Description ==
 
 Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to build your mega panels.
 
-Documentation: http://www.megamenu.co.uk
+Documentation & Demo: http://www.megamenu.co.uk
 
 Features:
 
-* Build your menu panels using a drag & drop widget editor. 
+* Drag & drop widget editor 
 * 6 column panels (wigets can span multiple columns)
-* Choose Flyout (traditional) or Mega Menu menu dropdowns
-* Choose menu activation on either hover or click
+* Flyout (traditional) or Mega Menu menu styles
+* Menu Icons
+* Activate Menu on either hover (intent) or click
 * Compatible with touch screen devices
-* Choose an icon (dashicons) to show next to each menu item
-* Choose from 3 'down' arrow icon styles
-* Create your own themes using a built in theme editor
-* Works with multiple menu's on the same page
-* Works with menu's tagged to multiple Theme Locations
-* Less than 1kb JavaScript when gzipped (also works when JS is disabled)
-* Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
+* 3 'down' arrow icon styles
+* Built in theme editor
+* Works with multiple menus on the same page
+* Works with menus tagged to multiple Theme Locations
+* < 1kb JavaScript when gzipped (also works when JS is disabled)
 * Responsive
 * Retina Ready
 * Safe: You can uninstall and go back to your old menu
+* Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
 
 The technical stuff:
 
@@ -75,6 +75,10 @@ See http://www.megamenu.co.uk for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Update minimum required WP version from 3.9 to 3.8.
 
 = 1.0.1 =
 
