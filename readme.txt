@@ -25,9 +25,9 @@ Features:
 * Compatible with touch screen devices
 * 3 'down' arrow icon styles
 * Built in theme editor
-* Works with multiple menu's on the same page
-* Works with menu's tagged to multiple Theme Locations
-* Less than 1kb JavaScript when gzipped (also works when JS is disabled)
+* Works with multiple menus on the same page
+* Works with menus tagged to multiple Theme Locations
+* < 1kb JavaScript when gzipped (also works when JS is disabled)
 * Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
 * Responsive
 * Retina Ready
