@@ -7,7 +7,7 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Fully featured Mega Menu plugin with a unique, easy to use drag & drop Menu builder. Integrates with your existing menus. Responsive & retina ready.
+Easy to use drag & drop mega menu builder. Integrates with the existing WordPress 3 menu system. Responsive, retina & touch ready.
 
 == Description ==
 
