@@ -85,6 +85,7 @@ final class Mega_Menu_Style_Manager {
             'panel_header_text_transform'               => 'uppercase',
             'panel_header_font'                         => 'inherit',
             'panel_header_font_size'                    => '16px',
+            'panel_header_font_weight'                  => 'bold',
             'panel_header_padding_top'                  => '0px',
             'panel_header_padding_right'                => '0px',
             'panel_header_padding_bottom'               => '5px',

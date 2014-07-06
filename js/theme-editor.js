@@ -12,7 +12,7 @@ jQuery(function ($) {
     });
 
     $(".mm_colorpicker").spectrum({
-        preferredFormat: "hex",
+        preferredFormat: "rgb",
         showInput: true,
         showAlpha: true,
         clickoutFiresChange: true

@@ -34,7 +34,7 @@
     font-family: $panel_header_font;
     font-size: $panel_header_font_size;
     text-transform: $panel_header_text_transform;
-    font-weight: bold;
+    font-weight: $panel_header_font_weight;
     margin: 0;
     padding: $panel_header_padding_top $panel_header_padding_right $panel_header_padding_bottom $panel_header_padding_left;
     vertical-align: top;
