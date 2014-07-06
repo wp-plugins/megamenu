@@ -28,10 +28,10 @@ Features:
 * Works with multiple menus on the same page
 * Works with menus tagged to multiple Theme Locations
 * < 1kb JavaScript when gzipped (also works when JS is disabled)
-* Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
 * Responsive
 * Retina Ready
 * Safe: You can uninstall and go back to your old menu
+* Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
 
 The technical stuff:
 
