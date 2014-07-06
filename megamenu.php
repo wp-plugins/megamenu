@@ -4,7 +4,7 @@
  * Plugin Name: Mega Menu
  * Plugin URI:  http://www.megamenu.co.uk
  * Description: Mega Menu for WordPress.
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      Tom Hemsley
  * License:     GPL-2.0+
  * Copyright:   2014 Tom Hemsley
@@ -25,7 +25,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.2';
+	public $version = '1.0.3';
 
 
 	/**

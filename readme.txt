@@ -76,6 +76,11 @@ See http://www.megamenu.co.uk for more screenshots
 
 == Changelog ==
 
+= 1.0.3 =
+
+* Add Panel Header Font Weight theme setting
+* Allow semi transparent colors to be picked
+
 = 1.0.2 =
 
 * Update minimum required WP version from 3.9 to 3.8.
