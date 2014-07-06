@@ -7,17 +7,18 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Mega Menu Plugin for WordPress.
+Fully featured Mega Menu plugin with a unique, easy to use drag & drop Menu builder. Integrates with your existing menus. Responsive & retina ready.
 
 == Description ==
 
-Mega Menu Plugin for WordPress. Use the built in drag and drop widget editor to build your mega panels.
+Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to build your mega panels.
 
 Documentation: http://www.megamenu.co.uk
 
 Features:
 
-* Build your menu panels using a drag and drop Widget area
+* Build your menu panels using a drag & drop widget editor. 
+* 6 column panels (wigets can span multiple columns)
 * Choose Flyout (traditional) or Mega Menu menu dropdowns
 * Choose menu activation on either hover or click
 * Compatible with touch screen devices
@@ -68,9 +69,10 @@ http://www.megamenu.co.uk
 See http://www.megamenu.co.uk for more screenshots
 
 1. New menu changes
-2. Drag and Drop widget editor
+2. Drag and Drop widget editor for each menu item
 3. Front end: Mega Menu
 4. Front end: Flyout Menu
+5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
 
