@@ -17,6 +17,7 @@ Documentation & Demo: http://www.megamenu.co.uk
 
 Features:
 
+* Zero theme edits
 * Drag & drop widget editor 
 * 6 column panels (wigets can span multiple columns)
 * Flyout (traditional) or Mega Menu menu styles
@@ -48,6 +49,10 @@ Recommended Widgets:
 * Contact Form 7 Widget
 * Very Simple Google Maps (this only gives a shortcode, so install the ShortCode Widget and use something like `[vsgmap address="your address, country" width='100%' height='200']`)
 
+Translations:
+
+* Italian (thanks to aeco)
+
 Tested with the 20 most popular themes, all compatible with the exceptions of:
 
 * Tesla: compatible but requires edits: open header.php and remove the second call to wp_nav_menu (line 130 - 147)
@@ -75,6 +80,10 @@ See http://www.megamenu.co.uk for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.0.4 =
+
+* Italian translation added. Thanks to aeco!
 
 = 1.0.3 =
 
