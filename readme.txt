@@ -13,6 +13,8 @@ Easy to use drag & drop mega menu builder. Integrates with the existing WordPres
 
 Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to build your mega panels.
 
+https://www.youtube.com/watch?v=e117L-PQSCo
+
 Documentation & Demo: http://www.megamenu.co.uk
 
 Features:
