@@ -308,11 +308,13 @@ final class Mega_Menu {
 			$menu_settings = $settings[ $current_theme_location ];
 			$mega_menu_layout = isset( $menu_settings['layout'] ) ? $menu_settings['layout'] : 'horizontal';
 			$event = isset( $menu_settings['event'] ) ? $menu_settings['event'] : 'hover';
+			$effect = isset( $menu_settings['effect'] ) ? $menu_settings['effect'] : 'fade';
 
 			$wrap_attributes = apply_filters("megamenu_wrap_attributes", array(
 				"id" => '%1$s',
 				"class" => '%2$s mega-no-js',
-				"data-event" => $event
+				"data-event" => $event,
+				"data-effect" => $effect
 			), $menu_id, $menu_settings );
 
 			$attributes = "";

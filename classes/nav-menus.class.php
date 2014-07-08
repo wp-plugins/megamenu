@@ -375,6 +375,16 @@ class Mega_Menu_Nav_Menus {
                 </td>
             </tr>
             <tr>
+                <td><?php _e("Effect", "megamenu") ?></td>
+                <td>
+                    <select name='megamenu_meta[<?php echo $location ?>][effect]'>
+                        <option value='fade' <?php selected( isset( $settings[$location]['effect'] ) && $settings[$location]['effect'] == 'fade'); ?>><?php _e("Fade", "megamenu"); ?></option>
+                        <option value='slide' <?php selected( isset( $settings[$location]['effect'] ) && $settings[$location]['effect'] == 'slide'); ?>><?php _e("Slide", "megamenu"); ?></option>
+                        <option value='show' <?php selected( isset( $settings[$location]['effect'] ) && $settings[$location]['effect'] == 'show'); ?>><?php _e("Show", "megamenu"); ?></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td><?php _e("Theme", "megamenu"); ?></td>
                 <td>
 
