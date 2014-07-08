@@ -3,7 +3,7 @@ Contributors: megamenu
 Tags: menu, mega menu, menu icons, menu style, responsive menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor
 Requires at least: 3.8
 Tested up to: 3.9
-Stable tag: 1.0.4
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Easy to use drag & drop mega menu builder. Integrates with the existing WordPres
 
 Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to build your mega panels.
 
-https://www.youtube.com/watch?v=e117L-PQSCo
+https://www.youtube.com/watch?v=6vx151V3oec
 
 Documentation & Demo: http://www.megamenu.co.uk
 
