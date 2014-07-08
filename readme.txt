@@ -25,6 +25,7 @@ Features:
 * Flyout (traditional) or Mega Menu menu styles
 * Menu Icons
 * Activate Menu on either hover (intent) or click
+* Fade/Slide/None transitions
 * Compatible with touch screen devices
 * 3 'down' arrow icon styles
 * Built in theme editor with color picker
