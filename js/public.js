@@ -106,12 +106,10 @@
         init();
     };
 
-
 }(jQuery));
 
-jQuery(function ($) {
-    "use strict";
-    $('.mega-menu').each(function() {
-        $(this).megaMenu();
+jQuery(document).ready(function(){
+    jQuery('.mega-menu').each(function() {
+        jQuery(this).megaMenu();
     });
 });
