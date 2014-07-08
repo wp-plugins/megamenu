@@ -235,6 +235,7 @@
 		// sub menu items (megamenu)
 
 		> li.mega-menu-megamenu > ul.mega-sub-menu {
+			@include border-radius($panel_border_radius_top_left, $panel_border_radius_top_right, $panel_border_radius_bottom_right, $panel_border_radius_bottom_left);
 		    @include background($panel_background_from, $panel_background_to);
 		    padding: $panel_padding_top $panel_padding_right $panel_padding_bottom $panel_padding_left;
 		    position: absolute;
