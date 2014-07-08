@@ -393,7 +393,8 @@ final class Mega_Menu_Style_Manager {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'megamenu', MEGAMENU_BASE_URL . "js/public.js", array('jquery'), MEGAMENU_VERSION );
+		wp_enqueue_script( 'hoverIntent' );
+		wp_enqueue_script( 'megamenu', MEGAMENU_BASE_URL . "js/public.js", array('jquery', 'hoverIntent'), MEGAMENU_VERSION );
 
 		$params = apply_filters("megamenu_javascript_localisation", 
 			array( 
@@ -404,8 +405,6 @@ final class Mega_Menu_Style_Manager {
 
 		wp_localize_script( 'megamenu', 'megamenu', $params );
 
-		wp_enqueue_script( 'hoverIntent' );
-		
 		wp_enqueue_style( 'megamenu', admin_url('admin-ajax.php') . '?action=megamenu_css', false, MEGAMENU_VERSION );
 		wp_enqueue_style( 'dashicons' );
 

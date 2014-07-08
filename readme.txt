@@ -13,6 +13,8 @@ Easy to use drag & drop mega menu builder. Integrates with the existing WordPres
 
 Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to build your mega panels.
 
+https://www.youtube.com/watch?v=e117L-PQSCo
+
 Documentation & Demo: http://www.megamenu.co.uk
 
 Features:
@@ -25,7 +27,7 @@ Features:
 * Activate Menu on either hover (intent) or click
 * Compatible with touch screen devices
 * 3 'down' arrow icon styles
-* Built in theme editor
+* Built in theme editor with color picker
 * Works with multiple menus on the same page
 * Works with menus tagged to multiple Theme Locations
 * < 1kb JavaScript when gzipped (also works when JS is disabled)
@@ -67,7 +69,8 @@ Tested with the 20 most popular themes, all compatible with the exceptions of:
 
 == Frequently Asked Questions ==
 
-http://www.megamenu.co.uk
+Q. I can only save around 70 menu items, then they disappear
+A. See: http://wordpress.org/support/topic/way-to-unbold-header-items?replies=16
 
 == Screenshots ==
 
@@ -80,6 +83,13 @@ See http://www.megamenu.co.uk for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.1 =
+
+* Added Fade and SlideDown transitions for panels
+* Added panel border, flyout border & panel border radius settings
+* JavaScript tidied up
+* Ensure hoverIntent is enqueued before Mega Menu
 
 = 1.0.4 =
 
