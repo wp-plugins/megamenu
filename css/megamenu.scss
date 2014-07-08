@@ -240,6 +240,10 @@
 		    position: absolute;
 		    width: $panel_width;
 		    z-index: $z_index;
+		    border-top: $panel_border_top solid $panel_border_color;
+		    border-left: $panel_border_left solid $panel_border_color;
+		    border-right: $panel_border_right solid $panel_border_color;
+		    border-bottom: $panel_border_bottom solid $panel_border_color;
 
 		    @if unit($panel_width) == '%' {
 		    	left: 0;
@@ -297,6 +301,10 @@
 		    width: auto;
 		    z-index: 999;
 		    width: $flyout_width;
+		    border-top: $flyout_border_top solid $flyout_border_color;
+		    border-left: $flyout_border_left solid $flyout_border_color;
+		    border-right: $flyout_border_right solid $flyout_border_color;
+		    border-bottom: $flyout_border_bottom solid $flyout_border_color;
 
 		    @media only screen and (max-width : $responsive_breakpoint) { 
 		    	float: left;
