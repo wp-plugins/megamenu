@@ -6,6 +6,7 @@
  * Description: Mega Menu for WordPress.
  * Version:     1.1
  * Author:      Tom Hemsley
+ * Author URI:  http://www.megamenu.co.uk
  * License:     GPL-2.0+
  * Copyright:   2014 Tom Hemsley
  */
