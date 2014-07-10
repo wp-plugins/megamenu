@@ -26,7 +26,7 @@ class Mega_Menu_Nav_Menus {
 
         add_filter( 'hidden_meta_boxes', array( $this, 'show_mega_menu_metabox' ) );
         add_filter( 'wp_edit_nav_menu_walker', array( $this, 'walker' ), 2001 );
-        add_filter( 'megamenu_item_custom_fields', array( $this, 'walker_add_fields' ), 10, 4 );
+        add_filter( 'wp_nav_menu_item_custom_fields', array( $this, 'walker_add_fields' ), 10, 4 );
 
     }
 
@@ -76,7 +76,7 @@ class Mega_Menu_Nav_Menus {
      * @param array $args
      * @param int $id
      */
-    public function walker_add_fields( $item, $depth, $args, $id ) {
+    public function walker_add_fields( $id, $item, $depth, $args ) {
         global $wp_registered_sidebars;
 
         $settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );

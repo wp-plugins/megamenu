@@ -23,9 +23,9 @@ class Mega_Menu_Walker_Edit extends Walker_Nav_Menu_Edit {
 
 		$position = '<p class="field-move';
 
-		$extra = $this->get_fields( $item, $depth, $args );
+		$extra = $this->get_fields( $item, $depth, $args, $id );
 
-		$output .= str_replace($position, $extra . $position, $item_output);
+		$output .= str_replace( $position, $extra . $position, $item_output );
 	}
 
 	/**
@@ -35,7 +35,8 @@ class Mega_Menu_Walker_Edit extends Walker_Nav_Menu_Edit {
 	protected function get_fields( $item, $depth, $args = array(), $id = 0 ) {
 		ob_start();
 
-		do_action( 'megamenu_item_custom_fields', $item, $depth, $args, $id );
+		// conform to https://core.trac.wordpress.org/attachment/ticket/14414/nav_menu_custom_fields.patch
+		do_action( 'wp_nav_menu_item_custom_fields', $id, $item, $depth, $args );
 
 		return ob_get_clean();
 	}
