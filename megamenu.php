@@ -1,10 +1,10 @@
 <?php
 
 /*
- * Plugin Name: Mega Menu
+ * Plugin Name: Max Mega Menu
  * Plugin URI:  http://www.megamenu.co.uk
  * Description: Mega Menu for WordPress.
- * Version:     1.1
+ * Version:     1.2
  * Author:      Tom Hemsley
  * Author URI:  http://www.megamenu.co.uk
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.1';
+	public $version = '1.2';
 
 
 	/**
@@ -56,19 +56,20 @@ final class Mega_Menu {
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 
         add_action( 'megamenu_after_save_settings', array( $this, 'clear_caches' ) );
+        add_action( 'megamenu_after_save_settings', array( $this, 'regenerate_css' ) );
+
         add_action( 'megamenu_after_widget_add', array( $this, 'clear_caches' ) );
         add_action( 'megamenu_after_widget_save', array( $this, 'clear_caches' ) );
         add_action( 'megamenu_after_widget_delete', array( $this, 'clear_caches' ) );
-		add_action( 'megamenu_after_save_settings', array( $this, 'clear_caches') );
-		add_action( 'megamenu_after_theme_save', array( $this, 'clear_caches') );
-		add_action( 'megamenu_after_theme_delete', array( $this, 'clear_caches') );
-		add_action( 'megamenu_after_theme_revert', array( $this, 'clear_caches') );
-		add_action( 'megamenu_after_theme_duplicate', array( $this, 'clear_caches') );
-		add_action( 'megamenu_after_theme_create', array( $this, 'clear_caches') );
-		add_action( 'wp_update_nav_menu', array( $this, 'clear_caches') );
-		add_action( 'after_switch_theme', array( $this, 'clear_caches') );	
 
-        
+		add_action( 'megamenu_after_theme_save', array( $this, 'regenerate_css') );
+		add_action( 'megamenu_after_theme_delete', array( $this, 'regenerate_css') );
+		add_action( 'megamenu_after_theme_revert', array( $this, 'regenerate_css') );
+		add_action( 'megamenu_after_theme_duplicate', array( $this, 'regenerate_css') );
+		add_action( 'megamenu_after_theme_create', array( $this, 'regenerate_css') );
+
+		add_action( 'after_switch_theme', array( $this, 'regenerate_css') );	
+
 		if ( is_admin() ) {
 
 			new Mega_Menu_Nav_Menus();
@@ -409,10 +410,18 @@ final class Mega_Menu {
             wp_cache_clear_cache( $wpdb->blogid );
         }
 
+    }
+
+
+    /**
+     * Regenerate the CSS for the menu's. The generated CSS is then cached.
+     *
+     * @since 1.2
+     */
+    public function regenerate_css() {
         $style_manager = new Mega_Menu_Style_Manager();
         $style_manager->generate_css();
     }
-
 }
 
 add_action( 'plugins_loaded', array( 'Mega_Menu', 'init' ), 10 );
