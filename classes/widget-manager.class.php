@@ -277,8 +277,22 @@ class Mega_Menu_Widget_Manager {
 
 		}
 
+		uasort( $widgets, array( $this, 'sort_by_text' ) );
+
 		return $widgets;
 
+	}
+
+
+    /**
+     * Sorts a 2d array by the 'text' key
+     *
+     * @since 1.2
+     * @param array $a
+     * @param array $b
+     */
+    function sort_by_text( $a, $b ) {
+	    return strcmp( $a['text'], $b['text'] );
 	}
 
 

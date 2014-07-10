@@ -21,7 +21,7 @@
 
 
         panel.log = function (message) {
-            if (console && console.log) {
+            if (window.console && console.log) {
                 console.log(message);
             }
 
