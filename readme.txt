@@ -39,11 +39,11 @@ Features:
 
 The technical stuff:
 
-* Mega Menu will not pick up styling from your old menu, but the built in theme editor will allow you to tailor your Mega Menu styling to your theme.
+* This plugin will not pick up styling from your old menu, but the built in theme editor will allow you to tailor your Mega Menu styling to your theme.
 * Your theme will need a registered Theme Location to work
 * The menu CSS is dynamically parsed SCSS. Developers can create their own SCSS file if needed - just copy the megamenu.css file to your theme directory and make any required edits.
 * The parsed SCSS is cached for performance. The cache is refreshed when a menu is saved or a theme has been created/updated.
-* Mega Menu is compatible with Widget & Menu Output Cache plugin (https://wordpress.org/plugins/widget-output-cache/) as well as WP Super Cache.
+* Max Mega Menu is compatible with Widget & Menu Output Cache plugin (https://wordpress.org/plugins/widget-output-cache/) as well as WP Super Cache.
 * Behind the scenes, all menu widgets are stored as standard WordPress widgets in a new widget area that the plugin creates.
 
 Recommended Widgets:
@@ -65,7 +65,7 @@ Tested with the 20 most popular themes, all compatible with the exceptions of:
 == Installation ==
 
 1. Go to the Plugins Menu in WordPress
-1. Search for "Mega Menu"
+1. Search for "Max Mega Menu"
 1. Click "Install"
 
 == Frequently Asked Questions ==
@@ -84,6 +84,14 @@ See http://www.megamenu.co.uk for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.2 =
+
+* Less agressive cache clearing
+* Compatible with Nav Menu Roles
+* UX improvements for the panel editor
+* Hover effect on single items fixed
+* JS cleaned up
 
 = 1.1 =
 
