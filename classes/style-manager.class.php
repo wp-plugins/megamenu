@@ -399,7 +399,8 @@ final class Mega_Menu_Style_Manager {
 		$params = apply_filters("megamenu_javascript_localisation", 
 			array( 
 				'fade_speed' => 'fast',
-				'slide_speed' => 'fast'
+				'slide_speed' => 'fast',
+                'timeout' => 300
 			)
 		);
 

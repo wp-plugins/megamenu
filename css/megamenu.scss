@@ -87,6 +87,7 @@
 	box-sizing: border-box;
 	float: none;
 	visibility: visible;
+	overflow: visible;
 	display: block;
 	-webkit-transition: none;
 	-moz-transition: none;
@@ -138,9 +139,8 @@
 		    max-width: 100%;
 		}
 
-		> li.mega-menu-item.mega-hover,
 		> li.mega-menu-item.mega-toggle-on,
-		&.mega-no-js > li:hover {
+		> li.mega-menu-item:hover {
 			> a {
 			    @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
 			    color: $menu_item_link_color_hover;

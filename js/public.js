@@ -1,9 +1,9 @@
-/*global console,jQuery*/
+/*jslint browser: true, white: true */
+/*global console,jQuery,megamenu,window,navigator*/
 
 /**
  * Mega Menu jQuery Plugin
  */
-
 (function ($) {
     "use strict";
 
@@ -31,16 +31,14 @@
         }
 
         function showPanel(anchor) {
-            anchor.parent().siblings().children('a').each(function() {
+            anchor.parent().addClass('mega-toggle-on').siblings().children('a').each(function() {
                 hidePanel($(this));
             });
 
-            anchor.parent().addClass('mega-toggle-on');
-
-            if (menu.settings.effect == 'fade') {
-                anchor.siblings('.mega-sub-menu').css('display','none').fadeIn(megamenu.fade_speed);
-            } else if (menu.settings.effect == 'slide') {
-                anchor.siblings('.mega-sub-menu').css('display','none').slideDown(megamenu.slide_speed);
+            if (menu.settings.effect === 'fade') {
+                anchor.siblings('.mega-sub-menu').css('display', 'none').fadeIn(megamenu.fade_speed);
+            } else if (menu.settings.effect === 'slide') {
+                anchor.siblings('.mega-sub-menu').css('display', 'none').slideDown(megamenu.slide_speed);
             } else {
                 anchor.siblings('.mega-sub-menu').show();
             }
@@ -54,24 +52,10 @@
                 }
             });
 
-            $("li > a", menu).on({
-                mouseenter: function() {
-                    $(this).parent().addClass('mega-hover');
-                },
-                mouseleave: function() {
-                    $(this).parent().removeClass('mega-hover');
-                }
-            });
-
-            $('li.mega-menu-megamenu.mega-menu-item-has-children > a, li.mega-menu-flyout.mega-menu-item-has-children > a, li.mega-menu-flyout li.mega-menu-item-has-children > a', menu).on({
-
-                click: function(e) {
-                    e.stopPropagation();
+            $('li.mega-menu-item-has-children > a', menu).on({
+                click: function (e) {
                     // check for second click
-                    if ( $(this).parent().hasClass('mega-toggle-on') && $(this).attr('href') != '#' ) {
-                        // allow the click
-                        hidePanel($(this));
-                    } else {
+                    if (!$(this).parent().hasClass('mega-toggle-on')) {
                         e.preventDefault();
                         showPanel($(this));
                     }
@@ -80,16 +64,15 @@
         }
 
         function openOnHover() {
-            $('li.mega-menu-megamenu.mega-menu-item-has-children, li.mega-menu-flyout.mega-menu-item-has-children, li.mega-menu-flyout li.mega-menu-item', menu).hoverIntent({
-                over: function() {
+            $('li.mega-menu-item-has-children', menu).hoverIntent({
+                over: function () {
                     showPanel($(this).children('a'));
                 },
-                out: function() {
+                out: function () {
                     hidePanel($(this).children('a'));
                 },
-                timeout: 300
+                timeout: megamenu.timeout
             });
-
         }
 
         function init() {
@@ -109,6 +92,7 @@
 }(jQuery));
 
 jQuery(document).ready(function(){
+    "use strict";
     jQuery('.mega-menu').each(function() {
         jQuery(this).megaMenu();
     });
