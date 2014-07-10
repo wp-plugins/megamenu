@@ -204,7 +204,7 @@
 .widget[data-columns='6'] {
 	width: 770px;
 }
-.widget[data-columns='6'] h4 {
+.widget[data-columns='1'] h4 {
 	max-width: 30px;
 }
 
