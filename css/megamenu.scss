@@ -12,21 +12,31 @@
 @mixin border-radius($topleft: 0, $topright: 0, $bottomright: 0, $bottomleft: 0) {
   -webkit-border-radius: $topleft $topright $bottomright $bottomleft;
      -moz-border-radius: $topleft $topright $bottomright $bottomleft;
+      -ms-border-radius: $topleft $topright $bottomright $bottomleft;
+       -o-border-radius: $topleft $topright $bottomright $bottomleft;
           border-radius: $topleft $topright $bottomright $bottomleft;
 }
 
 @mixin box-shadow($value) {
     -webkit-box-shadow: $value;
        -moz-box-shadow: $value;
+        -ms-box-shadow: $value;
+         -o-box-shadow: $value;
             box-shadow: $value;
 }
 
-@mixin transition($transition-property, $transition-time, $method) {
-    -webkit-transition: $transition-property $transition-time $method;
-       -moz-transition: $transition-property $transition-time $method;
-        -ms-transition: $transition-property $transition-time $method;
-         -o-transition: $transition-property $transition-time $method;
-            transition: $transition-property $transition-time $method;
+@mixin background($from, $to) {
+	@if $to == $from {
+		background: $to;
+	} @else {
+		background: $to;
+		background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+		background: -moz-linear-gradient(top, $from, $to);
+		background: -ms-linear-gradient(top, $from, $to);
+		background: -o-linear-gradient(top, $from, $to);
+		background: linear-gradient(to bottom, $from, $to);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+	}
 }
 
 @mixin blocktitle() {
@@ -38,21 +48,6 @@
     margin: 0;
     padding: $panel_header_padding_top $panel_header_padding_right $panel_header_padding_bottom $panel_header_padding_left;
     vertical-align: top;
-}
-
-@mixin background($from, $to) {
-
-	@if $from == transparent {
-        background: transparent;
-    } @else if $to == $from {
-		background: $to;
-	} @else {
-		background: $to;
-		background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
-		background: -moz-linear-gradient(top, $from, $to);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
-	}
-
 }
 
 // resets
