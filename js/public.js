@@ -52,7 +52,7 @@
                 }
             });
 
-            $('li.mega-menu-item-has-children > a', menu).on({
+            $('li.mega-menu-megamenu.mega-menu-item-has-children > a, li.mega-menu-flyout.mega-menu-item-has-children > a, li.mega-menu-flyout li.mega-menu-item-has-children > a', menu).on({
                 click: function (e) {
                     // check for second click
                     if (!$(this).parent().hasClass('mega-toggle-on')) {
@@ -64,7 +64,7 @@
         }
 
         function openOnHover() {
-            $('li.mega-menu-item-has-children', menu).hoverIntent({
+            $('li.mega-menu-megamenu.mega-menu-item-has-children, li.mega-menu-flyout.mega-menu-item-has-children, li.mega-menu-flyout li.mega-menu-item', menu).hoverIntent({
                 over: function () {
                     showPanel($(this).children('a'));
                 },
