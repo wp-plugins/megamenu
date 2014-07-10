@@ -15,7 +15,7 @@
         panel.settings = $.extend({
             menu_item_id: $(this).attr("data-menu-item-id"),
             width: "790px",
-            height: "400px",
+            height: "80%",
             cols: 6
         }, options);
 
@@ -263,10 +263,10 @@
 
                                 var data = $(this).serialize();
 
-                                widget_spinner.show();
+                                $(".spinner", $form).show();
 
                                 $.post(ajaxurl, data, function (submit_response) {
-                                    widget_spinner.hide();
+                                    $(".spinner", $form).hide();
                                     panel.log(submit_response);
                                 });
 

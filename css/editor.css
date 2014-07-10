@@ -28,7 +28,6 @@
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
-	cursor: move;
 	width: 160px;
 	margin: 0 5px 10px 5px;
 	background: #fafafa;
@@ -46,10 +45,13 @@
 	z-index: 999;
 }
 .widget.open .widget-top {
+	cursor: move;
 	z-index: 1001;
 	position: relative;
 }
 .widget.open .widget-inner {
+	max-height: 300px;
+	overflow-y: auto;
 	position: absolute;
 	z-index: 1000;
 	border: 1px solid #e5e5e5;
@@ -201,6 +203,9 @@
 }
 .widget[data-columns='6'] {
 	width: 770px;
+}
+.widget[data-columns='6'] h4 {
+	max-width: 30px;
 }
 
 .widget textarea {

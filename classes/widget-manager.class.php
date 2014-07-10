@@ -470,6 +470,7 @@ class Mega_Menu_Widget_Manager {
 				submit_button( __( 'Save' ), 'button-primary alignright', 'savewidget', false );
 			?>
 
+			<span class='spinner' style='display: none;'></span>
 		</form>
 
 		<?php
