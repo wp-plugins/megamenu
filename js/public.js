@@ -54,10 +54,24 @@
 
             $('li.mega-menu-megamenu.mega-menu-item-has-children > a, li.mega-menu-flyout.mega-menu-item-has-children > a, li.mega-menu-flyout li.mega-menu-item-has-children > a', menu).on({
                 click: function (e) {
+
                     // check for second click
-                    if (!$(this).parent().hasClass('mega-toggle-on')) {
+                    if ( $(this).parent().hasClass("mega-click-click-go") ) {
+                        
+                        if ( ! $(this).parent().hasClass("mega-toggle-on") ) {
+                            e.preventDefault();
+                            showPanel($(this));
+                        }
+
+                    } else {
                         e.preventDefault();
-                        showPanel($(this));
+
+                        if ( $(this).parent().hasClass("mega-toggle-on") ) {
+                            hidePanel($(this));                            
+                        } else {
+                            showPanel($(this));
+                        }
+
                     }
                 }
             });
