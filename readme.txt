@@ -86,6 +86,11 @@ See http://www.megamenu.co.uk for more screenshots
 
 == Changelog ==
 
+= 1.2.2 =
+
+* Add support for "click-click-go" menu item class to follow a link on second click
+* Remove widget overflow
+
 = 1.2.1 =
 
 * Fix IE11 gradients
