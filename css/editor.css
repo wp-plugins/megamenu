@@ -50,8 +50,6 @@
 	position: relative;
 }
 .widget.open .widget-inner {
-	max-height: 300px;
-	overflow-y: auto;
 	position: absolute;
 	z-index: 1000;
 	border: 1px solid #e5e5e5;
