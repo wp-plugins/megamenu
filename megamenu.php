@@ -1,10 +1,10 @@
 <?php
 
 /*
- * Plugin Name: Max Menu
+ * Plugin Name: MaxMenu
  * Plugin URI:  http://www.megamenu.co.uk
  * Description: Mega Menu for WordPress.
- * Version:     1.2.1
+ * Version:     1.2.2
  * Author:      Tom Hemsley
  * Author URI:  http://www.megamenu.co.uk
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.2.1';
+	public $version = '1.2.2';
 
 
 	/**
