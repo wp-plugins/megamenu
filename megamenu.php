@@ -68,6 +68,7 @@ final class Mega_Menu {
 		add_action( 'megamenu_after_theme_duplicate', array( $this, 'regenerate_css') );
 		add_action( 'megamenu_after_theme_create', array( $this, 'regenerate_css') );
 
+
 		add_action( 'after_switch_theme', array( $this, 'regenerate_css') );	
 
 		if ( is_admin() ) {
@@ -81,7 +82,29 @@ final class Mega_Menu {
 		$mega_menu_style_manager = new Mega_Menu_Style_Manager();
 		$mega_menu_style_manager->setup_actions();
 
+		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
+
 	}
+
+
+    /**
+     * Shortcode used to display a menu
+     *
+     * @return string
+     */
+    public function register_shortcode( $atts ) {
+
+        if ( ! isset( $atts['location'] ) ) {
+            return false;
+        }
+
+        if ( has_nav_menu( $atts['location'] ) ) {
+		     return wp_nav_menu( array( 'theme_location' => $atts['location'], 'echo' => false ) );
+		}
+
+        return "<!-- menu not found [maxmenu location={$atts['location']}] -->";
+
+    }
 
 
     /**
