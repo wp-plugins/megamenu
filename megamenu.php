@@ -355,7 +355,6 @@ final class Mega_Menu {
 				'container_id'    => 'mega-menu-wrap-' . $current_theme_location . '-' . $menu_id,
 				'menu_class'      => 'mega-menu mega-menu-' . $mega_menu_layout,
 				'menu_id'         => 'mega-menu-' . $current_theme_location . '-' . $menu_id,
-				'echo'            => true,
 				'fallback_cb'     => 'wp_page_menu',
 				'before'          => '',
 				'after'           => '',
