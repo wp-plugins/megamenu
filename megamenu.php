@@ -4,7 +4,7 @@
  * Plugin Name: MaxMenu
  * Plugin URI:  http://www.megamenu.co.uk
  * Description: Mega Menu for WordPress.
- * Version:     1.2.2
+ * Version:     1.3
  * Author:      Tom Hemsley
  * Author URI:  http://www.megamenu.co.uk
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.2.2';
+	public $version = '1.3';
 
 
 	/**
@@ -68,7 +68,14 @@ final class Mega_Menu {
 		add_action( 'megamenu_after_theme_duplicate', array( $this, 'regenerate_css') );
 		add_action( 'megamenu_after_theme_create', array( $this, 'regenerate_css') );
 
+		add_action( 'megamenu_after_install', array( $this, 'record_version_number') );
+		add_action( 'megamenu_after_update', array( $this, 'record_version_number') );
+		add_action( 'megamenu_after_update', array( $this, 'regenerate_css') );
 
+		register_deactivation_hook( __FILE__, array( $this, 'delete_version_number') );
+
+		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
+		
 		add_action( 'after_switch_theme', array( $this, 'regenerate_css') );	
 
 		if ( is_admin() ) {
@@ -77,13 +84,62 @@ final class Mega_Menu {
 			new Mega_Menu_Widget_Manager();
 			new Mega_Menu_Theme_Editor();
 
+			$this->install_upgrade_check();
+
 		}
 
 		$mega_menu_style_manager = new Mega_Menu_Style_Manager();
 		$mega_menu_style_manager->setup_actions();
 
-		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
+	}
 
+
+	/**
+	 * Detect new or updated installations and run actions accordingly.
+	 */
+	public function install_upgrade_check() {
+
+		if ( $version = get_option( "megamenu_version" ) ) {
+
+			if ( version_compare( $this->version, $version, '>' ) ) {
+
+				do_action( "megamenu_after_update" );
+				
+			}
+
+		} else {
+
+			do_action( "megamenu_after_install" );
+
+		}		
+
+	}
+
+
+	/**
+	 * Store the current version number
+	 */
+	public function record_version_number() {
+
+		if ( get_option( "megamenu_version" ) ) {
+
+			update_option( "megamenu_version", $this->version );
+
+		} else {
+
+			add_option( "megamenu_version", $this->version );
+
+		}
+		
+	}
+
+	/**
+	 * Store the current version number
+	 */
+	public function delete_version_number() {
+
+		delete_option( "megamenu_version", $this->version );
+		
 	}
 
 
@@ -113,7 +169,7 @@ final class Mega_Menu {
 	 * @since 1.0
      */
     public function load_plugin_textdomain() {
-        load_plugin_textdomain('megamenu', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
+        load_plugin_textdomain( 'megamenu', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
 
@@ -376,21 +432,34 @@ final class Mega_Menu {
 	 * Display admin notices.
 	 */
 	public function admin_notices() {
+
 		if ( ! $this->is_compatible_wordpress_version() ) :
 
 	    ?>
 	    <div class="error">
-	        <p><?php _e( 'Mega Menu is not compatible with your version of WordPress. Please upgrade WordPress to the latest version or disable Mega Menu.', 'megamenu' ); ?></p>
+	        <p><?php _e( 'MaxMenu is not compatible with your version of WordPress. Please upgrade WordPress to the latest version or disable Mega Menu.', 'megamenu' ); ?></p>
 	    </div>
 	    <?php
 
 	    endif;
 
+
 		if ( is_plugin_active('ubermenu/ubermenu.php') ) :
 
 	    ?>
 	    <div class="error">
-	        <p><?php _e( 'Mega Menu is not compatible with Uber Menu. Please disable Uber Menu.', 'megamenu' ); ?></p>
+	        <p><?php _e( 'MaxMenu is not compatible with Uber Menu. Please disable Uber Menu.', 'megamenu' ); ?></p>
+	    </div>
+	    <?php
+
+	    endif;
+
+
+		if ( did_action('megamenu_after_install') === 1 ) :
+
+	    ?>
+	    <div class="updated">
+	        <p><?php _e( 'Thanks for installing MaxMenu! Please head to Appearance > Menus to get started.', 'megamenu' ); ?></p>
 	    </div>
 	    <?php
 

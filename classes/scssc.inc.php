@@ -1609,10 +1609,10 @@ class scssc {
 		$urls = array();
 
 		// for "normal" scss imports (ignore vanilla css and external requests)
-		if (!preg_match('/\.css|^http:\/\/$/', $url)) {
+		//if (!preg_match('/\.css|^http:\/\/$/', $url)) {
 			// try both normal and the _partial filename
 			$urls = array($url, preg_replace('/[^\/]+$/', '_\0', $url));
-		}
+		//}
 
 		foreach ($this->importPaths as $dir) {
 			if (is_string($dir)) {

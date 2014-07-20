@@ -70,8 +70,8 @@ class Mega_Menu_theme_Editor {
 
         $saved_themes = get_site_option( "megamenu_themes" );
 
-        if ( isset( $saved_themes[$theme] ) ) {
-            unset( $saved_themes[$theme] );
+        if ( isset( $saved_themes[ $theme ] ) ) {
+            unset( $saved_themes[ $theme ] );
         }
 
         $saved_themes[ $theme ] = array_map( 'esc_attr', $_POST['settings'] );
@@ -80,7 +80,7 @@ class Mega_Menu_theme_Editor {
 
         do_action("megamenu_after_theme_save");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$theme}&saved=true") );
+        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$theme}&saved=true" ) );
 
     }
 
@@ -314,7 +314,7 @@ class Mega_Menu_theme_Editor {
 
         $style_manager = new Mega_Menu_Style_Manager();
 
-        $test = $style_manager->generate_css_for_theme( $this->id );
+        $test = $style_manager->generate_css_for_location( 'test', $this->active_theme, 0 );
 
         if ( is_wp_error( $test ) ) {
             echo "<p class='fail'>" . $test->get_error_message() . "</p>";
@@ -360,7 +360,7 @@ class Mega_Menu_theme_Editor {
             $class = $id == $this->id ? 'mega_active' : '';
 
             $style_manager = new Mega_Menu_Style_Manager();
-            $test = $style_manager->generate_css_for_theme( $id );
+            $test = $style_manager->generate_css_for_location( 'tmp-location', $theme, 0 );
             $error = is_wp_error( $test ) ? 'error' : '';
 
             $list_items .= "<li class='{$class} {$error}'><a href='" . admin_url("themes.php?page=megamenu_theme_editor&theme={$id}") . "'>{$theme['title']}</a></li>";
@@ -618,7 +618,7 @@ class Mega_Menu_theme_Editor {
      */
     public function print_theme_textarea_option( $key, $value ) {
 
-        echo "<textarea name='settings[$key]'>{$value}</textarea>";
+        echo "<textarea name='settings[$key]'>" . stripslashes( $value ) . "</textarea>";
 
     }
 
@@ -636,8 +636,8 @@ class Mega_Menu_theme_Editor {
 
         echo "<option value='inherit'>" . __("Theme Default", "megamenu") . "</option>";
 
-        foreach ($this->fonts() as $font) {
-            echo "<option value=\"{$font}\" " . selected($font, $value) . ">{$font}</option>";
+        foreach ( $this->fonts() as $font ) {
+            echo "<option value=\"{$font}\" " . selected( $font, $value ) . ">{$font}</option>";
         }
 
         echo "</select>";
@@ -664,6 +664,7 @@ class Mega_Menu_theme_Editor {
      * @since 1.0
      */
     public function fonts() {
+
         $fonts = array(
             "Georgia, serif",
             "Palatino Linotype, Book Antiqua, Palatino, serif",
@@ -683,6 +684,7 @@ class Mega_Menu_theme_Editor {
         $fonts = apply_filters( "megamenu_fonts", $fonts );
 
         return $fonts;
+
     }
 
 
@@ -712,6 +714,7 @@ class Mega_Menu_theme_Editor {
         $icons = apply_filters( "megamenu_arrow_icons", $icons );
 
         return $icons;
+        
     }
 
     /**

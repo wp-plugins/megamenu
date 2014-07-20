@@ -86,6 +86,15 @@ See http://www.megamenu.co.uk for more screenshots
 
 == Changelog ==
 
+= 1.3 =
+
+* [maxmenu] shortcode added. Example: [maxmenu location=primary]
+* 'megamenu_after_install' and 'megamenu_after_upgrade' hooks added
+* Fix: CSS automatically regenerated after upgrade
+* Fix: Don't override the echo argument for wp_nav_menu
+* Change: CSS cache set to never expire
+* Added import SCSS import paths
+
 = 1.2.2 =
 
 * Add support for "click-click-go" menu item class to follow a link on second click
