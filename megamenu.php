@@ -49,6 +49,7 @@ final class Mega_Menu {
 		$this->includes();
 
 		add_filter( 'wp_nav_menu_args', array( $this, 'modify_nav_menu_args' ), 9999 );
+		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
 		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 10, 2 );
@@ -96,6 +97,8 @@ final class Mega_Menu {
 
 	/**
 	 * Detect new or updated installations and run actions accordingly.
+	 * 
+	 * @since 1.3
 	 */
 	public function install_upgrade_check() {
 
@@ -118,6 +121,8 @@ final class Mega_Menu {
 
 	/**
 	 * Store the current version number
+	 *
+	 * @since 1.3
 	 */
 	public function record_version_number() {
 
@@ -135,6 +140,8 @@ final class Mega_Menu {
 
 	/**
 	 * Store the current version number
+	 *
+	 * @since 1.3
 	 */
 	public function delete_version_number() {
 
@@ -146,6 +153,7 @@ final class Mega_Menu {
     /**
      * Shortcode used to display a menu
      *
+     * @since 1.3
      * @return string
      */
     public function register_shortcode( $atts ) {
@@ -266,7 +274,7 @@ final class Mega_Menu {
 	 * @param array $classes
 	 * @return array
 	 */
-	function prefix_menu_classes( $classes ) {
+	public function prefix_menu_classes( $classes ) {
 		$return = array();
 
 		foreach ( $classes as $class ) {
@@ -274,6 +282,33 @@ final class Mega_Menu {
 		}
 
 		return $return;
+	}
+
+
+	/** 
+	 * Add the html for the responsive toggle box to the menu
+	 *
+	 * @param string $nav_menu
+	 * @param object $args
+	 * @return string
+	 * @since 1.3
+	 */
+	public function add_responsive_toggle( $nav_menu, $args ) {
+
+		// make sure we're working with a Mega Menu
+		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
+			return $nav_menu;
+
+		$toggle_id = 'mega-menu-' . $args->menu . '-toggle';
+
+		$toggle_class = 'mega-menu-toggle';
+
+		$find = 'class="' . $args->container_class . '">';
+
+		$replace = $find . '<input type="checkbox" id="' . $toggle_id . '" class="' . $toggle_class . '">
+							<label for="'. $toggle_id . '"></label>';
+
+		return str_replace( $find, $replace, $nav_menu );
 	}
 
 
@@ -286,10 +321,10 @@ final class Mega_Menu {
 	 * @param object $args
 	 * @return array - Menu objects including widgets
    	 */
-	function add_widgets_to_menu( $items, $args ) {
+	public function add_widgets_to_menu( $items, $args ) {
 
 		// make sure we're working with a Mega Menu
-		if ( !is_a( $args->walker, 'Mega_Menu_Walker' ) )
+		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
 			return $items;
 
 		$widget_manager = new Mega_Menu_Widget_Manager();

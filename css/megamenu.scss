@@ -119,6 +119,7 @@
     @include border-radius($container_border_radius_top_left, $container_border_radius_top_right, $container_border_radius_bottom_right, $container_border_radius_bottom_left);
 
 	#{$menu} {
+
 	    padding: $container_padding_top $container_padding_right $container_padding_bottom $container_padding_left;
 
 	    .mega-menu-clear {
@@ -384,7 +385,6 @@
 		    }
 		}
 
-
 		li.mega-menu-flyout.mega-align-bottom-right {
 
 			li a {
@@ -420,7 +420,66 @@
 			    left: -100%;
 			    top: 0;
 			}
+		}
+	}
 
+	// responsive toggle hamburger
+
+	input.mega-menu-toggle {
+		display: none;
+
+		& ~ label,
+		& ~ label:active,
+		& ~ label:focus {
+			border: none;
+			outline: none;
+			-webkit-tap-highlight-color: rgba(0,0,0,0);
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		& ~ label {
+			float: right;
+			cursor: pointer;
+			position: relative;
+			z-index: 1;
+			display: none;
+			width: 100%;
+			text-align: right;
+
+			@media only screen and (max-width : $responsive_breakpoint) { 
+				display: block;
+			}
+		}
+
+		& ~ label:after {
+			content: "\f333";
+			color: $menu_item_link_color;
+			display: block;
+			line-height: $menu_item_link_height;
+			font-family: 'dashicons';
+			font-size: 24px;
+		    @include background($container_background_from, $container_background_to);
+		    @include border-radius($container_border_radius_top_left, $container_border_radius_top_right, $container_border_radius_bottom_right, $container_border_radius_bottom_left);
+		    padding-right: 5px;
+	    }
+
+	    &:checked ~ label:after {
+			content: "\f153";
+		}
+
+	    @media only screen and (max-width : $responsive_breakpoint) { 
+	        ~ #{$menu} {
+	        	display: none;
+	        }
+
+	        &:checked ~ #{$menu} {
+	        	display: block;
+	        }
 		}
 	}
 }
