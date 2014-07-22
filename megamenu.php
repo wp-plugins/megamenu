@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name: MaxMenu
+ * Plugin Name: Max Mega Menu
  * Plugin URI:  http://www.megamenu.co.uk
  * Description: Mega Menu for WordPress.
  * Version:     1.3
