@@ -55,6 +55,7 @@ Recommended Widgets:
 Translations:
 
 * Italian (thanks to aeco)
+* German (thanks to Thomas Meyer)
 
 Tested with the 20 most popular themes, all compatible with the exceptions of:
 
@@ -88,12 +89,15 @@ See http://www.megamenu.co.uk for more screenshots
 
 = 1.3 =
 
-* [maxmenu] shortcode added. Example: [maxmenu location=primary]
+* maxmenu shortcode added. Example: [maxmenu location=primary]
 * 'megamenu_after_install' and 'megamenu_after_upgrade' hooks added
+* 'megamenu_scss' hook added
 * Fix: CSS automatically regenerated after upgrade
 * Fix: Don't override the echo argument for wp_nav_menu
+* Fix: Theme duplication when default theme has been edited
 * Change: CSS cache set to never expire
 * Added import SCSS import paths
+* German Translations added (thanks to Thomas Meyer)
 
 = 1.2.2 =
 
