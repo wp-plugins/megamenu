@@ -97,11 +97,12 @@ class Mega_Menu_theme_Editor {
         $theme = esc_attr( $_GET['theme_id'] );
 
         $copy = $this->themes[$theme];
-        $copy['title'] = $copy['title'] . " Copy";
 
         $saved_themes = get_site_option( "megamenu_themes" );
 
         $next_id = $this->get_next_theme_id();
+
+        $copy['title'] = $copy['title'] . " " . __('Copy', 'megamenu');
 
         $new_theme_id = "custom_theme_" . $next_id;
 
@@ -216,12 +217,18 @@ class Mega_Menu_theme_Editor {
         if ( $saved_themes = get_site_option( "megamenu_themes" ) ) {
 
             foreach ( $saved_themes as $key => $value ) {
-                $parts = explode( "_", $key );
-                $theme_id = end( $parts );
 
-                if ($theme_id > $last_id) {
-                    $last_id = $theme_id;
+                if ( strpos( $key, 'custom_theme' ) !== FALSE ) {
+
+                    $parts = explode( "_", $key );
+                    $theme_id = end( $parts );
+
+                    if ($theme_id > $last_id) {
+                        $last_id = $theme_id;
+                    }       
+
                 }
+
             }
 
         }
@@ -321,27 +328,27 @@ class Mega_Menu_theme_Editor {
         }
 
         if ( isset( $_GET['deleted'] ) && $_GET['deleted'] == 'false' ) {
-            echo "<p class='fail'>" . __("Failed to delete theme. The theme is in use by a menu.") . "</p>";
+            echo "<p class='fail'>" . __("Failed to delete theme. The theme is in use by a menu.", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['deleted'] ) && $_GET['deleted'] == 'true' ) {
-            echo "<p class='success'>" . __("Theme Deleted") . "</p>";
+            echo "<p class='success'>" . __("Theme Deleted", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['duplicated'] ) ) {
-            echo "<p class='success'>" . __("Theme Duplicated") . "</p>";
+            echo "<p class='success'>" . __("Theme Duplicated", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['saved'] ) ) {
-            echo "<p class='success'>" . __("Changes Saved") . "</p>";
+            echo "<p class='success'>" . __("Changes Saved", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['reverted'] ) ) {
-            echo "<p class='success'>" . __("Theme Reverted") . "</p>";
+            echo "<p class='success'>" . __("Theme Reverted", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['created'] ) ) {
-            echo "<p class='success'>" . __("New Theme Created") . "</p>";
+            echo "<p class='success'>" . __("New Theme Created", "megamenu") . "</p>";
         }
 
     }
