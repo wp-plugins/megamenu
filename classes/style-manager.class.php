@@ -210,7 +210,7 @@ final class Mega_Menu_Style_Manager {
 
 		$debug_mode = ( defined( 'MEGAMENU_DEBUG' ) && MEGAMENU_DEBUG === true ) || isset( $_GET['nocache'] );
 
-        if ( $css = get_site_transient('megamenu_css') && ! $debug_mode ) {
+        if ( ( $css = get_site_transient('megamenu_css') ) && ! $debug_mode ) {
 
 			echo $css;
 			echo "\n/** CSS served from cache **/";
@@ -341,7 +341,7 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_complete_scss_for_location( $location, $theme, $menu_id ) {
 
-        $vars = "\$wrap: \"#mega-menu-wrap-{$location}-{$menu_id}\";
+        $scss = "\$wrap: \"#mega-menu-wrap-{$location}-{$menu_id}\";
                  \$menu: \"#mega-menu-{$location}-{$menu_id}\";
                  \$number_of_columns: 6;";
 
@@ -354,22 +354,22 @@ final class Mega_Menu_Style_Manager {
 
                 $arrow_icon = $code == 'disabled' ? "''" : "'\\" . $code . "'";
 
-                $vars .= "$" . $name . ": " . $arrow_icon . ";\n";
+                $scss .= "$" . $name . ": " . $arrow_icon . ";\n";
 
                 continue;
             }
 
             if ( $name != 'custom_css' ) {
-                $vars .= "$" . $name . ": " . $value . ";\n";
+                $scss .= "$" . $name . ": " . $value . ";\n";
             }
 
         }
 
-        $custom_css = stripslashes( html_entity_decode( $theme['custom_css'] ) );
+        $scss .= $this->load_scss_file();
+        
+        $scss .= stripslashes( html_entity_decode( $theme['custom_css'] ) );
 
-        $raw_scss = $this->load_scss_file();
-
-        return $vars . $raw_scss . $custom_css;
+        return apply_filters( "megamenu_scss", $scss, $location, $theme, $menu_id );
 
     }
 
