@@ -299,8 +299,8 @@ final class Mega_Menu {
 		// make sure we're working with a Mega Menu
 		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
 			return $nav_menu;
-
-		$toggle_id = 'mega-menu-' . $args->menu . '-toggle';
+		
+		$toggle_id = 'mega-menu-toggle-' . $args->theme_location . '-' . $args->menu;
 
 		$toggle_class = 'mega-menu-toggle';
 
