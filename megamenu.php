@@ -70,6 +70,7 @@ final class Mega_Menu {
 		add_action( 'megamenu_after_theme_create', array( $this, 'regenerate_css') );
 
 		add_action( 'megamenu_after_install', array( $this, 'record_version_number') );
+		add_action( 'megamenu_after_install', array( $this, 'regenerate_css') );
 		add_action( 'megamenu_after_update', array( $this, 'record_version_number') );
 		add_action( 'megamenu_after_update', array( $this, 'regenerate_css') );
 
