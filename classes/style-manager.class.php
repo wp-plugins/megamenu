@@ -343,6 +343,7 @@ final class Mega_Menu_Style_Manager {
 
         $scss = "\$wrap: \"#mega-menu-wrap-{$location}-{$menu_id}\";
                  \$menu: \"#mega-menu-{$location}-{$menu_id}\";
+                 \$menu_id: \"{$menu_id}\";
                  \$number_of_columns: 6;";
 
         foreach( $theme as $name => $value ) {
