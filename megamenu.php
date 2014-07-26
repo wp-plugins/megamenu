@@ -547,7 +547,7 @@ final class Mega_Menu {
      */
     public function regenerate_css() {
         $style_manager = new Mega_Menu_Style_Manager();
-        $style_manager->generate_css();
+        $style_manager->empty_cache();
     }
 }
 

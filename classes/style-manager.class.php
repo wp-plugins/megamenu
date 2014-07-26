@@ -31,6 +31,7 @@ final class Mega_Menu_Style_Manager {
 		add_action( 'wp_ajax_megamenu_css', array( $this, 'get_css') );
 		add_action( 'wp_ajax_nopriv_megamenu_css', array( $this, 'get_css') );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        add_action( 'wp_print_styles', array( $this, 'head_css' ), 9999 );
 
 	}
 
@@ -199,6 +200,17 @@ final class Mega_Menu_Style_Manager {
 	}
 
 
+    /**
+     *
+     * @since 1.3.1
+     */
+    private function is_debug_mode() {
+
+        return ( defined( 'MEGAMENU_DEBUG' ) && MEGAMENU_DEBUG === true ) || isset( $_GET['nocache'] );
+
+    }
+
+
 	/**
 	 * Return the menu CSS. Use the cache if possible.
      *
@@ -208,21 +220,40 @@ final class Mega_Menu_Style_Manager {
 
 		header("Content-type: text/css; charset: UTF-8");
 
-		$debug_mode = ( defined( 'MEGAMENU_DEBUG' ) && MEGAMENU_DEBUG === true ) || isset( $_GET['nocache'] );
-
-        if ( ( $css = get_site_transient('megamenu_css') ) && ! $debug_mode ) {
+        if ( ( $css = get_site_transient('megamenu_css') ) && ! $this->is_debug_mode() ) {
 
 			echo $css;
 			echo "\n/** CSS served from cache **/";
 
 		} else {
 
-			echo $this->generate_css();
+			echo $this->generate_css( 'scss_formatter' );
 
 		}
 
 	  	wp_die();
 	}
+
+
+    /**
+     * Return the menu CSS for use in inline CSS block. Use the cache if possible.
+     *
+     * @since 1.3.1
+     */
+    public function get_inline_css() {
+
+
+        if ( ( $css = get_site_transient('megamenu_css') ) && ! $this->is_debug_mode() ) {
+
+            return $css . "\n/** CSS served from cache **/";
+
+        } else {
+
+            return $this->generate_css( 'scss_formatter_compressed' );
+
+        }
+
+    }
 
 
 	/**
@@ -233,7 +264,7 @@ final class Mega_Menu_Style_Manager {
 	 * @return string
 	 * @param boolean $debug_mode (prints error messages to the CSS when enabled)
 	 */
-	public function generate_css() {
+	public function generate_css( $scss_formatter = 'scss_formatter' ) {
 
 		$start_time = microtime( true );
 
@@ -248,6 +279,10 @@ final class Mega_Menu_Style_Manager {
 
 	  	foreach ( $settings as $location => $settings ) {
 
+            if ( ! isset( $settings['enabled'] ) ) {
+                continue;
+            }
+
             if ( ! has_nav_menu( $location ) ) {
 
                 $exception = true;
@@ -257,7 +292,7 @@ final class Mega_Menu_Style_Manager {
 
                 $theme = $this->get_theme_settings_for_location( $location );
                 $menu_id = $this->get_menu_id_for_location( $location );
-                $compiled_css = $this->generate_css_for_location( $location, $theme, $menu_id );
+                $compiled_css = $this->generate_css_for_location( $location, $theme, $menu_id, $scss_formatter );
 
     			if ( is_wp_error( $compiled_css ) ) {
 
@@ -285,12 +320,24 @@ final class Mega_Menu_Style_Manager {
 
 	  	} else {
 
-            delete_site_transient( 'megamenu_css' );
+            $this->empty_cache();
 
         }
 
 	  	return $css;
 	}
+
+
+    /**
+     * Empty the CSS cache
+     *
+     * @since 1.3
+     */
+    public function empty_cache() {
+
+        delete_site_transient( 'megamenu_css' );
+
+    }
 
 
 	/**
@@ -301,10 +348,10 @@ final class Mega_Menu_Style_Manager {
      * @param array $settings
      * @param string $location
 	 */
-	public function generate_css_for_location( $location, $theme, $menu_id ) {
+	public function generate_css_for_location( $location, $theme, $menu_id, $scss_formatter = 'scss_formatter' ) {
 
 		$scssc = new scssc();
-		$scssc->setFormatter("scss_formatter");
+		$scssc->setFormatter( $scss_formatter );
 
         $import_paths = apply_filters('megamenu_scss_import_paths', array(
             trailingslashit( get_stylesheet_directory() ) . trailingslashit("megamenu"),
@@ -463,7 +510,24 @@ final class Mega_Menu_Style_Manager {
 		wp_enqueue_style( 'megamenu', admin_url('admin-ajax.php') . '?action=megamenu_css', false, MEGAMENU_VERSION );
 		wp_enqueue_style( 'dashicons' );
 
+
 	}
+
+
+    /**
+     * Print CSS to <head> to avoid an extra request to WordPress through admin-ajax.
+     *
+     * @since 1.3.1
+     */
+    public function head_css() {
+
+        if ( ! wp_style_is( 'megamenu', 'enqueued' ) ) {
+
+            echo '<style type="text/css">' . $this->get_inline_css() . "</style>\n";
+
+        }
+
+    }
 
 }
 
