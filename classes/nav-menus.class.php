@@ -276,7 +276,11 @@ class Mega_Menu_Nav_Menus {
 
             } else {
 
-                update_site_option( 'megamenu_settings', $submitted_settings );
+                $existing_settings = get_site_option( 'megamenu_settings' );
+
+                $new_settings = array_merge( $existing_settings, $submitted_settings );
+
+                update_site_option( 'megamenu_settings', $new_settings );
 
             }
 
