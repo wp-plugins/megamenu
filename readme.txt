@@ -87,6 +87,11 @@ See http://www.megamenu.co.uk for more screenshots
 
 == Changelog ==
 
+= 1.3.1 =
+
+* Fix secondary menu bug
+* Add option to print CSS to <head> instead of enqueuing as external file
+
 = 1.3 =
 
 * maxmenu shortcode added. Example: [maxmenu location=primary]
