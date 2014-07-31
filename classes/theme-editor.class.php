@@ -258,7 +258,7 @@ class Mega_Menu_theme_Editor {
 
             foreach ( $locations as $location => $menu_id ) {
 
-                if ( isset( $settings[ $location ]['theme'] ) && $settings[ $location ]['theme'] == $theme ) {
+                if ( has_nav_menu( $location ) && isset( $settings[ $location ]['theme'] ) && $settings[ $location ]['theme'] == $theme ) {
                     return true;
                 }
 
@@ -412,102 +412,686 @@ class Mega_Menu_theme_Editor {
             <input type="hidden" name="theme_id" value="<?php echo $this->id; ?>" />
             <input type="hidden" name="action" value="megamenu_save_theme" />
             <?php wp_nonce_field( 'megamenu_save_theme' ); ?>
-        <?php 
+            
+            <h4><?php _e("General Settings", "megamenu"); ?></h4>
 
-            $sorted_settings = array(
+            <table>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Theme Title", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_freetext_option( 'title' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Arrow Up", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Select the 'Up' arrow style.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_arrow_option( 'arrow_up' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Arrow Down", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Select the 'Down' arrow style.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_arrow_option( 'arrow_down' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Arrow Left", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Select the 'Left' arrow style.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_arrow_option( 'arrow_left' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Arrow Right", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Select the 'Right' arrow style.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_arrow_option( 'arrow_right' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Main Font", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the main font to use for panel contents and flyout menu items.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_color_option( 'font_color' ); ?>
+                        <?php $this->print_theme_freetext_option( 'font_size' ); ?>
+                        <?php $this->print_theme_font_option( 'font_family' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Responsive Breakpoint", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the width at which the menu turns into a mobile menu.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_freetext_option( 'responsive_breakpoint' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Line Height", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the general line height to use in the panel contents.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_freetext_option( 'line_height' ); ?></td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Z-Index", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the z-index to ensure the panels appear ontop of other content.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'><?php $this->print_theme_freetext_option( 'z_index' ); ?></td>
+                </tr>
+            </table>
 
-                'general' => array(
-                    'title' => __("General Settings", "megamenu"),
-                    'settings' => array()
-                ),
-                'container' => array(
-                    'title' => __("Menu Bar", "megamenu"),
-                    'settings' => array()
-                ),
-                'top_level_menu_item' => array(
-                    'title' => __("Top Level Menu Items", "megamenu"),
-                    'settings' => array()
-                ),
-                'panel' => array(
-                    'title' => __("Mega Panels", "megamenu"),
-                    'settings' => array()
-                ),
-                'flyout' => array(
-                    'title' => __("Flyout Menus", "megamenu"),
-                    'settings' => array()
-                ),
-                'custom_css' => array(
-                    'title' => __("Custom SCSS", "megamenu"),
-                    'settings' => array()
-                )
-                
-            );
+            <h4><?php _e("Menu Bar", "megamenu"); ?></h4>
 
-            foreach ( $this->active_theme as $key => $value ) {
+            <table>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Background", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("The background color for the main menu bar. Set each value to transparent for a 'button' style menu.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("From", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'container_background_from' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("To", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'container_background_to' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Padding", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Padding for the main menu bar", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_padding_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_padding_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_padding_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_padding_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Rounded Corners", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set a border radius on the main menu bar", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_border_radius_top_left' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Top Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_border_radius_top_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_border_radius_bottom_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'container_border_radius_bottom_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+            </table>
 
-                if ( $this->string_contains( $key, array( 'container' ) ) ) {
-                    $sorted_settings['container']['settings'][$key] = $value;
-                } 
-                else if ( $this->string_contains( $key, array( 'menu_item' ) ) ) {
-                    $sorted_settings['top_level_menu_item']['settings'][$key] = $value;
-                }
-                else if ( $this->string_contains( $key, array ( 'panel') ) ) {
-                    $sorted_settings['panel']['settings'][$key] = $value;
-                }
-                else if ( $this->string_contains( $key, array ( 'flyout') ) ) {
-                    $sorted_settings['flyout']['settings'][$key] = $value;
-                }
-                else if ( $this->string_contains( $key, array ( 'custom_css') ) ) {
-                    $sorted_settings['custom_css']['settings'][$key] = $value;
-                }
-                else {
-                    $sorted_settings['general']['settings'][$key] = $value;
-                }
-                
-            }
+            <h4><?php _e("Top Level Menu Items", "megamenu"); ?></h4>
 
-            echo "<h3>" . __("Editing Theme: ", "megamenu") . $this->active_theme['title'] . "</h3>";
+            <table>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Item Background", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("The background color for each top level menu item. Tip: Set these values to transparent if you've already set a background color on the menu container", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("From", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'menu_item_background_from' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("To", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'menu_item_background_to' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Item Background (Hover)", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("The background color for a top level menu item (on hover)", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("From", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'menu_item_background_hover_from' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("To", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'menu_item_background_hover_to' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Item Spacing", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Define the size of the gap between each top level menu item", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_freetext_option( 'menu_item_spacing' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Item Height", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Define the height of each top level menu item. This value, plus the container top and bottom padding values define the overall height of the menu bar.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_freetext_option( 'menu_item_link_height' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Font", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("The font to use for each top level menu item.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_color_option( 'menu_item_link_color' ); ?>
+                        <?php $this->print_theme_freetext_option( 'menu_item_link_font_size' ); ?>
+                        <?php $this->print_theme_font_option( 'menu_item_link_font_family' ); ?>
+                        <?php $this->print_theme_weight_option( 'menu_item_link_font_weight' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Font (Hover)", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the font to use for each top level menu item (on hover).", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_color_option( 'menu_item_link_color_hover' ); ?>
+                        <?php $this->print_theme_weight_option( 'menu_item_link_font_weight_hover' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Text Transform", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the padding for the headings. Use this to set the gap between the widget heading and the widget content.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_transform_option( 'menu_item_link_text_transform' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Item Padding", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the padding for each top level menu item", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_padding_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_padding_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_padding_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_padding_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Menu Item Rounded Corners", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set rounded corners for each top level menu item", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_border_radius_top_left' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Top Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_border_radius_top_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_border_radius_bottom_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'menu_item_link_border_radius_bottom_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+            </table>
 
-            foreach ($sorted_settings as $section => $content ) {
+            <h4><?php _e("Mega Panels", "megamenu"); ?></h4>
 
-                echo "<h4>" . $content['title'] . "</h4>";
+            <table>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Panel Background", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set a background color for a whole panel", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("From", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'panel_background_from' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("To", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'panel_background_to' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Panel Width", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Mega Panel width. Note: A 100% wide panel will only ever be as wide as the menu itself. For a fixed panel width set this to a pixel value.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_freetext_option( 'panel_width' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Panel Border", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the border to display on the Mega Panel", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Color", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'panel_border_color' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Panel Padding", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the padding for the whole panel. Set these values 0px if you wish your panel content to go edge-to-edge.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_padding_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_padding_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_padding_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_padding_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Rounded Corners", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set rounded corners for the panel", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_radius_top_left' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Top Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_radius_top_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_radius_bottom_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_border_radius_bottom_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Widget Padding", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the padding for each widget in the panel. Use this to define the spacing between each widget in the panel.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_widget_padding_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_widget_padding_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_widget_padding_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_widget_padding_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Heading Font", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the font to use for Widget Headers. This setting is also used for second level menu items when they're displayed in a Mega Menu.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_color_option( 'panel_header_color' ); ?>
+                        <?php $this->print_theme_freetext_option( 'panel_header_font_size' ); ?>
+                        <?php $this->print_theme_font_option( 'panel_header_font_family' ); ?>
+                        <?php $this->print_theme_weight_option( 'panel_header_font_weight' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Heading Text Transform", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the text transform style for the Widget Headers and second level menu items.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_transform_option( 'panel_header_text_transform' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Heading Padding", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the padding for the headings. Use this to set the gap between the widget heading and the widget content.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_header_padding_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_header_padding_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_header_padding_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'panel_header_padding_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+            </table>
 
-                foreach ( $content['settings'] as $key => $value ) {
 
-                    echo "<div class='row {$key}'><h5>" . ucwords(str_replace(array("_", "container", "menu item", "panel"), array(" ", "", "", ""), $key)) . "</h5>";
+            <h4><?php _e("Flyout Menus", "megamenu"); ?></h4>
 
-                    if ( $this->string_contains( $key, array( 'custom' ) ) ) {
-                        $this->print_theme_textarea_option( $key, $value );
-                    }
-                    else if ( $this->string_contains( $key, array( 'color', 'background' ) ) ) {
-                        $this->print_theme_color_option( $key, $value );
-                    }
-                    else if ( $this->string_contains( $key, array( 'weight' ) ) ) {
-                        $this->print_theme_weight_option( $key, $value );
-                    }
-                    else if ( $this->string_contains( $key, array( 'font_size' ) ) ) {
-                        $this->print_theme_freetext_option( $key, $value );
-                    }
-                    else if ( $this->string_contains( $key, array( 'font' ) ) ) {
-                        $this->print_theme_font_option( $key, $value );
-                    }
-                    else if ( $this->string_contains( $key, array( 'transform' ) ) ) {
-                        $this->print_theme_transform_option( $key, $value );
-                    }
-                    else if ( $this->string_contains( $key, array( 'arrow' ) ) ) {
-                        $this->print_theme_arrow_option( $key, $value );
-                    } 
-                    else if ( $this->string_contains( $key, array( 'title', 'top', 'left', 'bottom', 'right', 'spacing', 'height' ) ) ) {
-                        $this->print_theme_freetext_option( $key, $value );
-                    }
-                    else {
-                        $this->print_theme_freetext_option( $key, $value );
-                    }
+            <table>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Item Background", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the background color for a flyout menu item", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("From", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'flyout_background_from' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("To", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'flyout_background_to' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Item Background (Hover)", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the background color for a flyout menu item (on hover)", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("From", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'flyout_background_hover_from' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("To", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'flyout_background_hover_to' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Item Height", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("The height of each flyout menu item.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_freetext_option( 'flyout_link_height' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Item Padding", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the padding for each flyout menu item", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_link_padding_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_link_padding_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_link_padding_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_link_padding_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Flyout Menu Width", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("The width of each flyout menu", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_freetext_option( 'flyout_width' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Flyout Menu Border", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the border for the flyout menu", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <label>
+                            <span class='type'><?php _e("Color", "megamenu"); ?></span>
+                            <?php $this->print_theme_color_option( 'flyout_border_color' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Top", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_border_top' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Right", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_border_right' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Bottom", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_border_bottom' ); ?>
+                        </label>
+                        <label>
+                            <span class='type'><?php _e("Left", "megamenu"); ?></span>
+                            <?php $this->print_theme_freetext_option( 'flyout_border_left' ); ?>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Font Weight", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the font weight for the flyout menu items.", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_weight_option( 'flyout_link_weight' ); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='name'>
+                        <?php _e("Font Weight (Hover)", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Set the font weight for the flyout menu items (on hover)", "megamenu"); ?>
+                        </div>
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_weight_option( 'flyout_link_weight_hover' ); ?>
+                    </td>
+                </tr>
+            </table>
 
-                    echo "</div>";
-                }
+            <h4><?php _e("Custom Styling", "megamenu"); ?></h4>
 
-            }
+            <table>
+                <tr>
+                    <td class='name'>
+                        <?php _e("CSS Editor", "megamenu"); ?>
+                        <div class='description'>
+                            <?php _e("Define any custom CSS you wish to add to menus using this theme. You can use plain CSS or SCSS.", "megamenu"); ?>
+                        </div>
+                        
+                    </td>
+                    <td class='value'>
+                        <?php $this->print_theme_textarea_option( 'custom_css' ); ?>
+                        <p><b><?php _e("Custom Styling Tips", "megamenu"); ?></b></p>
+                        <ul class='custom_styling_tips'>
+                            <li><code>#{$wrap}</code> <?php _e("converts to the ID selector of the menu wrapper, e.g. div#mega-menu-wrap-primary-14", "megamenu"); ?></li>
+                            <li><code>#{$menu}</code> <?php _e("converts to the ID selector of the menu, e.g. ul#mega-menu-primary-1", "megamenu"); ?></li>
+                            <li><code>#{$menu_id}</code> <?php _e("converts to the ID of the menu, e.g. 1", "megamenu"); ?></li>
+                            <li><?php _e("Use @import rules to import CSS from other plugins or your theme directory, e.g:"); ?>
+                            <br /><br /><code>#{$wrap} #{$menu} {<br />&nbsp;&nbsp;&nbsp;&nbsp;@import "shortcodes-ultimate/assets/css/box-shortcodes.css";<br />}</code></li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </table>
+
+            <?php
 
             submit_button();
 
@@ -538,12 +1122,13 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_arrow_option( $key, $value ) {
+    public function print_theme_arrow_option( $key ) {
+
+        $value = $this->active_theme[$key];
         
         $arrow_icons = $this->arrow_icons(); 
 
         ?>
-            <span class="selected_icon <?php echo $arrow_icons[$value] ?>"></span>
             <select class='icon_dropdown' name='settings[<?php echo $key ?>]'>
 
                 <?php 
@@ -558,6 +1143,8 @@ class Mega_Menu_theme_Editor {
 
                 ?>
             </select>
+            <span class="selected_icon <?php echo $arrow_icons[$value] ?>"></span>
+
 
         <?php
     }
@@ -569,13 +1156,24 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_color_option( $key, $value ) {
+    public function print_theme_color_option( $key ) {
+
+        $value = $this->active_theme[$key];
 
         if ( $value == 'transparent' ) {
             $value = 'rgba(0,0,0,0)';
         }
 
-        echo "<input type='text' class='mm_colorpicker' name='settings[$key]' value='{$value}' />";
+        if ( $value == 'rgba(0,0,0,0)' ) {
+            $value_text = 'transparent';
+        } else {
+            $value_text = $value;
+        }
+
+        echo "<div class='mm-picker-container'>";
+        echo "    <input type='text' class='mm_colorpicker' name='settings[$key]' value='{$value}' />";
+        echo "    <div class='chosen-color'>{$value_text}</div>";
+        echo "</div>";
 
     }
 
@@ -587,7 +1185,9 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_weight_option( $key, $value ) {
+    public function print_theme_weight_option( $key ) {
+
+        $value = $this->active_theme[$key];
 
         echo "<select name='settings[$key]'>";
         echo "    <option value='normal' " . selected( $value, 'normal', true) . ">" . __("Normal", "megamenu") . "</option>";
@@ -604,7 +1204,9 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_transform_option( $key, $value ) {
+    public function print_theme_transform_option( $key ) {
+
+        $value = $this->active_theme[$key];
 
         echo "<select name='settings[$key]'>";
         echo "    <option value='none' "      . selected( $value, 'none', true) . ">" . __("Normal", "megamenu") . "</option>";
@@ -623,9 +1225,11 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_textarea_option( $key, $value ) {
+    public function print_theme_textarea_option( $key ) {
 
-        echo "<textarea name='settings[$key]'>" . stripslashes( $value ) . "</textarea>";
+        $value = $this->active_theme[$key];
+
+        echo "<textarea id='codemirror' name='settings[$key]'>" . stripslashes( $value ) . "</textarea>";
 
     }
 
@@ -637,14 +1241,18 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_font_option( $key, $value ) {
+    public function print_theme_font_option( $key ) {
+
+        $value = $this->active_theme[$key];
 
         echo "<select name='settings[$key]'>";
 
         echo "<option value='inherit'>" . __("Theme Default", "megamenu") . "</option>";
 
         foreach ( $this->fonts() as $font ) {
-            echo "<option value=\"{$font}\" " . selected( $font, $value ) . ">{$font}</option>";
+            $parts = explode(",", $font);
+            $font_name = trim($parts[0]);
+            echo "<option value=\"{$font}\" " . selected( $font, $value ) . ">{$font_name}</option>";
         }
 
         echo "</select>";
@@ -658,7 +1266,9 @@ class Mega_Menu_theme_Editor {
      * @param string $key
      * @param string $value
      */
-    public function print_theme_freetext_option( $key, $value ) {
+    public function print_theme_freetext_option( $key ) {
+
+        $value = $this->active_theme[$key];
 
         echo "<input type='text' name='settings[$key]' value='{$value}' />";
 
@@ -736,9 +1346,11 @@ class Mega_Menu_theme_Editor {
 
         wp_enqueue_style( 'spectrum', MEGAMENU_BASE_URL . 'js/spectrum/spectrum.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'mega-menu-theme-editor', MEGAMENU_BASE_URL . 'css/theme-editor.css', false, MEGAMENU_VERSION );
+        wp_enqueue_style( 'codemirror', MEGAMENU_BASE_URL . 'js/codemirror/codemirror.css', false, MEGAMENU_VERSION );
 
-        wp_enqueue_script( 'mega-menu-theme-editor', MEGAMENU_BASE_URL . 'js/theme-editor.js', array('jquery'), MEGAMENU_VERSION );
         wp_enqueue_script( 'spectrum', MEGAMENU_BASE_URL . 'js/spectrum/spectrum.js', array( 'jquery' ), MEGAMENU_VERSION );
+        wp_enqueue_script( 'codemirror', MEGAMENU_BASE_URL . 'js/codemirror/codemirror.js', array(), MEGAMENU_VERSION );
+        wp_enqueue_script( 'mega-menu-theme-editor', MEGAMENU_BASE_URL . 'js/theme-editor.js', array('jquery', 'spectrum', 'codemirror'), MEGAMENU_VERSION );
 
         wp_localize_script( 'mega-menu-theme-editor', 'megamenu_theme_editor',
             array(

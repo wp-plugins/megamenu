@@ -11,11 +11,28 @@ jQuery(function ($) {
         $(this).next('.pixel_value').html($(this).val() + 'px');
     });
 
+
+    var codeMirror = CodeMirror.fromTextArea(document.getElementById('codemirror'), {
+        tabMode: 'indent',
+        lineNumbers: true,
+        lineWrapping: true,
+        onChange: function(cm) {
+            cm.save();
+        }
+    });
+
     $(".mm_colorpicker").spectrum({
         preferredFormat: "rgb",
         showInput: true,
         showAlpha: true,
-        clickoutFiresChange: true
+        clickoutFiresChange: true,
+        change: function(color) { 
+            if (color.getAlpha() === 0) {
+                $(this).siblings('div.chosen-color').html('transparent');
+            } else {
+                $(this).siblings('div.chosen-color').html(color.toRgbString());
+            }
+        }
     });
 
     $(".confirm").on("click", function() {
@@ -25,7 +42,7 @@ jQuery(function ($) {
     $('.icon_dropdown').on("change", function() {
         var icon = $("option:selected", $(this)).attr('data-class');
         // clear and add selected dashicon class
-        $(this).prev('.selected_icon').removeClass().addClass(icon).addClass('selected_icon');
+        $(this).next('.selected_icon').removeClass().addClass(icon).addClass('selected_icon');
     });
 
     $('.nav-tab-wrapper a').on('click', function() {
