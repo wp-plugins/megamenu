@@ -271,6 +271,9 @@
 				}
 		    }
 
+		    > li ul.mega-sub-menu li ul.mega-sub-menu {
+		    	margin-left: 10px;
+		    }
 
 		    > li.mega-menu-item {
 			    color: $font_color;
