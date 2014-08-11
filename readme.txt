@@ -7,11 +7,11 @@ Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy to use drag & drop mega menu builder. Integrates with the existing WordPress 3 menu system. Responsive, retina & touch ready.
+Easy to use drag & drop WordPress Mega Menu plugin. Integrates with the existing WordPress 3 menu system. Responsive, retina & touch ready.
 
 == Description ==
 
-Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to build your mega panels.
+WordPress Mega Menu Plugin. Use the built in drag & drop widget editor to build your mega panels.
 
 https://www.youtube.com/watch?v=6vx151V3oec
 
