@@ -15,7 +15,7 @@ Mega Menu Plugin for WordPress. Use the built in drag & drop widget editor to bu
 
 https://www.youtube.com/watch?v=6vx151V3oec
 
-Documentation & Demo: http://www.megamenu.co.uk
+Documentation & Demo: http://www.maxmegamenu.com
 
 Features:
 
@@ -77,7 +77,7 @@ A. See: http://wordpress.org/support/topic/way-to-unbold-header-items?replies=16
 
 == Screenshots ==
 
-See http://www.megamenu.co.uk for more screenshots
+See http://www.maxmegamenu.com for more screenshots
 
 1. New menu changes
 2. Drag and Drop widget editor for each menu item
@@ -86,6 +86,12 @@ See http://www.megamenu.co.uk for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.3.2 =
+
+* Theme Editor restyled
+* Fix: Flyout menu item height when item wraps onto 2 lines
+* Fix: Add indentation to third level items in mega panel
 
 = 1.3.1 =
 
