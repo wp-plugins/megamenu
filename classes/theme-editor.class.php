@@ -528,7 +528,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Menu Padding", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Padding for the main menu bar", "megamenu"); ?>
+                            <?php _e("Padding for the main menu bar.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -554,7 +554,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Rounded Corners", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set a border radius on the main menu bar", "megamenu"); ?>
+                            <?php _e("Set a border radius on the main menu bar.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -585,7 +585,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Menu Item Background", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("The background color for each top level menu item. Tip: Set these values to transparent if you've already set a background color on the menu container", "megamenu"); ?>
+                            <?php _e("The background color for each top level menu item. Tip: Set these values to transparent if you've already set a background color on the menu container.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -603,7 +603,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Menu Item Background (Hover)", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("The background color for a top level menu item (on hover)", "megamenu"); ?>
+                            <?php _e("The background color for a top level menu item (on hover).", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -621,7 +621,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Menu Item Spacing", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Define the size of the gap between each top level menu item", "megamenu"); ?>
+                            <?php _e("Define the size of the gap between each top level menu item.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -680,7 +680,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Menu Item Padding", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the padding for each top level menu item", "megamenu"); ?>
+                            <?php _e("Set the padding for each top level menu item.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -706,7 +706,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Menu Item Rounded Corners", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set rounded corners for each top level menu item", "megamenu"); ?>
+                            <?php _e("Set rounded corners for each top level menu item.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -737,7 +737,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Panel Background", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set a background color for a whole panel", "megamenu"); ?>
+                            <?php _e("Set a background color for a whole panel.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -766,7 +766,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Panel Border", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the border to display on the Mega Panel", "megamenu"); ?>
+                            <?php _e("Set the border to display on the Mega Panel.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -822,7 +822,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Rounded Corners", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set rounded corners for the panel", "megamenu"); ?>
+                            <?php _e("Set rounded corners for the panel.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -931,7 +931,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Item Background", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the background color for a flyout menu item", "megamenu"); ?>
+                            <?php _e("Set the background color for a flyout menu item.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -949,7 +949,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Item Background (Hover)", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the background color for a flyout menu item (on hover)", "megamenu"); ?>
+                            <?php _e("Set the background color for a flyout menu item (on hover).", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -978,7 +978,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Item Padding", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the padding for each flyout menu item", "megamenu"); ?>
+                            <?php _e("Set the padding for each flyout menu item.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -1004,7 +1004,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Flyout Menu Width", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("The width of each flyout menu", "megamenu"); ?>
+                            <?php _e("The width of each flyout menu.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -1015,7 +1015,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Flyout Menu Border", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the border for the flyout menu", "megamenu"); ?>
+                            <?php _e("Set the border for the flyout menu.", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -1056,7 +1056,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("Font Weight (Hover)", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Set the font weight for the flyout menu items (on hover)", "megamenu"); ?>
+                            <?php _e("Set the font weight for the flyout menu items (on hover).", "megamenu"); ?>
                         </div>
                     </td>
                     <td class='value'>
@@ -1072,7 +1072,7 @@ class Mega_Menu_theme_Editor {
                     <td class='name'>
                         <?php _e("CSS Editor", "megamenu"); ?>
                         <div class='description'>
-                            <?php _e("Define any custom CSS you wish to add to menus using this theme. You can use plain CSS or SCSS.", "megamenu"); ?>
+                            <?php _e("Define any custom CSS you wish to add to menus using this theme. You can use standard CSS or SCSS.", "megamenu"); ?>
                         </div>
                         
                     </td>
@@ -1082,7 +1082,6 @@ class Mega_Menu_theme_Editor {
                         <ul class='custom_styling_tips'>
                             <li><code>#{$wrap}</code> <?php _e("converts to the ID selector of the menu wrapper, e.g. div#mega-menu-wrap-primary-14", "megamenu"); ?></li>
                             <li><code>#{$menu}</code> <?php _e("converts to the ID selector of the menu, e.g. ul#mega-menu-primary-1", "megamenu"); ?></li>
-                            <li><code>#{$menu_id}</code> <?php _e("converts to the ID of the menu, e.g. 1", "megamenu"); ?></li>
                             <li><?php _e("Use @import rules to import CSS from other plugins or your theme directory, e.g:"); ?>
                             <br /><br /><code>#{$wrap} #{$menu} {<br />&nbsp;&nbsp;&nbsp;&nbsp;@import "shortcodes-ultimate/assets/css/box-shortcodes.css";<br />}</code></li>
                         </ul>
