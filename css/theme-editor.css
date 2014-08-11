@@ -89,18 +89,18 @@
 	padding-top: 10px;
 	border-top: 1px solid #efefef;
 }
-.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings td.name {
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings td.mega-name {
 	width: 27%;
 	line-height: 2em;
 	padding-right: 30px;
 	vertical-align: top;
 }
-.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings td.value {
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings td.mega-value {
 	padding-top: 10px;
 }
-.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings td.name .description {
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings td.mega-name .mega-description {
 	font-size: 0.9em;
-	opacity: 0.8;
+	color: #aaa;
 	line-height: 1.5em;
 }
 
@@ -120,7 +120,7 @@
 }
 .appearance_page_megamenu_theme_editor .megamenu_right .theme_settings table .CodeMirror {
 	height: 150px;
-	border: 1px solid #ccc;
+	border: 1px solid #aaa;
 }
 
 .appearance_page_megamenu_theme_editor .megamenu_right .theme_settings table ul.custom_styling_tips {
@@ -138,10 +138,10 @@
 .appearance_page_megamenu_theme_editor .megamenu_right .theme_settings table {
 	width: 100%;
 }
-.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings table label span.type {
+.appearance_page_megamenu_theme_editor .megamenu_right .theme_settings table label span.mega-short-desc {
 	font-size: 0.8em;
 	text-transform: uppercase;
-	opacity: 0.8;
+	color: #aaa;
 	display: block;
 	margin: 0 0 2px 1px;
 }
@@ -159,7 +159,7 @@
 }
 
 .appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .fail {
-	border: 1px solid #ccc;
+	border: 1px solid #aaa;
 	border-left: 4px solid #dd3d36;
 	background: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
@@ -167,7 +167,7 @@
 	padding: 7px 0 7px 15px;
 }
 .appearance_page_megamenu_theme_editor .megamenu_right .theme_settings .success {
-	border: 1px solid #ccc;
+	border: 1px solid #aaa;
 	border-left: 4px solid #7ad03a;
 	background: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
