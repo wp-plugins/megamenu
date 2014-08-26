@@ -66,7 +66,7 @@ Tested with the 20 most popular themes, all compatible with the exceptions of:
 == Installation ==
 
 1. Go to the Plugins Menu in WordPress
-1. Search for "Max Menu"
+1. Search for "Max Mega Menu"
 1. Click "Install"
 
 == Frequently Asked Questions ==
