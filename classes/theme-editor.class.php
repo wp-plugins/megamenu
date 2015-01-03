@@ -649,8 +649,8 @@ class Mega_Menu_theme_Editor {
                     <td class='mega-value'>
                         <?php $this->print_theme_color_option( 'menu_item_link_color' ); ?>
                         <?php $this->print_theme_freetext_option( 'menu_item_link_font_size' ); ?>
-                        <?php $this->print_theme_font_option( 'menu_item_link_font_family' ); ?>
-                        <?php $this->print_theme_weight_option( 'menu_item_link_font_weight' ); ?>
+                        <?php $this->print_theme_font_option( 'menu_item_link_font' ); ?>
+                        <?php $this->print_theme_weight_option( 'menu_item_link_weight' ); ?>
                     </td>
                 </tr>
                 <tr>
@@ -662,7 +662,7 @@ class Mega_Menu_theme_Editor {
                     </td>
                     <td class='mega-value'>
                         <?php $this->print_theme_color_option( 'menu_item_link_color_hover' ); ?>
-                        <?php $this->print_theme_weight_option( 'menu_item_link_font_weight_hover' ); ?>
+                        <?php $this->print_theme_weight_option( 'menu_item_link_weight_hover' ); ?>
                     </td>
                 </tr>
                 <tr>
@@ -880,7 +880,7 @@ class Mega_Menu_theme_Editor {
                     <td class='mega-value'>
                         <?php $this->print_theme_color_option( 'panel_header_color' ); ?>
                         <?php $this->print_theme_freetext_option( 'panel_header_font_size' ); ?>
-                        <?php $this->print_theme_font_option( 'panel_header_font_family' ); ?>
+                        <?php $this->print_theme_font_option( 'panel_header_font' ); ?>
                         <?php $this->print_theme_weight_option( 'panel_header_font_weight' ); ?>
                     </td>
                 </tr>
