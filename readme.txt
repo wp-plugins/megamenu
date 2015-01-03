@@ -2,12 +2,12 @@
 Contributors: megamenu
 Tags: menu, mega menu, navigation, menu icons, menu style, responsive menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor, widget, sidebar, icons, dashicons
 Requires at least: 3.8
-Tested up to: 3.9
+Tested up to: 4.1
 Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy to use drag & drop WordPress Mega Menu plugin. Integrates with the existing WordPress 3 menu system. Responsive, retina & touch ready.
+Easy to use drag & drop WordPress Mega Menu plugin. Integrates with the existing WordPress menu system. Responsive, retina & touch ready.
 
 == Description ==
 
@@ -86,6 +86,11 @@ See http://www.maxmegamenu.com for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.3.3 =
+
+* Fix: theme warnings (thanks to armandsdz!)
+* Update: compatibile version number updated to 4.1
 
 = 1.3.2 =
 
