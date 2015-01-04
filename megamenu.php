@@ -84,7 +84,7 @@ final class Mega_Menu {
 
 			new Mega_Menu_Nav_Menus();
 			new Mega_Menu_Widget_Manager();
-			new Mega_Menu_Theme_Editor();
+			new Mega_Menu_Settings();
 
 			$this->install_upgrade_check();
 
@@ -208,7 +208,7 @@ final class Mega_Menu {
 			'mega_menu_widget_manager' => MEGAMENU_PATH . 'classes/widget-manager.class.php',
 			'mega_menu_nav_menus'      => MEGAMENU_PATH . 'classes/nav-menus.class.php',
 			'mega_menu_style_manager'  => MEGAMENU_PATH . 'classes/style-manager.class.php',
-			'mega_menu_theme_editor'   => MEGAMENU_PATH . 'classes/theme-editor.class.php',
+			'mega_menu_settings'       => MEGAMENU_PATH . 'classes/settings.class.php',
 			'scssc'                    => MEGAMENU_PATH . 'classes/scssc.inc.php',
 
 		);
