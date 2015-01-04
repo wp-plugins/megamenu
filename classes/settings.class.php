@@ -374,9 +374,7 @@ class Mega_Menu_Settings{
      */
     public function page() {
 
-        $getting_started_selected = isset( $_GET['tab'] ) && $_GET['tab'] == 'getting_started' || ! isset($_GET['tab']) ? 'active' : '';
-        $theme_editor_selected = isset( $_GET['tab'] ) && $_GET['tab'] == 'theme_editor' || ! isset($_GET['tab']) ? 'active' : '';
-        $general_settings_selected = isset( $_GET['tab'] ) && $_GET['tab'] == 'general_settings' || ! isset($_GET['tab']) ? 'active' : '';        
+        $active_tab = 'getting_started';
 
         ?>
 
@@ -395,10 +393,12 @@ class Mega_Menu_Settings{
 
                             switch( $_GET['tab'] ) {
                                 case "theme_editor" :
-                                    $this->theme_editor(); 
+                                    $this->theme_editor();
+                                    $active_tab = 'theme_editor';
                                     break;
                                 case "general_settings" :
                                     $this->settings_page();
+                                    $active_tab = 'general_settings';
                                     break;
                                 default :
                                     $this->getting_started();
@@ -416,9 +416,9 @@ class Mega_Menu_Settings{
 
                 <div class='megamenu_left'>
                     <ul>
-                        <li><a class='<?php echo $getting_started_selected; ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=getting_started") ?>'><?php _e("Getting Started", "megamenu"); ?></a></li>                
-                        <li><a class='<?php echo $theme_editor_selected; ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Theme Editor", "megamenu"); ?></a></li>
-                        <li><a class='<?php echo $general_settings_selected; ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("General Settings", "megamenu"); ?></a></li>                
+                        <li><a class='<?php echo $active_tab == 'getting_started' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=getting_started") ?>'><?php _e("Getting Started", "megamenu"); ?></a></li>                
+                        <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Theme Editor", "megamenu"); ?></a></li>
+                        <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("General Settings", "megamenu"); ?></a></li>                
                     </ul>
                 </div>
 
