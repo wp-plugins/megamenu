@@ -36,7 +36,7 @@ jQuery(function ($) {
     });
 
     $(".confirm").on("click", function() {
-        return confirm(megamenu_theme_editor.confirm);
+        return confirm(megamenu_settings.confirm);
     });
 
     $('.icon_dropdown').on("change", function() {

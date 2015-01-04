@@ -4,12 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // disable direct access
 }
 
-if ( ! class_exists( 'Mega_Menu_theme_Editor' ) ) :
+if ( ! class_exists( 'Mega_Menu_Settings' ) ) :
 
 /**
  * Handles all admin related functionality.
  */
-class Mega_Menu_theme_Editor {
+class Mega_Menu_Settings{
 
 
     /**
@@ -37,11 +37,11 @@ class Mega_Menu_theme_Editor {
      */
     public function __construct() {
 
-        add_action( 'admin_post_megamenu_save_theme', array( $this, 'save') );
-        add_action( 'admin_post_megamenu_add_theme', array( $this, 'create') );
-        add_action( 'admin_post_megamenu_delete_theme', array( $this, 'delete') );
-        add_action( 'admin_post_megamenu_revert_theme', array( $this, 'revert') );
-        add_action( 'admin_post_megamenu_duplicate_theme', array( $this, 'duplicate') );
+        add_action( 'admin_post_megamenu_save_theme', array( $this, 'save_theme') );
+        add_action( 'admin_post_megamenu_add_theme', array( $this, 'create_theme') );
+        add_action( 'admin_post_megamenu_delete_theme', array( $this, 'delete_theme') );
+        add_action( 'admin_post_megamenu_revert_theme', array( $this, 'revert_theme') );
+        add_action( 'admin_post_megamenu_duplicate_theme', array( $this, 'duplicate_theme') );
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
         add_action( "admin_enqueue_scripts", array( $this, 'enqueue_theme_editor_scripts' ) );
@@ -62,7 +62,7 @@ class Mega_Menu_theme_Editor {
      *
      * @since 1.0
      */
-    public function save() {
+    public function save_theme() {
 
         check_admin_referer( 'megamenu_save_theme' );
 
@@ -80,7 +80,7 @@ class Mega_Menu_theme_Editor {
 
         do_action("megamenu_after_theme_save");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$theme}&saved=true" ) );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
 
     }
 
@@ -90,7 +90,7 @@ class Mega_Menu_theme_Editor {
      *
      * @since 1.0
      */
-    public function duplicate() {
+    public function duplicate_theme() {
 
         check_admin_referer( 'megamenu_duplicate_theme' );
 
@@ -112,7 +112,7 @@ class Mega_Menu_theme_Editor {
 
         do_action("megamenu_after_theme_duplicate");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$new_theme_id}&duplicated=true") );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&duplicated=true") );
 
     }
 
@@ -122,7 +122,7 @@ class Mega_Menu_theme_Editor {
      * 
      * @since 1.0
      */
-    public function delete() {
+    public function delete_theme() {
 
         check_admin_referer( 'megamenu_delete_theme' );
 
@@ -130,7 +130,7 @@ class Mega_Menu_theme_Editor {
 
         if ( $this->theme_is_being_used_by_menu( $theme ) ) {
 
-            wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$theme}&deleted=false") );
+            wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&deleted=false") );
             return;
         }
 
@@ -144,7 +144,7 @@ class Mega_Menu_theme_Editor {
 
         do_action("megamenu_after_theme_delete");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme=default&deleted=true") );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme=default&deleted=true") );
 
     }
 
@@ -154,7 +154,7 @@ class Mega_Menu_theme_Editor {
      *
      * @since 1.0
      */
-    public function revert() {
+    public function revert_theme() {
 
         check_admin_referer( 'megamenu_revert_theme' );
 
@@ -170,7 +170,7 @@ class Mega_Menu_theme_Editor {
 
         do_action("megamenu_after_theme_revert");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$theme}&reverted=true") );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&reverted=true") );
 
     }
 
@@ -180,7 +180,7 @@ class Mega_Menu_theme_Editor {
      *
      * @since 1.0
      */
-    public function create() {
+    public function create_theme() {
 
         check_admin_referer( 'megamenu_create_theme' );
 
@@ -200,7 +200,7 @@ class Mega_Menu_theme_Editor {
 
         do_action("megamenu_after_theme_create");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_theme_editor&theme={$new_theme_id}&created=true") );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&created=true") );
 
     }
 
@@ -277,10 +277,17 @@ class Mega_Menu_theme_Editor {
      */
     public function megamenu_themes_page() {
 
-        $page = add_theme_page(__('Mega Menu Themes', 'megamenu'), __('Menu Themes', 'megamenu'), 'edit_theme_options', 'megamenu_theme_editor', array($this, 'theme_editor' ) );
+        $page = add_theme_page(__('Max Mega Menu', 'megamenu'), __('Max Mega Menu', 'megamenu'), 'edit_theme_options', 'megamenu_settings', array($this, 'page' ) );
     
     }
 
+
+    /**
+     *
+     */
+    public function page() {
+        $this->theme_editor();
+    }
 
     /**
      * Main Menu Themes page content
@@ -370,7 +377,7 @@ class Mega_Menu_theme_Editor {
             $test = $style_manager->generate_css_for_location( 'tmp-location', $theme, 0 );
             $error = is_wp_error( $test ) ? 'error' : '';
 
-            $list_items .= "<li class='{$class} {$error}'><a href='" . admin_url("themes.php?page=megamenu_theme_editor&theme={$id}") . "'>{$theme['title']}</a></li>";
+            $list_items .= "<li class='{$class} {$error}'><a href='" . admin_url("themes.php?page=megamenu_settings&tab=theme_editor&theme={$id}") . "'>{$theme['title']}</a></li>";
         }
 
         return $list_items;
@@ -1340,18 +1347,18 @@ class Mega_Menu_theme_Editor {
      */
     public function enqueue_theme_editor_scripts( $hook ) {
 
-        if( 'appearance_page_megamenu_theme_editor' != $hook )
+        if( 'appearance_page_megamenu_settings' != $hook )
             return;
 
         wp_enqueue_style( 'spectrum', MEGAMENU_BASE_URL . 'js/spectrum/spectrum.css', false, MEGAMENU_VERSION );
-        wp_enqueue_style( 'mega-menu-theme-editor', MEGAMENU_BASE_URL . 'css/theme-editor.css', false, MEGAMENU_VERSION );
+        wp_enqueue_style( 'mega-menu-settings', MEGAMENU_BASE_URL . 'css/settings.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'codemirror', MEGAMENU_BASE_URL . 'js/codemirror/codemirror.css', false, MEGAMENU_VERSION );
 
         wp_enqueue_script( 'spectrum', MEGAMENU_BASE_URL . 'js/spectrum/spectrum.js', array( 'jquery' ), MEGAMENU_VERSION );
         wp_enqueue_script( 'codemirror', MEGAMENU_BASE_URL . 'js/codemirror/codemirror.js', array(), MEGAMENU_VERSION );
-        wp_enqueue_script( 'mega-menu-theme-editor', MEGAMENU_BASE_URL . 'js/theme-editor.js', array('jquery', 'spectrum', 'codemirror'), MEGAMENU_VERSION );
+        wp_enqueue_script( 'mega-menu-theme-editor', MEGAMENU_BASE_URL . 'js/settings.js', array('jquery', 'spectrum', 'codemirror'), MEGAMENU_VERSION );
 
-        wp_localize_script( 'mega-menu-theme-editor', 'megamenu_theme_editor',
+        wp_localize_script( 'mega-menu-theme-editor', 'megamenu_settings',
             array(
                 'confirm' => __("Are you sure?", "megamenu")
             )
