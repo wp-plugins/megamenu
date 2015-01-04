@@ -10,26 +10,24 @@
 	float: left;
 	width: 190px;
 	margin-left: -100%;
-	margin-top: 20px;
 }
 
-.appearance_page_megamenu_settings .megamenu_left h4 {
-	margin: 0 0 10px 2px;
+.appearance_page_megamenu_settings .megamenu_left ul li a:hover,
+.appearance_page_megamenu_settings .megamenu_left ul li a.active {
+    border-left: 2px solid #0074a2;
 }
-
-.appearance_page_megamenu_settings .megamenu_left ul li {
-	border: 1px solid #ccc;
-	background: white;
-	
+.appearance_page_megamenu_settings *:focus {
+	box-shadow: 0 0 0;
 }
-
 .appearance_page_megamenu_settings .megamenu_left ul li a {
 	text-decoration: none;
 	color: #333;
 	width: 100%;
 	display: block;
-	padding: 5px 10px;
+	padding: 5px 0px 5px 17px;
 	box-sizing: border-box;
+	border-left: 2px solid white;
+	outline: 0;
 }
 
 .appearance_page_megamenu_settings .megamenu_left ul li.error {
@@ -62,6 +60,12 @@
 	margin-left: 190px;
 	padding: 20px;
 	box-sizing: border-box;
+	border-left: 1px solid #f1f1f1;
+	min-height: 400px;
+}
+
+.appearance_page_megamenu_settings .megamenu_right h4.first {
+	margin: 0em 0 0.7em 0;
 }
 .appearance_page_megamenu_settings .megamenu_right h4 {
 	clear: both;
@@ -70,87 +74,99 @@
 	font-size: 1.2em;
 	margin: 1.33em 0 0.7em 0;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings .duplicate {
+.appearance_page_megamenu_settings .megamenu_right ul.bullets {
+	list-style-type: disc;
+	margin-left: 30px;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings .duplicate {
 	margin-left: 15px;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings {
+.appearance_page_megamenu_settings .megamenu_outer_wrap {
+	padding: 30px 20px 0 0;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap h2.title {
+	margin: 0 0 20px 1px;
+}
+.appearance_page_megamenu_settings .megamenu_wrap {
 	background: white;
-	padding: 10px 20px 30px 20px;
-	border: 1px solid #ccc;
 }
 .appearance_page_megamenu_settings .megamenu_right .nav-tab-active {
 	background: white;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings tr:first-child td {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings tr:first-child td {
 	border-top: 0;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings td {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td {
 	padding-bottom: 25px;
 	padding-top: 10px;
 	border-top: 1px solid #efefef;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings td.mega-name {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-name {
 	width: 27%;
 	line-height: 2em;
 	padding-right: 30px;
 	vertical-align: top;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings td.mega-value {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value {
 	padding-top: 10px;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings td.mega-name .mega-description {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-name .mega-description {
 	font-size: 0.9em;
 	color: #aaa;
 	line-height: 1.5em;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table textarea,
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table input,
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table select {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table textarea,
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table input,
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table select {
 	font-size: 0.9em;
 	height: 28px;
 	line-height: 28px;
 	vertical-align: top;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table textarea {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table input.mega-setting-title {
+	width: 100px;
+}
+
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table textarea {
 	width: 100%;
 	height: 150px;
 	font-family: monospace;
 	line-height: 1.5em;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table .CodeMirror {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table .CodeMirror {
 	height: 150px;
 	border: 1px solid #aaa;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table ul.custom_styling_tips {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table ul.custom_styling_tips {
 	list-style-type: disc;
 	list-style-position: inside;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table ul.custom_styling_tips code {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table ul.custom_styling_tips code {
 	margin: 10px 0 0 0;
 	font-size: 0.9em;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table input {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table input {
 	width: 70px;
 	margin-right: 20px;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table {
 	width: 100%;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table label span.mega-short-desc {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table label span.mega-short-desc {
 	font-size: 0.8em;
 	text-transform: uppercase;
 	color: #aaa;
 	display: block;
 	margin: 0 0 2px 1px;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings table label {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
 	float: left;
 }
 
 
-.appearance_page_megamenu_settings .megamenu_right .theme_settings .row h5 {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings .row h5 {
 	margin: 0;
 	font-weight: normal;
 	float: left;
@@ -158,7 +174,7 @@
 	font-size: 1em;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .theme_settings .fail {
+.appearance_page_megamenu_settings .megamenu_right .fail {
 	border: 1px solid #aaa;
 	border-left: 4px solid #dd3d36;
 	background: #fff;
@@ -166,7 +182,7 @@
 	padding: 10px 0 11px 15px;
 	padding: 7px 0 7px 15px;
 }
-.appearance_page_megamenu_settings .megamenu_right .theme_settings .success {
+.appearance_page_megamenu_settings .megamenu_wrap .success {
 	border: 1px solid #aaa;
 	border-left: 4px solid #7ad03a;
 	background: #fff;
@@ -175,7 +191,7 @@
 	padding: 7px 0 7px 15px;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .theme_settings .selected_icon::before {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings .selected_icon::before {
 	font: 400 20px/1 dashicons;
 	speak: none;
 	padding: 5px 0 0 5px;

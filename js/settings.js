@@ -39,6 +39,14 @@ jQuery(function ($) {
         return confirm(megamenu_settings.confirm);
     });
 
+    $('#theme_selector').bind('change', function () {
+        var url = $(this).val();
+        if (url) { 
+            window.location = url; 
+        }
+        return false;
+    });
+
     $('.icon_dropdown').on("change", function() {
         var icon = $("option:selected", $(this)).attr('data-class');
         // clear and add selected dashicon class
