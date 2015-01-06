@@ -78,14 +78,30 @@
 	list-style-type: disc;
 	margin-left: 30px;
 }
+.appearance_page_megamenu_settings a {
+	text-decoration: none;
+}
+.appearance_page_megamenu_settings .theme_selector {
+	float: right;
+	margin-top: -3px;
+}
+.appearance_page_megamenu_settings h3 {
+	margin: 0 0 40px 0;
+}
 .appearance_page_megamenu_settings .megamenu_right .menu_settings .duplicate {
 	margin-left: 15px;
 }
 .appearance_page_megamenu_settings .megamenu_outer_wrap {
-	padding: 30px 20px 0 0;
+	padding: 20px 20px 0 0;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap h2.title {
-	margin: 0 0 20px 1px;
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header {
+	background: white;
+	padding: 30px 0 30px 17px;
+	border-bottom: 1px solid #f1f1f1;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header h2 {
+	padding: 0;
+	margin: 0;
 }
 .appearance_page_megamenu_settings .megamenu_wrap {
 	background: white;
@@ -110,10 +126,16 @@
 .appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value {
 	padding-top: 10px;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-name .mega-description {
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-name .mega-description,
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-description {
 	font-size: 0.9em;
 	color: #aaa;
 	line-height: 1.5em;
+}
+
+.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-description {
+	text-indent: 2px;
+	margin-top: 5px;
 }
 
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table textarea,
@@ -151,6 +173,15 @@
 	width: 70px;
 	margin-right: 20px;
 }
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
+    font-size: 0.9em;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=checkbox] {
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table {
 	width: 100%;
 }
@@ -179,16 +210,16 @@
 	border-left: 4px solid #dd3d36;
 	background: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-	padding: 10px 0 11px 15px;
 	padding: 7px 0 7px 15px;
+	margin: 0 0 20px 0;
 }
 .appearance_page_megamenu_settings .megamenu_wrap .success {
 	border: 1px solid #aaa;
 	border-left: 4px solid #7ad03a;
 	background: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-	padding: 10px 0 11px 15px;
 	padding: 7px 0 7px 15px;
+	margin: 0 0 20px 0;
 }
 
 .appearance_page_megamenu_settings .megamenu_right .menu_settings .selected_icon::before {

@@ -43,6 +43,9 @@ class Mega_Menu_Settings{
         add_action( 'admin_post_megamenu_revert_theme', array( $this, 'revert_theme') );
         add_action( 'admin_post_megamenu_duplicate_theme', array( $this, 'duplicate_theme') );
 
+        add_action( 'admin_post_megamenu_save_settings', array( $this, 'save_settings') );
+
+
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
         add_action( "admin_enqueue_scripts", array( $this, 'enqueue_theme_editor_scripts' ) );
 
@@ -81,6 +84,43 @@ class Mega_Menu_Settings{
         do_action("megamenu_after_theme_save");
 
         wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
+
+    }
+
+    /**
+     * Save menu general settings.
+     *
+     * @since 1.0
+     */
+    public function save_settings() {
+
+        check_admin_referer( 'megamenu_save_settings' );
+
+        $submitted_settings = array_map( 'esc_attr', $_POST['settings'] );
+
+        if ( ! isset( $submitted_settings['getting_started'] ) ) {
+
+            $submitted_settings['getting_started'] = 'disabled';
+
+        }
+
+        if ( ! get_site_option( 'megamenu_settings' ) ) {
+
+            add_site_option( 'megamenu_settings', $submitted_settings );
+
+        } else {
+
+            $existing_settings = get_site_option( 'megamenu_settings' );
+
+            $new_settings = array_merge( $existing_settings, $submitted_settings );
+ 
+            update_site_option( 'megamenu_settings', $new_settings );
+
+        }
+
+        do_action("megamenu_after_save_general_settings");
+
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=general_settings&saved=true" ) );
 
     }
 
@@ -293,7 +333,7 @@ class Mega_Menu_Settings{
 
         <h4 class='first'><?php _e("Menu Setup", "megamenu"); ?></h4>
 
-        <p><?php _e("Under Appearance > Menus, create a new menu (or use an existing menu). Ensure the Menu is tagged to a Theme Location under “Menu Settings”.", "megamenu"); ?></p>
+        <p><?php _e("Under", "megamenu"); ?> <a href='<?php admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a> <?php _e(", create a new menu (or use an existing menu). Ensure the Menu is tagged to a Theme Location under “Menu Settings”.", "megamenu"); ?></p>
 
         <p><?php _e("Once your menu is created and assigned to a location, you will see the settings for Mega Menu on the left hand side (under “Mega Menu Settings”).", "megamenu"); ?></p>
 
@@ -301,12 +341,12 @@ class Mega_Menu_Settings{
 
         <h4><?php _e("Creating Mega Menus", "megamenu"); ?></h4>
 
-        <p><?php _e("A Mega Menu is the name we give to a large panel of content which is displayed below a menu item when the user clicks or hovers over the menu item.", "megamenu"); ?><p>
+        <p><?php _e("A Mega Menu is the name given to a large panel of content which is displayed below a menu item when the user clicks or hovers over the menu item.", "megamenu"); ?><p>
 
         <p><?php _e("To create a Mega Menu Panel for one of your menu items:", "megamenu"); ?></p>
 
         <ul class='bullets'>
-            <li><?php _e("Go to Appearance > Menus", "megamenu"); ?></li>
+            <li><?php _e("Go to", "megamenu"); ?> <a href='<?php admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a></li>
             <li><?php _e("Expand the Menu Item which you wish to add a panel for (the Menu Item must be positioned at the top level)", "megamenu"); ?></li>
             <li><?php _e("Select “Mega Menu” as the Sub Menu Type", "megamenu"); ?></li>
             <li><?php _e("Click the ‘Configure Panel Widgets for…’ button to launch the Widget Manager.", "megamenu"); ?></li>
@@ -320,11 +360,30 @@ class Mega_Menu_Settings{
 
         <p><?php _e("The Theme Editor allows you to modify all aspects of the Menu styling, including the font, color and size (height) of your menus.", "megamenu"); ?></p>
 
-        <p><?php _e("To apply your new theme to a menu go back to Appearance > Menus and select your new theme from the 'Theme' dropdown in the Mega Menu Settings.", "megamenu"); ?></p>
+        <p><?php _e("To apply your new theme to a menu go back to", "megamenu"); ?> <a href='<?php admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a> <?php _e("and select your new theme from the 'Theme' dropdown in the Mega Menu Settings.", "megamenu"); ?></p>
 
         <?php
     }
 
+    /**
+     *
+     * @since 1.4
+     */
+    public function getting_started_page_is_enabled() {
+
+        $saved_settings = get_site_option( "megamenu_settings" );
+
+        if ( ! isset( $saved_settings['getting_started'] ) ) {
+            return true;
+        }
+
+        if ( $saved_settings['getting_started'] == 'enabled' ) {
+            return true;
+        }
+
+        return false;
+
+    }
 
     /**
      * Content for 'Settings' tab
@@ -332,6 +391,10 @@ class Mega_Menu_Settings{
      * @since 1.4
      */
     public function settings_page() {
+
+        $saved_settings = get_site_option( "megamenu_settings" );
+
+        $css = isset( $saved_settings['css'] ) ? $saved_settings['css'] : 'ajax';
 
         ?>
 
@@ -346,20 +409,46 @@ class Mega_Menu_Settings{
                 <table>
                     <tr>
                         <td class='mega-name'>
-                            <?php _e("", "megamenu"); ?>
+                            <?php _e("Getting Started", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("CSS Output", "megamenu"); ?>
+                                <?php _e("", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
-                            <select name='settings[css]'>
-                                <option value='ajax'><?php _e("Output via admin-ajax.php", "megamenu"); ?></option>
-                                <option value='head'><?php _e("Output in head", "megamenu"); ?></option>
-                                <option value='disabled'><?php _e("Don't output CSS", "megamenu"); ?></option>
+                            <label><input type='checkbox' name='settings[getting_started]' value='enabled' <?php echo checked( $this->getting_started_page_is_enabled() ); ?> /><?php _e("Show the Getting Started page", "megamenu"); ?></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("CSS Output", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <select name='settings[css]' id='mega_css'>
+                                <option value='ajax' <?php echo selected( $css == 'ajax'); ?>><?php _e("Enqueue dynamically via admin-ajax.php", "megamenu"); ?></option>
+                                <option value='head' <?php echo selected( $css == 'head'); ?>><?php _e("Output in &lt;head&gt;", "megamenu"); ?></option>
+                                <option value='disabled' <?php echo selected( $css == 'disabled'); ?>><?php _e("Don't output CSS", "megamenu"); ?></option>
                             <select>
+                            <div class='mega-description'>
+                                <div class='ajax' style='display: <?php echo $css == 'ajax' ? 'block' : 'none' ?>'><?php _e("Default. CSS will be enqueued dynamically through admin-ajax.php and loaded from the cache.", "megamenu"); ?></div>
+                                <div class='head' style='display: <?php echo $css == 'head' ? 'block' : 'none' ?>'><?php _e("CSS will be loaded from the cache in a &lt;style&gt; tag in the &lt;head&gt; of the page.", "megamenu"); ?></div>
+                                <div class='disabled' style='display: <?php echo $css == 'disabled' ? 'block' : 'none' ?>'><?php _e("CSS will not be output, you must enqueue the CSS for the menu manually.", "megamenu"); ?></div>
+                            </div>
                         </td>
                     </tr>
                 </table>
+
+                <h4><?php _e("Menu Settings", "megamenu"); ?></h4>
+
+                <p><i><?php _e("Menu specific settings (e.g, click or hover event, menu theme, transition effect) can be found under", "megamenu"); ?> <a href='<?php admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a></i></p>
+
+                <?php
+
+                    submit_button();
+
+                ?>
             </form>
         </div>
 
@@ -374,15 +463,14 @@ class Mega_Menu_Settings{
      */
     public function page() {
 
-        $active_tab = 'getting_started';
-
         ?>
 
             
             <div class='megamenu_outer_wrap'>
 
-                <h2 class='title'><?php _e("Max Mega Menu", "megamenu"); ?> v<?php echo MEGAMENU_VERSION; ?></h2>
-
+                <div class='megamenu_header'>
+                    <h2><?php _e("Max Mega Menu", "megamenu"); ?> <small>v<?php echo MEGAMENU_VERSION; ?></small></h2>
+                </div>
                 <div class='megamenu_wrap'>
                     <div class='megamenu_right'>
                         <?php $this->print_messages(); ?>
@@ -401,12 +489,24 @@ class Mega_Menu_Settings{
                                     $active_tab = 'general_settings';
                                     break;
                                 default :
-                                    $this->getting_started();
+                                    if ($this->getting_started_page_is_enabled() ) {
+                                        $this->getting_started();
+                                        $active_tab = 'getting_started';
+                                    } else {
+                                        $this->settings_page();
+                                        $active_tab = 'general_settings';
+                                    }
                             }
 
                         } else {
 
-                            $this->getting_started();
+                            if ($this->getting_started_page_is_enabled() ) {
+                                $this->getting_started();
+                                $active_tab = 'getting_started';
+                            } else {
+                                $this->settings_page();
+                                $active_tab = 'general_settings';
+                            }
 
                         }
 
@@ -416,9 +516,11 @@ class Mega_Menu_Settings{
 
                 <div class='megamenu_left'>
                     <ul>
+                        <?php if ($this->getting_started_page_is_enabled() ) : ?>
                         <li><a class='<?php echo $active_tab == 'getting_started' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=getting_started") ?>'><?php _e("Getting Started", "megamenu"); ?></a></li>                
-                        <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Theme Editor", "megamenu"); ?></a></li>
+                        <?php endif; ?>
                         <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("General Settings", "megamenu"); ?></a></li>                
+                        <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Menu Themes", "megamenu"); ?></a></li>
                     </ul>
                 </div>
 
@@ -526,17 +628,17 @@ class Mega_Menu_Settings{
 
         <div class='menu_settings'>
 
-            <h4 class='first'><?php _e("Select theme to edit", "megamenu"); ?></h4>
-
-            <?php echo $this->theme_selector(); ?>
+            <div class='theme_selector'>
+                <?php _e("Select theme to edit", "megamenu"); ?> <?php echo $this->theme_selector(); ?> <?php _e("or", "megamenu"); ?>
+                <a class='' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_add_theme"), 'megamenu_create_theme') ?>'><?php _e("create a new theme", "megamenu"); ?></a>
+            </div>
             
-            <?php _e("or", "megamenu"); ?> <a class='button button-secondary' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_add_theme"), 'megamenu_create_theme') ?>'><?php _e("Create a new theme", "megamenu"); ?></a>
 
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                 <input type="hidden" name="theme_id" value="<?php echo $this->id; ?>" />
                 <input type="hidden" name="action" value="megamenu_save_theme" />
                 <?php wp_nonce_field( 'megamenu_save_theme' ); ?>
-                
+                <h3><?php _e("Editing Theme:", "megamenu"); ?> <?php echo $this->active_theme['title']; ?></h3>
                 <h4><?php _e("General Theme Settings", "megamenu"); ?></h4>
 
                 <table>
