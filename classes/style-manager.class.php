@@ -280,30 +280,32 @@ final class Mega_Menu_Style_Manager {
 	  	foreach ( $settings as $location => $settings ) {
 
             if ( ! isset( $settings['enabled'] ) ) {
+
                 continue;
+
             }
 
             if ( ! has_nav_menu( $location ) ) {
 
-                $exception = true;
                 $css .= "/** Menu for location does not exist: {$location} **/";
+                continue;
+                
+            }
 
-            } else {
 
-                $theme = $this->get_theme_settings_for_location( $location );
-                $menu_id = $this->get_menu_id_for_location( $location );
-                $compiled_css = $this->generate_css_for_location( $location, $theme, $menu_id, $scss_formatter );
+            $theme = $this->get_theme_settings_for_location( $location );
+            $menu_id = $this->get_menu_id_for_location( $location );
+            $compiled_css = $this->generate_css_for_location( $location, $theme, $menu_id, $scss_formatter );
 
-    			if ( is_wp_error( $compiled_css ) ) {
+			if ( is_wp_error( $compiled_css ) ) {
 
-                    $exception = true;
-                    $css .= "/** Failed to compile CSS for location: {$location} **/";
+                $exception = true;
+                $css .= "/** Failed to compile CSS for location: {$location} **/";
 
-    			} else {
+			} else {
 
-                    $css .= $compiled_css;
+                $css .= $compiled_css;
 
-                }
             }
 
 	  	}

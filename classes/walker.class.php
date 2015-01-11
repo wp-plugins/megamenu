@@ -64,9 +64,35 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
+        $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
+
+        $defaults = array(
+            'type' => 'flyout',
+            'align' => 'bottom-left',
+            'icon' => 'disabled',
+            'hide_text' => 'false',
+            'disable_link' => 'false',
+            'hide_arrow' => 'false',
+            'item_align' => 'left'
+        );
+
+        $settings = array_merge( $defaults, $saved_settings );
+
 		// Item Class
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
         $classes[] = 'menu-item-' . $item->ID;
+
+        if ( $settings['hide_arrow'] == 'true') {
+        	$classes[] = 'hide-arrow';
+        }
+
+        if ( $settings['hide_text'] == 'true' && $depth == 0 ) {
+        	$classes[] = 'hide-text';
+        }
+
+        if ( $settings['item_align'] != 'left' && $depth == 0 ) {
+        	$classes[] = 'item-align-' . $settings['item_align'];
+        }
 
         $class = join( ' ', apply_filters( 'megamenu_nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 
@@ -86,9 +112,10 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 			$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 			$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
 			$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
-			$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
 
-			$settings = get_post_meta( $item->ID, '_megamenu', true );
+			if ( $settings['disable_link'] != 'true') {
+				$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+			}
 
 			if ( isset( $settings['icon']) && $settings['icon'] != 'disabled' ) {
 				$atts['class'] = $settings['icon'];
@@ -110,8 +137,11 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 			$item_output = $args->before;
 			$item_output .= '<a'. $attributes .'>';
 
-			/** This filter is documented in wp-includes/post-template.php */
-			$item_output .= $args->link_before . apply_filters( 'megamenu_the_title', $item->title, $item->ID ) . $args->link_after;
+			if ( $settings['hide_text'] == 'true' && $depth == 0 ) {
+				/** This filter is documented in wp-includes/post-template.php */
+			} else {
+				$item_output .= $args->link_before . apply_filters( 'megamenu_the_title', $item->title, $item->ID ) . $args->link_after;
+			}
 
 			$item_output .= '</a>';
 			$item_output .= $args->after;

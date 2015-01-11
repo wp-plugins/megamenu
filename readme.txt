@@ -87,6 +87,14 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.4.1 =
+
+* New feature: Hide menu item text
+* New feature: Hide menu item arrow indicator
+* New feature: Disable menu item link
+* New feature: Align menu item
+* Fix: Allow css to be cached when menu is not found
+
 = 1.4 =
 
 * Update: Admin interface improvements

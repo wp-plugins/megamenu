@@ -48,7 +48,11 @@ class Mega_Menu_Menu_Item_Manager {
             $defaults = array(
                 'type' => 'flyout',
                 'align' => 'bottom-left',
-                'icon' => 'disabled'
+                'icon' => 'disabled',
+                'hide_text' => 'false',
+                'disable_link' => 'false',
+                'hide_arrow' => 'false',
+                'item_align' => 'left'
             );
 
             $this->menu_item_meta = array_merge( $defaults, $saved_settings );
@@ -84,11 +88,32 @@ class Mega_Menu_Menu_Item_Manager {
 
         	$existing_settings = get_post_meta( $menu_item_id, '_megamenu', true);
 
+            // Hide Text checkbox is unchecked
+            if ( ! isset( $submitted_settings['hide_text'] ) ) {
+
+                $submitted_settings['hide_text'] = 'false';
+
+            }
+
+            // Disable Link checkbox is unchecked
+            if ( ! isset( $submitted_settings['disable_link'] ) ) {
+
+                $submitted_settings['disable_link'] = 'false';
+
+            }
+
+            // Disable arrow checkbox is unchecked
+            if ( ! isset ( $submitted_settings['hide_arrow'] ) ) {
+
+                $submitted_settings['hide_arrow'] = 'false';
+
+            }
+
         	if ( is_array( $existing_settings ) ) {
 
         		$submitted_settings = array_merge( $existing_settings, $submitted_settings );
 
-        	} 
+        	}
         	
         	update_post_meta( $_POST['menu_item_id'], '_megamenu', $submitted_settings );
         	
@@ -204,13 +229,18 @@ class Mega_Menu_Menu_Item_Manager {
 		$return  = '<form>';
         $return .= '<table>';
         $return .= '    <tr>';
-        $return .= '        <td class="mega-name">' . __("Sub Menu Position", "megamenu") . '</td>';
+        $return .= '        <td class="mega-name">';
+        $return .=              __("Sub Menu Align", "megamenu");
+        $return .= '            <div class="mega-description">';
+        $return .=                  __("Right aligned sub menus will align to the right of the parent menu item and expand to the left", "megamenu");
+        $return .= '            </div>';
+        $return .= '        </td>';        
         $return .= '        <td class="mega-value">';
 
         if ( $this->menu_item_depth == 0 ) {
             $return .= '            <select name="settings[align]">';
-            $return .= '                <option value="bottom-left" ' . selected($this->menu_item_meta['align'], 'bottom-left', false) . '>' . __("Left", "megamenu") . '</option>';
-            $return .= '                <option value="bottom-right" ' . selected($this->menu_item_meta['align'], 'bottom-right', false) . '>' . __("Right", "megamenu") . '</option>';
+            $return .= '                <option value="bottom-left" ' . selected( $this->menu_item_meta['align'], 'bottom-left', false ) . '>' . __("Left", "megamenu") . '</option>';
+            $return .= '                <option value="bottom-right" ' . selected( $this->menu_item_meta['align'], 'bottom-right', false ) . '>' . __("Right", "megamenu") . '</option>';
             $return .= '            </select>';     
         } else {
             $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
@@ -218,8 +248,66 @@ class Mega_Menu_Menu_Item_Manager {
 
         $return .= '        </td>';
         $return .= '    </tr>';
-    	$return .= '</table>';
+        $return .= '    <tr>';
+        $return .= '        <td class="mega-name">';
+        $return .=              __("Menu Item Align", "megamenu");
+        $return .= '            <div class="mega-description">';
+        $return .=                  __("Right aligned items will appear in reverse order on the right hand side of the menu bar", "megamenu");
+        $return .= '            </div>';
+        $return .= '        </td>';        
+        $return .= '        <td class="mega-value">';
 
+        if ( $this->menu_item_depth == 0 ) {
+            $return .= '            <select name="settings[item_align]">';
+            $return .= '                <option value="left" ' . selected( $this->menu_item_meta['item_align'], 'left', false ) . '>' . __("Left", "megamenu") . '</option>';
+            $return .= '                <option value="right" ' . selected( $this->menu_item_meta['item_align'], 'right', false ) . '>' . __("Right", "megamenu") . '</option>';
+            $return .= '            </select>';     
+        } else {
+            $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
+        }
+
+        $return .= '        </td>';
+        $return .= '    </tr>';
+        $return .= '    <tr>';
+        $return .= '        <td class="mega-name">';
+        $return .=              __("Hide Text", "megamenu");
+        $return .= '            <div class="mega-description">';
+        $return .=                  __("Hide the menu item text", "megamenu");
+        $return .= '            </div>';
+        $return .= '        </td>';
+        $return .= '        <td class="mega-value">';
+
+        if ( $this->menu_item_depth == 0 ) {
+            $return .= '<input type="checkbox" name="settings[hide_text]" value="true" ' . checked( $this->menu_item_meta['hide_text'], 'true', false ) . ' />';
+        } else {
+            $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
+        }
+
+        $return .= '        </td>';
+        $return .= '    </tr>';
+        $return .= '    <tr>';
+        $return .= '        <td class="mega-name">';
+        $return .=              __("Hide Arrow", "megamenu");
+        $return .= '            <div class="mega-description">';
+        $return .=                  __("Hide the arrow indicator", "megamenu");
+        $return .= '            </div>';
+        $return .= '        </td>';        
+        $return .= '        <td class="mega-value">';
+        $return .= '            <input type="checkbox" name="settings[hide_arrow]" value="true" ' . checked( $this->menu_item_meta['hide_arrow'], 'true', false ) . ' />';
+        $return .= '        </td>';
+        $return .= '    </tr>';
+        $return .= '    <tr>';
+        $return .= '        <td class="mega-name">';
+        $return .=              __("Disable Link", "megamenu");
+        $return .= '            <div class="mega-description">';
+        $return .=                  __("Disable the menu item link", "megamenu");
+        $return .= '            </div>';
+        $return .= '        </td>';        
+        $return .= '        <td class="mega-value">';
+        $return .= '            <input type="checkbox" name="settings[disable_link]" value="true" ' . checked( $this->menu_item_meta['disable_link'], 'true', false ) . ' />';
+        $return .= '        </td>';
+        $return .= '    </tr>';
+    	$return .= '</table>';
         $return .= get_submit_button();
         $return .= '</form>';
 
