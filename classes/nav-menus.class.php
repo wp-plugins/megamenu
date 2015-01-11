@@ -20,13 +20,9 @@ class Mega_Menu_Nav_Menus {
 
         add_action( 'admin_init', array( $this, 'register_nav_meta_box' ), 11 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_menu_page_scripts' ) );
-        add_action( 'wp_update_nav_menu_item', array( $this, 'walker_save_fields' ), 10, 3 );
-        add_action( 'admin_post_save_megamenu', array( $this, 'save') );
         add_action( 'megamenu_save_settings', array($this, 'save') );
 
         add_filter( 'hidden_meta_boxes', array( $this, 'show_mega_menu_metabox' ) );
-        add_filter( 'wp_edit_nav_menu_walker', array( $this, 'walker' ), 2001 );
-        add_filter( 'wp_nav_menu_item_custom_fields', array( $this, 'walker_add_fields' ), 10, 4 );
 
     }
 
@@ -48,129 +44,6 @@ class Mega_Menu_Nav_Menus {
         }
 
         return $hidden;
-    }
-
-    /**
-     * Use our custom Nav Edit walker. This adds a filter which we can use to add
-     * settings to menu items.
-     *
-     * @since 1.0
-     * @param object $walker
-     * @return string
-     */
-    public function walker( $walker ) {
-
-        require_once MEGAMENU_PATH . 'classes/walker-edit.class.php';
-
-        return 'Mega_Menu_Walker_Edit';
-
-    }
-
-
-    /**
-     * Show custom menu item fields.
-     *
-     * @since 1.0
-     * @param object $item
-     * @param int $depth
-     * @param array $args
-     * @param int $id
-     */
-    public function walker_add_fields( $id, $item, $depth, $args ) {
-        global $wp_registered_sidebars;
-
-        $settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
-        
-        $defaults = array(
-            'type' => 'flyout',
-            'align' => 'bottom-left',
-            'icon' => 'disabled'
-        );
-
-        $settings = array_merge( $defaults, $settings );
-
-        ?>
-
-        <div class="mega-menu-wrap description-wide">
-            <h4><?php _e("Mega Menu Options", "megamenu"); ?></h4>
-            <p class="description show-on-depth-0-only">
-                <a class='button button-secondary megamenu_launch' href='<?php echo admin_url( 'admin-post.php?action=megamenu_editor' ) ?>' data-menu-item-id='<?php echo $item->ID ?>'><?php _e("Configure Panel Widgets for", "megamenu"); echo " " . $item->title ?></a>
-            </p>
-            <p class="description show-on-depth-0-only">
-                <label>
-                    <?php _e("Sub Menu Type", "megamenu"); ?>
-                    <select name='megamenu[<?php echo $item->ID ?>][type]'>
-                        <option value='flyout' <?php selected($settings['type'], 'flyout'); ?>><?php _e("Flyout Menu", "megamenu"); ?></option>
-                        <option value='megamenu' <?php selected($settings['type'], 'megamenu'); ?>><?php _e("Mega Menu Panel", "megamenu"); ?></option>
-                    </select>
-                </label>
-            </p>
-            <p class="description show-on-depth-0-only">
-                <label>
-                    <?php _e("Sub Menu Position", "megamenu"); ?>
-                    <select name='megamenu[<?php echo $item->ID ?>][align]'>
-                        <option value='bottom-left' <?php selected($settings['align'], 'bottom-left'); ?>><?php _e("Left", "megamenu"); ?></option>
-                        <option value='bottom-right' <?php selected($settings['align'], 'bottom-right'); ?>><?php _e("Right", "megamenu"); ?></option>
-                    </select>
-                </label>
-            </p>
-            <p class="description">
-                <label>
-                    <?php _e("Menu Icon", "megamenu"); ?>
-                    <span class="selected_icon <?php echo $settings['icon'] ?>"></span>
-                    <select class='dashicon_dropdown' name='megamenu[<?php echo $item->ID ?>][icon]'>
-
-                        <?php 
-                            echo "<option value='disabled'>" . __("Disabled", "megamenu") . "</option>";
-
-                            foreach ($this->all_icons() as $code => $class) {
-                                $name = str_replace('dashicons-', '', $class);
-                                $name = ucwords(str_replace('-', ' ', $name));
-                                echo "<option data-class='{$class}' value='{$class}' " . selected($settings['icon'], $class, false) . ">{$name}</option>";
-                            }
-
-                        ?>
-                    </select>
-                    
-                </label>
-            </p>
-        </div>
-
-        <?php
-
-    }
-
-
-    /**
-     * Save custom menu item fields.
-     *
-     * @since 1.0
-     * @param int $menu_id
-     * @param int $menu_item_id
-     * @param array $menu_item_args
-     */
-    public static function walker_save_fields( $menu_id, $menu_item_id, $menu_item_args ) {
-
-        if ( ! empty( $_POST['megamenu'][ $menu_item_id ] ) ) {
-
-            $value = array_filter( (array) $_POST['megamenu'][ $menu_item_id ] );
-
-        } else {
-
-            $value = array();
-
-        }
-
-        if ( ! empty( $value ) ) {
-
-            update_post_meta( $menu_item_id, '_megamenu', $value );
-
-        } else {
-
-            delete_post_meta( $menu_item_id, '_megamenu' );
-
-        }
-
     }
 
 
@@ -215,9 +88,7 @@ class Mega_Menu_Nav_Menus {
         }
 
         wp_enqueue_style( 'colorbox', MEGAMENU_BASE_URL . 'js/colorbox/colorbox.css', false, MEGAMENU_VERSION );
-        wp_enqueue_style( 'mega-menu', MEGAMENU_BASE_URL . 'css/admin.css', false, MEGAMENU_VERSION );
-        wp_enqueue_style( 'mega-menu-editor', MEGAMENU_BASE_URL . 'css/editor.css', false, MEGAMENU_VERSION );
-        wp_enqueue_style( 'font-awesome', MEGAMENU_BASE_URL . 'css/font-awesome.min.css', false, MEGAMENU_VERSION );
+        wp_enqueue_style( 'mega-menu', MEGAMENU_BASE_URL . 'css/admin-menus.css', false, MEGAMENU_VERSION );
 
         wp_enqueue_script( 'mega-menu', MEGAMENU_BASE_URL . 'js/admin.js', array(
             'jquery',
@@ -227,14 +98,13 @@ class Mega_Menu_Nav_Menus {
         MEGAMENU_VERSION );
 
         wp_enqueue_script( 'colorbox', MEGAMENU_BASE_URL . 'js/colorbox/jquery.colorbox-min.js', array( 'jquery' ), MEGAMENU_VERSION );
-        wp_enqueue_script( 'ddslick', MEGAMENU_BASE_URL . 'js/ddslick/jquery.ddslick.js', array( 'jquery' ), MEGAMENU_VERSION );
 
         wp_localize_script( 'mega-menu', 'megamenu',
             array(
                 'debug_launched' => __("Launched for Menu ID", "megamenu"),
-                'debug_added' => __("Added to list", "megamenu"),
-                'select_a_widget' => __("Select a widget to display in the Mega Panel", "megamenu"),
-                'nonce' => wp_create_nonce('megamenu_edit_widgets'),
+                'launch_lightbox' => __("Mega Menu", "megamenu"),
+                'saving' => __("Saving", "megamenu"),
+                'nonce' => wp_create_nonce('megamenu_edit'),
                 'nonce_check_failed' => __("Oops. Something went wrong. Please reload the page.", "megamenu")
             )
         );
@@ -295,6 +165,7 @@ class Mega_Menu_Nav_Menus {
      * Print the custom Meta Box settings
      *
      * @param int $menu_id
+     * @since 1.0
      */
     public function print_enable_megamenu_options( $menu_id ) {
 
@@ -334,7 +205,7 @@ class Mega_Menu_Nav_Menus {
                     
                         <?php if ( isset( $tagged_menu_locations[ $location ] ) ): ?>
 
-                            <h3 class='theme_settings'><?php echo $name; ?></h3>
+                            <h3 class='theme_settings'><?php echo esc_html( $name ); ?></h3>
 
                             <div class='accordion_content' style='display: none;'>
                                 <?php $this->settings_table( $location, $saved_settings ); ?>
@@ -478,221 +349,6 @@ class Mega_Menu_Nav_Menus {
 
         return $nav_menu_selected_id;
 
-    }
-
-    /**
-     * List of all available DashIcon classes.
-     *
-     * @since 1.0
-     * @return array - Sorted list of icon classes
-     */
-    private function all_icons() {
-
-        $icons = array(
-            'dash-f333' => 'dashicons-menu',
-            'dash-f319' => 'dashicons-admin-site',
-            'dash-f226' => 'dashicons-dashboard',
-            'dash-f109' => 'dashicons-admin-post',
-            'dash-f104' => 'dashicons-admin-media',
-            'dash-f103' => 'dashicons-admin-links',
-            'dash-f105' => 'dashicons-admin-page',
-            'dash-f101' => 'dashicons-admin-comments',
-            'dash-f100' => 'dashicons-admin-appearance',
-            'dash-f106' => 'dashicons-admin-plugins',
-            'dash-f110' => 'dashicons-admin-users',
-            'dash-f107' => 'dashicons-admin-tools',
-            'dash-f108' => 'dashicons-admin-settings',
-            'dash-f112' => 'dashicons-admin-network',
-            'dash-f102' => 'dashicons-admin-home',
-            'dash-f111' => 'dashicons-admin-generic',
-            'dash-f148' => 'dashicons-admin-collapse',
-            'dash-f119' => 'dashicons-welcome-write-blog',
-            'dash-f133' => 'dashicons-welcome-add-page',
-            'dash-f115' => 'dashicons-welcome-view-site',
-            'dash-f116' => 'dashicons-welcome-widgets-menus',
-            'dash-f117' => 'dashicons-welcome-comments',
-            'dash-f118' => 'dashicons-welcome-learn-more',
-            'dash-f123' => 'dashicons-format-aside',
-            'dash-f128' => 'dashicons-format-image',
-            'dash-f161' => 'dashicons-format-gallery',
-            'dash-f126' => 'dashicons-format-video',
-            'dash-f130' => 'dashicons-format-status',
-            'dash-f122' => 'dashicons-format-quote',
-            'dash-f125' => 'dashicons-format-chat',
-            'dash-f127' => 'dashicons-format-audio',
-            'dash-f306' => 'dashicons-camera',
-            'dash-f232' => 'dashicons-images-alt',
-            'dash-f233' => 'dashicons-images-alt2',
-            'dash-f234' => 'dashicons-video-alt',
-            'dash-f235' => 'dashicons-video-alt2',
-            'dash-f236' => 'dashicons-video-alt3',
-            'dash-f501' => 'dashicons-media-archive',
-            'dash-f500' => 'dashicons-media-audio',
-            'dash-f499' => 'dashicons-media-code',
-            'dash-f498' => 'dashicons-media-default',
-            'dash-f497' => 'dashicons-media-document',
-            'dash-f496' => 'dashicons-media-interactive',
-            'dash-f495' => 'dashicons-media-spreadsheet',
-            'dash-f491' => 'dashicons-media-text',
-            'dash-f490' => 'dashicons-media-video',
-            'dash-f492' => 'dashicons-playlist-audio',
-            'dash-f493' => 'dashicons-playlist-video',
-            'dash-f165' => 'dashicons-image-crop',
-            'dash-f166' => 'dashicons-image-rotate-left',
-            'dash-f167' => 'dashicons-image-rotate-right',
-            'dash-f168' => 'dashicons-image-flip-vertical',
-            'dash-f169' => 'dashicons-image-flip-horizontal',
-            'dash-f171' => 'dashicons-undo',
-            'dash-f172' => 'dashicons-redo',
-            'dash-f200' => 'dashicons-editor-bold',
-            'dash-f201' => 'dashicons-editor-italic',
-            'dash-f203' => 'dashicons-editor-ul',
-            'dash-f204' => 'dashicons-editor-ol',
-            'dash-f205' => 'dashicons-editor-quote',
-            'dash-f206' => 'dashicons-editor-alignleft',
-            'dash-f207' => 'dashicons-editor-aligncenter',
-            'dash-f208' => 'dashicons-editor-alignright',
-            'dash-f209' => 'dashicons-editor-insertmore',
-            'dash-f210' => 'dashicons-editor-spellcheck',
-            'dash-f211' => 'dashicons-editor-expand',
-            'dash-f506' => 'dashicons-editor-contract',
-            'dash-f212' => 'dashicons-editor-kitchensink',
-            'dash-f213' => 'dashicons-editor-underline',
-            'dash-f214' => 'dashicons-editor-justify',
-            'dash-f215' => 'dashicons-editor-textcolor',
-            'dash-f216' => 'dashicons-editor-paste-word',
-            'dash-f217' => 'dashicons-editor-paste-text',
-            'dash-f218' => 'dashicons-editor-removeformatting',
-            'dash-f219' => 'dashicons-editor-video',
-            'dash-f220' => 'dashicons-editor-customchar',
-            'dash-f221' => 'dashicons-editor-outdent',
-            'dash-f222' => 'dashicons-editor-indent',
-            'dash-f223' => 'dashicons-editor-help',
-            'dash-f224' => 'dashicons-editor-strikethrough',
-            'dash-f225' => 'dashicons-editor-unlink',
-            'dash-f320' => 'dashicons-editor-rtl',
-            'dash-f464' => 'dashicons-editor-break',
-            'dash-f475' => 'dashicons-editor-code',
-            'dash-f476' => 'dashicons-editor-paragraph',
-            'dash-f135' => 'dashicons-align-left',
-            'dash-f136' => 'dashicons-align-right',
-            'dash-f134' => 'dashicons-align-center',
-            'dash-f138' => 'dashicons-align-none',
-            'dash-f160' => 'dashicons-lock',
-            'dash-f145' => 'dashicons-calendar',
-            'dash-f177' => 'dashicons-visibility',
-            'dash-f173' => 'dashicons-post-status',
-            'dash-f464' => 'dashicons-edit',
-            'dash-f182' => 'dashicons-trash',
-            'dash-f504' => 'dashicons-external',
-            'dash-f142' => 'dashicons-arrow-up',
-            'dash-f140' => 'dashicons-arrow-down',
-            'dash-f139' => 'dashicons-arrow-right',
-            'dash-f141' => 'dashicons-arrow-left',
-            'dash-f342' => 'dashicons-arrow-up-alt',
-            'dash-f346' => 'dashicons-arrow-down-alt',
-            'dash-f344' => 'dashicons-arrow-right-alt',
-            'dash-f340' => 'dashicons-arrow-left-alt',
-            'dash-f343' => 'dashicons-arrow-up-alt2',
-            'dash-f347' => 'dashicons-arrow-down-alt2',
-            'dash-f345' => 'dashicons-arrow-right-alt2',
-            'dash-f341' => 'dashicons-arrow-left-alt2',
-            'dash-f156' => 'dashicons-sort',
-            'dash-f229' => 'dashicons-leftright',
-            'dash-f503' => 'dashicons-randomize',
-            'dash-f163' => 'dashicons-list-view',
-            'dash-f164' => 'dashicons-exerpt-view',
-            'dash-f237' => 'dashicons-share',
-            'dash-f240' => 'dashicons-share-alt',
-            'dash-f242' => 'dashicons-share-alt2',
-            'dash-f301' => 'dashicons-twitter',
-            'dash-f303' => 'dashicons-rss',
-            'dash-f465' => 'dashicons-email',
-            'dash-f466' => 'dashicons-email-alt',
-            'dash-f304' => 'dashicons-facebook',
-            'dash-f305' => 'dashicons-facebook-alt',
-            'dash-f462' => 'dashicons-googleplus',
-            'dash-f325' => 'dashicons-networking',
-            'dash-f308' => 'dashicons-hammer',
-            'dash-f309' => 'dashicons-art',
-            'dash-f310' => 'dashicons-migrate',
-            'dash-f311' => 'dashicons-performance',
-            'dash-f483' => 'dashicons-universal-access',
-            'dash-f507' => 'dashicons-universal-access-alt',
-            'dash-f486' => 'dashicons-tickets',
-            'dash-f484' => 'dashicons-nametag',
-            'dash-f481' => 'dashicons-clipboard',
-            'dash-f487' => 'dashicons-heart',
-            'dash-f488' => 'dashicons-megaphone',
-            'dash-f489' => 'dashicons-schedule',
-            'dash-f120' => 'dashicons-wordpress',
-            'dash-f324' => 'dashicons-wordpress-alt',
-            'dash-f157' => 'dashicons-pressthis',
-            'dash-f463' => 'dashicons-update',
-            'dash-f180' => 'dashicons-screenoptions',
-            'dash-f348' => 'dashicons-info',
-            'dash-f174' => 'dashicons-cart',
-            'dash-f175' => 'dashicons-feedback',
-            'dash-f176' => 'dashicons-cloud',
-            'dash-f326' => 'dashicons-translation',
-            'dash-f323' => 'dashicons-tag',
-            'dash-f318' => 'dashicons-category',
-            'dash-f478' => 'dashicons-archive',
-            'dash-f479' => 'dashicons-tagcloud',
-            'dash-f480' => 'dashicons-text',
-            'dash-f147' => 'dashicons-yes',
-            'dash-f158' => 'dashicons-no',
-            'dash-f335' => 'dashicons-no-alt',
-            'dash-f132' => 'dashicons-plus',
-            'dash-f502' => 'dashicons-plus-alt',
-            'dash-f460' => 'dashicons-minus',
-            'dash-f153' => 'dashicons-dismiss',
-            'dash-f159' => 'dashicons-marker',
-            'dash-f155' => 'dashicons-star-filled',
-            'dash-f459' => 'dashicons-star-half',
-            'dash-f154' => 'dashicons-star-empty',
-            'dash-f227' => 'dashicons-flag',
-            'dash-f230' => 'dashicons-location',
-            'dash-f231' => 'dashicons-location-alt',
-            'dash-f178' => 'dashicons-vault',
-            'dash-f332' => 'dashicons-shield',
-            'dash-f334' => 'dashicons-shield-alt',
-            'dash-f468' => 'dashicons-sos',
-            'dash-f179' => 'dashicons-search',
-            'dash-f181' => 'dashicons-slides',
-            'dash-f183' => 'dashicons-analytics',
-            'dash-f184' => 'dashicons-chart-pie',
-            'dash-f185' => 'dashicons-chart-bar',
-            'dash-f238' => 'dashicons-chart-line',
-            'dash-f239' => 'dashicons-chart-area',
-            'dash-f307' => 'dashicons-groups',
-            'dash-f338' => 'dashicons-businessman',
-            'dash-f336' => 'dashicons-id',
-            'dash-f337' => 'dashicons-id-alt',
-            'dash-f312' => 'dashicons-products',
-            'dash-f313' => 'dashicons-awards',
-            'dash-f314' => 'dashicons-forms',
-            'dash-f473' => 'dashicons-testimonial',
-            'dash-f322' => 'dashicons-portfolio',
-            'dash-f330' => 'dashicons-book',
-            'dash-f331' => 'dashicons-book-alt',
-            'dash-f316' => 'dashicons-download',
-            'dash-f317' => 'dashicons-upload',
-            'dash-f321' => 'dashicons-backup',
-            'dash-f469' => 'dashicons-clock',
-            'dash-f339' => 'dashicons-lightbulb',
-            'dash-f482' => 'dashicons-microphone',
-            'dash-f472' => 'dashicons-desktop',
-            'dash-f471' => 'dashicons-tablet',
-            'dash-f470' => 'dashicons-smartphone',
-            'dash-f328' => 'dashicons-smiley'
-        );
-
-        $icons = apply_filters( "megamenu_icons", $icons );
-
-        sort( $icons );
-
-        return $icons;
     }
 
 }

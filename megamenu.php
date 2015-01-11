@@ -4,7 +4,7 @@
  * Plugin Name: Max Mega Menu
  * Plugin URI:  http://www.maxmegamenu.com
  * Description: Mega Menu for WordPress.
- * Version:     1.3.3
+ * Version:     1.4
  * Author:      Tom Hemsley
  * Author URI:  http://www.maxmegamenu.com
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.3.3';
+	public $version = '1.4';
 
 
 	/**
@@ -84,6 +84,7 @@ final class Mega_Menu {
 
 			new Mega_Menu_Nav_Menus();
 			new Mega_Menu_Widget_Manager();
+			new Mega_Menu_Menu_Item_Manager();
 			new Mega_Menu_Settings();
 
 			$this->install_upgrade_check();
@@ -204,12 +205,13 @@ final class Mega_Menu {
 	private function plugin_classes() {
 
 		return array(
-			'mega_menu_walker'         => MEGAMENU_PATH . 'classes/walker.class.php',
-			'mega_menu_widget_manager' => MEGAMENU_PATH . 'classes/widget-manager.class.php',
-			'mega_menu_nav_menus'      => MEGAMENU_PATH . 'classes/nav-menus.class.php',
-			'mega_menu_style_manager'  => MEGAMENU_PATH . 'classes/style-manager.class.php',
-			'mega_menu_settings'       => MEGAMENU_PATH . 'classes/settings.class.php',
-			'scssc'                    => MEGAMENU_PATH . 'classes/scssc.inc.php',
+			'mega_menu_walker'            => MEGAMENU_PATH . 'classes/walker.class.php',
+			'mega_menu_widget_manager'    => MEGAMENU_PATH . 'classes/widget-manager.class.php',
+			'mega_menu_menu_item_manager' => MEGAMENU_PATH . 'classes/menu-item-manager.class.php',
+			'mega_menu_nav_menus'         => MEGAMENU_PATH . 'classes/nav-menus.class.php',
+			'mega_menu_style_manager'     => MEGAMENU_PATH . 'classes/style-manager.class.php',
+			'mega_menu_settings'          => MEGAMENU_PATH . 'classes/settings.class.php',
+			'scssc'                       => MEGAMENU_PATH . 'classes/scssc.inc.php',
 
 		);
 
@@ -473,7 +475,7 @@ final class Mega_Menu {
 
 	    ?>
 	    <div class="error">
-	        <p><?php _e( 'MaxMenu is not compatible with your version of WordPress. Please upgrade WordPress to the latest version or disable Mega Menu.', 'megamenu' ); ?></p>
+	        <p><?php _e( 'Max Mega Menu is not compatible with your version of WordPress. Please upgrade WordPress to the latest version or disable Max Mega Menu.', 'megamenu' ); ?></p>
 	    </div>
 	    <?php
 
@@ -484,7 +486,7 @@ final class Mega_Menu {
 
 	    ?>
 	    <div class="error">
-	        <p><?php _e( 'MaxMenu is not compatible with Uber Menu. Please disable Uber Menu.', 'megamenu' ); ?></p>
+	        <p><?php _e( 'Max Mega Menu is not compatible with Uber Menu. Please disable Uber Menu.', 'megamenu' ); ?></p>
 	    </div>
 	    <?php
 
@@ -495,7 +497,12 @@ final class Mega_Menu {
 
 	    ?>
 	    <div class="updated">
-	        <p><?php _e( 'Thanks for installing MaxMenu! Please head to Appearance > Menus to get started.', 'megamenu' ); ?></p>
+	    	<?php 
+
+	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings") . "'>" . __( "click here", 'megamenu' ) . "</a>"; 
+
+	    	?>
+	        <p><?php echo sprintf( __( 'Thanks for installing Max Mega Menu! Please %s to get started.', 'megamenu' ), $link); ?></p>
 	    </div>
 	    <?php
 
@@ -529,12 +536,6 @@ final class Mega_Menu {
         // https://wordpress.org/plugins/widget-output-cache/
         if ( function_exists( 'widget_output_cache_bump' ) ) {
             widget_output_cache_bump();
-        }
-
-        // https://wordpress.org/plugins/wp-super-cache/
-        if ( function_exists( 'wp_cache_clear_cache' ) ) {
-            global $wpdb;
-            wp_cache_clear_cache( $wpdb->blogid );
         }
 
     }

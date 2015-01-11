@@ -24,8 +24,6 @@ class Mega_Menu_Widget_Manager {
 
 		add_action( 'init', array( $this, 'register_sidebar' ) );
 
-		add_action( 'wp_ajax_mm_get_panel_widgets', array( $this, 'ajax_get_panel_widgets' ) );
-		add_action( 'wp_ajax_mm_get_available_widgets', array( $this, 'ajax_get_available_widgets' ) );
 		add_action( 'wp_ajax_mm_edit_widget', array( $this, 'ajax_show_widget_form' ) );
 		add_action( 'wp_ajax_mm_save_widget', array( $this, 'ajax_save_widget' ) );
 		add_action( 'wp_ajax_mm_update_columns', array( $this, 'ajax_update_columns' ) );
@@ -79,43 +77,13 @@ class Mega_Menu_Widget_Manager {
 
 
 	/**
-	 * Return json encoded list of available widgets
-	 *
-	 * @since 1.0
-	 */
-	public function ajax_get_available_widgets() {
-
-		check_ajax_referer( 'megamenu_edit_widgets' );
-
-		wp_die( json_encode( $this->get_available_widgets() ) );
-
-	}
-
-
-	/**
-	 * Return json encoded list of widgets belonging to a menu item
-	 *
-	 * @since 1.0
-	 */
-	public function ajax_get_panel_widgets() {
-
-		check_ajax_referer( 'megamenu_edit_widgets' );
-
-		$menu_item_id = absint( $_POST['menu_item_id'] );
-
-		wp_die( json_encode( $this->get_widgets_for_menu_id($menu_item_id) ) );
-
-	}
-
-
-	/**
 	 * Display a widget settings form
 	 *
 	 * @since 1.0
 	 */
 	public function ajax_show_widget_form() {
 
-		check_ajax_referer( 'megamenu_edit_widgets' );
+		check_ajax_referer( 'megamenu_edit' );
 
 		$widget_id = sanitize_text_field( $_POST['widget_id'] );
 
@@ -156,7 +124,7 @@ class Mega_Menu_Widget_Manager {
 	 */
 	public function ajax_update_columns() {
 
-		check_ajax_referer( 'megamenu_edit_widgets' );
+		check_ajax_referer( 'megamenu_edit' );
 
 		$widget_id = sanitize_text_field( $_POST['widget_id'] );
 		$columns = absint( $_POST['columns'] );
@@ -181,12 +149,13 @@ class Mega_Menu_Widget_Manager {
 	 */
 	public function ajax_add_widget() {
 
-		check_ajax_referer( 'megamenu_edit_widgets' );
+		check_ajax_referer( 'megamenu_edit' );
 
 		$id_base = sanitize_text_field( $_POST['id_base'] );
 		$menu_item_id = absint( $_POST['menu_item_id'] );
+		$title = sanitize_text_field( $_POST['title'] );
 
-		$added = $this->add_widget( $id_base, $menu_item_id );
+		$added = $this->add_widget( $id_base, $menu_item_id, $title );
 
 		$message = ( $added ) ?
 			$added :
@@ -206,7 +175,7 @@ class Mega_Menu_Widget_Manager {
 	 */
 	public function ajax_delete_widget() {
 
-		check_ajax_referer( 'megamenu_edit_widgets' );
+		check_ajax_referer( 'megamenu_edit' );
 
 		$widget_id = sanitize_text_field( $_POST['widget_id'] );
 
@@ -230,7 +199,7 @@ class Mega_Menu_Widget_Manager {
 	 */
 	public function ajax_move_widget() {
 
-		check_ajax_referer( 'megamenu_edit_widgets' );
+		check_ajax_referer( 'megamenu_edit' );
 
 		$widget_to_move = sanitize_text_field( $_POST['widget_id'] );
 		$position = absint( $_POST['position'] );
@@ -523,8 +492,9 @@ class Mega_Menu_Widget_Manager {
 	 * @since 1.0
 	 * @param string $id_base
 	 * @param int $menu_item_id
+	 * @param string $title
 	 */
-	public function add_widget( $id_base, $menu_item_id ) {
+	public function add_widget( $id_base, $menu_item_id, $title ) {
 
 		require_once( ABSPATH . 'wp-admin/includes/widgets.php' );
 
@@ -534,7 +504,22 @@ class Mega_Menu_Widget_Manager {
 
 		$widget_id = $this->add_widget_to_sidebar( $id_base, $next_id );
 
-		return $widget_id;
+        $return  = '<div class="widget" data-columns="2" data-widget-id="' . $widget_id . '">';
+        $return .= '    <div class="widget-top">';
+        $return .= '        <div class="widget-title-action">';
+        $return .= '            <a class="widget-option widget-contract"></a>';
+        $return .= '            <a class="widget-option widget-expand"></a>';
+        $return .= '            <a class="widget-option widget-edit"></a>';
+        $return .= '        </div>';
+        $return .= '        <div class="widget-title">';
+        $return .= '            <h4>' . $title . '</h4>';
+        $return .= '            <span class="spinner" style="display: none;"></span>';
+        $return .= '        </div>';
+        $return .= '    </div>';
+        $return .= '    <div class="widget-inner"></div>';
+        $return .= '</div>';
+
+		return $return;
 
 	}
 

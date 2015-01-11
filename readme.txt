@@ -43,7 +43,7 @@ The technical stuff:
 * Your theme will need a registered Theme Location to work
 * The menu CSS is dynamically parsed SCSS. Developers can create their own SCSS file if needed - just copy the megamenu.css file to your theme directory and make any required edits.
 * The parsed SCSS is cached for performance. The cache is refreshed when a menu is saved or a theme has been created/updated.
-* Max Mega Menu is compatible with Widget & Menu Output Cache plugin (https://wordpress.org/plugins/widget-output-cache/) as well as WP Super Cache.
+* Max Mega Menu is compatible with Widget & Menu Output Cache plugin (https://wordpress.org/plugins/widget-output-cache/).
 * Behind the scenes, all menu widgets are stored as standard WordPress widgets in a new widget area that the plugin creates.
 
 Recommended Widgets:
@@ -86,6 +86,11 @@ See http://www.maxmegamenu.com for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.4 =
+
+* Update: Admin interface improvements
+* New feature: CSS Output options
 
 = 1.3.3 =
 

@@ -62,12 +62,5 @@ jQuery(function ($) {
         select.next().children('.' + selected).show();
     });
 
-    $('.nav-tab-wrapper a').on('click', function() {
-        $(this).siblings().removeClass('nav-tab-active');
-        $(this).addClass('nav-tab-active');
-        var tab = $(this).attr('data-tab');
-        $('.row').hide();
-        $('.row[data-tab=' + tab + ']').show();
-    });
 
 });
