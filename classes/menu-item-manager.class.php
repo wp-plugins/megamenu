@@ -45,17 +45,7 @@ class Mega_Menu_Menu_Item_Manager {
             
             $saved_settings = array_filter( (array) get_post_meta( $this->menu_item_id, '_megamenu', true ) );
 
-            $defaults = array(
-                'type' => 'flyout',
-                'align' => 'bottom-left',
-                'icon' => 'disabled',
-                'hide_text' => 'false',
-                'disable_link' => 'false',
-                'hide_arrow' => 'false',
-                'item_align' => 'left'
-            );
-
-            $this->menu_item_meta = array_merge( $defaults, $saved_settings );
+            $this->menu_item_meta = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
 
         }
 

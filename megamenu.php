@@ -336,58 +336,51 @@ final class Mega_Menu {
 
 		foreach ( $items as $item ) {
 
+	        $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
+
+	        $item->megamenu_settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
+
 			// only look for widgets on top level items
-			if ( $item->menu_item_parent == 0 ) {
+			if ( $item->menu_item_parent == 0 && $item->megamenu_settings['type'] == 'megamenu' ) {
 
-				$settings = get_post_meta( $item->ID, '_megamenu', true );
+				$panel_widgets = $widget_manager->get_widgets_for_menu_id( $item->ID );
 
-		        $align_class = isset( $settings['align'] ) ? 'align-' . $settings['align'] : 'align-bottom-left';
-		        $type_class = isset( $settings['type'] ) ? 'menu-' . $settings['type'] : 'menu-flyout';
+				if ( count( $panel_widgets) ) {
 
-		        $item->classes[] = $align_class;
-		        $item->classes[] = $type_class;
+					if ( ! in_array( 'menu-item-has-children', $item->classes ) ) {
+						$item->classes[] = 'menu-item-has-children';
+					}
 
-				if ( $type_class == 'menu-megamenu' ) {
+					$cols = 0;
 
-					$panel_widgets = $widget_manager->get_widgets_for_menu_id( $item->ID );
+					foreach ( $panel_widgets as $widget ) {
 
-					if ( count( $panel_widgets) ) {
+						$menu_item = array(
+							'type'              => 'widget',
+							'title'             => '',
+							'content'           => $widget_manager->show_widget( $widget['widget_id'] ),
+							'menu_item_parent'  => $item->ID,
+							'db_id'             => 0, // This menu item does not have any childen
+							'ID'                => $widget['widget_id'],
+							'classes'           => array(
+								"menu-item", 
+								"menu-item-type-widget", 
+								"menu-columns-{$widget['mega_columns']}"
+							)
+						);
 
-						if ( ! in_array( 'menu-item-has-children', $item->classes ) ) {
-							$item->classes[] = 'menu-item-has-children';
+						if ( $cols == 0 ) {
+							$menu_item['classes'][] = "menu-clear";
 						}
 
-						$cols = 0;
+						$cols = $cols + $widget['mega_columns'];
 
-						foreach ( $panel_widgets as $widget ) {
-
-							$menu_item = array(
-								'type'             => 'widget',
-								'title'            => '',
-								'content'          => $widget_manager->show_widget( $widget['widget_id'] ),
-								'menu_item_parent' => $item->ID,
-								'db_id'            => 0, // This menu item does not have any childen
-								'ID'               => $widget['widget_id'],
-								'classes'          => array(
-									"menu-item", 
-									"menu-item-type-widget", 
-									"menu-columns-{$widget['mega_columns']}"
-								)
-							);
-
-							if ( $cols == 0 ) {
-								$menu_item['classes'][] = "menu-clear";
-							}
-
-							$cols = $cols + $widget['mega_columns'];
-
-							if ( $cols > 6 ) {
-								$menu_item['classes'][] = "menu-clear";
-								$cols = $widget['mega_columns'];
-							}
-
-							$items[] = (object) $menu_item;
+						if ( $cols > 6 ) {
+							$menu_item['classes'][] = "menu-clear";
+							$cols = $widget['mega_columns'];
 						}
+
+						$items[] = (object) $menu_item;
 					}
 				}
 			} else {

@@ -11,6 +11,20 @@ if ( ! class_exists( 'Mega_Menu_Nav_Menus' ) ) :
 class Mega_Menu_Nav_Menus {
 
 
+    public static function get_menu_item_defaults() {
+
+        return array(
+            'type' => 'flyout',
+            'align' => 'bottom-left',
+            'icon' => 'disabled',
+            'hide_text' => 'false',
+            'disable_link' => 'false',
+            'hide_arrow' => 'false',
+            'item_align' => 'left'
+        );
+        
+    }
+
     /**
      * Constructor
      *

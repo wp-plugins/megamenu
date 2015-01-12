@@ -64,23 +64,18 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-        $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
-
-        $defaults = array(
-            'type' => 'flyout',
-            'align' => 'bottom-left',
-            'icon' => 'disabled',
-            'hide_text' => 'false',
-            'disable_link' => 'false',
-            'hide_arrow' => 'false',
-            'item_align' => 'left'
-        );
-
-        $settings = array_merge( $defaults, $saved_settings );
+		if ( property_exists( $item, 'megamenu_settings' ) ) {
+			$settings = $item->megamenu_settings;
+		} else {
+			$settings = Mega_Menu_Nav_Menus::get_menu_item_defaults();
+		}
 
 		// Item Class
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+
         $classes[] = 'menu-item-' . $item->ID;
+		$classes[] = 'align-' . $settings['align'];
+		$classes[] = 'menu-' . $settings['type'];
 
         if ( $settings['hide_arrow'] == 'true') {
         	$classes[] = 'hide-arrow';
