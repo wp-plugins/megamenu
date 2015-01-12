@@ -94,6 +94,7 @@ See http://www.maxmegamenu.com for more screenshots
 * New feature: Disable menu item link
 * New feature: Align menu item
 * Fix: Allow css to be cached when menu is not found
+* Fix: Apply inline-block styling to second level menu items displayed in Mega Menu
 * Improvement: Refactor extraction and setting of menu item settings
 
 = 1.4 =
