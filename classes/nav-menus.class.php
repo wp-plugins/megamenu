@@ -10,10 +10,14 @@ if ( ! class_exists( 'Mega_Menu_Nav_Menus' ) ) :
  */
 class Mega_Menu_Nav_Menus {
 
-
+    /**
+     * Return the default settings for each menu item
+     *
+     * @since 1.5
+     */
     public static function get_menu_item_defaults() {
 
-        return array(
+        $defaults = array(
             'type' => 'flyout',
             'align' => 'bottom-left',
             'icon' => 'disabled',
@@ -22,7 +26,9 @@ class Mega_Menu_Nav_Menus {
             'hide_arrow' => 'false',
             'item_align' => 'left'
         );
-        
+
+        return apply_filters( "megamenu_menu_item_defaults", $defaults );
+
     }
 
     /**
