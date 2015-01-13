@@ -322,13 +322,14 @@ class Mega_Menu_Menu_Item_Manager {
 
         foreach ( $this->all_icons() as $code => $class ) {
 
-            $name = str_replace( 'dashicons-', '', $class );
-            $name = ucwords( str_replace( '-', ' ', $name ) );
             $bits = explode( "-", $code );
             $code = "&#x" . $bits[1] . "";
+            $type = $bits[0];
 
-            $return .= "<div><input class='radio' id='{$class}' type='radio' rel='{$code}' name='settings[icon]' value='{$class}' " . checked( $this->menu_item_meta['icon'], $class, false ) . " />";
-        	$return .= "<label rel='{$code}' for='{$class}'></label></div>";
+            $return .= "<div class='{$type}'>";
+            $return .= "    <input class='radio' id='{$class}' type='radio' rel='{$code}' name='settings[icon]' value='{$class}' " . checked( $this->menu_item_meta['icon'], $class, false ) . " />";
+        	$return .= "    <label rel='{$code}' for='{$class}'></label>";
+            $return .= "</div>";
         
         }
     
