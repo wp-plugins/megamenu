@@ -352,11 +352,13 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+#cboxContent .menu_icon .icon_selector .dash label:before {
+	font: 400 24px/1 dashicons;
+}
 #cboxContent .menu_icon .icon_selector label:before {
 	width: 24px;
 	height: 24px;
 	display: inline-block;
-	font: 400 24px/1 dashicons;
 	content: attr(rel);
 	border: 1px solid white;
 	padding: 2px;
