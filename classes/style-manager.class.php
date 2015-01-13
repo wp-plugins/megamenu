@@ -479,7 +479,7 @@ final class Mega_Menu_Style_Manager {
 
             if ( file_exists( $path ) ) {
 
-                return file_get_contents( $path );
+                return apply_filters( "megamenu_load_scss_file_contents", file_get_contents( $path ) );
 
             }
 
@@ -516,6 +516,8 @@ final class Mega_Menu_Style_Manager {
         }
 
 		wp_enqueue_style( 'dashicons' );
+
+        do_action( 'megamenu_enqueue_public_scripts' );
 
 
 	}
