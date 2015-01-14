@@ -2,7 +2,6 @@
 
 /**
  * Mega Menu jQuery Plugin
- * @todo sort out widget.
  */
 (function ($) {
     "use strict";
@@ -11,9 +10,7 @@
 
         var panel = $("<div />");
 
-        panel.settings = $.extend({
-            cols: 6
-        }, options);
+        panel.settings = options;
 
         panel.log = function (message) {
             if (window.console && console.log) {
@@ -126,7 +123,7 @@
 
                         if (idx == 'mega_menu') {
 
-                            var widget_selector = content.find('select');
+                            var widget_selector = content.find('#mm_widget_selector');
 
                             widget_selector.on('change', function() {
 
@@ -162,7 +159,7 @@
 
                             });
 
-                            var enable_checkbox = content.find('input');
+                            var enable_checkbox = content.find('input[type=checkbox]');
 
                             enable_checkbox.on('change', function() {
 
@@ -184,10 +181,35 @@
 
                             });
 
+                            var number_of_columns = content.find('#mm_number_of_columns');
+
+                            number_of_columns.on('change', function() {
+
+                                content.find("#widgets").attr('data-columns', $(this).val());
+
+                                start_saving();
+
+                                var postdata = {
+                                    action: "mm_save_menu_item_settings",
+                                    settings: { columns: $(this).val() },
+                                    menu_item_id: panel.settings.menu_item_id,
+                                    _wpnonce: megamenu.nonce
+                                };
+
+                                $.post(ajaxurl, postdata, function (select_response) {
+
+                                    end_saving();
+
+                                    panel.log(select_response);
+                                });
+
+                            });
+
                             var widget_area = content.find('#widgets');
 
                             widget_area.sortable({
                                 forcePlaceholderSize: true,
+                                items : '.widget',
                                 placeholder: "drop-area",
                                 start: function (event, ui) {
                                     $(".widget").removeClass("open");
@@ -280,8 +302,9 @@
             expand.on("click", function () {
 
                 var cols = parseInt(widget.attr("data-columns"), 10);
+                var maxcols = parseInt($("#mm_number_of_columns").val(), 10);
 
-                if (cols < panel.settings.cols) {
+                if (cols < maxcols) {
                     cols = cols + 1;
 
                     widget.attr("data-columns", cols);
@@ -305,9 +328,18 @@
 
                 var cols = parseInt(widget.attr("data-columns"), 10);
 
-                if (cols > 0) {
+                // account for widgets that have say 8 columns but the panel is only 6 wide
+                var maxcols = parseInt($("#mm_number_of_columns").val(), 10);
+
+                if (cols > maxcols) {
+                    cols = maxcols;
+                }
+
+                if (cols > 1) {
                     cols = cols - 1;
                     widget.attr("data-columns", cols);
+                } else {
+                    return;
                 }
 
                 start_saving();
@@ -426,7 +458,7 @@ jQuery(function ($) {
     $('#menu-to-edit li.menu-item').each(function() {
 
         var menu_item = $(this);
-        var title = menu_item.find('.item-title').text();
+        var title = menu_item.find('.menu-item-title').text();
         var id = parseInt(menu_item.attr('id').match(/[0-9]+/)[0], 10);
 
         var button = $("<span>").addClass("mm_launch")

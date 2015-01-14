@@ -89,6 +89,8 @@ See http://www.maxmegamenu.com for more screenshots
 
 = 1.5 =
 
+* New feature: Change number of columns to use in Mega Menus
+* New feature: Define how many columns second level menu items should take up
 * New feature: Hide menu item text
 * New feature: Hide menu item arrow indicator
 * New feature: Disable menu item link

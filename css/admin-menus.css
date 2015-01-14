@@ -101,10 +101,13 @@
 #cboxContent .mega_menu #widgets .message i {
 	font-size: 0.8em;
 }
-#cboxContent .mega_menu #widget_selector {
-	float: right;
-	margin-bottom: 10px;
+#cboxContent .mega_menu .mm_header #mm_widget_selector {
+	margin-bottom: 0;
 	font-size: 0.9em;
+}
+#cboxContent .mega_menu .mm_header #mm_number_of_columns {
+	font-size: 0.9em;
+	float: right;
 }
 
 #cboxContent .mega_menu .ui-sortable-helper {
@@ -125,10 +128,20 @@
 	float: left;
 	background: #f1f1f1;
 	width: 780px;
-	padding: 10px 5px 1px 5px;
+	padding: 5px;
 	position: relative;
-	margin-top: 10px;
 }
+
+#cboxContent .mega_menu .mm_header {
+	margin: 0px;
+	padding: 10px;
+	width: 100%;
+	background: #f1f1f1;
+	box-sizing: border-box;
+	margin-top: 15px;
+	display: inline-block;
+}
+
 #cboxContent .mega_menu label.mm_enable {
 	margin-top: 7px;
     display: block;
@@ -145,14 +158,16 @@
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 	width: 160px;
-	margin: 0 5px 10px 5px;
+	margin: 0;
 	background: #fafafa;
 	color: #222;
 	line-height: 1.4em;
 	font-size: 13px;
 	display: inline-block;
 	float: left;
-	border: 1px solid #e5e5e5;
+	border: 5px solid #f1f1f1;
+	border-left: 5px solid #f1f1f1;
+	border-right: 5px solid #f1f1f1;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
 	box-shadow: 0 1px 1px rgba(0,0,0,.04);
 }
@@ -161,10 +176,26 @@
 	z-index: 999;
 }
 
+
+#cboxContent .mega_menu .widget:hover .widget-top, 
+#cboxContent .mega_menu .widget:hover .widget-inner,
+#cboxContent .mega_menu .widget.open .widget-top, 
+#cboxContent .mega_menu .widget.open .widget-inner {
+	border: 1px solid #999;
+}
+
+#cboxContent .mega_menu .widget-top {
+	border: 0;
+	-webkit-box-shadow: 0 0 0;
+	box-shadow: 0 0 0;
+	border: 1px solid #dfdfdf;
+}
+
 #cboxContent .mega_menu .widget.open .widget-top {
 	cursor: move;
 	z-index: 1001;
 	position: relative;
+	border-bottom: 0;
 }
 
 #cboxContent .mega_menu .widget.open .widget-inner {
@@ -173,24 +204,13 @@
 	border: 1px solid #e5e5e5;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
 	box-shadow: 0 1px 1px rgba(0,0,0,.04);
-	left: -1px;
 	margin-top: -1px;
 	background: #fafafa;
 	min-width: 248px;
+	border: 1px solid #999;
+	box-sizing: border-box;
 }
 
-#cboxContent .mega_menu .widget-top {
-	border: 0;
-	-webkit-box-shadow: 0 0 0;
-	box-shadow: 0 0 0;
-}
-
-#cboxContent .mega_menu .widget:hover, 
-#cboxContent .mega_menu .widget:hover .widget-inner,
-#cboxContent .mega_menu .widget.open, 
-#cboxContent .mega_menu .widget.open .widget-inner {
-	border: 1px solid #777;
-}
 
 #cboxContent .mega_menu .widget-title {
 	display: inline-block;
@@ -212,7 +232,7 @@
 
 #cboxContent .mega_menu .widget-title .spinner {
 	float: left;
-	margin: 12px 0 0 0;
+	margin: 12px 0 0 5px;
 	padding: 0;
 }
 
@@ -300,27 +320,150 @@
 	color: #aaa;
 }
 
-#cboxContent .mega_menu .widget[data-columns='1'] {
-	width: 120px;
+#cboxContent .mega_menu #widgets .widget {
+	width: 100%;
 }
-#cboxContent .mega_menu .widget[data-columns='2'] {
-	width: 250px;
+
+
+#cboxContent .mega_menu #widgets[data-columns='1'] .widget[data-columns='1'] {
+	width: 100%;
 }
-#cboxContent .mega_menu .widget[data-columns='3'] {
-	width: 380px;
+
+
+
+#cboxContent .mega_menu #widgets[data-columns='2'] .widget[data-columns='1'] {
+	width: 50%;
 }
-#cboxContent .mega_menu .widget[data-columns='4'] {
-	width: 510px;
+#cboxContent .mega_menu #widgets[data-columns='2'] .widget[data-columns='2'] {
+	width: 100%;
 }
-#cboxContent .mega_menu .widget[data-columns='5'] {
-	width: 640px;
+
+
+#cboxContent .mega_menu #widgets[data-columns='3'] .widget[data-columns='1'] {
+	width: 33.3%;
 }
-#cboxContent .mega_menu .widget[data-columns='6'] {
-	width: 770px;
+#cboxContent .mega_menu #widgets[data-columns='3'] .widget[data-columns='2'] {
+	width: 66.6%;
 }
-#cboxContent .mega_menu .widget[data-columns='1'] h4 {
-	max-width: 30px;
+#cboxContent .mega_menu #widgets[data-columns='3'] .widget[data-columns='3'] {
+	width: 100%;
 }
+
+
+#cboxContent .mega_menu #widgets[data-columns='4'] .widget[data-columns='1'] {
+	width: 25%;
+}
+#cboxContent .mega_menu #widgets[data-columns='4'] .widget[data-columns='2'] {
+	width: 50%;
+}
+#cboxContent .mega_menu #widgets[data-columns='4'] .widget[data-columns='3'] {
+	width: 75%;
+}
+#cboxContent .mega_menu #widgets[data-columns='4'] .widget[data-columns='4'] {
+	width: 100%;
+}
+
+
+
+#cboxContent .mega_menu #widgets[data-columns='5'] .widget[data-columns='1'] {
+	width: 20%;
+}
+#cboxContent .mega_menu #widgets[data-columns='5'] .widget[data-columns='2'] {
+	width: 40%;
+}
+#cboxContent .mega_menu #widgets[data-columns='5'] .widget[data-columns='3'] {
+	width: 60%;
+}
+#cboxContent .mega_menu #widgets[data-columns='5'] .widget[data-columns='4'] {
+	width: 80%;
+}
+#cboxContent .mega_menu #widgets[data-columns='5'] .widget[data-columns='5'] {
+	width: 100%;
+}
+
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='1'] {
+	width: 16.6%;
+}
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='2'] {
+	width: 33.3%;
+}
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='3'] {
+	width: 50%;
+}
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='4'] {
+	width: 66.6%;
+}
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='5'] {
+	width: 83.3%;
+}
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='6'] {
+	width: 100%;
+}
+
+
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='1'] {
+	width: 14.28%;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='2'] {
+	width: 28.57%;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='3'] {
+	width: 42.85%;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='4'] {
+	width: 57.14%;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='5'] {
+	width: 71.42%;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='6'] {
+	width: 85.71%;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='7'] {
+	width: 100%;
+}
+
+
+
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='1'] {
+	width: 12.5%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='2'] {
+	width: 25%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='3'] {
+	width: 37.5%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='4'] {
+	width: 50%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='5'] {
+	width: 62.5%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='6'] {
+	width: 75%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='7'] {
+	width: 87.5%;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='8'] {
+	width: 100%;
+}
+
+
+#cboxContent .mega_menu #widgets[data-columns='5'] .widget[data-columns='1'] h4 {
+	max-width: 65px;
+}
+#cboxContent .mega_menu #widgets[data-columns='6'] .widget[data-columns='1'] h4 {
+	max-width: 38px;
+}
+#cboxContent .mega_menu #widgets[data-columns='7'] .widget[data-columns='1'] h4 {
+	max-width: 15px;
+}
+#cboxContent .mega_menu #widgets[data-columns='8'] .widget[data-columns='1'] h4 {
+	max-width: 5px;
+}
+
 
 #cboxContent .mega_menu .widget textarea {
 	max-height: 100px;
@@ -390,6 +533,16 @@
 	padding-top: 10px;
 	border-top: 1px solid #efefef;
 }
+#cboxContent .general_settings h4.first {
+	margin: 0em 0 0.7em 0;
+}
+#cboxContent .general_settings h4 {
+	clear: both;
+	border-bottom: 1px solid #cccccc;
+	padding: 0 0 10px 0;
+	font-size: 1.1em;
+	margin: 1.33em 0 0.7em 0;
+}
 #cboxContent .general_settings table td.mega-name {
 	width: 27%;
 	line-height: 2em;
@@ -400,6 +553,9 @@
 #cboxContent .general_settings table td.mega-value {
 	padding-top: 10px;
 	font-size: 13px;
+}
+#cboxContent .general_settings table td.mega-value select {
+	font-size: 0.9em;
 }
 #cboxContent .general_settings table td.mega-name .mega-description,
 #cboxContent .general_settings table td.mega-value .mega-description {

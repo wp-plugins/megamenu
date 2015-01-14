@@ -338,10 +338,10 @@ final class Mega_Menu {
 
 	        $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
 
-	        $item->megamenu_settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
+		    $item->megamenu_settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
 
 			// only look for widgets on top level items
-			if ( $item->menu_item_parent == 0 && $item->megamenu_settings['type'] == 'megamenu' ) {
+			if ( $item->menu_item_parent == 0 && $saved_settings['type'] == 'megamenu' ) {
 
 				$panel_widgets = $widget_manager->get_widgets_for_menu_id( $item->ID );
 
@@ -365,7 +365,7 @@ final class Mega_Menu {
 							'classes'           => array(
 								"menu-item", 
 								"menu-item-type-widget", 
-								"menu-columns-{$widget['mega_columns']}"
+								"menu-columns-{$widget['mega_columns']}-of-{$item->megamenu_settings['columns']}"
 							)
 						);
 
@@ -375,7 +375,7 @@ final class Mega_Menu {
 
 						$cols = $cols + $widget['mega_columns'];
 
-						if ( $cols > 6 ) {
+						if ( $cols > $item->megamenu_settings['columns'] ) {
 							$menu_item['classes'][] = "menu-clear";
 							$cols = $widget['mega_columns'];
 						}
@@ -383,8 +383,6 @@ final class Mega_Menu {
 						$items[] = (object) $menu_item;
 					}
 				}
-			} else {
-				$item->classes[] = "menu-columns-{$default_columns}";
 			}
 		}
 

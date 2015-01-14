@@ -24,7 +24,9 @@ class Mega_Menu_Nav_Menus {
             'hide_text' => 'false',
             'disable_link' => 'false',
             'hide_arrow' => 'false',
-            'item_align' => 'left'
+            'item_align' => 'left',
+            'columns' => 6,
+            'default_span' => 2
         );
 
         return apply_filters( "megamenu_menu_item_defaults", $defaults );

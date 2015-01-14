@@ -215,6 +215,11 @@
 		    	display: list-item; 
 		    	margin: 0 0 $menu_item_spacing 0;
 		    	clear: both;
+
+			    &.mega-item-align-right {
+			        float: none;
+			    }
+
 		    }
 
 			> a {
@@ -263,18 +268,21 @@
 		    	width: 100%;
 		    }
 
-			@for $i from 1 through $number_of_columns {
-				> li.mega-menu-columns-#{$i} {
-					width: (100% / $number_of_columns) * $i;
-				}
-			}
+		    @for $of from 1 through 8 {
+
+		    	@for $cols from 1 through $of {
+
+					> li.mega-menu-columns-#{$cols}-of-#{$of} {
+						width: (100% / $of) * $cols;
+					}
+
+		    	}
+		    }
 
 		    @media only screen and (max-width : $responsive_breakpoint) { 
-				@for $i from 1 through $number_of_columns {
-					> li.mega-menu-columns-#{$i} {
-						width: 50%;
-						clear: none;
-					}
+				> li {
+					width: 50% !important;
+					clear: none;
 				}
 
 				> li:nth-child(odd) {
@@ -321,13 +329,6 @@
 		    	position: static;
 		    	width: 100%;
 		    }
-
-			@for $i from 1 through $number_of_columns {
-				> li.mega-menu-columns-#{$i} {
-					width: 100%;
-					clear: both;
-				}
-			}
 
 		    li.mega-menu-item {
 

@@ -74,8 +74,11 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
         $classes[] = 'menu-item-' . $item->ID;
-		$classes[] = 'align-' . $settings['align'];
-		$classes[] = 'menu-' . $settings['type'];
+
+        if ( $depth == 0 ) {
+			$classes[] = 'align-' . $settings['align'];
+			$classes[] = 'menu-' . $settings['type'];
+		}
 
         if ( $settings['hide_arrow'] == 'true') {
         	$classes[] = 'hide-arrow';
@@ -89,11 +92,33 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         	$classes[] = 'item-align-' . $settings['item_align'];
         }
 
+        // add column classes for second level menu items displayed in mega menus
+        if ( $item->menu_item_parent != 0 && $item->type != 'widget' && $depth == 1 ) {
+
+        	$parent_settings = array_filter( (array) get_post_meta( $item->menu_item_parent, '_megamenu', true ) );
+
+        	if ( isset( $parent_settings['type'] ) && $parent_settings['type'] == 'megamenu' ) {
+
+				$parent_settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $parent_settings );
+
+				$span = $parent_settings['default_span'];
+				$total_columns = $parent_settings['columns'];
+
+				if ( $total_columns >= $span ) {
+					$classes[] = "menu-columns-{$span}-of-{$total_columns}";
+				} else {
+					$classes[] = "menu-columns-{$total_columns}-of-{$total_columns}";
+				}
+
+			}
+
+        }
+
         $class = join( ' ', apply_filters( 'megamenu_nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 
 		// Item ID
 		$id = esc_attr( apply_filters( 'megamenu_nav_menu_item_id', "mega-menu-item-{$item->ID}", $item, $args ) );
-		
+
 		$output .= $indent . "<li class='{$class}' id='{$id}'>";
 
 		// output the widgets
