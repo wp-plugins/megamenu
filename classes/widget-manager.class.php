@@ -232,14 +232,13 @@ class Mega_Menu_Widget_Manager {
 
 			$disabled_widgets = array('megamenu');
 
-			$disabled_widgets = apply_filters("megamenu_incompatible_widgets", $disabled_widgets );
+			$disabled_widgets = apply_filters( "megamenu_incompatible_widgets", $disabled_widgets );
 
 			if ( ! in_array( $widget->id_base, $disabled_widgets ) ) {
 
 				$widgets[] = array(
 					'text' => $widget->name,
-					'value' => $widget->id_base,
-					'description' => $widget->widget_options['description']
+					'value' => $widget->id_base
 				);
 
 			}
