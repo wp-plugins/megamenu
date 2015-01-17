@@ -25,8 +25,8 @@ class Mega_Menu_Nav_Menus {
             'disable_link' => 'false',
             'hide_arrow' => 'false',
             'item_align' => 'left',
-            'columns' => 6,
-            'default_span' => 2
+            'panel_columns' => 6, // total number of columns displayed in the panel
+            'mega_menu_columns' => 2 // for sub menu items, how many columns to span in the panel
         );
 
         return apply_filters( "megamenu_menu_item_defaults", $defaults );

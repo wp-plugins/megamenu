@@ -101,11 +101,13 @@
 #cboxContent .mega_menu #widgets .message i {
 	font-size: 0.8em;
 }
-#cboxContent .mega_menu .mm_header #mm_widget_selector {
+#cboxContent .mega_menu #mm_widget_selector {
 	margin-bottom: 0;
 	font-size: 0.9em;
+	float: right;
+	margin-right: 5px;
 }
-#cboxContent .mega_menu .mm_header #mm_number_of_columns {
+#cboxContent .mega_menu #mm_number_of_columns {
 	font-size: 0.9em;
 	float: right;
 }
@@ -128,24 +130,17 @@
 	float: left;
 	background: #f1f1f1;
 	width: 780px;
-	padding: 5px;
+	padding: 5px 5px 5px 5px;
 	position: relative;
+	margin-top: 15px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #cboxContent .mega_menu .mm_header {
-	margin: 0px;
-	padding: 10px;
-	width: 100%;
-	background: #f1f1f1;
-	box-sizing: border-box;
-	margin-top: 15px;
-	display: inline-block;
-}
-
-#cboxContent .mega_menu label.mm_enable {
-	margin-top: 7px;
-    display: block;
-    float: left;
+	float: right;
 }
 
 #cboxContent .mega_menu .widget {
@@ -189,6 +184,7 @@
 	-webkit-box-shadow: 0 0 0;
 	box-shadow: 0 0 0;
 	border: 1px solid #dfdfdf;
+	padding: 12px 0 12px 12px;
 }
 
 #cboxContent .mega_menu .widget.open .widget-top {
@@ -196,6 +192,9 @@
 	z-index: 1001;
 	position: relative;
 	border-bottom: 0;
+}
+#cboxContent .mega_menu .widget.sub_menu .widget-top {
+	cursor: default;
 }
 
 #cboxContent .mega_menu .widget.open .widget-inner {
@@ -219,20 +218,14 @@
 #cboxContent .mega_menu .widget-title h4 {
 	float: left;
 	margin: 0;
-	padding: 15px 0px 15px 15px;
-	line-height: 1;
+	padding: 5px 0 2px 0;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 #cboxContent .mega_menu .widget-title .spinner {
 	float: left;
-	margin: 12px 0 0 5px;
 	padding: 0;
 }
 
@@ -268,7 +261,7 @@
 
 
 #cboxContent .mega_menu .widget-title-action {
-	padding: 12px 5px 0 0;
+	padding: 3px 5px 0 0;
 	float: right;
     position: relative;
 }
@@ -298,7 +291,13 @@
 	cursor: pointer;
 }
 
-
+#cboxContent .mega_menu h5 {
+	margin: 10px 0 0 10px;
+	text-transform: uppercase;
+	color: #999;
+	float: left;
+	width: 100%;
+}
 #cboxContent .mega_menu .widget-expand::after {
 	content: '\f345';
 }
@@ -309,7 +308,6 @@
 
 #cboxContent .mega_menu .widget-edit::after {
 	content: '\f140';
-	font: 400 20px/1 dashicons;
 }
 
 #cboxContent .mega_menu .widget.open .widget-edit::after {
@@ -584,6 +582,21 @@
 #cboxContent .general_settings table {
 	width: 100%;
 }
+#cboxContent #mm_enable_mega_menu:checked ~ #widgets:after {
+	display: none;
+}
+#cboxContent .mega_menu #widgets:after {
+	background: #999;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	content: "";
+	opacity: 0.3;
+
+}
 
 
 /**
@@ -614,7 +627,6 @@
 
 .mm_launch {
 	font-family: helvetica;
-	font-weight: normal;
 	margin-left: 10px;
 	font-size: 0.9em;
 	cursor: pointer;
@@ -736,6 +748,71 @@
 
 #nav-menu-meta .mega_menu_meta_box .accordion-section-content  {
 	padding: 0 13px 0px 13px;
+}
+
+
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+	position: relative;
+	z-index: 2;
+	cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+	position: absolute;
+	bottom: 150%;
+	left: 50%;
+	margin-bottom: 5px;
+	margin-left: -80px;
+	padding: 7px;
+	width: 160px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius:    3px;
+	border-radius:         3px;
+	background-color: #000;
+	background-color: hsla(0, 0%, 20%, 0.9);
+	color: #fff;
+	content: attr(data-tooltip);
+	text-align: center;
+	font-size: 14px;
+	line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+	position: absolute;
+	bottom: 150%;
+	left: 50%;
+	margin-left: -5px;
+	width: 0;
+	border-top: 5px solid #000;
+	border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	content: " ";
+	font-size: 0;
+	line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+	visibility: visible;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	opacity: 1;
 }
 
 

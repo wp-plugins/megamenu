@@ -97,6 +97,7 @@ See http://www.maxmegamenu.com for more screenshots
 * New feature: Align menu item
 * Fix: Allow css to be cached when menu is not found
 * Fix: Apply inline-block styling to second level menu items displayed in Mega Menu
+* Fix: AJAX Error when widgets lack description (reported by and thanks to: novlenova)
 * Improvement: Refactor extraction and setting of menu item settings
 
 = 1.4 =

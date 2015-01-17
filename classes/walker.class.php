@@ -93,7 +93,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         }
 
         // add column classes for second level menu items displayed in mega menus
-        if ( $item->menu_item_parent != 0 && $item->type != 'widget' && $depth == 1 ) {
+        if ( $item->type != 'widget' && $depth == 1 ) {
 
         	$parent_settings = array_filter( (array) get_post_meta( $item->menu_item_parent, '_megamenu', true ) );
 
@@ -101,8 +101,8 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 
 				$parent_settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $parent_settings );
 
-				$span = $parent_settings['default_span'];
-				$total_columns = $parent_settings['columns'];
+				$span = $settings['mega_menu_columns'];
+				$total_columns = $parent_settings['panel_columns'];
 
 				if ( $total_columns >= $span ) {
 					$classes[] = "menu-columns-{$span}-of-{$total_columns}";

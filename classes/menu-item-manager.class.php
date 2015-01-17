@@ -12,6 +12,8 @@ if ( ! class_exists('Mega_Menu_Menu_Item_Manager') ) :
  */
 class Mega_Menu_Menu_Item_Manager {
 
+    var $menu_id = 0;
+
 	var $menu_item_id = 0;
 
     var $menu_item_depth = 0;
@@ -52,6 +54,12 @@ class Mega_Menu_Menu_Item_Manager {
         if ( isset( $_POST['menu_item_depth'] ) ) {
 
             $this->menu_item_depth = absint( $_POST['menu_item_depth'] );
+
+        }
+
+        if ( isset( $_POST['menu_id'] ) ) {
+
+            $this->menu_id = absint( $_POST['menu_id'] );
 
         }
 
@@ -161,42 +169,68 @@ class Mega_Menu_Menu_Item_Manager {
 
 		$all_widgets = $widget_manager->get_available_widgets();
 
-		$return = "<label class='mm_enable'><input class='toggle_menu' type='checkbox' " . checked($this->menu_item_meta['type'], 'megamenu', false)  . "/>" . __("Enable Mega Menu", "megamenu") . "</label>";
+		$return  = "<input id='mm_enable_mega_menu' type='checkbox' " . checked($this->menu_item_meta['type'], 'megamenu', false)  . "/>";
+        $return .= "<label for='mm_enable_mega_menu'>" . __("Enable Mega Menu", "megamenu") . "</label>";
 
-        $return .= "<div class='mm_header'>";
-        $return .= "    <select id='mm_widget_selector'>";
-        $return .= "        <option value='disabled'>" . __("Select a Widget to add to the panel", "megamenu") . "</option>";
+        $return .= "<select id='mm_number_of_columns' name='settings[panel_columns]'>";
+        $return .= "    <option value='1' " . selected($this->menu_item_meta['panel_columns'], 1, false) . ">1 " . __("column") . "</option>";
+        $return .= "    <option value='2' " . selected($this->menu_item_meta['panel_columns'], 2, false) . ">2 " . __("columns") . "</option>";
+        $return .= "    <option value='3' " . selected($this->menu_item_meta['panel_columns'], 3, false) . ">3 " . __("columns") . "</option>";
+        $return .= "    <option value='4' " . selected($this->menu_item_meta['panel_columns'], 4, false) . ">4 " . __("columns") . "</option>";
+        $return .= "    <option value='5' " . selected($this->menu_item_meta['panel_columns'], 5, false) . ">5 " . __("columns") . "</option>";
+        $return .= "    <option value='6' " . selected($this->menu_item_meta['panel_columns'], 6, false) . ">6 " . __("columns") . "</option>";
+        $return .= "    <option value='7' " . selected($this->menu_item_meta['panel_columns'], 7, false) . ">7 " . __("columns") . "</option>";
+        $return .= "    <option value='8' " . selected($this->menu_item_meta['panel_columns'], 8, false) . ">8 " . __("columns") . "</option>";
+        $return .= "</select>";
+
+        $return .= "<select id='mm_widget_selector'>";
+        $return .= "    <option value='disabled'>" . __("Select a Widget to add to the panel", "megamenu") . "</option>";
 
         foreach ( $all_widgets as $widget ) {
             $return .= "<option value='" . $widget['value'] . "'>" . $widget['text'] . "</option>";
         }
 
-        $return .= "    </select>";
-        $return .= "    <select id='mm_number_of_columns' name='settings[columns]'>";
-        $return .= "        <option value='1' " . selected($this->menu_item_meta['columns'], 1, false) . ">1 " . __("column") . "</option>";
-        $return .= "        <option value='2' " . selected($this->menu_item_meta['columns'], 2, false) . ">2 " . __("columns") . "</option>";
-        $return .= "        <option value='3' " . selected($this->menu_item_meta['columns'], 3, false) . ">3 " . __("columns") . "</option>";
-        $return .= "        <option value='4' " . selected($this->menu_item_meta['columns'], 4, false) . ">4 " . __("columns") . "</option>";
-        $return .= "        <option value='5' " . selected($this->menu_item_meta['columns'], 5, false) . ">5 " . __("columns") . "</option>";
-        $return .= "        <option value='6' " . selected($this->menu_item_meta['columns'], 6, false) . ">6 " . __("columns") . "</option>";
-        $return .= "        <option value='7' " . selected($this->menu_item_meta['columns'], 7, false) . ">7 " . __("columns") . "</option>";
-        $return .= "        <option value='8' " . selected($this->menu_item_meta['columns'], 8, false) . ">8 " . __("columns") . "</option>";
-        $return .= "    </select>";
-        $return .= "</div>";
+        $return .= "</select>";
 
-        $return .= "<div id='widgets' data-columns='{$this->menu_item_meta['columns']}'>";
+
+        $return .= "<div id='widgets' data-columns='{$this->menu_item_meta['panel_columns']}'>";
+
+        $second_level_items = $this->get_second_level_menu_items();
 
         $panel_widgets = $widget_manager->get_widgets_for_menu_id( $this->menu_item_id );
 
-        if ( ! count( $panel_widgets ) ) {
-
+        if ( ( count( $second_level_items ) + count( $panel_widgets ) ) == 0 ) {
             $return .= "<div class='message no_widgets'>" . __("No widgets found", "megamenu") . "<br /><br /><i>" . __("Widgets added to this area will display in the Mega Menu") . "</i></div>";
-        
-        } else {
+        }
+
+        if ( count ( $second_level_items ) ) {
+
+            $return .= "<h5>" . __("Sub menu items", "megamenu") . "</h5>";
+
+            foreach ( $second_level_items as $item ) {
+                $return .= '<div class="widget sub_menu" data-columns="' . esc_attr( $item['mega_columns'] ) . '" data-menu-item-id="' . esc_attr( $item['id'] ) . '">';
+                $return .= '    <div class="widget-top">';
+                $return .= '        <div class="widget-title-action">';
+                $return .= '            <a class="widget-option widget-contract"></a>';
+                $return .= '            <a class="widget-option widget-expand"></a>';
+                $return .= '        </div>';
+                $return .= '        <div class="widget-title">';
+                $return .= '            <h4>' .  $item['title'] . '</h4>';
+                $return .= '        </div>';
+                $return .= '    </div>';
+                $return .= '</div>';
+            }
+
+        }
+
+
+        if ( count( $panel_widgets ) ) {
+
+            $return .= "<h5>" . __("Widgets", "megamenu") . "</h5>";
 
             foreach ( $panel_widgets as $widget ) {
                 $return .= '<div class="widget" data-columns="' . esc_attr( $widget['mega_columns'] ) . '" data-widget-id="' . esc_attr( $widget['widget_id'] ) . '">';
-                $return .= '    <div class="widget-top" title="' . esc_html( $widget['title'] ) . '">';
+                $return .= '    <div class="widget-top">';
                 $return .= '        <div class="widget-title-action">';
                 $return .= '            <a class="widget-option widget-contract"></a>';
                 $return .= '            <a class="widget-option widget-expand"></a>';
@@ -213,11 +247,43 @@ class Mega_Menu_Menu_Item_Manager {
 
         }
 
+
+
         $return .= "</div>";
 
 
 		return $return;
 	}
+
+    /**
+     *
+     */
+    private function get_second_level_menu_items() {
+
+        $menu = wp_get_nav_menu_items( $this->menu_id ); 
+
+        $items = array();
+
+        foreach ( $menu as $item ) {
+
+            if ( $item->menu_item_parent == $this->menu_item_id ) {
+
+                $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
+
+                $settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
+
+                $items[] = array(
+                    'id' => $item->ID,
+                    'title' => $item->title,
+                    'mega_columns' => $settings['mega_menu_columns']
+                );
+
+            }
+
+        }    
+
+        return $items;
+    }
 
 
 	/**
@@ -229,12 +295,8 @@ class Mega_Menu_Menu_Item_Manager {
 	private function get_general_settings_content() {
 
 		$return  = '<form>';
-
-
         $return .= "<h4 class='first'>" . __("Menu Item Settings", "megamenu") . "</h4>";
-
         $return .= '<table>';
-
         $return .= '    <tr>';
         $return .= '        <td class="mega-name">';
         $return .=              __("Hide Text", "megamenu");
@@ -287,7 +349,6 @@ class Mega_Menu_Menu_Item_Manager {
         $return .= '    </tr>';
     	$return .= '</table>';
 
-
         $return .= "<h4>" . __("Sub Menu Settings", "megamenu") . "</h4>";
 
         $return .= '<table>';
@@ -310,34 +371,7 @@ class Mega_Menu_Menu_Item_Manager {
         $return .= '            </div>';
         $return .= '        </td>';
         $return .= '    </tr>';
-        $return .= '    <tr>';
-        $return .= '        <td class="mega-name">';
-        $return .=              __("Default Column Span", "megamenu");
-        $return .= '        </td>';        
-        $return .= '        <td class="mega-value">';
-
-        if ( $this->menu_item_depth == 0 ) {
-            $return .= '            <select name="settings[default_span]">';
-            $return .= "                <option value='1' " . selected($this->menu_item_meta['default_span'], 1, false) . ">1 " . __("column") . "</option>";
-            $return .= "                <option value='2' " . selected($this->menu_item_meta['default_span'], 2, false) . ">2 " . __("columns") . "</option>";
-            $return .= "                <option value='3' " . selected($this->menu_item_meta['default_span'], 3, false) . ">3 " . __("columns") . "</option>";
-            $return .= "                <option value='4' " . selected($this->menu_item_meta['default_span'], 4, false) . ">4 " . __("columns") . "</option>";
-            $return .= "                <option value='5' " . selected($this->menu_item_meta['default_span'], 5, false) . ">5 " . __("columns") . "</option>";
-            $return .= "                <option value='6' " . selected($this->menu_item_meta['default_span'], 6, false) . ">6 " . __("columns") . "</option>";
-            $return .= "                <option value='7' " . selected($this->menu_item_meta['default_span'], 7, false) . ">7 " . __("columns") . "</option>";
-            $return .= "                <option value='8' " . selected($this->menu_item_meta['default_span'], 8, false) . ">8 " . __("columns") . "</option>";
-            $return .= '            </select>';     
-        } else {
-            $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
-        }
-
-        $return .= '            <div class="mega-description">';
-        $return .=                  __("The number of columns that each list of second level menu items should span.", "megamenu");
-        $return .= '            </div>';
-        $return .= '        </td>';
-        $return .= '    </tr>';
         $return .= '</table>';
-
         $return .= get_submit_button();
         $return .= '</form>';
 
