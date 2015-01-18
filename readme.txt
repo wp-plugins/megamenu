@@ -81,6 +81,10 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.5.1 =
+
+* Fix: Bug causing menu item to lose checkbox settings when saving icon
+
 = 1.5 =
 
 * New feature: Change number of columns to use in Mega Menus (per menu item)
