@@ -722,7 +722,7 @@ class Mega_Menu_Widget_Manager {
 	 * @since 1.0
 	 * @return array
 	 */
-	private function get_mega_menu_sidebar_widgets() {
+	public function get_mega_menu_sidebar_widgets() {
 
 		$sidebar_widgets = wp_get_sidebars_widgets();
 

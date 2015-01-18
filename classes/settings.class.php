@@ -44,6 +44,8 @@ class Mega_Menu_Settings{
         add_action( 'admin_post_megamenu_duplicate_theme', array( $this, 'duplicate_theme') );
 
         add_action( 'admin_post_megamenu_save_settings', array( $this, 'save_settings') );
+        add_action( 'admin_post_megamenu_clear_cache', array( $this, 'clear_cache') );
+        add_action( 'admin_post_megamenu_delete_data', array( $this, 'delete_data') );
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
         add_action( "admin_enqueue_scripts", array( $this, 'enqueue_theme_editor_scripts' ) );
@@ -92,6 +94,61 @@ class Mega_Menu_Settings{
         do_action("megamenu_after_theme_save");
 
         wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
+
+    }
+
+
+    /**
+     * Clear the CSS cache.
+     *
+     * @since 1.5
+     */
+    public function clear_cache() {
+
+        check_admin_referer( 'megamenu_clear_cache' );
+
+        delete_site_transient( 'megamenu_css' );
+
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&clear_cache=true" ) );
+
+    }
+
+
+    /**
+     * Deletes all Max Mega Menu data from the database
+     *
+     * @since 1.5
+     */
+    public function delete_data() {
+
+        check_admin_referer( 'megamenu_delete_data' );
+
+        // delete menu settings
+        delete_site_option("megamenu_settings");
+
+        // delete all widgets assigned to menus
+        $widget_manager = new Mega_Menu_Widget_Manager();
+
+        if ( $mega_menu_widgets = $widget_manager->get_mega_menu_sidebar_widgets() ) {
+
+            foreach ( $mega_menu_widgets as $widget_id ) {
+
+                $widget_manager->delete_widget( $widget_id );
+
+            }
+
+        }
+
+        // delete all mega menu metadata stored against menu items
+        delete_metadata( 'post', 0, '_megamenu', '', true );
+
+        // clear cache
+        delete_site_transient( "megamenu_css" );
+
+        // delete custom themes
+        delete_site_option( "megamenu_themes" );
+
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&delete_data=true" ) );
 
     }
 
@@ -156,7 +213,7 @@ class Mega_Menu_Settings{
 
         $new_theme_id = "custom_theme_" . $next_id;
 
-        $saved_themes[ 'custom_theme_' . $next_id ] = $copy;
+        $saved_themes[ $new_theme_id ] = $copy;
 
         update_site_option( "megamenu_themes", $saved_themes );
 
@@ -473,6 +530,43 @@ class Mega_Menu_Settings{
     }
 
 
+
+    /**
+     * Content for 'Tools' tab
+     *
+     * @since 1.4
+     */
+    public function tools_page() {
+
+        ?>
+
+        <div class='menu_settings'>
+
+            <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+                <?php wp_nonce_field( 'megamenu_clear_cache' ); ?>
+                <input type="hidden" name="action" value="megamenu_clear_cache" />
+
+                <h4 class='first'><?php _e("Cache", "megamenu"); ?></h4>
+
+                <input type='submit' class='button button-primary' name='clear-cache' value='<?php _e("Empty Cache", "megamenu"); ?>' />
+                <p><?php _e("Clear the CSS cache.", "megamenu"); ?></p>
+            </form>
+
+            <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+                <?php wp_nonce_field( 'megamenu_delete_data' ); ?>
+                <input type="hidden" name="action" value="megamenu_delete_data" />
+
+                <h4><?php _e("Plugin Data", "megamenu"); ?></h4>
+
+                <input type='submit' class='button button-primary confirm' name='clear-cache' value='<?php _e("Delete Data", "megamenu"); ?>' />
+                <p><?php _e("Delete all saved Max Mega Menu plugin data from the database. Use with caution!", "megamenu"); ?></p>
+            </form>
+        </div>
+
+        <?php
+    }
+
+
     /**
      * Main settings page wrapper.
      *
@@ -504,6 +598,10 @@ class Mega_Menu_Settings{
                                 case "general_settings" :
                                     $this->settings_page();
                                     $active_tab = 'general_settings';
+                                    break;
+                                case "tools" :
+                                    $this->tools_page();
+                                    $active_tab = 'tools';
                                     break;
                                 default :
                                     if ($this->getting_started_page_is_enabled() ) {
@@ -537,6 +635,7 @@ class Mega_Menu_Settings{
                         <li><a class='<?php echo $active_tab == 'getting_started' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=getting_started") ?>'><?php _e("Getting Started", "megamenu"); ?></a></li>                
                         <?php endif; ?>
                         <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("Global Settings", "megamenu"); ?></a></li>                
+                        <li><a class='<?php echo $active_tab == 'tools' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=tools") ?>'><?php _e("Tools", "megamenu"); ?></a></li>                
                         <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Menu Themes", "megamenu"); ?></a></li>
                     </ul>
                 </div>
@@ -567,6 +666,15 @@ class Mega_Menu_Settings{
         if ( isset( $_GET['deleted'] ) && $_GET['deleted'] == 'false' ) {
             echo "<p class='fail'>" . __("Failed to delete theme. The theme is in use by a menu.", "megamenu") . "</p>";
         }
+
+        if ( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 'true' ) {
+            echo "<p class='success'>" . __("CSS cache cleared", "megamenu") . "</p>";
+        }
+
+        if ( isset( $_GET['delete_data'] ) && $_GET['delete_data'] == 'true' ) {
+            echo "<p class='success'>" . __("All plugin data removed", "megamenu") . "</p>";
+        }
+
 
         if ( isset( $_GET['deleted'] ) && $_GET['deleted'] == 'true' ) {
             echo "<p class='success'>" . __("Theme Deleted", "megamenu") . "</p>";
