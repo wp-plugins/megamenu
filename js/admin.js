@@ -86,7 +86,7 @@
 
                                 var data = $(this).serialize();
 
-                                var post = data + '&action=mm_save_menu_item_settings&_wpnonce=' + megamenu.nonce + '&menu_item_id=' + panel.settings.menu_item_id;
+                                var post = data + '&action=mm_save_menu_item_icon&_wpnonce=' + megamenu.nonce + '&menu_item_id=' + panel.settings.menu_item_id;
 
                                 $.post(ajaxurl, post, function (submit_response) {
 

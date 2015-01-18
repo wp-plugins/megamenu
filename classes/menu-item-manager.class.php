@@ -30,6 +30,7 @@ class Mega_Menu_Menu_Item_Manager {
 
 		add_action( 'wp_ajax_mm_get_lightbox_html', array( $this, 'ajax_get_lightbox_html' ) );
 		add_action( 'wp_ajax_mm_save_menu_item_settings', array( $this, 'ajax_save_menu_item_settings') );
+        add_action( 'wp_ajax_mm_save_menu_item_icon', array( $this, 'ajax_save_menu_item_icon') );
 
 	}
 
@@ -67,12 +68,41 @@ class Mega_Menu_Menu_Item_Manager {
 
 
     /**
+     * Save menu item icon
+     *
+     * @since 1.5.1
+     */
+    public static function ajax_save_menu_item_icon() {
+
+        check_ajax_referer( 'megamenu_edit' );
+
+        $submitted_settings = $_POST['settings'];
+
+        $menu_item_id = absint( $_POST['menu_item_id'] );
+
+        if ( $menu_item_id > 0 && is_array( $submitted_settings ) ) {
+
+            $existing_settings = get_post_meta( $menu_item_id, '_megamenu', true);
+
+            if ( is_array( $existing_settings ) ) {
+
+                $submitted_settings = array_merge( $existing_settings, $submitted_settings );
+
+            }
+            
+            update_post_meta( $_POST['menu_item_id'], '_megamenu', $submitted_settings );
+            
+        }
+
+        wp_die("saved");
+
+    }
+
+
+    /**
      * Save custom menu item fields.
      *
      * @since 1.4
-     * @param int $menu_id
-     * @param int $menu_item_id
-     * @param array $menu_item_args
      */
     public static function ajax_save_menu_item_settings() {
 
