@@ -69,12 +69,6 @@ Tested with the 20 most popular themes, all compatible with the exceptions of:
 1. Search for "Max Menu"
 1. Click "Install"
 
-== Frequently Asked Questions ==
-
-Q. I can only save around 70 menu items, then they disappear
-
-A. See: http://wordpress.org/support/topic/way-to-unbold-header-items?replies=16
-
 == Screenshots ==
 
 See http://www.maxmegamenu.com for more screenshots
@@ -89,8 +83,8 @@ See http://www.maxmegamenu.com for more screenshots
 
 = 1.5 =
 
-* New feature: Change number of columns to use in Mega Menus
-* New feature: Define how many columns second level menu items should take up
+* New feature: Change number of columns to use in Mega Menus (per menu item)
+* New feature: Define how many columns each second level menu items should take up
 * New feature: Hide menu item text
 * New feature: Hide menu item arrow indicator
 * New feature: Disable menu item link

@@ -292,7 +292,6 @@ final class Mega_Menu_Style_Manager {
                 
             }
 
-
             $theme = $this->get_theme_settings_for_location( $location );
             $menu_id = $this->get_menu_id_for_location( $location );
             $compiled_css = $this->generate_css_for_location( $location, $theme, $menu_id, $scss_formatter );

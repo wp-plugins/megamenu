@@ -169,18 +169,18 @@ class Mega_Menu_Menu_Item_Manager {
 
 		$all_widgets = $widget_manager->get_available_widgets();
 
-		$return  = "<input id='mm_enable_mega_menu' type='checkbox' " . checked($this->menu_item_meta['type'], 'megamenu', false)  . "/>";
+		$return  = "<input id='mm_enable_mega_menu' type='checkbox' " . checked( $this->menu_item_meta['type'], 'megamenu', false )  . "/>";
         $return .= "<label for='mm_enable_mega_menu'>" . __("Enable Mega Menu", "megamenu") . "</label>";
 
         $return .= "<select id='mm_number_of_columns' name='settings[panel_columns]'>";
-        $return .= "    <option value='1' " . selected($this->menu_item_meta['panel_columns'], 1, false) . ">1 " . __("column") . "</option>";
-        $return .= "    <option value='2' " . selected($this->menu_item_meta['panel_columns'], 2, false) . ">2 " . __("columns") . "</option>";
-        $return .= "    <option value='3' " . selected($this->menu_item_meta['panel_columns'], 3, false) . ">3 " . __("columns") . "</option>";
-        $return .= "    <option value='4' " . selected($this->menu_item_meta['panel_columns'], 4, false) . ">4 " . __("columns") . "</option>";
-        $return .= "    <option value='5' " . selected($this->menu_item_meta['panel_columns'], 5, false) . ">5 " . __("columns") . "</option>";
-        $return .= "    <option value='6' " . selected($this->menu_item_meta['panel_columns'], 6, false) . ">6 " . __("columns") . "</option>";
-        $return .= "    <option value='7' " . selected($this->menu_item_meta['panel_columns'], 7, false) . ">7 " . __("columns") . "</option>";
-        $return .= "    <option value='8' " . selected($this->menu_item_meta['panel_columns'], 8, false) . ">8 " . __("columns") . "</option>";
+        $return .= "    <option value='1' " . selected( $this->menu_item_meta['panel_columns'], 1, false ) . ">1 " . __("column") . "</option>";
+        $return .= "    <option value='2' " . selected( $this->menu_item_meta['panel_columns'], 2, false ) . ">2 " . __("columns") . "</option>";
+        $return .= "    <option value='3' " . selected( $this->menu_item_meta['panel_columns'], 3, false ) . ">3 " . __("columns") . "</option>";
+        $return .= "    <option value='4' " . selected( $this->menu_item_meta['panel_columns'], 4, false ) . ">4 " . __("columns") . "</option>";
+        $return .= "    <option value='5' " . selected( $this->menu_item_meta['panel_columns'], 5, false ) . ">5 " . __("columns") . "</option>";
+        $return .= "    <option value='6' " . selected( $this->menu_item_meta['panel_columns'], 6, false ) . ">6 " . __("columns") . "</option>";
+        $return .= "    <option value='7' " . selected( $this->menu_item_meta['panel_columns'], 7, false ) . ">7 " . __("columns") . "</option>";
+        $return .= "    <option value='8' " . selected( $this->menu_item_meta['panel_columns'], 8, false ) . ">8 " . __("columns") . "</option>";
         $return .= "</select>";
 
         $return .= "<select id='mm_widget_selector'>";
@@ -191,7 +191,6 @@ class Mega_Menu_Menu_Item_Manager {
         }
 
         $return .= "</select>";
-
 
         $return .= "<div id='widgets' data-columns='{$this->menu_item_meta['panel_columns']}'>";
 
@@ -208,6 +207,7 @@ class Mega_Menu_Menu_Item_Manager {
             $return .= "<h5>" . __("Sub menu items", "megamenu") . "</h5>";
 
             foreach ( $second_level_items as $item ) {
+
                 $return .= '<div class="widget sub_menu" data-columns="' . esc_attr( $item['mega_columns'] ) . '" data-menu-item-id="' . esc_attr( $item['id'] ) . '">';
                 $return .= '    <div class="widget-top">';
                 $return .= '        <div class="widget-title-action">';
@@ -215,10 +215,11 @@ class Mega_Menu_Menu_Item_Manager {
                 $return .= '            <a class="widget-option widget-expand"></a>';
                 $return .= '        </div>';
                 $return .= '        <div class="widget-title">';
-                $return .= '            <h4>' .  $item['title'] . '</h4>';
+                $return .= '            <h4>' .  esc_html( $item['title'] ) . '</h4>';
                 $return .= '        </div>';
                 $return .= '    </div>';
                 $return .= '</div>';
+
             }
 
         }
@@ -229,6 +230,7 @@ class Mega_Menu_Menu_Item_Manager {
             $return .= "<h5>" . __("Widgets", "megamenu") . "</h5>";
 
             foreach ( $panel_widgets as $widget ) {
+
                 $return .= '<div class="widget" data-columns="' . esc_attr( $widget['mega_columns'] ) . '" data-widget-id="' . esc_attr( $widget['widget_id'] ) . '">';
                 $return .= '    <div class="widget-top">';
                 $return .= '        <div class="widget-title-action">';
@@ -243,45 +245,57 @@ class Mega_Menu_Menu_Item_Manager {
                 $return .= '    </div>';
                 $return .= '    <div class="widget-inner"></div>';
                 $return .= '</div>';
+
             }
 
         }
 
-
-
         $return .= "</div>";
-
 
 		return $return;
 	}
 
+
     /**
+     * Returns an array of immediate child menu items for the current item
      *
+     * @since 1.5
+     * @return array
      */
     private function get_second_level_menu_items() {
 
-        $menu = wp_get_nav_menu_items( $this->menu_id ); 
-
         $items = array();
 
-        foreach ( $menu as $item ) {
+        // check we're using a valid menu ID
+        if ( ! is_nav_menu( $this->menu_id ) ) {
+            return $items;
+        }
 
-            if ( $item->menu_item_parent == $this->menu_item_id ) {
+        $menu = wp_get_nav_menu_items( $this->menu_id ); 
 
-                $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
+        if ( count( $menu ) ) {
 
-                $settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
+            foreach ( $menu as $item ) {
 
-                $items[] = array(
-                    'id' => $item->ID,
-                    'title' => $item->title,
-                    'mega_columns' => $settings['mega_menu_columns']
-                );
+                // find the child menu items
+                if ( $item->menu_item_parent == $this->menu_item_id ) {
 
-            }
+                    $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
 
-        }    
+                    $settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
 
+                    $items[] = array(
+                        'id' => $item->ID,
+                        'title' => $item->title,
+                        'mega_columns' => $settings['mega_menu_columns']
+                    );
+
+                }
+
+            }   
+
+        }
+ 
         return $items;
     }
 
@@ -337,14 +351,14 @@ class Mega_Menu_Menu_Item_Manager {
             $return .= '            <select name="settings[item_align]">';
             $return .= '                <option value="left" ' . selected( $this->menu_item_meta['item_align'], 'left', false ) . '>' . __("Left", "megamenu") . '</option>';
             $return .= '                <option value="right" ' . selected( $this->menu_item_meta['item_align'], 'right', false ) . '>' . __("Right", "megamenu") . '</option>';
-            $return .= '            </select>';     
+            $return .= '            </select>';   
+            $return .= '            <div class="mega-description">';
+            $return .=                  __("Right aligned items will appear in reverse order on the right hand side of the menu bar", "megamenu");
+            $return .= '            </div>';  
         } else {
             $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
         }
 
-        $return .= '            <div class="mega-description">';
-        $return .=                  __("Right aligned items will appear in reverse order on the right hand side of the menu bar", "megamenu");
-        $return .= '            </div>';
         $return .= '        </td>';
         $return .= '    </tr>';
     	$return .= '</table>';
@@ -362,13 +376,14 @@ class Mega_Menu_Menu_Item_Manager {
             $return .= '            <select name="settings[align]">';
             $return .= '                <option value="bottom-left" ' . selected( $this->menu_item_meta['align'], 'bottom-left', false ) . '>' . __("Left", "megamenu") . '</option>';
             $return .= '                <option value="bottom-right" ' . selected( $this->menu_item_meta['align'], 'bottom-right', false ) . '>' . __("Right", "megamenu") . '</option>';
-            $return .= '            </select>';     
+            $return .= '            </select>'; 
+            $return .= '            <div class="mega-description">';
+            $return .=                  __("Right aligned sub menus will align to the right of the parent menu item and expand to the left", "megamenu");
+            $return .= '            </div>';    
         } else {
             $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
         }
-        $return .= '            <div class="mega-description">';
-        $return .=                  __("Right aligned sub menus will align to the right of the parent menu item and expand to the left", "megamenu");
-        $return .= '            </div>';
+        
         $return .= '        </td>';
         $return .= '    </tr>';
         $return .= '</table>';

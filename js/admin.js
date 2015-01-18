@@ -30,7 +30,8 @@
                 html: "",
                 initialWidth: '991',
                 scrolling: false,
-                top: 100
+                top: '10%',
+                initialHeight: '500'
             });
 
             $.ajax({
@@ -243,7 +244,7 @@
                         });
 
                         if ( ( panel.settings.menu_item_depth == 0 && idx == 'mega_menu' ) || 
-                             ( panel.settings.menu_item_depth > 0 && idx == 'menu_icon' ) ) {
+                             ( panel.settings.menu_item_depth > 0 && idx == 'general_settings' ) ) {
                             content.show();
                             tab.addClass('active');
                         }
