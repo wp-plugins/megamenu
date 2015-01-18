@@ -93,14 +93,16 @@
 	width: 790px;
 }
 
-#cboxContent .mega_menu #widgets .message {
-	text-align: center;
-	margin: 10px 0 15px 0;
-	font-size: 1.3em;
+#cboxContent .mega_menu #widgets .no_widgets {
+	font-size: 0.9em;
+	margin-left: 10px;
+	font-style: italic;
+	margin-top: 10px;
+	clear: both;
+	color: #999;
+	float: left;
 }
-#cboxContent .mega_menu #widgets .message i {
-	font-size: 0.8em;
-}
+
 #cboxContent .mega_menu #mm_widget_selector {
 	margin-bottom: 0;
 	font-size: 0.9em;

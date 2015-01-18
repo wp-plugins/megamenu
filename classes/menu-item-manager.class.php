@@ -198,10 +198,6 @@ class Mega_Menu_Menu_Item_Manager {
 
         $panel_widgets = $widget_manager->get_widgets_for_menu_id( $this->menu_item_id );
 
-        if ( ( count( $second_level_items ) + count( $panel_widgets ) ) == 0 ) {
-            $return .= "<div class='message no_widgets'>" . __("No widgets found", "megamenu") . "<br /><br /><i>" . __("Widgets added to this area will display in the Mega Menu") . "</i></div>";
-        }
-
         if ( count ( $second_level_items ) ) {
 
             $return .= "<h5>" . __("Sub menu items", "megamenu") . "</h5>";
@@ -224,10 +220,10 @@ class Mega_Menu_Menu_Item_Manager {
 
         }
 
+        $return .= "<h5>" . __("Widgets", "megamenu") . "</h5>";
 
         if ( count( $panel_widgets ) ) {
 
-            $return .= "<h5>" . __("Widgets", "megamenu") . "</h5>";
 
             foreach ( $panel_widgets as $widget ) {
 
@@ -248,6 +244,8 @@ class Mega_Menu_Menu_Item_Manager {
 
             }
 
+        } else {
+            $return .= "<p class='no_widgets'>" .  __("No widgets found. Add a widget to this area using the Widget Selector (top right)") . "</p>";
         }
 
         $return .= "</div>";
@@ -383,7 +381,7 @@ class Mega_Menu_Menu_Item_Manager {
         } else {
             $return .= '<em>' . __("Option only available for top level menu items", "megamenu") . '</em>';
         }
-        
+
         $return .= '        </td>';
         $return .= '    </tr>';
         $return .= '</table>';
