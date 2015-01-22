@@ -179,6 +179,8 @@ class Mega_Menu_Menu_Item_Manager {
 			)
 		);
 
+        $tabs = apply_filters( "megamenu_tabs", $tabs, $this->menu_item_id, $this->menu_id, $this->menu_item_depth, $this->menu_item_meta );
+
 		wp_die( json_encode( $tabs ) );
 	}
 
