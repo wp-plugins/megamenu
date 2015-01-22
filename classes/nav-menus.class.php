@@ -275,9 +275,30 @@ class Mega_Menu_Nav_Menus {
                 <td><?php _e("Effect", "megamenu") ?></td>
                 <td>
                     <select name='megamenu_meta[<?php echo $location ?>][effect]'>
-                        <option value='disabled' <?php selected( isset( $settings[$location]['effect'] ) && $settings[$location]['effect'] == 'disabled'); ?>><?php _e("None", "megamenu"); ?></option>
-                        <option value='fade' <?php selected( isset( $settings[$location]['effect'] ) && $settings[$location]['effect'] == 'fade'); ?>><?php _e("Fade", "megamenu"); ?></option>
-                        <option value='slide' <?php selected( isset( $settings[$location]['effect'] ) && $settings[$location]['effect'] == 'slide'); ?>><?php _e("Slide", "megamenu"); ?></option>
+                    <?php 
+
+                        $selected = isset( $settings[$location]['effect'] ) ? $settings[$location]['effect'] : 'disabled';
+
+                        $options = apply_filters("megamenu_effects", array(
+                            "disabled" => array(
+                                'label' => __("None", "megamenu"),
+                                'selected' => $selected == 'disabled',
+                            ),
+                            "fade" => array(
+                                'label' => __("Fade", "megamenu"),
+                                'selected' => $selected == 'fade',
+                            ),
+                            "slide" => array(
+                                'label' => __("Slide", "megamenu"),
+                                'selected' => $selected == 'slide',
+                            )
+                        ), $selected );
+
+                        foreach ( $options as $key => $value ) {
+                            ?><option value='<?php echo $key ?>' <?php selected( $value['selected'] ); ?>><?php echo $value['label'] ?></option><?php
+                        }
+
+                    ?>
                     </select>
                 </td>
             </tr>
