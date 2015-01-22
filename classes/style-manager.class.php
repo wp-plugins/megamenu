@@ -499,6 +499,34 @@ final class Mega_Menu_Style_Manager {
 
 		$params = apply_filters("megamenu_javascript_localisation", 
 			array( 
+                'effect' => array(
+                    "fade" => array(
+                        "in" => array(
+                            "animate" => array("opacity" => "show"),
+                            "css" => array("display" => "none")
+                        ),
+                        "out" => array(
+                            "animate" => array("opacity" => "hide")
+                        )
+                    ),
+                    "slide" => array(
+                        "in" => array(
+                            "animate" => array("height" => "show"),
+                            "css" => array("display" => "none")
+                        ),
+                        "out" => array(
+                            "animate" => array("height" => "hide")
+                        )
+                    ),
+                    "disabled" => array(
+                        "in" => array(
+                            "css" => array("display" => "block")
+                        ),
+                        "out" => array(
+                            "css" => array("display" => "none")
+                        )
+                    )
+                ),
 				'fade_speed' => 'fast',
 				'slide_speed' => 'fast',
                 'timeout' => 300
