@@ -409,6 +409,10 @@ final class Mega_Menu {
 
 		if ( isset ( $settings[ $current_theme_location ]['enabled'] ) && $settings[ $current_theme_location ]['enabled'] == true ) {
 
+			if ( ! isset( $locations[ $current_theme_location ] ) ) {
+				return $args;
+			}
+			
 			$menu_id = $locations[ $current_theme_location ];
 
 			if ( ! $menu_id ) {
