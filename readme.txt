@@ -13,7 +13,7 @@ Easy to use drag & drop WordPress Mega Menu plugin. Integrates with the existing
 
 WordPress Mega Menu Plugin. Use the built in drag & drop widget editor to build your mega panels.
 
-https://www.youtube.com/watch?v=6vx151V3oec
+https://www.youtube.com/watch?v=44dJwP1AXT8
 
 Documentation & Demo: http://www.maxmegamenu.com
 
