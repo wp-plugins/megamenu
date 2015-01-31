@@ -55,7 +55,7 @@ Recommended Widgets:
 Translations:
 
 * Italian (thanks to aeco)
-* German (thanks to Thomas Meyer)
+* German (thanks to Thomas Meyer & dirk@d10n)
 
 Tested with the 20 most popular themes, all compatible with the exceptions of:
 
@@ -80,6 +80,20 @@ See http://www.maxmegamenu.com for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.5.2 =
+
+* Feature: Responsive menu text option in theme editor
+* Fix: Bug causing menu item to lose checkbox settings when saving mega menu state
+* Fix: Mobile menu items disappearing
+* Change: Refactor public js
+* Change: jQuery actions fired on panel open/close
+* Change: Tabify icon options
+* Change: Show 'up' icon when mobile sub menu is open
+* Change: Make animations filterable
+* Change: Add filter for SCSS and SCSS vars
+* Change: Add filter for menu item tabs
+* Update: Update german language files (thanks to dirk@d10n)
 
 = 1.5.1 =
 

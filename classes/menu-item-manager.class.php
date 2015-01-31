@@ -478,7 +478,7 @@ class Mega_Menu_Menu_Item_Manager {
     /**
      * Return the form to select a dashicon
      *
-     * @since 1.6
+     * @since 1.5.2
      */
     private function dashicon_selector() {
 
