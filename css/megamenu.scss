@@ -339,6 +339,10 @@
 
 		    li.mega-menu-item {
 
+		    	@media only screen and (max-width : $responsive_breakpoint) {
+			    	clear: both;
+			    }
+
 		    	a {
 		    	    display: block;
 		    		@include background($flyout_background_from, $flyout_background_to);
@@ -377,22 +381,31 @@
 		}
 
 		// arrows
-		li.mega-menu-flyout.mega-menu-item-has-children > a:after,
-		li.mega-menu-flyout li.mega-menu-item-has-children > a:after,
-		> li.mega-menu-item-has-children > a:after {
-		    content: $arrow_down;
-		    display: inline-block;
-		    font: inherit;
-		    font-family: dashicons;
-		    margin: 0 0 0 6px;
-		    vertical-align: top;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			-webkit-transform: rotate(0);
-			-moz-transform: rotate(0);
-			-ms-transform: rotate(0);
-			-o-transform: rotate(0);
-			transform: rotate(0);
+		li.mega-menu-flyout.mega-menu-item-has-children,
+		li.mega-menu-flyout li.mega-menu-item-has-children,
+		> li.mega-menu-item-has-children {
+
+			> a:after {
+			    content: $arrow_down;
+			    display: inline-block;
+			    font: inherit;
+			    font-family: dashicons;
+			    margin: 0 0 0 6px;
+			    vertical-align: top;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-transform: rotate(0);
+				-moz-transform: rotate(0);
+				-ms-transform: rotate(0);
+				-o-transform: rotate(0);
+				transform: rotate(0);
+			}
+
+			@media only screen and (max-width : $responsive_breakpoint) { 
+				&.mega-toggle-on > a:after {
+			    	content: $arrow_up;
+			    }
+		    }
 		}
 
 		// arrows
@@ -478,26 +491,36 @@
 			display: none;
 			width: 100%;
 			text-align: right;
+		    @include background($container_background_from, $container_background_to);
+		    @include border-radius($container_border_radius_top_left, $container_border_radius_top_right, $container_border_radius_bottom_right, $container_border_radius_bottom_left);
+		    line-height: $menu_item_link_height;
+			color: $menu_item_link_color;
 
 			@media only screen and (max-width : $responsive_breakpoint) { 
 				display: block;
 			}
 		}
 
-		+ label:after {
+		+ label:before {
 			content: "\f333";
-			color: $menu_item_link_color;
-			display: block;
-			line-height: $menu_item_link_height;
 			font-family: 'dashicons';
 			font-size: 24px;
-		    @include background($container_background_from, $container_background_to);
-		    @include border-radius($container_border_radius_top_left, $container_border_radius_top_right, $container_border_radius_bottom_right, $container_border_radius_bottom_left);
-		    padding-right: 5px;
+			margin: 0 5px;
+			float: right;
 	    }
 
-	    &:checked + label:after {
+	    &:checked + label:before {
 			content: "\f153";
+		}
+
+		@if str-length($responsive_text) > 0 {
+			+ label:after {
+				content: $responsive_text;
+		    }
+
+		    &:checked + label:after {
+				content: "";
+			}
 		}
 
 	    @media only screen and (max-width : $responsive_breakpoint) { 
