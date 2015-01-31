@@ -1,12 +1,13 @@
 #cboxContent {
 	padding: 0;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 
-#cboxContent .mm_tab_container .mm_tab:hover,
-#cboxContent .mm_tab_container .mm_tab.active {
-    border-left: 2px solid #0074a2;
-}
+
 #cboxContent .mm_header_container {
 	width: 100%;
 	float: left;
@@ -67,10 +68,30 @@
 	color: #0074a2;
 }
 
+#cboxContent .mm_tabs.horizontal li {
+	float: left;
+	margin-right: 15px;
+	cursor: pointer;
+	padding: 6px 0;
+	font-size: 0.9em;
+	color: #999;
+}
+
+#cboxContent .mm_tabs.horizontal li:hover,
+#cboxContent .mm_tabs.horizontal li.active {
+	border-bottom: 2px solid #0074a2;
+	color: #333;
+}
+#cboxContent .mm_tabs.horizontal {
+	width: 100%;
+	float: left;
+	margin-top: 0;
+}
+
 
 #cboxContent .mm_tab_container .mm_tab {
 	text-decoration: none;
-	color: #333;
+	color: #999;
 	width: 100%;
 	display: block;
 	padding: 5px 0px 5px 10px;
@@ -78,6 +99,12 @@
 	border-left: 2px solid white;
 	outline: 0;
 	margin-bottom: 5px;
+}
+
+#cboxContent .mm_tab_container .mm_tab:hover,
+#cboxContent .mm_tab_container .mm_tab.active {
+    border-left: 2px solid #0074a2;
+    color: #333;
 }
 
 #cboxContent .mm_tab_container {
@@ -135,10 +162,6 @@
 	padding: 5px 5px 5px 5px;
 	position: relative;
 	margin-top: 15px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 #cboxContent .mega_menu .mm_header {
@@ -223,6 +246,8 @@
 	padding: 5px 0 2px 0;
 	overflow: hidden;
 	white-space: nowrap;
+	border-bottom: 0;
+	font-size: 1em;
 	text-overflow: ellipsis;
 }
 
@@ -525,57 +550,57 @@
 	color: #777;
 }
 
-#cboxContent .general_settings table td {
+#cboxContent table td {
 	padding-bottom: 10px;
 }
-#cboxContent .general_settings h4.first {
+#cboxContent h4.first {
 	margin: 0em 0 0.7em 0;
 }
-#cboxContent .general_settings h4 {
+#cboxContent h4 {
 	clear: both;
 	border-bottom: 1px solid #cccccc;
 	padding: 0 0 10px 0;
 	font-size: 1.1em;
 	margin: 1.33em 0 0.7em 0;
 }
-#cboxContent .general_settings table td.mega-name {
+#cboxContent table td.mega-name {
 	width: 27%;
 	line-height: 2em;
 	padding-right: 30px;
 	vertical-align: top;
 	font-size: 13px;
 }
-#cboxContent .general_settings table td.mega-value {
+#cboxContent table td.mega-value {
 	font-size: 13px;
 }
-#cboxContent .general_settings table td.mega-value select {
+#cboxContent table td.mega-value select {
 	font-size: 0.9em;
 }
-#cboxContent .general_settings table td.mega-name .mega-description,
-#cboxContent .general_settings table td.mega-value .mega-description {
+#cboxContent table td.mega-name .mega-description,
+#cboxContent table td.mega-value .mega-description {
 	font-size: 0.9em;
 	color: #aaa;
 	line-height: 1.5em;
 }
 
-#cboxContent .general_settings table td.mega-value .mega-description {
+#cboxContent table td.mega-value .mega-description {
 	text-indent: 2px;
 	margin-top: 5px;
 }
-#cboxContent .general_settings table input {
+#cboxContent table input {
 	width: 70px;
 	margin-right: 20px;
 }
-#cboxContent .general_settings table label {
+#cboxContent table label {
     font-size: 0.9em;
 }
-#cboxContent .general_settings table input[type=checkbox] {
+#cboxContent table input[type=checkbox] {
 	width: 16px;
 	height: 16px;
 	margin-right: 10px;
 	vertical-align: middle;
 }
-#cboxContent .general_settings table {
+#cboxContent table {
 	width: 100%;
 }
 #cboxContent #mm_enable_mega_menu:checked ~ #widgets:after {
@@ -621,6 +646,8 @@
 }
 /** END TRIBE IMAGE WIDGET **/
 
+
+
 .mm_launch {
 	font-family: helvetica;
 	margin-left: 10px;
@@ -645,7 +672,6 @@
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
-
 }
 
 .mm_launch:before {

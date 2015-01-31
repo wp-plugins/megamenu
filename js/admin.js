@@ -84,6 +84,8 @@
 
                                 e.preventDefault();
 
+                                $("input", form).not(e.target).removeAttr('checked');
+
                                 var data = $(this).serialize();
 
                                 var post = data + '&action=mm_save_menu_item_icon&_wpnonce=' + megamenu.nonce + '&menu_item_id=' + panel.settings.menu_item_id;
@@ -521,4 +523,14 @@ jQuery(function ($) {
         $('.item-title', menu_item).append(button);
     });
 
+    $(".mm_tabs li").live('click', function() {
+
+        var tab = $(this);
+        var tab_id = $(this).attr('rel');
+
+        tab.addClass('active');
+        tab.siblings().removeClass('active');
+        tab.parent().siblings().hide();
+        tab.parent().siblings("." + tab_id).show();
+    });
 });
