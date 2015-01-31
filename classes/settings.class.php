@@ -657,7 +657,28 @@ class Mega_Menu_Settings{
 
         $style_manager = new Mega_Menu_Style_Manager();
 
-        $test = $style_manager->generate_css_for_location( 'test', $this->active_theme, 0 );
+        $menu_id = 0;
+
+        $menus = get_registered_nav_menus();
+
+        if ( count( $menus ) ) {
+
+            $locations = get_nav_menu_locations();
+
+            foreach ($menus as $location => $description ) {
+    
+                if ( isset( $locations[ $location ] ) ) {
+
+                    $menu_id = $locations[ $location ];
+                    continue;
+
+                }
+    
+            }
+
+        }
+
+        $test = $style_manager->generate_css_for_location( 'test', $this->active_theme, $menu_id );
 
         if ( is_wp_error( $test ) ) {
             echo "<p class='fail'>" . $test->get_error_message() . "</p>";
@@ -710,10 +731,6 @@ class Mega_Menu_Settings{
 
         foreach ( $this->themes as $id => $theme ) {
             $selected = $id == $this->id ? 'selected=selected' : '';
-
-            $style_manager = new Mega_Menu_Style_Manager();
-            $test = $style_manager->generate_css_for_location( 'tmp-location', $theme, 0 );
-            $error = is_wp_error( $test ) ? 'error' : '';
 
             $list_items .= "<option {$selected} value='" . admin_url("themes.php?page=megamenu_settings&tab=theme_editor&theme={$id}") . "'>{$theme['title']}</option>";
         }
@@ -832,10 +849,19 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Responsive Breakpoint", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the width at which the menu turns into a mobile menu.", "megamenu"); ?>
+                                <?php _e("Set the width at which the menu turns into a mobile menu. Set to 0 to disable responsive menu.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'><?php $this->print_theme_freetext_option( 'responsive_breakpoint' ); ?></td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Responsive Menu Text", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Text to display next to the mobile toggle icon.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'><?php $this->print_theme_freetext_option( 'responsive_text' ); ?></td>
                     </tr>
                     <tr>
                         <td class='mega-name'>
