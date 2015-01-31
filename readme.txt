@@ -20,15 +20,18 @@ Documentation & Demo: http://www.maxmegamenu.com
 Features:
 
 * Zero theme edits
-* Drag & drop widget editor 
-* 6 column panels (widgets can span multiple columns)
+* Drag & drop widget editor
+* Menu panels can be from 1-8 columns wide (widgets can span multiple columns)
 * Flyout (traditional) or Mega Menu menu styles
 * Menu Icons
+* Hide Text option
+* Disable Link option
+* Menu item align option (float links to right hand side of menu)
+* Sub menu align option
 * Activate Menu on either hover (intent) or click
 * Fade/Slide/None transitions
 * Compatible with touch screen devices
-* 3 'down' arrow icon styles
-* Built in theme editor with color picker
+* Built in theme editor
 * Works with multiple menus on the same page
 * Works with menus tagged to multiple Theme Locations
 * < 1kb JavaScript when gzipped (also works when JS is disabled)
@@ -62,6 +65,16 @@ Tested with the 20 most popular themes, all compatible with the exceptions of:
 * Tesla: compatible but requires edits: open header.php and remove the second call to wp_nav_menu (line 130 - 147)
 * Vantage: compatible (but hover only)
 * Stargazer: compatible (but hover only)
+
+== FAQ ==
+
+Getting started:
+
+http://www.maxmegamenu.com/documentation/
+
+Not working with your theme?
+
+http://www.maxmegamenu.com/documentation/removing-residual-styling/
 
 == Installation ==
 
