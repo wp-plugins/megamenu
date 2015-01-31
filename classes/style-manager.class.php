@@ -130,6 +130,7 @@ final class Mega_Menu_Style_Manager {
             'font_color'                                => '#666',
             'font_family'                               => 'inherit',
             'responsive_breakpoint'                     => '600px',
+            'responsive_text'                           => '',
             'line_height'                               => '1.7',
             'z_index'                                   => '999',
             'custom_css'                                => '
@@ -258,7 +259,7 @@ final class Mega_Menu_Style_Manager {
 
 	/**
 	 * Generate and cache the CSS for our menus.
-	 * The CSS is compiled by lessphp using the file located in /css/megamenu.less
+	 * The CSS is compiled by scssphp using the file located in /css/megamenu.scss
      *
      * @since 1.0
 	 * @return string
@@ -389,7 +390,7 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_complete_scss_for_location( $location, $theme, $menu_id ) {
 
-        $scss = "\$wrap: \"#mega-menu-wrap-{$location}-{$menu_id}\";
+        $vars = "\$wrap: \"#mega-menu-wrap-{$location}-{$menu_id}\";
                  \$menu: \"#mega-menu-{$location}-{$menu_id}\";
                  \$menu_id: \"{$menu_id}\";";
 
@@ -402,16 +403,29 @@ final class Mega_Menu_Style_Manager {
 
                 $arrow_icon = $code == 'disabled' ? "''" : "'\\" . $code . "'";
 
-                $scss .= "$" . $name . ": " . $arrow_icon . ";\n";
+                $vars .= "$" . $name . ": " . $arrow_icon . ";\n";
+
+                continue;
+            }
+
+            if ( in_array( $name, array( 'responsive_text' ) ) ) {
+
+                if ( strlen( $value ) ) {
+                    $vars .= "$" . $name . ": '" . do_shortcode( $value ) . "';\n";
+                } else {
+                    $vars .= "$" . $name . ": '';\n";
+                }
 
                 continue;
             }
 
             if ( $name != 'custom_css' ) {
-                $scss .= "$" . $name . ": " . $value . ";\n";
+                $vars .= "$" . $name . ": " . $value . ";\n";
             }
 
         }
+
+        $scss = apply_filters( "megamenu_scss_variables", $vars, $location, $theme, $menu_id );
 
         $scss .= $this->load_scss_file();
         
