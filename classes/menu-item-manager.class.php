@@ -116,24 +116,29 @@ class Mega_Menu_Menu_Item_Manager {
 
         	$existing_settings = get_post_meta( $menu_item_id, '_megamenu', true);
 
-            // Hide Text checkbox is unchecked
-            if ( ! isset( $submitted_settings['hide_text'] ) ) {
+            // only check the checkbox values if the general settings form was submitted
+            if ( isset( $submitted_settings['item_align'] ) ) {
 
-                $submitted_settings['hide_text'] = 'false';
+                // Hide Text checkbox is unchecked
+                if ( ! isset( $submitted_settings['hide_text'] ) ) {
 
-            }
+                    $submitted_settings['hide_text'] = 'false';
 
-            // Disable Link checkbox is unchecked
-            if ( ! isset( $submitted_settings['disable_link'] ) ) {
+                }
 
-                $submitted_settings['disable_link'] = 'false';
+                // Disable Link checkbox is unchecked
+                if ( ! isset( $submitted_settings['disable_link'] ) ) {
 
-            }
+                    $submitted_settings['disable_link'] = 'false';
 
-            // Disable arrow checkbox is unchecked
-            if ( ! isset ( $submitted_settings['hide_arrow'] ) ) {
+                }
 
-                $submitted_settings['hide_arrow'] = 'false';
+                // Disable arrow checkbox is unchecked
+                if ( ! isset ( $submitted_settings['hide_arrow'] ) ) {
+
+                    $submitted_settings['hide_arrow'] = 'false';
+
+                }
 
             }
 
