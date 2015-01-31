@@ -21,27 +21,37 @@
         }
 
         function closePanels() {
-            $('li', menu).removeClass('mega-toggle-on');
-            $('li.mega-menu-megamenu > ul.mega-sub-menu, li.mega-menu-flyout ul.mega-sub-menu', menu).hide();
+            $('.mega-toggle-on > a', menu).each(function() {
+                hidePanel($(this), true);
+            });
         }
 
-        function hidePanel(anchor) {
-            anchor.parent().removeClass('mega-toggle-on');
+        function hidePanel(anchor, immediate) {
+            anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
 
-            var effect = megamenu.effect[menu.settings.effect]['out'];
+            if (immediate) {
+                anchor.siblings('.mega-sub-menu').hide();
+            } else {
+                var effect = megamenu.effect[menu.settings.effect]['out'];
 
-            if (effect.css) {
-                anchor.siblings('.mega-sub-menu').css(effect.css);
+                if (effect.css) {
+                    anchor.siblings('.mega-sub-menu').css(effect.css);
+                }
+
+                if (effect.animate) {
+                    anchor.siblings('.mega-sub-menu').animate(effect.animate, 'fast');
+                }
             }
-
-            if (effect.animate) {
-                anchor.siblings('.mega-sub-menu').animate(effect.animate, 'fast');
-            }
-
         }
 
         function showPanel(anchor) {
-            anchor.parent().addClass('mega-toggle-on').siblings().find('> .mega-sub-menu').hide();
+
+            // all open children of open siblings
+            anchor.parent().siblings().find('.mega-toggle-on').addBack('.mega-toggle-on').children('a').each(function() { 
+                hidePanel($(this), true);
+            });
+
+            anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
 
             var effect = megamenu.effect[menu.settings.effect]['in'];
 
@@ -54,7 +64,6 @@
                     $(this).css('display', 'block');
                 });
             }
-
         }
 
         function openOnClick() {
@@ -80,7 +89,7 @@
                         e.preventDefault();
 
                         if ( $(this).parent().hasClass("mega-toggle-on") ) {
-                            hidePanel($(this));                            
+                            hidePanel($(this), false);                            
                         } else {
                             showPanel($(this));
                         }
@@ -96,7 +105,9 @@
                     showPanel($(this).children('a'));
                 },
                 out: function () {
-                    hidePanel($(this).children('a'));
+                    if ($(this).hasClass("mega-toggle-on")) {
+                        hidePanel($(this).children('a'), false);
+                    }
                 },
                 timeout: megamenu.timeout
             });
