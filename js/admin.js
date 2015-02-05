@@ -238,7 +238,7 @@
 
                         }
 
-                        var tab = $("<div />").addClass('mm_tab').html(this.title).css('cursor', 'pointer').on('click', function() {
+                        var tab = $("<div />").addClass('mm_tab').addClass(idx).html(this.title).css('cursor', 'pointer').on('click', function() {
                             $(".mm_content").hide();
                             $(".mm_tab").removeClass('active');
                             $(this).addClass('active');
@@ -255,6 +255,7 @@
                         content_container.append(content);
                     });
 
+                    $('#cboxLoadedContent').trigger('megamenu_content_loaded');
                     $('#cboxLoadedContent').addClass('depth-' + panel.settings.menu_item_depth).append(header_container).append(tabs_container).append(content_container);
                     $('#cboxLoadedContent').css({'width': '100%', 'height': '100%', 'display':'block'});
                 }
@@ -291,7 +292,7 @@
 
                 start_saving();
 
-                var position = $(this).index();
+                var position = $(".widget").not(".sub_menu").index(widget);
 
                 $.post(ajaxurl, {
                     action: "mm_move_widget",
@@ -527,6 +528,7 @@ jQuery(function ($) {
 
         var tab = $(this);
         var tab_id = $(this).attr('rel');
+
 
         tab.addClass('active');
         tab.siblings().removeClass('active');
