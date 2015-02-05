@@ -47,7 +47,7 @@
         function showPanel(anchor) {
 
             // all open children of open siblings
-            anchor.parent().siblings().find('.mega-toggle-on').addBack('.mega-toggle-on').children('a').each(function() { 
+            anchor.parent().siblings().find('.mega-toggle-on').andSelf().children('a').each(function() { 
                 hidePanel($(this), true);
             });
 
