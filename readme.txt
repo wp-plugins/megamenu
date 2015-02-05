@@ -94,6 +94,11 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.5.3 =
+
+* Fix: Widget ordering bug when mega menu contains sub menu items (reported by & thanks to: milenasmart)
+* Misc: Add megamenu_save_menu_item_settings action
+
 = 1.5.2 =
 
 * Feature: Responsive menu text option in theme editor
