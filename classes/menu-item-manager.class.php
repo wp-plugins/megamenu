@@ -114,8 +114,6 @@ class Mega_Menu_Menu_Item_Manager {
 
         if ( $menu_item_id > 0 && is_array( $submitted_settings ) ) {
 
-        	$existing_settings = get_post_meta( $menu_item_id, '_megamenu', true);
-
             // only check the checkbox values if the general settings form was submitted
             if ( isset( $submitted_settings['item_align'] ) ) {
 
@@ -142,13 +140,19 @@ class Mega_Menu_Menu_Item_Manager {
 
             }
 
+            $submitted_settings = apply_filters( "megamenu_menu_item_submitted_settings", $submitted_settings, $menu_item_id );
+
+            $existing_settings = get_post_meta( $menu_item_id, '_megamenu', true);
+
         	if ( is_array( $existing_settings ) ) {
 
         		$submitted_settings = array_merge( $existing_settings, $submitted_settings );
 
         	}
         	
-        	update_post_meta( $_POST['menu_item_id'], '_megamenu', $submitted_settings );
+        	update_post_meta( $menu_item_id, '_megamenu', $submitted_settings );
+
+            do_action( "megamenu_save_menu_item_settings", $menu_item_id );
         	
         }
 
