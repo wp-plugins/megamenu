@@ -509,7 +509,7 @@
 }
 
 #cboxContent .menu_icon .icon_selector input.radio:empty {
-	margin-left: -999px;
+	margin-left: -9999px;
 }
 
 #cboxContent .menu_icon .icon_selector input.radio:empty ~ label {
