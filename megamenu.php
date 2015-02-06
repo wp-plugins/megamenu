@@ -401,7 +401,7 @@ final class Mega_Menu {
 	 */
 	public function modify_nav_menu_args( $args ) {
 
-		$settings = get_site_option( 'megamenu_settings' );
+		$settings = get_option( 'megamenu_settings' );
 
 		$current_theme_location = $args['theme_location'];
 

@@ -107,7 +107,7 @@ class Mega_Menu_Settings{
 
         check_admin_referer( 'megamenu_clear_cache' );
 
-        delete_site_transient( 'megamenu_css' );
+        delete_transient( 'megamenu_css' );
 
         wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&clear_cache=true" ) );
 
@@ -124,7 +124,7 @@ class Mega_Menu_Settings{
         check_admin_referer( 'megamenu_delete_data' );
 
         // delete menu settings
-        delete_site_option("megamenu_settings");
+        delete_option("megamenu_settings");
 
         // delete all widgets assigned to menus
         $widget_manager = new Mega_Menu_Widget_Manager();
@@ -143,7 +143,7 @@ class Mega_Menu_Settings{
         delete_metadata( 'post', 0, '_megamenu', '', true );
 
         // clear cache
-        delete_site_transient( "megamenu_css" );
+        delete_transient( "megamenu_css" );
 
         // delete custom themes
         delete_site_option( "megamenu_themes" );
@@ -169,17 +169,17 @@ class Mega_Menu_Settings{
 
         }
 
-        if ( ! get_site_option( 'megamenu_settings' ) ) {
+        if ( ! get_option( 'megamenu_settings' ) ) {
 
-            add_site_option( 'megamenu_settings', $submitted_settings );
+            add_option( 'megamenu_settings', $submitted_settings );
 
         } else {
 
-            $existing_settings = get_site_option( 'megamenu_settings' );
+            $existing_settings = get_option( 'megamenu_settings' );
 
             $new_settings = array_merge( $existing_settings, $submitted_settings );
  
-            update_site_option( 'megamenu_settings', $new_settings );
+            update_option( 'megamenu_settings', $new_settings );
 
         }
 
@@ -355,7 +355,7 @@ class Mega_Menu_Settings{
      * @param string $theme
      */
     public function theme_is_being_used_by_menu( $theme ) {
-        $settings = get_site_option( "megamenu_settings" );
+        $settings = get_option( "megamenu_settings" );
 
         if ( ! $settings ) {
             return false;
@@ -447,7 +447,7 @@ class Mega_Menu_Settings{
      */
     public function getting_started_page_is_enabled() {
 
-        $saved_settings = get_site_option( "megamenu_settings" );
+        $saved_settings = get_option( "megamenu_settings" );
 
         if ( ! isset( $saved_settings['getting_started'] ) ) {
             return true;
@@ -468,7 +468,7 @@ class Mega_Menu_Settings{
      */
     public function settings_page() {
 
-        $saved_settings = get_site_option( "megamenu_settings" );
+        $saved_settings = get_option( "megamenu_settings" );
 
         $css = isset( $saved_settings['css'] ) ? $saved_settings['css'] : 'ajax';
 

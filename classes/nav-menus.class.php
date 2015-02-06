@@ -40,7 +40,7 @@ class Mega_Menu_Nav_Menus {
      */
     public function __construct() {
 
-        add_action( 'admin_init', array( $this, 'register_nav_meta_box' ), 11 );
+        add_action( 'admin_init', array( $this, 'register_nav_meta_box' ), 9 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_menu_page_scripts' ) );
         add_action( 'megamenu_save_settings', array($this, 'save') );
 
@@ -162,17 +162,17 @@ class Mega_Menu_Nav_Menus {
 
             $submitted_settings = $_POST['megamenu_meta'];
 
-            if ( ! get_site_option( 'megamenu_settings' ) ) {
+            if ( ! get_option( 'megamenu_settings' ) ) {
 
-                add_site_option( 'megamenu_settings', $submitted_settings );
+                add_option( 'megamenu_settings', $submitted_settings );
 
             } else {
 
-                $existing_settings = get_site_option( 'megamenu_settings' );
+                $existing_settings = get_option( 'megamenu_settings' );
 
                 $new_settings = array_merge( $existing_settings, $submitted_settings );
 
-                update_site_option( 'megamenu_settings', $new_settings );
+                update_option( 'megamenu_settings', $new_settings );
 
             }
 
@@ -194,7 +194,7 @@ class Mega_Menu_Nav_Menus {
         $tagged_menu_locations = $this->get_tagged_theme_locations_for_menu_id( $menu_id );
         $theme_locations = get_registered_nav_menus();
 
-        $saved_settings = get_site_option( 'megamenu_settings' );
+        $saved_settings = get_option( 'megamenu_settings' );
 
         if ( ! count( $theme_locations ) ) {
 
