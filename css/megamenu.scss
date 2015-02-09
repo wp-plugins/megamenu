@@ -85,6 +85,7 @@
 	visibility: visible;
 	overflow: visible;
 	display: block;
+	min-height: 0;
 	-webkit-transition: none;
 	-moz-transition: none;
 	-o-transition: none;
@@ -122,10 +123,6 @@
 	#{$menu} {
 
 	    padding: $container_padding_top $container_padding_right $container_padding_bottom $container_padding_left;
-
-	    .mega-menu-clear {
-			clear: left;
-		}
 
 		p {
 			margin-bottom: 10px;
@@ -307,8 +304,13 @@
 			    font-size: $font_size;
 			    display: block;
 			    float: left;
+			    clear: none;
 			    padding: $panel_widget_padding_top $panel_widget_padding_right $panel_widget_padding_bottom $panel_widget_padding_left;
 			    vertical-align: top;
+
+			    &.mega-menu-clear {
+					clear: left;
+				}
 
 			    > a,
 			    > h4.mega-block-title {
