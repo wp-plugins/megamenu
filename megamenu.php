@@ -302,7 +302,7 @@ final class Mega_Menu {
 		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
 			return $nav_menu;
 		
-		$toggle_id = 'mega-menu-toggle-' . $args->theme_location . '-' . $args->menu;
+		$toggle_id = apply_filters("megamenu_toggle_id", "mega-menu-toggle-{$args->theme_location}", $args->menu, $args->theme_location );
 
 		$toggle_class = 'mega-menu-toggle';
 
@@ -441,9 +441,9 @@ final class Mega_Menu {
 				'menu'            => $menu_id,
 				'container'       => 'div',
 				'container_class' => 'mega-menu-wrap',
-				'container_id'    => 'mega-menu-wrap-' . $current_theme_location . '-' . $menu_id,
+				'container_id'    => 'mega-menu-wrap-' . $current_theme_location,
 				'menu_class'      => 'mega-menu mega-menu-' . $mega_menu_layout,
-				'menu_id'         => 'mega-menu-' . $current_theme_location . '-' . $menu_id,
+				'menu_id'         => 'mega-menu-' . $current_theme_location,
 				'fallback_cb'     => 'wp_page_menu',
 				'before'          => '',
 				'after'           => '',
@@ -454,7 +454,7 @@ final class Mega_Menu {
 				'walker'          => new Mega_Menu_Walker()
 			);
 
-			$args = array_merge( $args, $defaults );
+			$args = array_merge( $args, apply_filters( "megamenu_nav_menu_args", $defaults, $menu_id, $current_theme_location ) );
 		}
 
 		return $args;

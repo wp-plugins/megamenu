@@ -390,8 +390,11 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_complete_scss_for_location( $location, $theme, $menu_id ) {
 
-        $vars = "\$wrap: \"#mega-menu-wrap-{$location}-{$menu_id}\";
-                 \$menu: \"#mega-menu-{$location}-{$menu_id}\";
+        $wrap_selector = apply_filters( "megamenu_scss_wrap_selector", "#mega-menu-wrap-{$location}", $menu_id, $location );
+        $menu_selector = apply_filters( "megamenu_scss_menu_selector", "#mega-menu-{$location}", $menu_id, $location );
+
+        $vars = "\$wrap: \"$wrap_selector\";
+                 \$menu: \"$menu_selector\";
                  \$menu_id: \"{$menu_id}\";";
 
         foreach( $theme as $name => $value ) {
