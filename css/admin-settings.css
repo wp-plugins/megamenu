@@ -145,6 +145,7 @@
 	height: 28px;
 	line-height: 28px;
 	vertical-align: top;
+	margin-right: 10px;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input.mega-setting-title {
 	width: 100px;
@@ -171,7 +172,6 @@
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input {
 	width: 70px;
-	margin-right: 20px;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
     font-size: 0.9em;
@@ -222,10 +222,14 @@
 	margin: 0 0 20px 0;
 }
 
+.appearance_page_megamenu_settings .megamenu_right .menu_settings select.icon_dropdown {
+	margin-right: 0;
+}
 .appearance_page_megamenu_settings .megamenu_right .menu_settings .selected_icon::before {
 	font: 400 20px/1 dashicons;
 	speak: none;
-	padding: 5px 0 0 5px;
+	padding: 5px 0 0 0;
+	margin-right: 20px;
 	display: inline-block;
 	vertical-align: top;
 	-webkit-font-smoothing: antialiased;
@@ -256,7 +260,7 @@
 	box-shadow: 0 1px 0 rgba(0,0,0,.08);
 	border: 1px solid #ccc;
 	font-size: 0.9em;
-	margin-right: 20px;
+	margin-right: 10px;
 	float: left;
 }
 
