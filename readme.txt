@@ -94,6 +94,14 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.6-beta =
+
+* Change: Menu ID removed from menu class and ID attributes on menu wrappers. E.g. "#mega-menu-wrap-primary-2" will now be "#mega-menu-wrap-primary", "#mega-menu-primary-2" will now be "#mega-menu-primary".
+* Fix: Polylang & WPML compatibility (fixed due to the above)
+* Fix: Multi Site support (mega menu settings will need to be reapplied in some cases for multi site installs)
+* Fix: Remove jQuery 1.8 dependency
+* Change: Theme editor slightly revised
+
 = 1.5.3 =
 
 * Fix: Widget ordering bug when mega menu contains sub menu items (reported by & thanks to: milenasmart)
