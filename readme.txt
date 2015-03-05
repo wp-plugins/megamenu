@@ -94,6 +94,11 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.6 =
+
+* Fix: responsive collapse menu
+* Fix: checkbox appearing on Enfold theme
+
 = 1.6-beta =
 
 * Change: Menu ID removed from menu class and ID attributes on menu wrappers. E.g. "#mega-menu-wrap-primary-2" will now be "#mega-menu-wrap-primary", "#mega-menu-primary-2" will now be "#mega-menu-primary".
