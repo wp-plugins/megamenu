@@ -467,7 +467,7 @@
 
 	// responsive toggle hamburger
 
-	.mega-menu-toggle {
+	input[type="checkbox"].mega-menu-toggle {
 		display: none;
 
 		+ label,
