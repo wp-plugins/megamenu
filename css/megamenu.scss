@@ -117,7 +117,6 @@
 }
 
 #{$wrap} {
-	z-index: $z_index;
     @include background($container_background_from, $container_background_to);
     @include border-radius($container_border_radius_top_left, $container_border_radius_top_right, $container_border_radius_bottom_right, $container_border_radius_bottom_left);
 
@@ -244,6 +243,7 @@
 		// sub menu items (megamenu)
 
 		> li.mega-menu-megamenu > ul.mega-sub-menu {
+			z-index: $z_index;
 			@include border-radius($panel_border_radius_top_left, $panel_border_radius_top_right, $panel_border_radius_bottom_right, $panel_border_radius_bottom_left);
 		    @include background($panel_background_from, $panel_background_to);
 		    padding: $panel_padding_top $panel_padding_right $panel_padding_bottom $panel_padding_left;
@@ -323,9 +323,9 @@
 		// sub menu items (flyout)
 
 		> li.mega-menu-flyout ul.mega-sub-menu {
+			z-index: $z_index;
 			display: none;
 		    position: absolute;
-		    width: auto;
 		    width: $flyout_width;
 		    border-top: $flyout_border_top solid $flyout_border_color;
 		    border-left: $flyout_border_left solid $flyout_border_color;
@@ -485,6 +485,7 @@
 		}
 
 		+ label {
+			z-index: 1;
 			float: right;
 			cursor: pointer;
 			position: relative;
