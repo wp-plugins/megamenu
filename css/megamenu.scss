@@ -122,6 +122,7 @@
 
 	#{$menu} {
 
+		text-align: $menu_item_align;
 	    padding: $container_padding_top $container_padding_right $container_padding_bottom $container_padding_left;
 
 		p {

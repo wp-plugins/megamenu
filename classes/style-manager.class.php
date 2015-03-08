@@ -59,6 +59,7 @@ final class Mega_Menu_Style_Manager {
             'arrow_down'                                => 'dash-f140',
             'arrow_left'                                => 'dash-f141',
             'arrow_right'                               => 'dash-f139',
+            'menu_item_align'                           => 'left',
             'menu_item_background_from'                 => 'transparent',
             'menu_item_background_to'                   => 'transparent',
             'menu_item_background_hover_from'           => '#333',

@@ -968,6 +968,17 @@ class Mega_Menu_Settings{
                             </label>
                         </td>
                     </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Menu Items Align", "megamenu"); ?>
+                            <div class='mega-description'> 
+                                <?php _e("Align all menu items to the left (default), centrally or to the right. To align a single menu item to the right, use the Mega Menu options for the menu item.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <?php $this->print_theme_align_option( 'menu_item_align' ); ?>
+                        </td>
+                    </tr>
                 </table>
 
                 <h4><?php _e("Top Level Menu Items", "megamenu"); ?></h4>
@@ -1563,6 +1574,29 @@ class Mega_Menu_Settings{
 
 
     /**
+     * Print a select dropdown with left, center and right options
+     *
+     * @since 1.6.1
+     * @param string $key
+     * @param string $value
+     */
+    public function print_theme_align_option( $key ) {
+
+        $value = $this->active_theme[$key];
+
+        ?>
+
+            <select name='settings[<?php echo $key ?>]'>
+                <option value='left' <?php selected( $value, 'left' ); ?>><?php _e("Left", "megamenu") ?></option>
+                <option value='center' <?php selected( $value, 'center' ); ?>><?php _e("Center", "megamenu") ?></option>
+                <option value='right' <?php selected( $value, 'right' ); ?>><?php _e("Right", "megamenu") ?></option>
+            </select>
+
+        <?php
+    }
+
+
+    /**
      * Print a checkbox option
      *
      * @since 1.6.1
@@ -1576,10 +1610,11 @@ class Mega_Menu_Settings{
         ?>
 
             <input type='hidden' name='checkboxes[<?php echo $key ?>]' />
-            <input type='checkbox' name='settings[<?php echo $key ?>]' <?php checked($value, 'on'); ?> />
+            <input type='checkbox' name='settings[<?php echo $key ?>]' <?php checked( $value, 'on' ); ?> />
 
         <?php
     }
+
 
     /**
      * Print an arrow dropdown selection box
