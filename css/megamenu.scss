@@ -369,6 +369,16 @@
 				    vertical-align: baseline;
 			    }
 
+			    &:first-child a {
+			        border-top-left-radius: $flyout_border_radius_top_left;
+			        border-top-right-radius: $flyout_border_radius_top_right;
+			    }
+
+			    &:last-child a {
+			        border-bottom-right-radius: $flyout_border_radius_bottom_right;
+			        border-bottom-left-radius: $flyout_border_radius_bottom_left;
+			    }
+
 			    a:hover {
 			    	@include background($flyout_background_hover_from, $flyout_background_hover_to);
 			    	font-weight: $flyout_link_weight_hover;

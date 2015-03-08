@@ -1462,6 +1462,32 @@ class Mega_Menu_Settings{
                     </tr>
                     <tr>
                         <td class='mega-name'>
+                            <?php _e("Rounded Corners", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set rounded corners for flyout menus. Rounded corners will be applied to all flyout menu levels.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Top Left", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'flyout_border_radius_top_left' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Top Right", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'flyout_border_radius_top_right' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Bottom Right", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'flyout_border_radius_bottom_right' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Bottom Left", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'flyout_border_radius_bottom_left' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
                             <?php _e("Font Weight", "megamenu"); ?>
                             <div class='mega-description'>
                                 <?php _e("Set the font weight for the flyout menu items.", "megamenu"); ?>
