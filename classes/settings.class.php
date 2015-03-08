@@ -87,7 +87,29 @@ class Mega_Menu_Settings{
             unset( $saved_themes[ $theme ] );
         }
 
-        $saved_themes[ $theme ] = array_map( 'esc_attr', $_POST['settings'] );
+        $submitted_settings = $_POST['settings'];
+
+        if ( isset( $submitted_settings['checkboxes'] ) ) {
+
+            foreach ( $submitted_settings['checkboxes'] as $checkbox ) {
+
+                if ( isset( $submitted_settings[ $checkbox ] ) ) {
+
+                    $submitted_settings[ $checkbox ] = 'on';
+
+                } else {
+
+                    $submitted_settings[ $checkbox ] = 'off';
+
+                }
+
+            }
+
+            unset( $submitted_settings['checkboxes'] );
+
+        }
+
+        $saved_themes[ $theme ] = array_map( 'esc_attr', $submitted_settings );
 
         update_site_option( "megamenu_themes", $saved_themes );
 
@@ -1111,6 +1133,15 @@ class Mega_Menu_Settings{
                             </label>
                         </td>
                     </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Highlight Current Item", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Apply the 'hover' styling to current menu items.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'><?php $this->print_theme_checkbox_option( 'menu_item_highlight_current' ); ?></td>
+                    </tr>
                 </table>
 
                 <h4><?php _e("Mega Panels", "megamenu"); ?></h4>
@@ -1502,6 +1533,26 @@ class Mega_Menu_Settings{
 
         <?php
 
+    }
+
+
+    /**
+     * Print a checkbox option
+     *
+     * @since 1.6.1
+     * @param string $key
+     * @param string $value
+     */
+    public function print_theme_checkbox_option( $key ) {
+
+        $value = $this->active_theme[$key];
+
+        ?>
+
+            <input type='hidden' name='checkboxes[<?php echo $key ?>]' />
+            <input type='checkbox' name='settings[<?php echo $key ?>]' <?php checked($value, 'on'); ?> />
+
+        <?php
     }
 
     /**

@@ -80,6 +80,7 @@ final class Mega_Menu_Style_Manager {
             'menu_item_link_border_radius_top_right'    => '0px',
             'menu_item_link_border_radius_bottom_left'  => '0px',
             'menu_item_link_border_radius_bottom_right' => '0px',
+            'menu_item_highlight_current'               => 'off',
             'panel_background_from'                     => '#f1f1f1',
             'panel_background_to'                       => '#f1f1f1',
             'panel_width'                               => '100%',

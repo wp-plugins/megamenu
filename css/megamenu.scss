@@ -142,6 +142,19 @@
 			}
 		}
 
+		@if $menu_item_highlight_current == 'on' {
+
+			> li.mega-menu-item.mega-current-menu-item,
+			> li.mega-menu-item.mega-current-menu-ancestor {
+				> a {
+				    @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
+				    color: $menu_item_link_color_hover;
+				    font-weight: $menu_item_link_weight_hover;
+				}
+			}
+
+		}
+
 
 		> li.mega-menu-item > ul.mega-sub-menu,
 		li.mega-menu-flyout li.mega-menu-item ul.mega-sub-menu {
