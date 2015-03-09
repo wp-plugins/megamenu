@@ -1180,7 +1180,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Panel Width", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Mega Panel width. Note: A 100% wide panel will only ever be as wide as the menu itself. For a fixed panel width set this to a pixel value.", "megamenu"); ?>
+                                <?php _e("Mega Panel width. Note: A 100% wide panel will only ever be as wide as the menu itself. For a fixed panel width set this to a pixel value. Advanced: enter a jQuery selector to align the sub menu to a page element.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>

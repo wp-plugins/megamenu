@@ -418,22 +418,27 @@ final class Mega_Menu {
 				return $args;
 			}
 
+			$themes = get_option( 'megamenu_themes' );
+
+			$menu_theme = $themes[ $settings[ $current_theme_location ]['theme'] ];
+
 			$menu_settings = $settings[ $current_theme_location ];
-			$mega_menu_layout = isset( $menu_settings['layout'] ) ? $menu_settings['layout'] : 'horizontal';
-			$event = isset( $menu_settings['event'] ) ? $menu_settings['event'] : 'hover';
-			$effect = isset( $menu_settings['effect'] ) ? $menu_settings['effect'] : 'disabled';
 
 			$wrap_attributes = apply_filters("megamenu_wrap_attributes", array(
 				"id" => '%1$s',
 				"class" => '%2$s mega-no-js',
-				"data-event" => $event,
-				"data-effect" => $effect
+				"data-event" => isset( $menu_settings['event'] ) ? $menu_settings['event'] : 'hover',
+				"data-effect" => isset( $menu_settings['effect'] ) ? $menu_settings['effect'] : 'disabled',
+				"data-panel-width" => preg_match('/^\d/', $menu_theme['panel_width']) !== 1 ? $menu_theme['panel_width'] : '',
+				"data-breakpoint" => absint( $menu_theme['responsive_breakpoint'] )
 			), $menu_id, $menu_settings );
 
 			$attributes = "";
 
 			foreach( $wrap_attributes as $attribute => $value ) {
-				$attributes .= " " . $attribute . '="' . $value . '"';
+				if ( strlen( $value ) ) {
+					$attributes .= " " . $attribute . '="' . $value . '"';
+				}
 			}
 
 			$defaults = array(
@@ -441,7 +446,7 @@ final class Mega_Menu {
 				'container'       => 'div',
 				'container_class' => 'mega-menu-wrap',
 				'container_id'    => 'mega-menu-wrap-' . $current_theme_location,
-				'menu_class'      => 'mega-menu mega-menu-' . $mega_menu_layout,
+				'menu_class'      => 'mega-menu mega-menu-horizontal',
 				'menu_id'         => 'mega-menu-' . $current_theme_location,
 				'fallback_cb'     => 'wp_page_menu',
 				'before'          => '',

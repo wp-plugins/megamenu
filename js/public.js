@@ -13,7 +13,9 @@
 
         menu.settings = $.extend({
             event: menu.attr('data-event'),
-            effect: menu.attr('data-effect')
+            effect: menu.attr('data-effect'),
+            panel_width: menu.attr('data-panel-width'),
+            breakpoint: menu.attr('data-breakpoint')
         }, options);
 
         function isTouchDevice() {
@@ -52,6 +54,24 @@
             });
 
             anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
+
+            // apply dynamic width and sub menu position
+            if ( anchor.parent().hasClass('mega-menu-megamenu') && $(menu.settings.panel_width).length ) {
+                if ( $(window).width() > menu.settings.breakpoint ) {
+                    var submenu_offset = menu.offset();
+                    var target_offset = $(menu.settings.panel_width).offset();
+
+                    anchor.siblings('.mega-sub-menu').css({
+                        width: $(menu.settings.panel_width).outerWidth(),
+                        left: (target_offset.left - submenu_offset.left) + "px"
+                    });
+                } else {
+                    anchor.siblings('.mega-sub-menu').css({
+                        width: "",
+                        left: ""
+                    });
+                }
+            }
 
             var effect = megamenu.effect[menu.settings.effect]['in'];
 
@@ -114,7 +134,7 @@
         }
 
         function init() {
-            
+
             menu.removeClass('mega-no-js');
 
             if (isTouchDevice() || menu.settings.event === 'click') {
@@ -126,6 +146,10 @@
         }
 
         init();
+
+        $( window ).resize(function() {
+            closePanels();
+        });
     };
 
 }(jQuery));

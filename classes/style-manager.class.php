@@ -428,6 +428,17 @@ final class Mega_Menu_Style_Manager {
                 continue;
             }
 
+            if ( in_array( $name, array( 'panel_width' ) ) ) {
+
+                if ( preg_match('/^\d/', $value) !== 1 ) { // doesn't start with number (jQuery selector)
+                    $vars .= "$" . $name . ": 100%;\n";
+
+                    continue;
+
+                }
+
+            }
+
             if ( $name != 'custom_css' ) {
                 $vars .= "$" . $name . ": " . $value . ";\n";
             }
