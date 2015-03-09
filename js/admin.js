@@ -156,6 +156,10 @@
                                         add_events_to_widget(widget);
 
                                         $("#widgets").append(widget);
+
+                                        // reset the dropdown
+                                        selector.val('disabled');
+
                                     });
 
                                 }
