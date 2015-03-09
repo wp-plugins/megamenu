@@ -308,8 +308,7 @@ final class Mega_Menu {
 
 		$find = 'class="' . $args->container_class . '">';
 
-		$replace = $find . '<input type="checkbox" id="' . $toggle_id . '" class="' . $toggle_class . '">
-							<label for="'. $toggle_id . '"></label>';
+		$replace = $find . '<div class="' . $toggle_class . '"></div>';
 
 		return str_replace( $find, $replace, $nav_menu );
 	}

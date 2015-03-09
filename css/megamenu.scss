@@ -491,42 +491,25 @@
 
 	// responsive toggle hamburger
 
-	input[type="checkbox"].mega-menu-toggle {
+	.mega-menu-toggle {
 		display: none;
+		z-index: 1;
+		cursor: pointer;
+		position: relative;
+		float: left;
+		width: 100%;
+		text-align: right;
+	    @include background($container_background_from, $container_background_to);
+	    @include border-radius(2, 2, 2, 2);
+	    line-height: 40px;
+	    height: 40px;
+		color: $menu_item_link_color;
 
-		+ label,
-		+ label:active,
-	    + label:focus {
-			border: none;
-			outline: none;
-			-webkit-tap-highlight-color: rgba(0,0,0,0);
-			-webkit-touch-callout: none;
-			-webkit-user-select: none;
-			-khtml-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
+		@media only screen and (max-width : $responsive_breakpoint) { 
+			display: block;
 		}
 
-		+ label {
-			z-index: 1;
-			float: right;
-			cursor: pointer;
-			position: relative;
-			display: none;
-			width: 100%;
-			text-align: right;
-		    @include background($container_background_from, $container_background_to);
-		    @include border-radius($container_border_radius_top_left, $container_border_radius_top_right, $container_border_radius_bottom_right, $container_border_radius_bottom_left);
-		    line-height: $menu_item_link_height;
-			color: $menu_item_link_color;
-
-			@media only screen and (max-width : $responsive_breakpoint) { 
-				display: block;
-			}
-		}
-
-		+ label:before {
+		&:before {
 			content: "\f333";
 			font-family: 'dashicons';
 			font-size: 24px;
@@ -534,16 +517,16 @@
 			float: right;
 	    }
 
-	    &:checked + label:before {
+	    &.mega-menu-open:before {
 			content: "\f153";
 		}
 
 		@if str-length($responsive_text) > 0 {
-			+ label:after {
+			&:after {
 				content: $responsive_text;
 		    }
 
-		    &:checked + label:after {
+		    &.mega-menu-open:after {
 				content: "";
 			}
 		}
@@ -553,7 +536,7 @@
 	        	display: none;
 	        }
 
-	        &:checked ~ #{$menu} {
+	        &.mega-menu-open ~ #{$menu} {
 	        	display: block;
 	        }
 		}

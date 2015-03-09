@@ -114,6 +114,7 @@
         }
 
         function init() {
+            
             menu.removeClass('mega-no-js');
 
             if (isTouchDevice() || menu.settings.event === 'click') {
@@ -131,6 +132,11 @@
 
 jQuery(document).ready(function(){
     "use strict";
+
+    jQuery('.mega-menu-toggle').on('click', function() {
+        jQuery(this).toggleClass('mega-menu-open');
+    });
+
     jQuery('.mega-menu').each(function() {
         jQuery(this).megaMenu();
     });
