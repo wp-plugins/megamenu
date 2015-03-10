@@ -56,11 +56,6 @@ final class Mega_Menu {
 		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 10, 2 );
 		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
 
-        add_action( 'megamenu_after_save_settings', array( $this, 'clear_caches' ) );
-        add_action( 'megamenu_after_widget_add', array( $this, 'clear_caches' ) );
-        add_action( 'megamenu_after_widget_save', array( $this, 'clear_caches' ) );
-        add_action( 'megamenu_after_widget_delete', array( $this, 'clear_caches' ) );
-
 		register_deactivation_hook( __FILE__, array( $this, 'delete_version_number') );
 
 		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
@@ -491,25 +486,6 @@ final class Mega_Menu {
 		return $wp_version >= 3.8;
 	}
 
-
-    /**
-     * Clear the cache when the Mega Menu is updated.
-     *
-     * @since 1.0
-     */
-    public function clear_caches() {
-
-        // https://wordpress.org/plugins/widget-output-cache/
-        if ( function_exists( 'menu_output_cache_bump' ) ) {
-            menu_output_cache_bump();
-        }
-
-        // https://wordpress.org/plugins/widget-output-cache/
-        if ( function_exists( 'widget_output_cache_bump' ) ) {
-            widget_output_cache_bump();
-        }
-
-    }
 
 }
 

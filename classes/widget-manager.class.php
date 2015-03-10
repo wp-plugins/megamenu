@@ -33,6 +33,10 @@ class Mega_Menu_Widget_Manager {
 
 		add_filter( 'widget_update_callback', array( $this, 'persist_mega_menu_widget_settings'), 10, 4 );
 
+        add_action( 'megamenu_after_widget_add', array( $this, 'clear_caches' ) );
+        add_action( 'megamenu_after_widget_save', array( $this, 'clear_caches' ) );
+        add_action( 'megamenu_after_widget_delete', array( $this, 'clear_caches' ) );
+
 	}
 
 
@@ -749,6 +753,26 @@ class Mega_Menu_Widget_Manager {
 		wp_set_sidebars_widgets( $sidebar_widgets );
 
 	}
+
+
+    /**
+     * Clear the cache when the Mega Menu is updated.
+     *
+     * @since 1.0
+     */
+    public function clear_caches() {
+
+        // https://wordpress.org/plugins/widget-output-cache/
+        if ( function_exists( 'menu_output_cache_bump' ) ) {
+            menu_output_cache_bump();
+        }
+
+        // https://wordpress.org/plugins/widget-output-cache/
+        if ( function_exists( 'widget_output_cache_bump' ) ) {
+            widget_output_cache_bump();
+        }
+
+    }
 
 }
 
