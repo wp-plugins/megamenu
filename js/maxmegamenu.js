@@ -51,30 +51,26 @@
         };
 
         plugin.showPanel = function(anchor) {
-            // all open children of open siblings
-            anchor.parent().siblings().find('.mega-toggle-on').andSelf().children('a').each(function() { 
-                plugin.hidePanel($(this), true);
-            });
+
+            // automatically hide open panels, but only for desktop.
+            if ( $(window).width() > plugin.settings.breakpoint ) {
+                // all open children of open siblings
+                anchor.parent().siblings().find('.mega-toggle-on').andSelf().children('a').each(function() { 
+                    plugin.hidePanel($(this), true);
+                });
+            }
 
             anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
 
             // apply dynamic width and sub menu position
             if ( anchor.parent().hasClass('mega-menu-megamenu') && $(plugin.settings.panel_width).length ) {
-                if ( $(window).width() > plugin.settings.breakpoint ) {
-                    var submenu_offset = $menu.offset();
-                    var target_offset = $(plugin.settings.panel_width).offset();
+                var submenu_offset = $menu.offset();
+                var target_offset = $(plugin.settings.panel_width).offset();
 
-                    anchor.siblings('.mega-sub-menu').css({
-                        width: $(plugin.settings.panel_width).outerWidth(),
-                        left: (target_offset.left - submenu_offset.left) + "px"
-                    });
-                } else {
-
-                    anchor.siblings('.mega-sub-menu').css({
-                        width: "",
-                        left: ""
-                    });
-                }
+                anchor.siblings('.mega-sub-menu').css({
+                    width: $(plugin.settings.panel_width).outerWidth(),
+                    left: (target_offset.left - submenu_offset.left) + "px"
+                });
             }
 
             var effect = megamenu.effect[plugin.settings.effect].in;
@@ -145,10 +141,6 @@
 
             $menu.siblings('.mega-menu-toggle').on('click', function() {
                 $(this).toggleClass('mega-menu-open');
-            });
-
-            $( window ).resize(function() {
-                plugin.closePanels();
             });
 
             if (isTouchDevice() || plugin.settings.event === 'click') {
