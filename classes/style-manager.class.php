@@ -528,7 +528,7 @@ final class Mega_Menu_Style_Manager {
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( 'hoverIntent' );
-		wp_enqueue_script( 'megamenu', MEGAMENU_BASE_URL . "js/public.js", array('jquery', 'hoverIntent'), MEGAMENU_VERSION );
+		wp_enqueue_script( 'megamenu', MEGAMENU_BASE_URL . "js/maxmegamenu.js", array('jquery', 'hoverIntent'), MEGAMENU_VERSION );
 
 		$params = apply_filters("megamenu_javascript_localisation", 
 			array( 
