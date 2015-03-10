@@ -44,7 +44,7 @@ class Mega_Menu_Settings{
         add_action( 'admin_post_megamenu_duplicate_theme', array( $this, 'duplicate_theme') );
 
         add_action( 'admin_post_megamenu_save_settings', array( $this, 'save_settings') );
-        add_action( 'admin_post_megamenu_clear_cache', array( $this, 'clear_cache') );
+        add_action( 'admin_post_megamenu_regenerate_css', array( $this, 'tools_regenerate_css') );
         add_action( 'admin_post_megamenu_delete_data', array( $this, 'delete_data') );
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
@@ -113,6 +113,8 @@ class Mega_Menu_Settings{
 
         update_site_option( "megamenu_themes", $saved_themes );
 
+        $this->regenerate_css();
+
         do_action("megamenu_after_theme_save");
 
         wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
@@ -125,14 +127,25 @@ class Mega_Menu_Settings{
      *
      * @since 1.5
      */
-    public function clear_cache() {
+    public function tools_regenerate_css() {
 
-        check_admin_referer( 'megamenu_clear_cache' );
+        check_admin_referer( 'megamenu_regenerate_css' );
 
-        delete_transient( 'megamenu_css' );
+        $this->regenerate_css();
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&clear_cache=true" ) );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&regenerate_css=true" ) );
 
+    }
+
+
+    /**
+     *
+     */
+    private function regenerate_css() {
+
+        $style_manager = new Mega_Menu_Style_Manager();
+
+        $style_manager->generate_css();
     }
 
 
@@ -524,6 +537,7 @@ class Mega_Menu_Settings{
                         <td class='mega-value'>
                             <select name='settings[css]' id='mega_css'>
                                 <option value='ajax' <?php echo selected( $css == 'ajax'); ?>><?php _e("Enqueue dynamically via admin-ajax.php", "megamenu"); ?></option>
+                                <option value='fs' <?php echo selected( $css == 'fs'); ?>><?php _e("Save to filesystem", "megamenu"); ?></option>
                                 <option value='head' <?php echo selected( $css == 'head'); ?>><?php _e("Output in &lt;head&gt;", "megamenu"); ?></option>
                                 <option value='disabled' <?php echo selected( $css == 'disabled'); ?>><?php _e("Don't output CSS", "megamenu"); ?></option>
                             <select>
@@ -565,13 +579,13 @@ class Mega_Menu_Settings{
         <div class='menu_settings'>
 
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
-                <?php wp_nonce_field( 'megamenu_clear_cache' ); ?>
-                <input type="hidden" name="action" value="megamenu_clear_cache" />
+                <?php wp_nonce_field( 'megamenu_regenerate_css' ); ?>
+                <input type="hidden" name="action" value="megamenu_regenerate_css" />
 
                 <h4 class='first'><?php _e("Cache", "megamenu"); ?></h4>
 
-                <input type='submit' class='button button-primary' name='clear-cache' value='<?php _e("Empty Cache", "megamenu"); ?>' />
-                <p><?php _e("Clear the CSS cache.", "megamenu"); ?></p>
+                <input type='submit' class='button button-primary' value='<?php _e("Regenerate CSS", "megamenu"); ?>' />
+                <p><?php _e("Regenerate the CSS.", "megamenu"); ?></p>
             </form>
 
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
@@ -580,7 +594,7 @@ class Mega_Menu_Settings{
 
                 <h4><?php _e("Plugin Data", "megamenu"); ?></h4>
 
-                <input type='submit' class='button button-primary confirm' name='clear-cache' value='<?php _e("Delete Data", "megamenu"); ?>' />
+                <input type='submit' class='button button-primary confirm' value='<?php _e("Delete Data", "megamenu"); ?>' />
                 <p><?php _e("Delete all saved Max Mega Menu plugin data from the database. Use with caution!", "megamenu"); ?></p>
             </form>
         </div>
@@ -710,8 +724,8 @@ class Mega_Menu_Settings{
             echo "<p class='fail'>" . __("Failed to delete theme. The theme is in use by a menu.", "megamenu") . "</p>";
         }
 
-        if ( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 'true' ) {
-            echo "<p class='success'>" . __("CSS cache cleared", "megamenu") . "</p>";
+        if ( isset( $_GET['regenerate_css'] ) && $_GET['regenerate_css'] == 'true' ) {
+            echo "<p class='success'>" . __("CSS cache cleared and CSS regenerated", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['delete_data'] ) && $_GET['delete_data'] == 'true' ) {

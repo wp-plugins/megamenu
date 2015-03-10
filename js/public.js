@@ -66,6 +66,7 @@
                         left: (target_offset.left - submenu_offset.left) + "px"
                     });
                 } else {
+
                     anchor.siblings('.mega-sub-menu').css({
                         width: "",
                         left: ""

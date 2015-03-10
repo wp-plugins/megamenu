@@ -48,38 +48,23 @@ final class Mega_Menu {
 		$this->define_constants();
 		$this->includes();
 
-		add_filter( 'wp_nav_menu_args', array( $this, 'modify_nav_menu_args' ), 9999 );
-		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
-		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 10, 2 );
-
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 
-        add_action( 'megamenu_after_save_settings', array( $this, 'clear_caches' ) );
-        add_action( 'megamenu_after_save_settings', array( $this, 'regenerate_css' ) );
+		add_filter( 'wp_nav_menu_args', array( $this, 'modify_nav_menu_args' ), 9999 );
+		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
+		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 10, 2 );
+		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
 
+        add_action( 'megamenu_after_save_settings', array( $this, 'clear_caches' ) );
         add_action( 'megamenu_after_widget_add', array( $this, 'clear_caches' ) );
         add_action( 'megamenu_after_widget_save', array( $this, 'clear_caches' ) );
         add_action( 'megamenu_after_widget_delete', array( $this, 'clear_caches' ) );
-
-		add_action( 'megamenu_after_theme_save', array( $this, 'regenerate_css') );
-		add_action( 'megamenu_after_theme_delete', array( $this, 'regenerate_css') );
-		add_action( 'megamenu_after_theme_revert', array( $this, 'regenerate_css') );
-		add_action( 'megamenu_after_theme_duplicate', array( $this, 'regenerate_css') );
-		add_action( 'megamenu_after_theme_create', array( $this, 'regenerate_css') );
-
-		add_action( 'megamenu_after_install', array( $this, 'record_version_number') );
-		add_action( 'megamenu_after_install', array( $this, 'regenerate_css') );
-		add_action( 'megamenu_after_update', array( $this, 'record_version_number') );
-		add_action( 'megamenu_after_update', array( $this, 'regenerate_css') );
 
 		register_deactivation_hook( __FILE__, array( $this, 'delete_version_number') );
 
 		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
 		
-		add_action( 'after_switch_theme', array( $this, 'regenerate_css') );	
-
 		if ( is_admin() && current_user_can('edit_theme_options') ) {
 
 			new Mega_Menu_Nav_Menus();
@@ -108,11 +93,15 @@ final class Mega_Menu {
 
 			if ( version_compare( $this->version, $version, '>' ) ) {
 
+				update_option( "megamenu_version", $this->version );
+				
 				do_action( "megamenu_after_update" );
 				
 			}
 
 		} else {
+
+			add_option( "megamenu_version", $this->version );
 
 			do_action( "megamenu_after_install" );
 
@@ -120,25 +109,6 @@ final class Mega_Menu {
 
 	}
 
-
-	/**
-	 * Store the current version number
-	 *
-	 * @since 1.3
-	 */
-	public function record_version_number() {
-
-		if ( get_option( "megamenu_version" ) ) {
-
-			update_option( "megamenu_version", $this->version );
-
-		} else {
-
-			add_option( "megamenu_version", $this->version );
-
-		}
-		
-	}
 
 	/**
 	 * Store the current version number
@@ -179,7 +149,9 @@ final class Mega_Menu {
 	 * @since 1.0
      */
     public function load_plugin_textdomain() {
+
         load_plugin_textdomain( 'megamenu', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
     }
 
 
@@ -539,16 +511,6 @@ final class Mega_Menu {
 
     }
 
-
-    /**
-     * Regenerate the CSS for the menu's. The generated CSS is then cached.
-     *
-     * @since 1.2
-     */
-    public function regenerate_css() {
-        $style_manager = new Mega_Menu_Style_Manager();
-        $style_manager->empty_cache();
-    }
 }
 
 add_action( 'plugins_loaded', array( 'Mega_Menu', 'init' ), 10 );
