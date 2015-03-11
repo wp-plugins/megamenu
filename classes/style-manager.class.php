@@ -310,7 +310,9 @@ final class Mega_Menu_Style_Manager {
 
   		$this->save_to_cache( $css );
 
-        $this->save_to_filesystem( $css );
+        if ( $this->get_css_output_method() == 'head' ) {
+            $this->save_to_filesystem( $css );
+        }
 
 	  	return $css;
 	}
@@ -332,17 +334,15 @@ final class Mega_Menu_Style_Manager {
      * @since 1.6.1
      */
     private function save_to_filesystem( $css ) {
-
-        require_once( ABSPATH . 'wp-admin/includes/file.php' );
         global $wp_filesystem;
 
         $upload_dir = wp_upload_dir();
         $filename = $this->get_css_filename();
         $dir = trailingslashit( $upload_dir['basedir'] ) . 'mmm/';
 
-        WP_Filesystem();
+        WP_Filesystem(false, $upload_dir['basedir'], true);
         $wp_filesystem->mkdir( $dir ); 
-        $wp_filesystem->put_contents( $dir . $filename, $css, FS_CHMOD_FILE );
+        $wp_filesystem->put_contents( $dir . $filename, $css );
 
     }
 
@@ -568,24 +568,12 @@ final class Mega_Menu_Style_Manager {
 
 		wp_localize_script( 'megamenu', 'megamenu', $params );
 
-        if ( isset( $this->settings['css'] ) ) {
+        if ( $this->get_css_output_method() == 'fs' ) {
+            $this->enqueue_fs_style();
+        }
 
-            if ( $this->settings['css'] == 'fs' ) {
-
-                $this->enqueue_fs_style();
-
-            }
-
-            if ( $this->settings['css'] == 'ajax' ) {
-
-                $this->enqueue_ajax_style();
-
-            }
-
-        } else {
-
+        if ( $this->get_css_output_method() == 'ajax' ) {
             $this->enqueue_ajax_style();
-
         }
 
 		wp_enqueue_style( 'dashicons' );
@@ -660,13 +648,22 @@ final class Mega_Menu_Style_Manager {
 
 
     /**
+     *
+     */
+    private function get_css_output_method() {
+
+        return isset( $this->settings['css'] ) ? $this->settings['css'] : 'ajax';
+
+    }
+
+    /**
      * Print CSS to <head> to avoid an extra request to WordPress through admin-ajax.
      *
      * @since 1.3.1
      */
     public function head_css() {
 
-        if ( isset( $this->settings['css'] ) && $this->settings['css'] == 'head' ) {
+        if ( $this->get_css_output_method() == 'head' ) {
 
             $css = $this->get_css();
 
