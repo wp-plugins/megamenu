@@ -385,7 +385,8 @@ final class Mega_Menu {
 				return $args;
 			}
 
-			$themes = get_option( 'megamenu_themes' );
+			$style_manager = new Mega_Menu_Style_Manager();
+			$themes = $style_manager->get_themes();
 
 			$menu_theme = $themes[ $settings[ $current_theme_location ]['theme'] ];
 
