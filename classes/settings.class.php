@@ -860,19 +860,6 @@ class Mega_Menu_Settings{
                     </tr>
                     <tr>
                         <td class='mega-name'>
-                            <?php _e("Main Font", "megamenu"); ?>
-                            <div class='mega-description'>
-                                <?php _e("Set the main font to use for panel contents and flyout menu items.", "megamenu"); ?>
-                            </div>
-                        </td>
-                        <td class='mega-value'>
-                            <?php $this->print_theme_color_option( 'font_color' ); ?>
-                            <?php $this->print_theme_freetext_option( 'font_size' ); ?>
-                            <?php $this->print_theme_font_option( 'font_family' ); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='mega-name'>
                             <?php _e("Responsive Breakpoint", "megamenu"); ?>
                             <div class='mega-description'>
                                 <?php _e("Set the width at which the menu turns into a mobile menu. Set to 0 to disable responsive menu.", "megamenu"); ?>
@@ -1341,6 +1328,28 @@ class Mega_Menu_Settings{
                     </tr>
                     <tr>
                         <td class='mega-name'>
+                            <?php _e("Content Font", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the font to use for panel contents.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_font_color' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Size", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_font_size' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Family", "megamenu"); ?></span>
+                                <?php $this->print_theme_font_option( 'panel_font_family' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
                             <?php _e("Heading Padding", "megamenu"); ?>
                             <div class='mega-description'>
                                 <?php _e("Set the padding for the headings. Use this to set the gap between the widget heading and the widget content.", "megamenu"); ?>
@@ -1513,18 +1522,33 @@ class Mega_Menu_Settings{
                     </tr>
                     <tr>
                         <td class='mega-name'>
-                            <?php _e("Font Weight", "megamenu"); ?>
+                            <?php _e("Font", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the font weight for the flyout menu items.", "megamenu"); ?>
+                                <?php _e("Set the font for the flyout menu items.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
-                            <?php $this->print_theme_weight_option( 'flyout_link_weight' ); ?>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'flyout_link_color' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Size", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'flyout_link_size' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Family", "megamenu"); ?></span>
+                                <?php $this->print_theme_font_option( 'flyout_link_family' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
+                                <?php $this->print_theme_weight_option( 'flyout_link_weight' ); ?>
+                            </label>
                         </td>
                     </tr>
                     <tr>
                         <td class='mega-name'>
-                            <?php _e("Font Weight (Hover)", "megamenu"); ?>
+                            <?php _e("Font (Hover)", "megamenu"); ?>
                             <div class='mega-description'>
                                 <?php _e("Set the font weight for the flyout menu items (on hover).", "megamenu"); ?>
                             </div>

@@ -41,15 +41,15 @@ final class Mega_Menu_Style_Manager {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_head', array( $this, 'head_css' ), 9999 );
 
-        add_action( 'megamenu_after_save_settings', array( $this, 'regenerate_css' ) );
-        add_action( 'megamenu_after_theme_save', array( $this, 'regenerate_css') );
-        add_action( 'megamenu_after_theme_delete', array( $this, 'regenerate_css') );
-        add_action( 'megamenu_after_theme_revert', array( $this, 'regenerate_css') );
-        add_action( 'megamenu_after_theme_duplicate', array( $this, 'regenerate_css') );
-        add_action( 'megamenu_after_theme_create', array( $this, 'regenerate_css') );
-        add_action( 'megamenu_after_update', array( $this, 'regenerate_css') );
-        add_action( 'megamenu_after_install', array( $this, 'regenerate_css') );
-        add_action( 'after_switch_theme', array( $this, 'regenerate_css') );    
+        add_action( 'megamenu_after_save_settings', array( $this, 'generate_css' ) );
+        add_action( 'megamenu_after_theme_save', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_theme_delete', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_theme_revert', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_theme_duplicate', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_theme_create', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_update', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_install', array( $this, 'generate_css') );
+        add_action( 'after_switch_theme', array( $this, 'generate_css') );    
 
 	}
 
@@ -77,6 +77,9 @@ final class Mega_Menu_Style_Manager {
             'arrow_down'                                => 'dash-f140',
             'arrow_left'                                => 'dash-f141',
             'arrow_right'                               => 'dash-f139',
+            'font_size'                                 => '14px', // deprecated
+            'font_color'                                => '#666', // deprecated
+            'font_family'                               => 'inherit', // deprecated
             'menu_item_align'                           => 'left',
             'menu_item_background_from'                 => 'transparent',
             'menu_item_background_to'                   => 'transparent',
@@ -129,6 +132,9 @@ final class Mega_Menu_Style_Manager {
             'panel_widget_padding_right'                => '15px',
             'panel_widget_padding_top'                  => '15px',
             'panel_widget_padding_bottom'               => '15px',
+            'panel_font_size'                           => 'font_size',
+            'panel_font_color'                          => 'font_color',
+            'panel_font_family'                         => 'font_family',
             'flyout_width'                              => '150px',
 			'flyout_border_color'                       => '#ffffff',
             'flyout_border_left'                        => '0px',
@@ -150,9 +156,9 @@ final class Mega_Menu_Style_Manager {
             'flyout_background_to'                      => '#f1f1f1',
             'flyout_background_hover_from'              => '#dddddd',
             'flyout_background_hover_to'                => '#dddddd',
-            'font_size'                                 => '14px',
-            'font_color'                                => '#666',
-            'font_family'                               => 'inherit',
+            'flyout_link_size'                          => 'font_size',
+            'flyout_link_color'                         => 'font_color',
+            'flyout_link_family'                        => 'font_family',
             'responsive_breakpoint'                     => '600px',
             'responsive_text'                           => '',
             'line_height'                               => '1.7',
@@ -201,6 +207,20 @@ final class Mega_Menu_Style_Manager {
     			$default_themes[ $key ] = array_merge ( $default_themes['default'], $settings );
 
     		}
+
+            // process replacements
+            foreach ( $default_themes as $key => $settings ) {
+
+                foreach ( $settings as $var => $val ) {
+
+                    if ( isset( $default_themes[$key][$val] ) ) {
+
+                        $default_themes[$key][$var] = $default_themes[$key][$val];
+
+                    }
+                }
+
+            }
 
     	}
 

@@ -63,9 +63,6 @@
     background: none;
     border: 0;
     @include border-radius(0, 0, 0, 0);
-    color: $font_color;
-    font-family: $font_family;
-    font-size: $font_size;
     margin: 0;
     opacity: 1;
     padding: 0;
@@ -313,9 +310,9 @@
 		    }
 
 		    > li.mega-menu-item {
-			    color: $font_color;
-			    font-family: $font_family;
-			    font-size: $font_size;
+			    color: $panel_font_color;
+			    font-family: $panel_font_family;
+			    font-size: $panel_font_size;
 			    display: block;
 			    float: left;
 			    clear: none;
@@ -361,9 +358,9 @@
 		    	a {
 		    	    display: block;
 		    		@include background($flyout_background_from, $flyout_background_to);
-				    color: $font_color;
-				    font-family: $font_family;
-				    font-size: $font_size;
+				    color: $flyout_link_color;
+				    font-family: $flyout_link_family;
+				    font-size: $flyout_link_size;
 				    font-weight: $flyout_link_weight;
 				    padding: $flyout_link_padding_top $flyout_link_padding_right $flyout_link_padding_bottom $flyout_link_padding_left;
 				    line-height: $flyout_link_height;
