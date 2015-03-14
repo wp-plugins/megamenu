@@ -409,13 +409,15 @@ final class Mega_Menu {
 				}
 			}
 
+			$sanitized_location = str_replace( apply_filters("megamenu_location_replacements", array("-", " ") ), "-", $current_theme_location );
+
 			$defaults = array(
 				'menu'            => $menu_id,
 				'container'       => 'div',
 				'container_class' => 'mega-menu-wrap',
-				'container_id'    => 'mega-menu-wrap-' . $current_theme_location,
+				'container_id'    => 'mega-menu-wrap-' . $sanitized_location,
 				'menu_class'      => 'mega-menu mega-menu-horizontal',
-				'menu_id'         => 'mega-menu-' . $current_theme_location,
+				'menu_id'         => 'mega-menu-' . $sanitized_location,
 				'fallback_cb'     => 'wp_page_menu',
 				'before'          => '',
 				'after'           => '',

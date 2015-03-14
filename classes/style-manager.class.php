@@ -448,8 +448,10 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_complete_scss_for_location( $location, $theme, $menu_id ) {
 
-        $wrap_selector = apply_filters( "megamenu_scss_wrap_selector", "#mega-menu-wrap-{$location}", $menu_id, $location );
-        $menu_selector = apply_filters( "megamenu_scss_menu_selector", "#mega-menu-{$location}", $menu_id, $location );
+        $sanitized_location = str_replace( apply_filters("megamenu_location_replacements", array("-", " ") ), "-", $location );
+
+        $wrap_selector = apply_filters( "megamenu_scss_wrap_selector", "#mega-menu-wrap-{$sanitized_location}", $menu_id, $location );
+        $menu_selector = apply_filters( "megamenu_scss_menu_selector", "#mega-menu-{$sanitized_location}", $menu_id, $location );
 
         $vars = "\$wrap: \"$wrap_selector\";
                  \$menu: \"$menu_selector\";
