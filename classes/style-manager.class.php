@@ -301,6 +301,10 @@ final class Mega_Menu_Style_Manager {
      */
     public function generate_css() {
 
+        // the settings may have changed since the class was instantiated,
+        // reset them here
+        $this->settings = get_option( "megamenu_settings" );
+
         if ( ! $this->settings ) {
             return "/** CSS Generation Failed. No menu settings found **/";
         }
