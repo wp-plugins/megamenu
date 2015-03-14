@@ -1064,15 +1064,17 @@ class Mega_Menu_Settings{
                                 <?php $this->print_theme_font_option( 'menu_item_link_font' ); ?>
                             </label>
                             <label>
+                                <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
+                                <?php $this->print_theme_transform_option( 'menu_item_link_text_transform' ); ?>
+                            </label>
+                            <label>
                                 <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
                                 <?php $this->print_theme_weight_option( 'menu_item_link_weight' ); ?>
                             </label>
                             <label>
-                                <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
-                                <?php $this->print_theme_transform_option( 'menu_item_link_text_transform' ); ?>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'menu_item_link_text_decoration' ); ?>
                             </label>
-
-
                         </td>
                     </tr>
                     <tr>
@@ -1090,6 +1092,10 @@ class Mega_Menu_Settings{
                             <label>
                                 <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
                                 <?php $this->print_theme_weight_option( 'menu_item_link_weight_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'menu_item_link_text_decoration_hover' ); ?>
                             </label>
                         </td>
                     </tr>
@@ -1324,6 +1330,10 @@ class Mega_Menu_Settings{
                                 <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
                                 <?php $this->print_theme_transform_option( 'panel_header_text_transform' ); ?>
                             </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'panel_header_text_decoration' ); ?>
+                            </label>
                         </td>
                     </tr>
                     <tr>
@@ -1541,8 +1551,16 @@ class Mega_Menu_Settings{
                                 <?php $this->print_theme_font_option( 'flyout_link_family' ); ?>
                             </label>
                             <label>
+                                <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
+                                <?php $this->print_theme_transform_option( 'flyout_link_text_transform' ); ?>
+                            </label>
+                            <label>
                                 <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
                                 <?php $this->print_theme_weight_option( 'flyout_link_weight' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'flyout_link_text_decoration' ); ?>
                             </label>
                         </td>
                     </tr>
@@ -1554,7 +1572,18 @@ class Mega_Menu_Settings{
                             </div>
                         </td>
                         <td class='mega-value'>
-                            <?php $this->print_theme_weight_option( 'flyout_link_weight_hover' ); ?>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'flyout_link_color_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
+                                <?php $this->print_theme_weight_option( 'flyout_link_weight_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'flyout_link_text_decoration_hover' ); ?>
+                            </label>
                         </td>
                     </tr>
                 </table>
@@ -1628,6 +1657,27 @@ class Mega_Menu_Settings{
                 <option value='left' <?php selected( $value, 'left' ); ?>><?php _e("Left", "megamenu") ?></option>
                 <option value='center' <?php selected( $value, 'center' ); ?>><?php _e("Center", "megamenu") ?></option>
                 <option value='right' <?php selected( $value, 'right' ); ?>><?php _e("Right", "megamenu") ?></option>
+            </select>
+
+        <?php
+    }
+
+    /**
+     * Print a select dropdown with text decoration options
+     *
+     * @since 1.6.1
+     * @param string $key
+     * @param string $value
+     */
+    public function print_theme_text_decoration_option( $key ) {
+
+        $value = $this->active_theme[$key];
+
+        ?>
+
+            <select name='settings[<?php echo $key ?>]'>
+                <option value='none' <?php selected( $value, 'none' ); ?>><?php _e("None", "megamenu") ?></option>
+                <option value='underline' <?php selected( $value, 'underline' ); ?>><?php _e("Underline", "megamenu") ?></option>
             </select>
 
         <?php

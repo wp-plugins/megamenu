@@ -44,6 +44,7 @@
     font-family: $panel_header_font;
     font-size: $panel_header_font_size;
     text-transform: $panel_header_text_transform;
+    text-decoration: $panel_header_text_decoration;
     font-weight: $panel_header_font_weight;
     margin: 0;
     padding: $panel_header_padding_top $panel_header_padding_right $panel_header_padding_bottom $panel_header_padding_left;
@@ -60,6 +61,9 @@
 #{$wrap} #{$menu} img,
 #{$wrap} #{$menu} div,
 #{$wrap} #{$menu} a {
+    color: $panel_font_color;
+    font-family: $panel_font_family;
+    font-size: $panel_font_size;
     background: none;
     border: 0;
     @include border-radius(0, 0, 0, 0);
@@ -137,6 +141,7 @@
 			    @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
 			    color: $menu_item_link_color_hover;
 			    font-weight: $menu_item_link_weight_hover;
+			    text-decoration: $menu_item_link_text_decoration_hover;
 			}
 		}
 
@@ -242,6 +247,7 @@
 			    display: block;
 			    color: $menu_item_link_color;
 			    text-transform: $menu_item_link_text_transform;
+			    text-decoration: $menu_item_link_text_decoration;
 			    @include background($menu_item_background_from, $menu_item_background_to);
 			    @include border-radius($menu_item_link_border_radius_top_left, $menu_item_link_border_radius_top_right, $menu_item_link_border_radius_bottom_right, $menu_item_link_border_radius_bottom_left);
 				font-family: $menu_item_link_font;
@@ -364,6 +370,8 @@
 				    font-weight: $flyout_link_weight;
 				    padding: $flyout_link_padding_top $flyout_link_padding_right $flyout_link_padding_bottom $flyout_link_padding_left;
 				    line-height: $flyout_link_height;
+				    text-decoration: $flyout_link_text_decoration;
+				    text-transform: $flyout_link_text_transform;
 				    vertical-align: baseline;
 			    }
 
@@ -380,6 +388,8 @@
 			    a:hover {
 			    	@include background($flyout_background_hover_from, $flyout_background_hover_to);
 			    	font-weight: $flyout_link_weight_hover;
+			    	text-decoration: $flyout_link_text_decoration_hover;
+			    	color: $flyout_link_color_hover;
 			    }
 
 				ul.mega-sub-menu {
