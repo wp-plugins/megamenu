@@ -198,11 +198,6 @@ class Mega_Menu_Settings{
 
         $submitted_settings = array_map( 'esc_attr', $_POST['settings'] );
 
-        if ( ! isset( $submitted_settings['getting_started'] ) ) {
-
-            $submitted_settings['getting_started'] = 'disabled';
-
-        }
 
         if ( ! get_option( 'megamenu_settings' ) ) {
 
@@ -427,76 +422,6 @@ class Mega_Menu_Settings{
 
 
     /**
-     * Content for 'Getting Started' tab
-     *
-     * @since 1.4
-     */
-    public function getting_started() {
-
-        ?>
-
-        <h4 class='first'><?php _e("Menu Setup", "megamenu"); ?></h4>
-
-        <p><?php _e("Under", "megamenu"); ?> <a href='<?php echo admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a> <?php _e(", create a new menu (or use an existing menu). Ensure the Menu is tagged to a Theme Location under 'Menu Settings'.", "megamenu"); ?></p>
-
-        <p><?php _e("Once your menu is created and assigned to a location, you will see the settings for Mega Menu on the left hand side (under 'Mega Menu Settings').", "megamenu"); ?></p>
-
-        <p><?php _e("Check the 'Enable' checkbox and click 'Save'. Your menu will now be turned into a Mega Menu for the relevant Theme Location.", "megamenu"); ?></p>
-
-        <h4><?php _e("Creating Mega Menus", "megamenu"); ?></h4>
-
-        <p><?php _e("A Mega Menu is the name given to a large panel of content which is displayed below a menu item when the user clicks or hovers over the menu item.", "megamenu"); ?><p>
-
-        <p><?php _e("To create a Mega Menu Panel for one of your menu items:", "megamenu"); ?></p>
-
-        <ul class='bullets'>
-            <li><?php _e("Go to", "megamenu"); ?> <a href='<?php echo admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a></li>
-            <li><?php _e("Hover over the Menu Item which you wish to add a panel for (the Menu Item must be positioned at the top level)", "megamenu"); ?></li>
-            <li><?php _e("Click the 'Mega Menu' link, the menu item manager will load in a lightbox.", "megamenu"); ?></li>
-            <li><?php _e("Use the Widget Manager to add widgets to the panel. The Widget Manager will let you move, resize and configure your widgets.", "megamenu"); ?></li>
-            <li><i><?php _e("If you create a mega mega menu on a top level menu item, but your menu item also has sub menu items, the sub menu items will be listed before the Panel Widgets when you view the menu on your site.", "megamenu"); ?></i></li>
-        </ul>
-
-        <h4><?php _e("Customising your Menu", "megamenu"); ?></h4>
-
-        <p><?php _e("You'll find a theme editor to the left of this article (under 'Menu Themes') which allows you to edit the appearance of your Mega Menus.", "megamenu"); ?></p>
-
-        <p><?php _e("The Theme Editor allows you to modify all aspects of the Menu styling, including the font, color and size (height) of your menus.", "megamenu"); ?></p>
-
-        <p><?php _e("To apply your new theme to a menu go back to", "megamenu"); ?> <a href='<?php echo admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a> <?php _e("and select your new theme from the 'Theme' dropdown in the Mega Menu Settings.", "megamenu"); ?></p>
-
-        <h4><?php _e("More information", "megamenu"); ?></h4>
-
-        <ul>
-            <li><a href='http://www.maxmegamenu.com' target='_blank'><?php _e("Plugin homepage", "megamenu"); ?></a></li>
-            <li><a href='https://wordpress.org/support/plugin/megamenu/' target='_blank'><?php _e("Support forums", "megamenu"); ?></a></li>
-            <li><?php _e("Like the plugin?", "megamenu"); ?> <a href='https://wordpress.org/support/view/plugin-reviews/megamenu#postform' target='_blank'><?php _e("Please leave a review!", "megamenu"); ?></a></li>
-        </ul>
-
-        <?php
-    }
-
-    /**
-     *
-     * @since 1.4
-     */
-    public function getting_started_page_is_enabled() {
-
-        $saved_settings = get_option( "megamenu_settings" );
-
-        if ( ! isset( $saved_settings['getting_started'] ) ) {
-            return true;
-        }
-
-        if ( $saved_settings['getting_started'] == 'enabled' ) {
-            return true;
-        }
-
-        return false;
-
-    }
-
-    /**
      * Content for 'Settings' tab
      *
      * @since 1.4
@@ -518,16 +443,6 @@ class Mega_Menu_Settings{
                 <h4 class='first'><?php _e("Global Settings", "megamenu"); ?></h4>
 
                 <table>
-                    <tr>
-                        <td class='mega-name'>
-                            <?php _e("Getting Started", "megamenu"); ?>
-                            <div class='mega-description'>
-                            </div>
-                        </td>
-                        <td class='mega-value'>
-                            <label><input type='checkbox' name='settings[getting_started]' value='enabled' <?php echo checked( $this->getting_started_page_is_enabled() ); ?> /><?php _e("Show the Getting Started page", "megamenu"); ?></label>
-                        </td>
-                    </tr>
                     <tr>
                         <td class='mega-name'>
                             <?php _e("CSS Output", "megamenu"); ?>
@@ -612,11 +527,18 @@ class Mega_Menu_Settings{
 
         ?>
 
-            
             <div class='megamenu_outer_wrap'>
-
                 <div class='megamenu_header'>
-                    <h2><?php _e("Max Mega Menu", "megamenu"); ?> <small>v<?php echo MEGAMENU_VERSION; ?></small></h2>
+                    <div class='megamenu_header_left'>
+                        <h2><?php _e("Max Mega Menu", "megamenu"); ?> <small>v<?php echo MEGAMENU_VERSION; ?></small></h2>
+                    </div>
+                    <div class='megamenu_header_right'>
+                        <ul>
+                            <li><a href='http://maxmegamenu.com/'><?php _e("Homepage", "megamenu"); ?></a></li>
+                            <li><a href='http://maxmegamenu.com/documentation/getting-started/installation'><?php _e("Documentation", "megamenu"); ?></a></li>
+                            <li><a href='https://wordpress.org/support/plugin/megamenu'><?php _e("Support", "megamenu"); ?></a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class='megamenu_wrap'>
                     <div class='megamenu_right'>
@@ -640,24 +562,14 @@ class Mega_Menu_Settings{
                                     $active_tab = 'tools';
                                     break;
                                 default :
-                                    if ($this->getting_started_page_is_enabled() ) {
-                                        $this->getting_started();
-                                        $active_tab = 'getting_started';
-                                    } else {
-                                        $this->settings_page();
-                                        $active_tab = 'general_settings';
-                                    }
+                                    $this->settings_page();
+                                    $active_tab = 'general_settings';
                             }
 
                         } else {
 
-                            if ($this->getting_started_page_is_enabled() ) {
-                                $this->getting_started();
-                                $active_tab = 'getting_started';
-                            } else {
-                                $this->settings_page();
-                                $active_tab = 'general_settings';
-                            }
+                            $this->settings_page();
+                            $active_tab = 'general_settings';
 
                         }
 
@@ -667,9 +579,6 @@ class Mega_Menu_Settings{
 
                 <div class='megamenu_left'>
                     <ul>
-                        <?php if ($this->getting_started_page_is_enabled() ) : ?>
-                        <li><a class='<?php echo $active_tab == 'getting_started' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=getting_started") ?>'><?php _e("Getting Started", "megamenu"); ?></a></li>                
-                        <?php endif; ?>
                         <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("Global Settings", "megamenu"); ?></a></li>                
                         <li><a class='<?php echo $active_tab == 'tools' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=tools") ?>'><?php _e("Tools", "megamenu"); ?></a></li>                
                         <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Menu Themes", "megamenu"); ?></a></li>
