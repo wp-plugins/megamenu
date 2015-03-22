@@ -11,11 +11,11 @@ Easy to use drag & drop WordPress Mega Menu plugin. Integrates with the existing
 
 == Description ==
 
-WordPress Mega Menu Plugin. Use the built in drag & drop widget editor to build your mega panels.
+WordPress Mega Menu Plugin. Create widgetized mega menus using a built in drag and drop menu builder.
 
 https://www.youtube.com/watch?v=44dJwP1AXT8
 
-Documentation & Demo: http://www.maxmegamenu.com
+Documentation & Demo: http://maxmegamenu.com
 
 Features:
 
@@ -66,21 +66,25 @@ Tested with the 20 most popular themes, all compatible with the exceptions of:
 * Vantage: compatible (but hover only)
 * Stargazer: compatible (but hover only)
 
-== FAQ ==
+== Frequently Asked Questions ==
 
 Getting started:
 
-http://www.maxmegamenu.com/documentation/
+http://maxmegamenu.com/documentation/getting-started/installation/
 
 Not working with your theme?
+Mobile menu not working?
+Multiple mobile menu toggle icons?
 
-http://www.maxmegamenu.com/documentation/removing-residual-styling/
+http://maxmegamenu.com/documentation/faqs/removing-residual-styling/
 
 == Installation ==
 
 1. Go to the Plugins Menu in WordPress
 1. Search for "Max Menu"
 1. Click "Install"
+
+http://maxmegamenu.com/documentation/getting-started/installation/
 
 == Screenshots ==
 
@@ -93,6 +97,21 @@ See http://www.maxmegamenu.com for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.7 =
+
+* Fix: Apply some sensible defaults to responsive menu styling regardless of menu theme settings
+* Fix: Allow underscores and spaces in theme locations without breaking CSS
+* Fix: Reset widget selector after selecting a widget
+* Change: CSS3 checkbox based responsive menu toggle replaced with jQuery version (for increased compatibility with themes)
+* Change: Front end JavaScript refactored
+* Change: Leave existing sub menus open when opening a new sub menu on mobiles
+* New feature: Output/save CSS to uploads folder
+* New feature: Add text decoration option to fonts in theme editor
+* New feature: Allow jQuery selector to be used as the basis of the mega menu width
+* New feature: Add menu items align option to theme editor
+* New feature: Add hightlight selected menu item option to theme editor
+* New feature: Add flyout border radius option to theme editor
 
 = 1.6 =
 
