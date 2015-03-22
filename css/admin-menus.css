@@ -146,9 +146,8 @@
 }
 
 #cboxContent .mega_menu .drop-area {
-	display: block;
-	margin: 0 5px 10px 5px;
-	border: 1px dashed white;
+	display: inline-block;
+	border: 1px solid #f1f1f1;
 	float: left;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
