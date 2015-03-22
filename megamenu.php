@@ -8,7 +8,7 @@
  * Author:      Tom Hemsley
  * Author URI:  http://www.maxmegamenu.com
  * License:     GPL-2.0+
- * Copyright:   2015 Tom Hemsley
+ * Copyright:   2015 Tom Hemsley (http://www.maxmegamenu.com)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
