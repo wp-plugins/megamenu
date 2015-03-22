@@ -223,17 +223,6 @@
 		        float: right;
 		    }
 
-		    @media only screen and (max-width : $responsive_breakpoint) { 
-		    	display: list-item; 
-		    	margin: 0 0 $menu_item_spacing 0;
-		    	clear: both;
-
-			    &.mega-item-align-right {
-			        float: none;
-			    }
-
-		    }
-
 			> a {
 			    outline: none;
 			    text-decoration: none;
@@ -254,6 +243,23 @@
 				font-size: $menu_item_link_font_size;
 				cursor: pointer;
 			}
+
+		    @media only screen and (max-width : $responsive_breakpoint) { 
+		    	display: list-item; 
+		    	margin: 0;
+		    	clear: both;
+
+			    &.mega-item-align-right {
+			        float: none;
+			    }
+
+			    > a {
+			        line-height: 40px;
+			        height: 40px;
+			        padding: 0 10px;
+			    }
+
+		    }
 
 		}
 
@@ -434,6 +440,10 @@
 			}
 
 			@media only screen and (max-width : $responsive_breakpoint) { 
+			    a:after {
+			        float: right;
+			    }
+			    
 				&.mega-toggle-on > a:after {
 			    	content: $arrow_up;
 			    }
