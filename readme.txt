@@ -100,18 +100,20 @@ See http://www.maxmegamenu.com for more screenshots
 
 = 1.7 =
 
-* Fix: Apply some sensible defaults to responsive menu styling regardless of menu theme settings
+* Fix: Apply sensible defaults to responsive menu styling regardless of menu theme settings
 * Fix: Allow underscores and spaces in theme locations without breaking CSS
 * Fix: Reset widget selector after selecting a widget
 * Change: CSS3 checkbox based responsive menu toggle replaced with jQuery version (for increased compatibility with themes)
 * Change: Front end JavaScript refactored
 * Change: Leave existing sub menus open when opening a new sub menu on mobiles
-* New feature: Output/save CSS to uploads folder
+* New feature: New option added for CSS Output: Output/save CSS to uploads folder
 * New feature: Add text decoration option to fonts in theme editor
 * New feature: Allow jQuery selector to be used as the basis of the mega menu width
 * New feature: Add menu items align option to theme editor
 * New feature: Add hightlight selected menu item option to theme editor
 * New feature: Add flyout border radius option to theme editor
+* New feature: Add menu item divider option to theme editor
+* New feature: Add second click behaviour option to general settings
 
 = 1.6 =
 
