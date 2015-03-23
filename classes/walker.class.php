@@ -119,7 +119,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 		// Item ID
 		$id = esc_attr( apply_filters( 'megamenu_nav_menu_item_id', "mega-menu-item-{$item->ID}", $item, $args ) );
 
-		$output .= $indent . "<li class='{$class}' id='{$id}'>";
+		$output .= "<li class='{$class}' id='{$id}'>";
 
 		// output the widgets
 		if ( $item->content ) {
@@ -169,6 +169,22 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 		}
 
 		$output .= apply_filters( 'megamenu_walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	}
+
+	/**
+	 * Ends the element output, if needed.
+	 *
+	 * @see Walker::end_el()
+	 *
+	 * @since 1.7
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param object $item   Page data object. Not used.
+	 * @param int    $depth  Depth of page. Not Used.
+	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 */
+	public function end_el( &$output, $item, $depth = 0, $args = array() ) {
+		$output .= "</li>"; // remove new line to remove the 4px gap between menu items
 	}
 }
 

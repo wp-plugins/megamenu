@@ -197,7 +197,7 @@
 		> li.mega-menu-item {
 
 		    margin: 0 $menu_item_spacing 0 0;
-		    display: table-cell;
+		    display: inline-block;
 		    height: auto;
 
 		    &.mega-item-align-right {
