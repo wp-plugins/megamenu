@@ -368,7 +368,6 @@ final class Mega_Menu {
 	public function modify_nav_menu_args( $args ) {
 
 		$settings = get_option( 'megamenu_settings' );
-
 		$current_theme_location = $args['theme_location'];
 
 		$locations = get_nav_menu_locations();
@@ -398,6 +397,7 @@ final class Mega_Menu {
 				"data-event" => isset( $menu_settings['event'] ) ? $menu_settings['event'] : 'hover',
 				"data-effect" => isset( $menu_settings['effect'] ) ? $menu_settings['effect'] : 'disabled',
 				"data-panel-width" => preg_match('/^\d/', $menu_theme['panel_width']) !== 1 ? $menu_theme['panel_width'] : '',
+				"data-second-click" => isset( $settings['second_click'] ) ? $settings['second_click'] : 'close',
 				"data-breakpoint" => absint( $menu_theme['responsive_breakpoint'] )
 			), $menu_id, $menu_settings );
 

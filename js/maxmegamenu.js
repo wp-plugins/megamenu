@@ -17,6 +17,7 @@
             event: $menu.attr('data-event'),
             effect: $menu.attr('data-effect'),
             panel_width: $menu.attr('data-panel-width'),
+            second_click: $menu.attr('data-second-click'),
             breakpoint: $menu.attr('data-breakpoint')
         };
 
@@ -98,7 +99,7 @@
                 click: function(e) {
 
                     // check for second click
-                    if ( $(this).parent().hasClass("mega-click-click-go") ) {
+                    if ( plugin.settings.second_click == 'go' || $(this).parent().hasClass("mega-click-click-go") ) {
                         
                         if ( ! $(this).parent().hasClass("mega-toggle-on") ) {
                             e.preventDefault();

@@ -431,6 +431,7 @@ class Mega_Menu_Settings{
         $saved_settings = get_option( "megamenu_settings" );
 
         $css = isset( $saved_settings['css'] ) ? $saved_settings['css'] : 'ajax';
+        $mobile_second_click = isset( $saved_settings['mobile_second_click'] ) ? $saved_settings['mobile_second_click'] : 'close';
 
         ?>
 
@@ -458,8 +459,25 @@ class Mega_Menu_Settings{
                             <select>
                             <div class='mega-description'>
                                 <div class='ajax' style='display: <?php echo $css == 'ajax' ? 'block' : 'none' ?>'><?php _e("Default. CSS will be enqueued dynamically through admin-ajax.php and loaded from the cache.", "megamenu"); ?></div>
+                                <div class='fs' style='display: <?php echo $css == 'fs' ? 'block' : 'none' ?>'><?php _e("CSS will be saved to wp-content/uploads/mmm/megamenu.css and enqueued from there.", "megamenu"); ?></div>
                                 <div class='head' style='display: <?php echo $css == 'head' ? 'block' : 'none' ?>'><?php _e("CSS will be loaded from the cache in a &lt;style&gt; tag in the &lt;head&gt; of the page.", "megamenu"); ?></div>
                                 <div class='disabled' style='display: <?php echo $css == 'disabled' ? 'block' : 'none' ?>'><?php _e("CSS will not be output, you must enqueue the CSS for the menu manually.", "megamenu"); ?></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Click Event Behaviour", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Define what should happen when the event is set to 'click'. This also applies to mobiles.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <select name='settings[second_click]'>
+                                <option value='close' <?php echo selected( $mobile_second_click == 'close'); ?>><?php _e("First click will open a sub menu, second click will close the sub menu.", "megamenu"); ?></option>
+                                <option value='go' <?php echo selected( $mobile_second_click == 'go'); ?>><?php _e("First click will open a sub menu, second click will follow the link.", "megamenu"); ?></option>
+                            <select>
+                            <div class='mega-description'>
                             </div>
                         </td>
                     </tr>
@@ -1062,6 +1080,29 @@ class Mega_Menu_Settings{
                     </tr>
                     <tr>
                         <td class='mega-name'>
+                            <?php _e("Menu Item Divider", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Show a small divider bar between each menu item.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Enabled", "megamenu"); ?></span>
+                                <?php $this->print_theme_checkbox_option( 'menu_item_divider' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'menu_item_divider_color' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Glow Opacity", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'menu_item_divider_glow_opacity' ); ?>
+                            </label>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
                             <?php _e("Highlight Current Item", "megamenu"); ?>
                             <div class='mega-description'>
                                 <?php _e("Apply the 'hover' styling to current menu items.", "megamenu"); ?>
@@ -1512,14 +1553,13 @@ class Mega_Menu_Settings{
                             <?php $this->print_theme_textarea_option( 'custom_css' ); ?>
                             <p><b><?php _e("Custom Styling Tips", "megamenu"); ?></b></p>
                             <ul class='custom_styling_tips'>
-                                <li><code>#{$wrap}</code> <?php _e("converts to the ID selector of the menu wrapper, e.g. div#mega-menu-wrap-primary-14", "megamenu"); ?></li>
-                                <li><code>#{$menu}</code> <?php _e("converts to the ID selector of the menu, e.g. ul#mega-menu-primary-1", "megamenu"); ?></li>
+                                <li><code>#{$wrap}</code> <?php _e("converts to the ID selector of the menu wrapper, e.g. div#mega-menu-wrap-primary", "megamenu"); ?></li>
+                                <li><code>#{$menu}</code> <?php _e("converts to the ID selector of the menu, e.g. ul#mega-menu-primary", "megamenu"); ?></li>
                                 <li><?php _e("Use @import rules to import CSS from other plugins or your theme directory, e.g:"); ?>
                                 <br /><br /><code>#{$wrap} #{$menu} {<br />&nbsp;&nbsp;&nbsp;&nbsp;@import "shortcodes-ultimate/assets/css/box-shortcodes.css";<br />}</code></li>
                             </ul>
                         </td>
                     </tr>
-
                 </table>
 
                 <?php
@@ -1628,7 +1668,6 @@ class Mega_Menu_Settings{
 
         ?>
             <select class='icon_dropdown' name='settings[<?php echo $key ?>]'>
-
                 <?php 
 
                     echo "<option value='disabled'>" . __("Disabled", "megamenu") . "</option>";
@@ -1643,9 +1682,9 @@ class Mega_Menu_Settings{
             </select>
             <span class="selected_icon <?php echo $arrow_icons[$value] ?>"></span>
 
-
         <?php
     }
+
 
     /**
      * Print a colorpicker

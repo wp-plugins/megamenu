@@ -82,8 +82,10 @@
 	text-decoration: none;
 }
 .appearance_page_megamenu_settings .theme_selector {
-	float: right;
-	margin-top: -3px;
+	background: #fbfbfb;
+	padding: 10px;
+	border: 1px solid #e5e5e5;
+	margin-bottom: 33px;
 }
 .appearance_page_megamenu_settings h3 {
 	margin: 0 0 40px 0;
@@ -160,6 +162,8 @@
 	height: 28px;
 	line-height: 28px;
 	vertical-align: top;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
 	margin-right: 10px;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input.mega-setting-title {
@@ -194,7 +198,6 @@
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=checkbox] {
 	width: 16px;
 	height: 16px;
-	margin-right: 10px;
 	vertical-align: middle;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table {
