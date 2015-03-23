@@ -441,7 +441,7 @@ class Mega_Menu_Settings{
                 <input type="hidden" name="action" value="megamenu_save_settings" />
                 <?php wp_nonce_field( 'megamenu_save_settings' ); ?>
                 
-                <h4 class='first'><?php _e("Global Settings", "megamenu"); ?></h4>
+                <h4 class='first'><?php _e("General Settings", "megamenu"); ?></h4>
 
                 <table>
                     <tr>
@@ -597,7 +597,7 @@ class Mega_Menu_Settings{
 
                 <div class='megamenu_left'>
                     <ul>
-                        <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("Global Settings", "megamenu"); ?></a></li>                
+                        <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("General Settings", "megamenu"); ?></a></li>                
                         <li><a class='<?php echo $active_tab == 'tools' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=tools") ?>'><?php _e("Tools", "megamenu"); ?></a></li>                
                         <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Menu Themes", "megamenu"); ?></a></li>
                     </ul>
