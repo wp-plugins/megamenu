@@ -42,6 +42,7 @@ final class Mega_Menu_Style_Manager {
         add_action( 'wp_head', array( $this, 'head_css' ), 9999 );
 
         add_action( 'megamenu_after_save_settings', array( $this, 'generate_css' ) );
+        add_action( 'megamenu_after_save_general_settings', array( $this, 'generate_css' ) );        
         add_action( 'megamenu_after_theme_save', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_delete', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_revert', array( $this, 'generate_css') );
@@ -344,7 +345,7 @@ final class Mega_Menu_Style_Manager {
 
         $this->save_to_cache( $css );
 
-        if ( $this->get_css_output_method() == 'head' ) {
+        if ( $this->get_css_output_method() == 'fs' ) {
             $this->save_to_filesystem( $css );
         }
 
@@ -372,7 +373,7 @@ final class Mega_Menu_Style_Manager {
 
         $upload_dir = wp_upload_dir();
         $filename = $this->get_css_filename();
-        $dir = trailingslashit( $upload_dir['basedir'] ) . 'mmm/';
+        $dir = trailingslashit( $upload_dir['basedir'] ) . 'maxmegamenu/';
 
         WP_Filesystem(false, $upload_dir['basedir'], true);
         $wp_filesystem->mkdir( $dir ); 
@@ -627,17 +628,7 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_css_filename() {
 
-        if ( is_multisite() ) {
-
-            $filename = "megamenu." . get_current_blog_id() . ".css";
-
-        } else {
-
-            $filename = "megamenu.css";
-
-        }
-
-        return apply_filters( "megamenu_css_filename", $filename );
+        return apply_filters( "megamenu_css_filename", "style.css" );
 
     }
 
@@ -655,12 +646,12 @@ final class Mega_Menu_Style_Manager {
 
         $filename = $this->get_css_filename();
 
-        $fs_css = @file_get_contents( trailingslashit( $upload_dir['basedir'] ) . 'mmm/' . $filename );
+        $fs_css = @file_get_contents( trailingslashit( $upload_dir['basedir'] ) . 'maxmegamenu/' . $filename );
 
         // Verify the contents of the CSS file
         if ( $fs_css && $cached_css == $fs_css ) {
 
-            wp_enqueue_style( 'megamenu', trailingslashit( $upload_dir['baseurl'] ) . 'mmm/' . $filename, false, substr( md5( $cached_css ), 0, 6 ) );
+            wp_enqueue_style( 'megamenu', trailingslashit( $upload_dir['baseurl'] ) . 'maxmegamenu/' . $filename, false, substr( md5( $cached_css ), 0, 6 ) );
 
         } else {
 
