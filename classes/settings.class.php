@@ -47,6 +47,10 @@ class Mega_Menu_Settings{
         add_action( 'admin_post_megamenu_regenerate_css', array( $this, 'tools_regenerate_css') );
         add_action( 'admin_post_megamenu_delete_data', array( $this, 'delete_data') );
 
+        add_action( 'megamenu_page_theme_editor', array( $this, 'theme_editor_page'));
+        add_action( 'megamenu_page_tools', array( $this, 'tools_page'));
+        add_action( 'megamenu_page_general_settings', array( $this, 'general_settings_page'));
+
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
         add_action( "admin_enqueue_scripts", array( $this, 'enqueue_theme_editor_scripts' ) );
 
@@ -196,22 +200,13 @@ class Mega_Menu_Settings{
 
         check_admin_referer( 'megamenu_save_settings' );
 
-        $submitted_settings = array_map( 'esc_attr', $_POST['settings'] );
+        $submitted_settings = apply_filters( "megamenu_submitted_settings", $_POST['settings'] );
 
+        $existing_settings = get_option( 'megamenu_settings' );
 
-        if ( ! get_option( 'megamenu_settings' ) ) {
-
-            add_option( 'megamenu_settings', $submitted_settings );
-
-        } else {
-
-            $existing_settings = get_option( 'megamenu_settings' );
-
-            $new_settings = array_merge( $existing_settings, $submitted_settings );
- 
-            update_option( 'megamenu_settings', $new_settings );
-
-        }
+        $new_settings = array_merge( (array)$existing_settings, $submitted_settings );
+        
+        update_option( 'megamenu_settings', $new_settings );
 
         do_action("megamenu_after_save_general_settings");
 
@@ -426,7 +421,7 @@ class Mega_Menu_Settings{
      *
      * @since 1.4
      */
-    public function settings_page() {
+    public function general_settings_page() {
 
         $saved_settings = get_option( "megamenu_settings" );
 
@@ -482,6 +477,8 @@ class Mega_Menu_Settings{
                         </td>
                     </tr>
                 </table>
+
+                <?php do_action( "megamenu_general_settings", $saved_settings ); ?>
 
                 <h4><?php _e("Menu Settings", "megamenu"); ?></h4>
 
@@ -543,6 +540,8 @@ class Mega_Menu_Settings{
      */
     public function page() {
 
+        $tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings';
+
         ?>
 
             <div class='megamenu_outer_wrap'>
@@ -564,32 +563,9 @@ class Mega_Menu_Settings{
 
                         <?php 
 
-                        if ( isset( $_GET['tab'] ) ) {
-
-                            switch( $_GET['tab'] ) {
-                                case "theme_editor" :
-                                    $this->theme_editor();
-                                    $active_tab = 'theme_editor';
-                                    break;
-                                case "general_settings" :
-                                    $this->settings_page();
-                                    $active_tab = 'general_settings';
-                                    break;
-                                case "tools" :
-                                    $this->tools_page();
-                                    $active_tab = 'tools';
-                                    break;
-                                default :
-                                    $this->settings_page();
-                                    $active_tab = 'general_settings';
+                            if ( has_action( "megamenu_page_{$tab}" ) ) {
+                                do_action( "megamenu_page_{$tab}" ); 
                             }
-
-                        } else {
-
-                            $this->settings_page();
-                            $active_tab = 'general_settings';
-
-                        }
 
                         ?>
                     </div>
@@ -597,9 +573,20 @@ class Mega_Menu_Settings{
 
                 <div class='megamenu_left'>
                     <ul>
-                        <li><a class='<?php echo $active_tab == 'general_settings' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=general_settings") ?>'><?php _e("General Settings", "megamenu"); ?></a></li>                
-                        <li><a class='<?php echo $active_tab == 'tools' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=tools") ?>'><?php _e("Tools", "megamenu"); ?></a></li>                
-                        <li><a class='<?php echo $active_tab == 'theme_editor' ? 'active' : '' ?>' href='<?php echo admin_url( "themes.php?page=megamenu_settings&tab=theme_editor") ?>'><?php _e("Menu Themes", "megamenu"); ?></a></li>
+                        <?php 
+
+                            $tabs = apply_filters("megamenu_menu_tabs", array(
+                                'general_settings' => __("General Settings", "megamenu"),
+                                'tools' => __("Tools", "megamenu"),
+                                'theme_editor' => __("Theme Editor", "megamenu")
+                            ));
+
+                            foreach ( $tabs as $key => $title ) {
+                                $class = $tab == $key ? 'active' : '';
+                                echo "<li><a class='{$class}' href='" . admin_url( "themes.php?page=megamenu_settings&tab={$key}" ) . "'>{$title}</a></li>";
+                            }
+
+                        ?>
                     </ul>
                 </div>
 
@@ -729,7 +716,7 @@ class Mega_Menu_Settings{
      *
      * @since 1.0
      */
-    public function theme_editor() {
+    public function theme_editor_page() {
         
         $this->init();
 
