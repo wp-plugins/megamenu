@@ -319,7 +319,7 @@ class Mega_Menu_Nav_Menus {
                 </td>
             </tr>
 
-            <?php do_action('megamenu_settings_table', $location, $settings); ?>
+            <?php do_action( 'megamenu_settings_table', $location, $settings ); ?>
         </table>
         <?php
     }
