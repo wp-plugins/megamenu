@@ -205,12 +205,14 @@ class Mega_Menu_Settings{
         $existing_settings = get_option( 'megamenu_settings' );
 
         $new_settings = array_merge( (array)$existing_settings, $submitted_settings );
+
+        $tab = isset( $_POST['tab'] ) ? $_POST['tab'] : 'general_settings';
         
         update_option( 'megamenu_settings', $new_settings );
 
         do_action("megamenu_after_save_general_settings");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=general_settings&saved=true" ) );
+        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab={$tab}&saved=true" ) );
 
     }
 
@@ -421,9 +423,7 @@ class Mega_Menu_Settings{
      *
      * @since 1.4
      */
-    public function general_settings_page() {
-
-        $saved_settings = get_option( "megamenu_settings" );
+    public function general_settings_page( $saved_settings ) {
 
         $css = isset( $saved_settings['css'] ) ? $saved_settings['css'] : 'ajax';
         $mobile_second_click = isset( $saved_settings['mobile_second_click'] ) ? $saved_settings['mobile_second_click'] : 'close';
@@ -502,7 +502,7 @@ class Mega_Menu_Settings{
      *
      * @since 1.4
      */
-    public function tools_page() {
+    public function tools_page( $saved_settings ) {
 
         ?>
 
@@ -545,16 +545,17 @@ class Mega_Menu_Settings{
         ?>
 
             <div class='megamenu_outer_wrap'>
+                <div class='megamenu_header_top'>
+                    <ul>
+                        <li><a href='http://maxmegamenu.com/'><?php _e("Homepage", "megamenu"); ?></a></li>
+                        <li><a href='http://maxmegamenu.com/documentation/getting-started/installation'><?php _e("Documentation", "megamenu"); ?></a></li>
+                        <li><a href='https://wordpress.org/support/plugin/megamenu'><?php _e("Support", "megamenu"); ?></a></li>
+                    </ul>
+                </div>
                 <div class='megamenu_header'>
                     <div class='megamenu_header_left'>
-                        <h2><?php _e("Max Mega Menu", "megamenu"); ?> <small>v<?php echo MEGAMENU_VERSION; ?></small></h2>
-                    </div>
-                    <div class='megamenu_header_right'>
-                        <ul>
-                            <li><a href='http://maxmegamenu.com/'><?php _e("Homepage", "megamenu"); ?></a></li>
-                            <li><a href='http://maxmegamenu.com/documentation/getting-started/installation'><?php _e("Documentation", "megamenu"); ?></a></li>
-                            <li><a href='https://wordpress.org/support/plugin/megamenu'><?php _e("Support", "megamenu"); ?></a></li>
-                        </ul>
+                        <h2><?php _e("Max Mega Menu", "megamenu"); ?></h2>
+                        <div class='version'>Core version: <b><?php echo MEGAMENU_VERSION; ?></b></div>
                     </div>
                 </div>
                 <div class='megamenu_wrap'>
@@ -563,8 +564,10 @@ class Mega_Menu_Settings{
 
                         <?php 
 
+                            $saved_settings = get_option("megamenu_settings");
+
                             if ( has_action( "megamenu_page_{$tab}" ) ) {
-                                do_action( "megamenu_page_{$tab}" ); 
+                                do_action( "megamenu_page_{$tab}", $saved_settings ); 
                             }
 
                         ?>
@@ -716,7 +719,7 @@ class Mega_Menu_Settings{
      *
      * @since 1.0
      */
-    public function theme_editor_page() {
+    public function theme_editor_page( $saved_settings ) {
         
         $this->init();
 
@@ -726,7 +729,9 @@ class Mega_Menu_Settings{
 
             <div class='theme_selector'>
                 <?php _e("Select theme to edit", "megamenu"); ?> <?php echo $this->theme_selector(); ?> <?php _e("or", "megamenu"); ?>
-                <a class='' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_add_theme"), 'megamenu_create_theme') ?>'><?php _e("create a new theme", "megamenu"); ?></a>
+                <a class='' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_add_theme"), 'megamenu_create_theme') ?>'><?php _e("create a new theme", "megamenu"); ?></a> <?php _e("or", "megamenu"); ?>
+                <a class='' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_duplicate_theme&theme_id={$this->id}"), 'megamenu_duplicate_theme') ?>'><?php _e("duplicate this theme", "megamenu"); ?></a>
+
             </div>
             
 
@@ -1557,15 +1562,14 @@ class Mega_Menu_Settings{
 
                 <?php if ( $this->string_contains( $this->id, array("custom") ) ) : ?>
 
-                    <a class='delete confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_delete_theme&theme_id={$this->id}"), 'megamenu_delete_theme') ?>'><?php _e("Delete Theme", "megamenu"); ?></a>
+                    <a class='button delete confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_delete_theme&theme_id={$this->id}"), 'megamenu_delete_theme') ?>'><?php _e("Delete Theme", "megamenu"); ?></a>
 
                 <?php else : ?>
 
-                    <a class='revert confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_revert_theme&theme_id={$this->id}"), 'megamenu_revert_theme') ?>'><?php _e("Revert Changes", "megamenu"); ?></a>
+                    <a class='button revert confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_revert_theme&theme_id={$this->id}"), 'megamenu_revert_theme') ?>'><?php _e("Revert Theme", "megamenu"); ?></a>
 
                 <?php endif; ?>
 
-                <a class='duplicate' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_duplicate_theme&theme_id={$this->id}"), 'megamenu_duplicate_theme') ?>'><?php _e("Duplicate Theme", "megamenu"); ?></a>
 
                 </form>
 
