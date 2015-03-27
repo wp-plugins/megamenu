@@ -300,11 +300,18 @@ final class Mega_Menu {
 
 		$default_columns = apply_filters("megamenu_default_columns", 1);
 
+		// apply saved metadata to each menu item
 		foreach ( $items as $item ) {
 
 	        $saved_settings = array_filter( (array) get_post_meta( $item->ID, '_megamenu', true ) );
 
 	        $item->megamenu_settings = array_merge( Mega_Menu_Nav_Menus::get_menu_item_defaults(), $saved_settings );
+
+	    }
+
+	    $items = apply_filters( "megamenu_nav_menu_objects_before", $items, $args );
+
+	    foreach ( $items as $item ) {
 
 			// only look for widgets on top level items
 			if ( $item->menu_item_parent == 0 && $item->megamenu_settings['type'] == 'megamenu' ) {
@@ -351,6 +358,8 @@ final class Mega_Menu {
 				}
 			}
 		}
+
+	    $items = apply_filters( "megamenu_nav_menu_objects_after", $items, $args );
 
 		return $items;    
 	}
@@ -399,7 +408,7 @@ final class Mega_Menu {
 				"data-panel-width" => preg_match('/^\d/', $menu_theme['panel_width']) !== 1 ? $menu_theme['panel_width'] : '',
 				"data-second-click" => isset( $settings['second_click'] ) ? $settings['second_click'] : 'close',
 				"data-breakpoint" => absint( $menu_theme['responsive_breakpoint'] )
-			), $menu_id, $menu_settings );
+			), $menu_id, $menu_settings, $settings, $current_theme_location );
 
 			$attributes = "";
 
