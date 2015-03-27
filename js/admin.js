@@ -29,7 +29,8 @@
             $.colorbox({
                 html: "",
                 initialWidth: '991',
-                scrolling: false,
+                scrolling: true,
+                fixed: true,
                 top: '10%',
                 initialHeight: '500'
             });
@@ -73,6 +74,24 @@
 
                         var content = $("<div />").addClass('mm_content').addClass(idx).html(this.content).hide();
 
+                        // bind save button action
+                        content.find('form').on("submit", function (e) {
+
+                            start_saving();
+
+                            e.preventDefault();
+
+                            var data = $(this).serialize();
+
+                            $.post(ajaxurl, data, function (submit_response) {
+
+                                end_saving();
+
+                                panel.log(submit_response);
+                            });
+
+                        });
+
                         if (idx == 'menu_icon') {
                         
                             var form = content.find('form');
@@ -88,9 +107,7 @@
 
                                 var data = $(this).serialize();
 
-                                var post = data + '&action=mm_save_menu_item_icon&_wpnonce=' + megamenu.nonce + '&menu_item_id=' + panel.settings.menu_item_id;
-
-                                $.post(ajaxurl, post, function (submit_response) {
+                                $.post(ajaxurl, data, function (submit_response) {
 
                                     end_saving();
 
@@ -102,27 +119,6 @@
 
                         if (idx == 'general_settings') {
                         
-                            var form = content.find('form');
-
-                            // bind save button action
-                            form.on("submit", function (e) {
-
-                                start_saving();
-
-                                e.preventDefault();
-
-                                var data = $(this).serialize();
-
-                                var post = data + '&action=mm_save_menu_item_settings&_wpnonce=' + megamenu.nonce + '&menu_item_id=' + panel.settings.menu_item_id;
-
-                                $.post(ajaxurl, post, function (submit_response) {
-
-                                    end_saving();
-
-                                    panel.log(submit_response);
-                                });
-
-                            });
                         }
 
                         if (idx == 'mega_menu') {
@@ -529,10 +525,8 @@ jQuery(function ($) {
     });
 
     $(".mm_tabs li").live('click', function() {
-
         var tab = $(this);
         var tab_id = $(this).attr('rel');
-
 
         tab.addClass('active');
         tab.siblings().removeClass('active');
