@@ -108,7 +108,7 @@ final class Mega_Menu_Style_Manager {
             'menu_item_link_border_radius_bottom_right' => '0px',
             'menu_item_highlight_current'               => 'off',
             'menu_item_divider'                         => 'off',
-            'menu_item_divider_color'                   => '#333',
+            'menu_item_divider_color'                   => 'rgba(255, 255, 255, 0.1)',
             'menu_item_divider_glow_opacity'            => '0.1',
             'panel_background_from'                     => '#f1f1f1',
             'panel_background_to'                       => '#f1f1f1',
