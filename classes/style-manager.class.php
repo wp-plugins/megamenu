@@ -50,6 +50,7 @@ final class Mega_Menu_Style_Manager {
         add_action( 'megamenu_after_theme_create', array( $this, 'generate_css') );
         add_action( 'megamenu_after_update', array( $this, 'generate_css') );
         add_action( 'megamenu_after_install', array( $this, 'generate_css') );
+        add_action( 'megamenu_generate_css', array( $this, 'generate_css') );
         add_action( 'after_switch_theme', array( $this, 'generate_css') );    
 
     }
@@ -200,6 +201,13 @@ final class Mega_Menu_Style_Manager {
         if ( $saved_themes = get_site_option( "megamenu_themes" ) ) {
 
             foreach ( $default_themes as $key => $settings ) {
+
+
+                if ( $key != 'default') {
+
+                    $default_themes[ $key ] = array_merge( $default_themes[ 'default' ], $default_themes[ $key ] );
+
+                }
 
                 // Merge in any custom modifications to default themes
                 if ( isset( $saved_themes[ $key ] ) ) {

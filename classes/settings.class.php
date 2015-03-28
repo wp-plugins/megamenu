@@ -542,20 +542,64 @@ class Mega_Menu_Settings{
 
         $tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings';
 
+        $header_links = apply_filters( "megamenu_header_links", array(
+            'homepage' => array(
+                'url' => 'https://maxmegamenu.com/',
+                'text' => __("Homepage", "megamenu"),
+                'class' => ''
+            ),
+            'documentation' => array(
+                'url' => 'https://maxmegamenu.com/documentation/getting-started/installation/',
+                'text' => __("Documentation", "megamenu"),
+                'class' => ''
+            ),
+            'support' => array(
+                'url' => 'https://wordpress.org/support/plugin/megamenu/',
+                'text' => __("Support", "megamenu"),
+                'class' => ''
+            )
+        ) );
+
+        $versions = apply_filters( "megamenu_versions", array(
+            'core' => array(
+                'version' => MEGAMENU_VERSION,
+                'text' => __("Core version", "megamenu")
+            )
+        ) );
+
         ?>
 
             <div class='megamenu_outer_wrap'>
                 <div class='megamenu_header_top'>
                     <ul>
-                        <li><a href='http://maxmegamenu.com/'><?php _e("Homepage", "megamenu"); ?></a></li>
-                        <li><a href='http://maxmegamenu.com/documentation/getting-started/installation'><?php _e("Documentation", "megamenu"); ?></a></li>
-                        <li><a href='https://wordpress.org/support/plugin/megamenu'><?php _e("Support", "megamenu"); ?></a></li>
+                        <?php
+                            foreach ( $header_links as $id => $data ) {
+                                echo "<li class='{$data['class']}'><a href='{$data['url']}'>{$data['text']}</a></li>";
+                            }
+                        ?>
                     </ul>
                 </div>
                 <div class='megamenu_header'>
                     <div class='megamenu_header_left'>
                         <h2><?php _e("Max Mega Menu", "megamenu"); ?></h2>
-                        <div class='version'>Core version: <b><?php echo MEGAMENU_VERSION; ?></b></div>
+                        <div class='version'>
+                            <?php
+
+                                $total = count( $versions );
+                                $count = 0;
+                                $separator = ' - ';
+
+                                foreach ( $versions as $id => $data ) {
+                                    echo $data['text'] . ": <b>" . $data['version'] . "</b>";
+
+                                    $count = $count + 1;
+
+                                    if ( $total > 0 && $count != $total ) {
+                                        echo $separator;
+                                    }
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div class='megamenu_wrap'>
