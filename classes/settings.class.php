@@ -569,75 +569,75 @@ class Mega_Menu_Settings{
 
         ?>
 
-            <div class='megamenu_outer_wrap'>
-                <div class='megamenu_header_top'>
-                    <ul>
-                        <?php
-                            foreach ( $header_links as $id => $data ) {
-                                echo "<li class='{$data['class']}'><a href='{$data['url']}'>{$data['text']}</a></li>";
-                            }
-                        ?>
-                    </ul>
-                </div>
-                <div class='megamenu_header'>
-                    <div class='megamenu_header_left'>
-                        <h2><?php _e("Max Mega Menu", "megamenu"); ?></h2>
-                        <div class='version'>
-                            <?php
-
-                                $total = count( $versions );
-                                $count = 0;
-                                $separator = ' - ';
-
-                                foreach ( $versions as $id => $data ) {
-                                    echo $data['text'] . ": <b>" . $data['version'] . "</b>";
-
-                                    $count = $count + 1;
-
-                                    if ( $total > 0 && $count != $total ) {
-                                        echo $separator;
-                                    }
-                                }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-                <div class='megamenu_wrap'>
-                    <div class='megamenu_right'>
-                        <?php $this->print_messages(); ?>
-
-                        <?php 
-
-                            $saved_settings = get_option("megamenu_settings");
-
-                            if ( has_action( "megamenu_page_{$tab}" ) ) {
-                                do_action( "megamenu_page_{$tab}", $saved_settings ); 
-                            }
-
-                        ?>
-                    </div>
-                </div>
-
-                <div class='megamenu_left'>
-                    <ul>
-                        <?php 
-
-                            $tabs = apply_filters("megamenu_menu_tabs", array(
-                                'general_settings' => __("General Settings", "megamenu"),
-                                'tools' => __("Tools", "megamenu"),
-                                'theme_editor' => __("Theme Editor", "megamenu")
-                            ));
-
-                            foreach ( $tabs as $key => $title ) {
-                                $class = $tab == $key ? 'active' : '';
-                                echo "<li><a class='{$class}' href='" . admin_url( "themes.php?page=megamenu_settings&tab={$key}" ) . "'>{$title}</a></li>";
-                            }
-
-                        ?>
-                    </ul>
-                </div>
-
+        <div class='megamenu_outer_wrap'>
+            <div class='megamenu_header_top'>
+                <ul>
+                    <?php
+                        foreach ( $header_links as $id => $data ) {
+                            echo "<li class='{$data['class']}'><a href='{$data['url']}'>{$data['text']}</a></li>";
+                        }
+                    ?>
+                </ul>
             </div>
+            <div class='megamenu_header'>
+                <div class='megamenu_header_left'>
+                    <h2><?php _e("Max Mega Menu", "megamenu"); ?></h2>
+                    <div class='version'>
+                        <?php
+
+                            $total = count( $versions );
+                            $count = 0;
+                            $separator = ' - ';
+
+                            foreach ( $versions as $id => $data ) {
+                                echo $data['text'] . ": <b>" . $data['version'] . "</b>";
+
+                                $count = $count + 1;
+
+                                if ( $total > 0 && $count != $total ) {
+                                    echo $separator;
+                                }
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class='megamenu_wrap'>
+                <div class='megamenu_right'>
+                    <?php $this->print_messages(); ?>
+
+                    <?php 
+
+                        $saved_settings = get_option("megamenu_settings");
+
+                        if ( has_action( "megamenu_page_{$tab}" ) ) {
+                            do_action( "megamenu_page_{$tab}", $saved_settings ); 
+                        }
+
+                    ?>
+                </div>
+            </div>
+
+            <div class='megamenu_left'>
+                <ul>
+                    <?php 
+
+                        $tabs = apply_filters("megamenu_menu_tabs", array(
+                            'general_settings' => __("General Settings", "megamenu"),
+                            'tools' => __("Tools", "megamenu"),
+                            'theme_editor' => __("Theme Editor", "megamenu")
+                        ));
+
+                        foreach ( $tabs as $key => $title ) {
+                            $class = $tab == $key ? 'active' : '';
+                            echo "<li><a class='{$class}' href='" . admin_url( "themes.php?page=megamenu_settings&tab={$key}" ) . "'>{$title}</a></li>";
+                        }
+
+                    ?>
+                </ul>
+            </div>
+
+        </div>
 
         <?php
     }
@@ -1598,24 +1598,18 @@ class Mega_Menu_Settings{
                     </tr>
                 </table>
 
-                <?php
-
-                submit_button();
-
-                ?>
-
-                <?php if ( $this->string_contains( $this->id, array("custom") ) ) : ?>
-
-                    <a class='button delete confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_delete_theme&theme_id={$this->id}"), 'megamenu_delete_theme') ?>'><?php _e("Delete Theme", "megamenu"); ?></a>
-
-                <?php else : ?>
-
-                    <a class='button revert confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_revert_theme&theme_id={$this->id}"), 'megamenu_revert_theme') ?>'><?php _e("Revert Theme", "megamenu"); ?></a>
-
-                <?php endif; ?>
-
-
-                </form>
+                <div class='megamenu_submit'>
+                    <div class='mega_left'>
+                        <?php submit_button(); ?>
+                    </div>
+                    <div class='mega_right'>
+                        <?php if ( $this->string_contains( $this->id, array("custom") ) ) : ?>
+                            <a class='delete confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_delete_theme&theme_id={$this->id}"), 'megamenu_delete_theme') ?>'><?php _e("Delete Theme", "megamenu"); ?></a>
+                        <?php else : ?>
+                            <a class='revert confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_revert_theme&theme_id={$this->id}"), 'megamenu_revert_theme') ?>'><?php _e("Revert Theme", "megamenu"); ?></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
             </div>
 
