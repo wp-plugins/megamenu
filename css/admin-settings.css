@@ -96,6 +96,24 @@
 .appearance_page_megamenu_settings .megamenu_outer_wrap {
 	padding: 20px 20px 0 0;
 }
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit {
+	margin-bottom: 40px;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_left,
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right {
+    float: left;
+    width: 50%;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit p {
+	margin: 0;
+	padding: 0;	
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right {
+	text-align: right;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right a {
+	color: red;
+}
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header {
 	background: white;
 	padding: 10px 17px;
@@ -203,6 +221,9 @@
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
     font-size: 0.9em;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=submit] {
+	width: auto;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=checkbox] {
 	width: 16px;
