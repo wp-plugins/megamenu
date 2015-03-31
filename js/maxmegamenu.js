@@ -39,7 +39,7 @@
             if (immediate) {
                 anchor.siblings('.mega-sub-menu').hide();
             } else {
-                var effect = megamenu.effect[plugin.settings.effect].out;
+                var effect = megamenu.effect[plugin.settings.effect]['out'];
 
                 if (effect.css) {
                     anchor.siblings('.mega-sub-menu').css(effect.css);
@@ -74,7 +74,7 @@
                 });
             }
 
-            var effect = megamenu.effect[plugin.settings.effect].in;
+            var effect = megamenu.effect[plugin.settings.effect]['in'];
 
             if (effect.css) {
                 anchor.siblings('.mega-sub-menu').css(effect.css);

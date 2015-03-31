@@ -531,9 +531,6 @@
 		display: none;
 		z-index: 1;
 		cursor: pointer;
-		position: relative;
-		float: left;
-		width: 100%;
 		text-align: right;
 	    @include background($container_background_from, $container_background_to);
 	    @include border-radius(2, 2, 2, 2);
@@ -568,11 +565,11 @@
 		}
 
 	    @media only screen and (max-width : $responsive_breakpoint) { 
-	        ~ #{$menu} {
+	        + #{$menu} {
 	        	display: none;
 	        }
 
-	        &.mega-menu-open ~ #{$menu} {
+	        &.mega-menu-open + #{$menu} {
 	        	display: block;
 	        }
 		}
