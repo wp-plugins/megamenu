@@ -379,6 +379,10 @@ final class Mega_Menu_Style_Manager {
     private function save_to_filesystem( $css ) {
         global $wp_filesystem;
 
+        if ( ! $wp_filesystem ) {
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+        }
+
         $upload_dir = wp_upload_dir();
         $filename = $this->get_css_filename();
         $dir = trailingslashit( $upload_dir['basedir'] ) . 'maxmegamenu/';
