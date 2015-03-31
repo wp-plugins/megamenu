@@ -52,7 +52,7 @@ class Mega_Menu_Settings{
         add_action( 'megamenu_page_general_settings', array( $this, 'general_settings_page'));
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
-        add_action( "admin_enqueue_scripts", array( $this, 'enqueue_theme_editor_scripts' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_theme_editor_scripts' ) );
 
     }
 
@@ -117,8 +117,6 @@ class Mega_Menu_Settings{
 
         update_site_option( "megamenu_themes", $saved_themes );
 
-        $this->regenerate_css();
-
         do_action("megamenu_after_theme_save");
 
         wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
@@ -135,21 +133,10 @@ class Mega_Menu_Settings{
 
         check_admin_referer( 'megamenu_regenerate_css' );
 
-        $this->regenerate_css();
+        do_action( 'megamenu_generate_css' );
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&regenerate_css=true" ) );
+        wp_redirect( admin_url( 'themes.php?page=megamenu_settings&tab=tools&regenerate_css=true' ) );
 
-    }
-
-
-    /**
-     *
-     */
-    private function regenerate_css() {
-
-        $style_manager = new Mega_Menu_Style_Manager();
-
-        $style_manager->generate_css();
     }
 
 
