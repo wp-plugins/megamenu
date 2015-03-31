@@ -98,6 +98,12 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.7.1 =
+
+* Fix: Regenerate CSS on upgrade
+* Fix: Mobile toggle on Android 2.3
+* Fix: Error when switching themes (when CSS output is set to "save to filesystem")
+
 = 1.7 =
 
 * Fix: Apply sensible defaults to responsive menu styling regardless of menu theme settings
