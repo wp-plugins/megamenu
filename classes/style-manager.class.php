@@ -476,9 +476,9 @@ final class Mega_Menu_Style_Manager {
         $wrap_selector = apply_filters( "megamenu_scss_wrap_selector", "#mega-menu-wrap-{$sanitized_location}", $menu_id, $location );
         $menu_selector = apply_filters( "megamenu_scss_menu_selector", "#mega-menu-{$sanitized_location}", $menu_id, $location );
 
-        $vars = "\$wrap: \"$wrap_selector\";
-                 \$menu: \"$menu_selector\";
-                 \$menu_id: \"{$menu_id}\";";
+        $vars['wrap'] = "'$wrap_selector'";
+        $vars['menu'] = "'$menu_selector'";
+        $vars['menu_id'] = "'$menu_id'";
 
         foreach( $theme as $name => $value ) {
 
@@ -489,7 +489,7 @@ final class Mega_Menu_Style_Manager {
 
                 $arrow_icon = $code == 'disabled' ? "''" : "'\\" . $code . "'";
 
-                $vars .= "$" . $name . ": " . $arrow_icon . ";\n";
+                $vars[$name] = $arrow_icon;
 
                 continue;
             }
@@ -497,9 +497,9 @@ final class Mega_Menu_Style_Manager {
             if ( in_array( $name, array( 'responsive_text' ) ) ) {
 
                 if ( strlen( $value ) ) {
-                    $vars .= "$" . $name . ": '" . do_shortcode( $value ) . "';\n";
+                    $vars[$name] = do_shortcode( $value );
                 } else {
-                    $vars .= "$" . $name . ": '';\n";
+                    $vars[$name] = '';
                 }
 
                 continue;
@@ -508,7 +508,7 @@ final class Mega_Menu_Style_Manager {
             if ( in_array( $name, array( 'panel_width' ) ) ) {
 
                 if ( preg_match('/^\d/', $value) !== 1 ) { // doesn't start with number (jQuery selector)
-                    $vars .= "$" . $name . ": 100%;\n";
+                    $vars[$name] = '100%';
 
                     continue;
 
@@ -517,12 +517,18 @@ final class Mega_Menu_Style_Manager {
             }
 
             if ( $name != 'custom_css' ) {
-                $vars .= "$" . $name . ": " . $value . ";\n";
+                $vars[$name] = $value;
             }
 
         }
 
-        $scss = apply_filters( "megamenu_scss_variables", $vars, $location, $theme, $menu_id );
+        $vars = apply_filters( "megamenu_scss_variables", $vars, $location, $theme, $menu_id );
+
+        $scss = "";
+
+        foreach ($vars as $name => $value) {
+            $scss .= "$" . $name . ": " . $value . ";\n";
+        }
 
         $scss .= $this->load_scss_file();
         
