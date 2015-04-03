@@ -154,7 +154,7 @@ class Mega_Menu_Menu_Item_Manager {
 
         $tabs = apply_filters( "megamenu_tabs", $tabs, $this->menu_item_id, $this->menu_id, $this->menu_item_depth, $this->menu_item_meta );
 
-		wp_die( json_encode( $tabs ) );
+		wp_send_json_success( json_encode( $tabs ) );
 	}
 
 
@@ -390,18 +390,15 @@ class Mega_Menu_Menu_Item_Manager {
 
         $icon_tabs = apply_filters( "megamenu_icon_tabs", $icon_tabs, $menu_item_id, $menu_id, $menu_item_depth, $menu_item_meta );
 
-        $return  = "<form class='icon_selector'>";     
-        $return .= "    <input type='hidden' name='_wpnonce' value='" . wp_create_nonce('megamenu_edit') . "' />";    
-        $return .= "    <input type='hidden' name='menu_item_id' value='{$menu_item_id}' />";
-        $return .= "    <input type='hidden' name='action' value='mm_save_menu_item_settings' />";
-
-        $return .= "<ul class='mm_tabs horizontal'>";
+        $return = "<ul class='mm_tabs horizontal'>";
 
         foreach ( $icon_tabs as $id => $icon_tab ) {
 
             $active = $icon_tab['active'] || count( $icon_tabs ) === 1 ? "active" : "";
 
-            $return .= "<li rel='mm_tab_{$id}' class='{$active}'>" . esc_html( $icon_tab['title'] ) . "</li>";
+            $return .= "<li rel='mm_tab_{$id}' class='{$active}'>";
+            $return .= esc_html( $icon_tab['title'] );
+            $return .= "</li>";
 
         }
 
@@ -411,12 +408,16 @@ class Mega_Menu_Menu_Item_Manager {
 
             $display = $icon_tab['active'] ? "block" : "none";
 
-            $return .= "<div class='mm_tab_{$id}' style='display: {$display}'>" . $icon_tab['content'] . "</div>";
+            $return .= "<div class='mm_tab_{$id}' style='display: {$display}'>";
+            $return .= "    <form class='icon_selector'>";     
+            $return .= "        <input type='hidden' name='_wpnonce' value='" . wp_create_nonce('megamenu_edit') . "' />";    
+            $return .= "        <input type='hidden' name='menu_item_id' value='{$menu_item_id}' />";
+            $return .= "        <input type='hidden' name='action' value='mm_save_menu_item_settings' />";
+            $return .=          $icon_tab['content'];
+            $return .= "    </form>";
+            $return .= "</div>";
 
         }
-
-        $return .= "</form>";
-
 
         $tabs['menu_icon'] = array(
             'title' => __('Menu Icon', 'megamenu'),
