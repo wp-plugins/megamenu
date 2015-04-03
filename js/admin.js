@@ -14,17 +14,17 @@
 
         panel.log = function (message) {
             if (window.console && console.log) {
-                console.log(message);
+                console.log(message.data);
             }
 
-            if (message == -1) {
-                alert(megamenu.nonce_check_failed);
+            if (message.success !== true) {
+                alert(message.data);
             }
         };
 
 
         panel.init = function () {
-            panel.log(megamenu.debug_launched + " " + panel.settings.menu_item_id);
+            panel.log({success: true, data: megamenu.debug_launched + " " + panel.settings.menu_item_id});
 
             $.colorbox({
                 html: "",
@@ -56,7 +56,7 @@
                     $('#cboxLoadingOverlay').remove();
                 },
                 success: function(response) { 
-                    var json = $.parseJSON(response);
+                    var json = $.parseJSON(response.data);
 
                     var header_container = $("<div />").addClass("mm_header_container");
 
@@ -141,13 +141,13 @@
                                         _wpnonce: megamenu.nonce
                                     };
 
-                                    $.post(ajaxurl, postdata, function (widget_html) {
+                                    $.post(ajaxurl, postdata, function (response) {
 
                                         end_saving();
 
                                         $(".no_widgets").hide();
 
-                                        var widget = $(widget_html);
+                                        var widget = $(response.data);
 
                                         add_events_to_widget(widget);
 

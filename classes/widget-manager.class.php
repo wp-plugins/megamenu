@@ -110,13 +110,11 @@ class Mega_Menu_Widget_Manager {
 
 		$saved = $this->save_widget( $id_base );
 
-		$message = ($saved) ?
-			sprintf( __("Saved %s", "megamenu"), $id_base ) :
-			sprintf( __("Failed to save %s", "megamenu"), $id_base );
-
-		do_action( "megamenu_after_widget_save" );
-
-		wp_die( $message );
+		if ( $saved ) {
+			wp_send_json_success( sprintf( __("Saved %s", "megamenu"), $id_base ) );
+		} else {
+			wp_send_json_error( sprintf( __("Failed to save %s", "megamenu"), $id_base ) );
+		}
 
 	}
 
@@ -135,13 +133,11 @@ class Mega_Menu_Widget_Manager {
 
 		$updated = $this->update_columns( $widget_id, $columns );
 
-		$message = ( $updated ) ?
-			sprintf( __( "Updated %s (new columns: %d)", "megamenu"), $widget_id, $columns ) :
-			sprintf( __( "Failed to update %s", "megamenu"), $widget_id );
-
-		do_action( "megamenu_after_widget_save" );
-		
-		wp_die( $message );
+		if ( $updated ) {
+			wp_send_json_success( sprintf( __( "Updated %s (new columns: %d)", "megamenu"), $widget_id, $columns ) );
+		} else {
+			wp_send_json_error( sprintf( __( "Failed to update %s", "megamenu"), $widget_id ) );
+		}
 
 	}
 
@@ -161,13 +157,11 @@ class Mega_Menu_Widget_Manager {
 
 		$added = $this->add_widget( $id_base, $menu_item_id, $title );
 
-		$message = ( $added ) ?
-			$added :
-		    sprintf( __("Failed to add %s to %d", "megamenu"), $id_base, $menu_item_id );
-
-		do_action( "megamenu_after_widget_add" );
-		
-		wp_die( $message );
+		if ( $added ) {
+			wp_send_json_success( $added );
+		} else {
+			wp_send_json_error( sprintf( __("Failed to add %s to %d", "megamenu"), $id_base, $menu_item_id ) );
+		}
 
 	}
 
@@ -185,13 +179,11 @@ class Mega_Menu_Widget_Manager {
 
 		$deleted = $this->delete_widget( $widget_id );
 
-		$message = ( $deleted ) ?
-		  sprintf( __( "Deleted %s", "megamenu"), $widget_id ) :
-		  sprintf( __( "Failed to delete %s", "megamenu"), $widget_id );
-
-		do_action( "megamenu_after_widget_delete" );
-
-		wp_die( $message );
+		if ( $deleted ) {
+			wp_send_json_success( sprintf( __( "Deleted %s", "megamenu"), $widget_id ) );
+		} else {
+			wp_send_json_error( sprintf( __( "Failed to delete %s", "megamenu"), $widget_id ) );
+		}
 
 	}
 
@@ -211,13 +203,11 @@ class Mega_Menu_Widget_Manager {
 
 		$moved = $this->move_widget( $widget_to_move, $position, $menu_item_id );
 
-		$message = ( $moved ) ?
-		    sprintf( __( "Moved %s to %d (%s)", "megamenu"), $widget_to_move, $position, json_encode($moved) ) :
-		    sprintf( __( "Failed to move %s to %d", "megamenu"), $widget_to_move, $position );
-
-		do_action( "megamenu_after_widget_save" );
-
-		wp_die( $message );
+		if ( $moved ) {
+			wp_send_json_success( sprintf( __( "Moved %s to %d (%s)", "megamenu"), $widget_to_move, $position, json_encode($moved) ) );
+		} else {
+			wp_send_json_error( sprintf( __( "Failed to move %s to %d", "megamenu"), $widget_to_move, $position ) );
+		}
 
 	}
 
@@ -448,8 +438,8 @@ class Mega_Menu_Widget_Manager {
 			?>
 
 			<div class='widget-controls'>
-				<a class='delete' href='#delete'>Delete</a> |
-				<a class='close' href='#close'>Close</a>
+				<a class='delete' href='#delete'><?php _e("Delete", "megamenu"); ?></a> |
+				<a class='close' href='#close'><?php _e("Close", "megamenu"); ?></a>
 			</div>
 
 			<?php
@@ -479,6 +469,8 @@ class Mega_Menu_Widget_Manager {
 		if ( is_callable( $control['callback'] ) ) {
 
 			call_user_func_array( $control['callback'], $control['params'] );
+
+			do_action( "megamenu_after_widget_save" );
 
 			return true;
 		}
@@ -597,6 +589,8 @@ class Mega_Menu_Widget_Manager {
 
 		update_option( 'widget_' . $id_base, $current_widgets );
 
+		do_action( "megamenu_after_widget_save" );
+
 		return true;
 
 	}
@@ -612,6 +606,8 @@ class Mega_Menu_Widget_Manager {
 
 		$this->remove_widget_from_sidebar( $widget_id );
 		$this->remove_widget_instance( $widget_id );
+
+		do_action( "megamenu_after_widget_delete" );
 
 		return true;
 
@@ -669,6 +665,8 @@ class Mega_Menu_Widget_Manager {
 
 		}
 
+		do_action( "megamenu_after_widget_save" );
+
 		return $mega_menu_widgets;
 
 	}
@@ -688,6 +686,8 @@ class Mega_Menu_Widget_Manager {
 		$sidebar_widgets[] = $widget_id;
 
 		$this->set_mega_menu_sidebar_widgets($sidebar_widgets);
+
+		do_action( "megamenu_after_widget_add" );
 
 		return $widget_id;
 
