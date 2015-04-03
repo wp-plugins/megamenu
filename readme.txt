@@ -98,6 +98,12 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.7.2 =
+
+* Refactor: Build list of SCSS vars using an array
+* Refactor: Use wp_send_json instead of wp_die to return json
+* Refactor: Built URLs using add_query_var (WordPress Coding Standards)
+
 = 1.7.1 =
 
 * Fix: Regenerate CSS on upgrade

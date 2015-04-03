@@ -53,9 +53,7 @@
 	text-decoration: none!important;
 	margin-right: 0;
 }
-.nav-tab-active {
-	background: white;
-}
+
 .appearance_page_megamenu_settings .megamenu_right {
 	margin-left: 190px;
 	padding: 20px;
@@ -189,6 +187,10 @@
 	height: 28px;
 	line-height: 28px;
 	vertical-align: top;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=number] {
+	height: auto;
+	line-height: 1.2em;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
 	margin-right: 10px;

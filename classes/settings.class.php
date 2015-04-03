@@ -551,6 +551,10 @@ class Mega_Menu_Settings{
             'core' => array(
                 'version' => MEGAMENU_VERSION,
                 'text' => __("Core version", "megamenu")
+            ),
+            'pro' => array(
+                'version' => "<a href='https://maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro' target='_mmpro'>not installed</a>",
+                'text' => __("Pro extension", "megamenu")
             )
         ) );
 
