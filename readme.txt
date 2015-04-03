@@ -100,6 +100,7 @@ See http://www.maxmegamenu.com for more screenshots
 
 = 1.7.2 =
 
+* Fix: Fire open and close_panel events after the panel has opened or closed
 * Refactor: Build list of SCSS vars using an array
 * Refactor: Use wp_send_json instead of wp_die to return json
 * Refactor: Built URLs using add_query_var (WordPress Coding Standards)
