@@ -499,7 +499,7 @@ final class Mega_Menu_Style_Manager {
                 if ( strlen( $value ) ) {
                     $vars[$name] = "'" . do_shortcode( $value ) . "'";
                 } else {
-                    $vars[$name] = '';
+                    $vars[$name] = "''";
                 }
 
                 continue;
