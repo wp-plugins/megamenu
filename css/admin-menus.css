@@ -493,7 +493,7 @@
 	max-height: 100px;
 }
 
-#cboxContent .menu_icon .icon_selector > div > div {
+#cboxContent .menu_icon .icon_selector > div {
 	float: left;
 	padding: 0 14px 14px 0;
 	width: 24px;
