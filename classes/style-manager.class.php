@@ -497,7 +497,7 @@ final class Mega_Menu_Style_Manager {
             if ( in_array( $name, array( 'responsive_text' ) ) ) {
 
                 if ( strlen( $value ) ) {
-                    $vars[$name] = do_shortcode( $value );
+                    $vars[$name] = "'" . do_shortcode( $value ) . "'";
                 } else {
                     $vars[$name] = '';
                 }
