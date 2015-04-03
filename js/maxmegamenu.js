@@ -34,7 +34,6 @@
         };
 
         plugin.hidePanel = function(anchor, immediate) {
-            anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
 
             if (immediate) {
                 anchor.siblings('.mega-sub-menu').hide();
@@ -49,6 +48,9 @@
                     anchor.siblings('.mega-sub-menu').animate(effect.animate, 'fast');
                 }
             }
+
+            anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
+
         };
 
         plugin.showPanel = function(anchor) {
@@ -60,8 +62,6 @@
                     plugin.hidePanel($(this), true);
                 });
             }
-
-            anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
 
             // apply dynamic width and sub menu position
             if ( anchor.parent().hasClass('mega-menu-megamenu') && $(plugin.settings.panel_width).length ) {
@@ -85,6 +85,9 @@
                     $(this).css('display', 'block');
                 });
             }
+
+            anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
+
         };
 
         var openOnClick = function() {
