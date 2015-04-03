@@ -617,7 +617,16 @@ class Mega_Menu_Settings{
 
                         foreach ( $tabs as $key => $title ) {
                             $class = $tab == $key ? 'active' : '';
-                            echo "<li><a class='{$class}' href='" . admin_url( "themes.php?page=megamenu_settings&tab={$key}" ) . "'>{$title}</a></li>";
+
+                            $url = add_query_arg(
+                                array(
+                                    'page'=>'megamenu_settings',
+                                    'tab' => $key
+                                ),
+                                admin_url("themes.php")
+                            );
+
+                            echo "<li><a class='{$class}' href='{$url}'>{$title}</a></li>";
                         }
 
                     ?>
@@ -754,15 +763,45 @@ class Mega_Menu_Settings{
         
         $this->init();
 
+        $create_url = add_query_arg(
+            array(
+                'action'=>'megamenu_add_theme'
+            ),
+            wp_nonce_url( admin_url("admin-post.php"), 'megamenu_create_theme' )
+        );
+
+        $duplicate_url = add_query_arg(
+            array(
+                'action'=>'megamenu_duplicate_theme',
+                'theme_id' => $this->id
+            ),
+            wp_nonce_url( admin_url("admin-post.php"), 'megamenu_duplicate_theme' )
+        );
+
+        $delete_url = add_query_arg(
+            array(
+                'action'=>'megamenu_delete_theme',
+                'theme_id' => $this->id
+            ),
+            wp_nonce_url( admin_url("admin-post.php"), 'megamenu_delete_theme' )
+        );
+
+        $revert_url = add_query_arg(
+            array(
+                'action'=>'megamenu_revert_theme',
+                'theme_id' => $this->id
+            ),
+            wp_nonce_url( admin_url("admin-post.php"), 'megamenu_revert_theme' )
+        );
+
         ?>
 
         <div class='menu_settings'>
 
             <div class='theme_selector'>
                 <?php _e("Select theme to edit", "megamenu"); ?> <?php echo $this->theme_selector(); ?> <?php _e("or", "megamenu"); ?>
-                <a class='' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_add_theme"), 'megamenu_create_theme') ?>'><?php _e("create a new theme", "megamenu"); ?></a> <?php _e("or", "megamenu"); ?>
-                <a class='' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_duplicate_theme&theme_id={$this->id}"), 'megamenu_duplicate_theme') ?>'><?php _e("duplicate this theme", "megamenu"); ?></a>
-
+                <a href='<?php echo $create_url ?>'><?php _e("create a new theme", "megamenu"); ?></a> <?php _e("or", "megamenu"); ?>
+                <a href='<?php echo $duplicate_url ?>'><?php _e("duplicate this theme", "megamenu"); ?></a>
             </div>
             
 
@@ -1591,9 +1630,9 @@ class Mega_Menu_Settings{
                     </div>
                     <div class='mega_right'>
                         <?php if ( $this->string_contains( $this->id, array("custom") ) ) : ?>
-                            <a class='delete confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_delete_theme&theme_id={$this->id}"), 'megamenu_delete_theme') ?>'><?php _e("Delete Theme", "megamenu"); ?></a>
+                            <a class='delete confirm' href='<?php echo $delete_url; ?>'><?php _e("Delete Theme", "megamenu"); ?></a>
                         <?php else : ?>
-                            <a class='revert confirm' href='<?php echo wp_nonce_url(admin_url("admin-post.php?action=megamenu_revert_theme&theme_id={$this->id}"), 'megamenu_revert_theme') ?>'><?php _e("Revert Theme", "megamenu"); ?></a>
+                            <a class='revert confirm' href='<?php echo $revert_url; ?>'><?php _e("Revert Theme", "megamenu"); ?></a>
                         <?php endif; ?>
                     </div>
                 </div>
