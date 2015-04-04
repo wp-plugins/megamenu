@@ -175,6 +175,7 @@ final class Mega_Menu_Style_Manager {
             'responsive_text'                           => 'MENU',
             'line_height'                               => '1.7',
             'z_index'                                   => '999',
+            'shadow'                                    => 'off',
             'custom_css'                                => '
 #{$wrap} #{$menu} {
     /** Custom styles should be added below this line **/

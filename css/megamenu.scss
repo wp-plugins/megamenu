@@ -301,6 +301,10 @@
 		    	left: 0;
 		    }
 
+		    @if $shadow == 'on' {
+		        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		    }
+
 		    @media only screen and (max-width : $responsive_breakpoint) { 
 		    	float: left;
 		    	position: static;
@@ -375,6 +379,10 @@
 		    border-right: $flyout_border_right solid $flyout_border_color;
 		    border-bottom: $flyout_border_bottom solid $flyout_border_color;
 
+		    @if $shadow == 'on' {
+		        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		    }
+		    
 		    @media only screen and (max-width : $responsive_breakpoint) { 
 		    	float: left;
 		    	position: static;
