@@ -887,6 +887,15 @@ class Mega_Menu_Settings{
                         </td>
                         <td class='mega-value'><?php $this->print_theme_freetext_option( 'z_index' ); ?></td>
                     </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Shadow", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Apply a shadow to mega and flyout menus.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'><?php $this->print_theme_checkbox_option( 'shadow' ); ?></td>
+                    </tr>
                 </table>
 
                 <h4><?php _e("Menu Bar", "megamenu"); ?></h4>

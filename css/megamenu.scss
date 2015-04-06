@@ -222,6 +222,7 @@
 					    @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
 					    color: $menu_item_link_color_hover;
 					    font-weight: $menu_item_link_weight_hover;
+					    text-decoration: $menu_item_link_text_decoration_hover;
 					}
 				}
 
@@ -300,6 +301,10 @@
 		    	left: 0;
 		    }
 
+		    @if $shadow == 'on' {
+		        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		    }
+
 		    @media only screen and (max-width : $responsive_breakpoint) { 
 		    	float: left;
 		    	position: static;
@@ -373,6 +378,10 @@
 		    border-left: $flyout_border_left solid $flyout_border_color;
 		    border-right: $flyout_border_right solid $flyout_border_color;
 		    border-bottom: $flyout_border_bottom solid $flyout_border_color;
+
+		    @if $shadow == 'on' {
+		        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		    }
 
 		    @media only screen and (max-width : $responsive_breakpoint) { 
 		    	float: left;
@@ -533,7 +542,7 @@
 		cursor: pointer;
 		text-align: right;
 	    @include background($container_background_from, $container_background_to);
-	    @include border-radius(2, 2, 2, 2);
+	    @include border-radius(2px, 2px, 2px, 2px);
 	    line-height: 40px;
 	    height: 40px;
 		color: $menu_item_link_color;
