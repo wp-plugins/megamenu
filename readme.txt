@@ -19,6 +19,7 @@ Documentation & Demo: https://maxmegamenu.com
 
 ###Features:
 
+
 * Drag & drop Mega Menu builder
 * Display WordPress Widgets in your menu
 * Built in theme editor with 100+ customisation options
@@ -34,10 +35,11 @@ Documentation & Demo: https://maxmegamenu.com
 * Tested in all modern browsers
 * Clean code with a low memory footprint
 * Valid CSS3 with no !important or inline CSS styles
-* In depth documenation
+* In depth documentation
 * Basic Support
 
 ####Pro Features:
+
 
 > * Sticky Menu
 > * FontAwesome Icons
