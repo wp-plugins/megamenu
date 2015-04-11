@@ -11,72 +11,62 @@ Easy to use drag & drop WordPress Mega Menu plugin. Integrates with the existing
 
 == Description ==
 
-WordPress Mega Menu Plugin. Create widgetized mega menus using a built in drag and drop menu builder.
+WordPress Mega Menu Plugin. Create widgetized mega menus using the built in visual mega menu builder.
 
 https://www.youtube.com/watch?v=44dJwP1AXT8
 
-Documentation & Demo: http://maxmegamenu.com
+Documentation & Demo: https://maxmegamenu.com
 
-Features:
+###Features:
 
-* Zero theme edits
-* Drag & drop widget editor
-* Menu panels can be from 1-8 columns wide (widgets can span multiple columns)
-* Flyout (traditional) or Mega Menu menu styles
-* Menu Icons
-* Hide Text option
-* Disable Link option
-* Menu item align option (float links to right hand side of menu)
+* Drag & drop Mega Menu builder
+* Display WordPress Widgets in your menu
+* Built in theme editor with 100+ customisation options
+* Supports Flyout (traditional) or Mega Menu sub-menu styles
+* Hover Intent or click event to open menus
+* Fade or Slide transitions
+* Add Icons to menu items
+* Hide Text and Disable Link option per menu item
+* Menu item align option
 * Sub menu align option
-* Activate Menu on either hover (intent) or click
-* Fade/Slide/None transitions
-* Compatible with touch screen devices
-* Built in theme editor
-* Works with multiple menus on the same page
-* Works with menus tagged to multiple Theme Locations
-* < 1kb JavaScript when gzipped (also works when JS is disabled)
-* Responsive
-* Retina Ready
-* Safe: You can uninstall and go back to your old menu
-* Tested in IE9+, FireFox, Opera, Safari & Chrome (IE6, 7 & 8 are not supported but may work)
+* Supports multiple menus each with their own configuration
+* Responsive, Touch & Retina Ready
+* Tested in all modern browsers
+* Clean code with a low memory footprint
+* Valid CSS3 with no !important or inline CSS styles
+* In depth documenation
+* Basic Support
 
-The technical stuff:
+####Pro Features:
 
-* This plugin will not pick up styling from your old menu, but the built in theme editor will allow you to tailor your Mega Menu styling to your theme.
-* Your theme will need a registered Theme Location to work
-* The menu CSS is dynamically parsed SCSS. Developers can create their own SCSS file if needed - just copy the megamenu.css file to your theme directory and make any required edits.
-* The parsed SCSS is cached for performance. The cache is refreshed when a menu is saved or a theme has been created/updated.
-* Max Mega Menu is compatible with Widget & Menu Output Cache plugin (https://wordpress.org/plugins/widget-output-cache/).
-* Behind the scenes, all menu widgets are stored as standard WordPress widgets in a new widget area that the plugin creates.
-
-Recommended Widgets:
-
-* Image Widget
-* Contact Form 7 Widget
-* Very Simple Google Maps (this only gives a shortcode, so install the ShortCode Widget and use something like `[vsgmap address="your address, country" width='100%' height='200']`)
+> * Sticky Menu
+> * FontAwesome Icons
+> * Custom Item Styling
+> * Genericon Icons
+> * Custom Icons (from Media Library)
+> * Roles & Restrictions
+> * Easy installation
+> * Automatic updates
+> * Priority Support
+>
+> Find out more: https://maxmegamenu.com/upgrade/
 
 Translations:
 
 * Italian (thanks to aeco)
 * German (thanks to Thomas Meyer & dirk@d10n)
 
-Tested with the 20 most popular themes, all compatible with the exceptions of:
-
-* Tesla: compatible but requires edits: open header.php and remove the second call to wp_nav_menu (line 130 - 147)
-* Vantage: compatible (but hover only)
-* Stargazer: compatible (but hover only)
-
 == Frequently Asked Questions ==
 
 Getting started:
 
-http://maxmegamenu.com/documentation/getting-started/installation/
+https://maxmegamenu.com/documentation/getting-started/installation/
 
 Not working with your theme?
 Mobile menu not working?
 Multiple mobile menu toggle icons?
 
-http://maxmegamenu.com/documentation/faqs/removing-residual-styling/
+https://maxmegamenu.com/documentation/faqs/removing-residual-styling/
 
 == Installation ==
 
@@ -88,7 +78,7 @@ http://maxmegamenu.com/documentation/getting-started/installation/
 
 == Screenshots ==
 
-See http://www.maxmegamenu.com for more screenshots
+See https://maxmegamenu.com for more screenshots
 
 1. New menu changes
 2. Drag and Drop widget editor for each menu item
