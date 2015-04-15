@@ -24,7 +24,7 @@
         plugin.settings = {};
 
         var isTouchDevice = function() {
-            return ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0);
+            return ('ontouchstart' in document.documentElement && navigator.userAgent.toLowerCase().indexOf('chrome') == -1);
         };
 
         plugin.closePanels = function() {
