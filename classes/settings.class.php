@@ -1129,6 +1129,50 @@ class Mega_Menu_Settings{
                     </tr>
                     <tr>
                         <td class='mega-name'>
+                            <?php _e("Menu Item Border", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the border to display on each top level menu item.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'menu_item_border_color' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Top", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'menu_item_border_top' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Right", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'menu_item_border_right' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Bottom", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'menu_item_border_bottom' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Left", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'menu_item_border_left' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Menu Item Border (Hover)", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the hover border color.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'menu_item_border_color_hover' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
                             <?php _e("Menu Item Rounded Corners", "megamenu"); ?>
                             <div class='mega-description'>
                                 <?php _e("Set rounded corners for each top level menu item.", "megamenu"); ?>
