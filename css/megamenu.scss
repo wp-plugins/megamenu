@@ -39,19 +39,6 @@
 	}
 }
 
-@mixin blocktitle() {
-	color: $panel_header_color;
-    font-family: $panel_header_font;
-    font-size: $panel_header_font_size;
-    text-transform: $panel_header_text_transform;
-    text-decoration: $panel_header_text_decoration;
-    font-weight: $panel_header_font_weight;
-    margin: 0;
-    padding: $panel_header_padding_top $panel_header_padding_right $panel_header_padding_bottom $panel_header_padding_left;
-    vertical-align: top;
-    display: inline-block;
-}
-
 // resets
 #{$wrap},
 #{$wrap} #{$menu}, 
@@ -134,9 +121,6 @@
 		img {
 		    max-width: 100%;
 		}
-
-
-
 
 		> li.mega-menu-item > ul.mega-sub-menu,
 		li.mega-menu-flyout li.mega-menu-item ul.mega-sub-menu {
@@ -369,9 +353,40 @@
 					clear: left;
 				}
 
-			    > a,
+				/* Widget titles */
 			    > h4.mega-block-title {
-			    	@include blocktitle;
+					color: $panel_header_color;
+				    font-family: $panel_header_font;
+				    font-size: $panel_header_font_size;
+				    text-transform: $panel_header_text_transform;
+				    text-decoration: $panel_header_text_decoration;
+				    font-weight: $panel_header_font_weight;
+				    margin: 0;
+				    padding: $panel_header_padding_top $panel_header_padding_right $panel_header_padding_bottom $panel_header_padding_left;
+				    vertical-align: top;
+				    display: block;
+			    }
+
+			    /* Second level menu item hover */
+			    > a {
+					color: $panel_second_level_font_color;
+				    font-family: $panel_second_level_font;
+				    font-size: $panel_second_level_font_size;
+				    text-transform: $panel_second_level_text_transform;
+				    text-decoration: $panel_second_level_text_decoration;
+				    font-weight: $panel_second_level_font_weight;
+				    margin: 0;
+				    padding: $panel_second_level_padding_top $panel_second_level_padding_right $panel_second_level_padding_bottom $panel_second_level_padding_left;
+				    vertical-align: top;
+				    display: block;
+			    }
+
+			    /* Second level menu item hover */
+			    > a:hover {
+			    	color: $panel_second_level_font_color_hover;
+			    	font-weight: $panel_second_level_font_weight_hover;
+			    	text-decoration: $panel_second_level_text_decoration_hover;
+			    	@include background($panel_second_level_background_hover_from, $panel_second_level_background_hover_to);
 			    }
 			}
 
