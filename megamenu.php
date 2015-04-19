@@ -85,7 +85,7 @@ final class Mega_Menu {
 
 		if ( $version = get_option( "megamenu_version" ) ) {
 
-			if ( version_compare( $this->version, $version, '>' ) ) {
+			if ( version_compare( $this->version, $version, '!=' ) ) {
 
 				update_option( "megamenu_version", $this->version );
 
@@ -480,6 +480,21 @@ final class Mega_Menu {
 
 	    	?>
 	        <p><?php echo sprintf( __( 'Thanks for installing Max Mega Menu! Please %s to get started.', 'megamenu' ), $link); ?></p>
+	    </div>
+	    <?php
+
+	    endif;
+
+		if ( did_action('megamenu_after_update') === 1 ) :
+
+	    ?>
+	    <div class="updated">
+	    	<?php 
+
+	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings&tab=tools") . "'>" . __( "regenerate the CSS", 'megamenu' ) . "</a>"; 
+
+	    	?>
+	        <p><?php echo sprintf( __( 'Max Mega Menu Updated. Please %s to ensure maximum compatibility with the latest version.', 'megamenu' ), $link); ?></p>
 	    </div>
 	    <?php
 

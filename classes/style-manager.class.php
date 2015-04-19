@@ -48,8 +48,6 @@ final class Mega_Menu_Style_Manager {
         add_action( 'megamenu_after_theme_revert', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_duplicate', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_create', array( $this, 'generate_css') );
-        add_action( 'megamenu_after_update', array( $this, 'generate_css') );
-        add_action( 'megamenu_after_install', array( $this, 'generate_css') );
         add_action( 'megamenu_generate_css', array( $this, 'generate_css') );
         add_action( 'after_switch_theme', array( $this, 'generate_css') );    
 

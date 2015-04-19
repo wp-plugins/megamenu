@@ -88,6 +88,13 @@ See https://maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.7.3 =
+
+* New feature: Add hover transition option to theme editor
+* New feature: Add second and third level menu item styling and hover options to the theme editor
+* New feature: Add top level menu item border settings to theme editor
+* Fix: Apply hover styling to menu items when the link is hovered over (not the list item containing the link)
+
 = 1.7.2 =
 
 * Fix: Fire open and close_panel events after the panel has opened or closed
