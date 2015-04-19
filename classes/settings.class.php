@@ -1231,6 +1231,219 @@ class Mega_Menu_Settings{
                     </tr>
                 </table>
 
+                <h4><?php _e("Second Level Menu Items", "megamenu"); ?></h4>
+
+                <table>
+
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Font", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the font for second level menu items when they're displayed in a Mega Menu. Also applies to widget headers.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_second_level_font_color' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Size", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_second_level_font_size' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Family", "megamenu"); ?></span>
+                                <?php $this->print_theme_font_option( 'panel_second_level_font' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
+                                <?php $this->print_theme_weight_option( 'panel_second_level_font_weight' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
+                                <?php $this->print_theme_transform_option( 'panel_second_level_text_transform' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'panel_second_level_text_decoration' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Font (Hover)", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the font style on hover.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_second_level_font_color_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
+                                <?php $this->print_theme_weight_option( 'panel_second_level_font_weight_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'panel_second_level_text_decoration_hover' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Background (Hover)", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the background hover color for second level menu items.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("From", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_second_level_background_hover_from' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("To", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_second_level_background_hover_to' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Padding", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the padding for the second level menu items.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Top", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_top' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Right", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_right' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Bottom", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_bottom' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Left", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_left' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+
+                <h4><?php _e("Third Level Menu Items", "megamenu"); ?></h4>
+
+                <table>
+
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Font", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the font for third level menu items when they're displayed in a Mega Menu. Also applies to widget headers.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_third_level_font_color' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Size", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_third_level_font_size' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Family", "megamenu"); ?></span>
+                                <?php $this->print_theme_font_option( 'panel_third_level_font' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
+                                <?php $this->print_theme_weight_option( 'panel_third_level_font_weight' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
+                                <?php $this->print_theme_transform_option( 'panel_third_level_text_transform' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'panel_third_level_text_decoration' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Font (Hover)", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the font style on hover.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_third_level_font_color_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
+                                <?php $this->print_theme_weight_option( 'panel_third_level_font_weight_hover' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
+                                <?php $this->print_theme_text_decoration_option( 'panel_third_level_text_decoration_hover' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Background (Hover)", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the background hover color for third level menu items.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("From", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_third_level_background_hover_from' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("To", "megamenu"); ?></span>
+                                <?php $this->print_theme_color_option( 'panel_third_level_background_hover_to' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Padding", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Set the padding for the third level menu items.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Top", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_third_level_padding_top' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Right", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_third_level_padding_right' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Bottom", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_third_level_padding_bottom' ); ?>
+                            </label>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Left", "megamenu"); ?></span>
+                                <?php $this->print_theme_freetext_option( 'panel_third_level_padding_left' ); ?>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+
+
                 <h4><?php _e("Mega Panels", "megamenu"); ?></h4>
 
                 <table>
@@ -1450,106 +1663,6 @@ class Mega_Menu_Settings{
                             <label>
                                 <span class='mega-short-desc'><?php _e("Left", "megamenu"); ?></span>
                                 <?php $this->print_theme_freetext_option( 'panel_header_padding_left' ); ?>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='mega-name'>
-                            <?php _e("Second Level Menu Items Font", "megamenu"); ?>
-                            <div class='mega-description'>
-                                <?php _e("Set the font for second level menu items when they're displayed in a Mega Menu. Also applies to widget headers.", "megamenu"); ?>
-                            </div>
-                        </td>
-                        <td class='mega-value'>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
-                                <?php $this->print_theme_color_option( 'panel_second_level_font_color' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Size", "megamenu"); ?></span>
-                                <?php $this->print_theme_freetext_option( 'panel_second_level_font_size' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Family", "megamenu"); ?></span>
-                                <?php $this->print_theme_font_option( 'panel_second_level_font' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
-                                <?php $this->print_theme_weight_option( 'panel_second_level_font_weight' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Transform", "megamenu"); ?></span>
-                                <?php $this->print_theme_transform_option( 'panel_second_level_text_transform' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
-                                <?php $this->print_theme_text_decoration_option( 'panel_second_level_text_decoration' ); ?>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='mega-name'>
-                            <?php _e("Second Level Menu Item Font (Hover)", "megamenu"); ?>
-                            <div class='mega-description'>
-                                <?php _e("Set the font style on hover.", "megamenu"); ?>
-                            </div>
-                        </td>
-                        <td class='mega-value'>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Color", "megamenu"); ?></span>
-                                <?php $this->print_theme_color_option( 'panel_second_level_font_color_hover' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Weight", "megamenu"); ?></span>
-                                <?php $this->print_theme_weight_option( 'panel_second_level_font_weight_hover' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Decoration", "megamenu"); ?></span>
-                                <?php $this->print_theme_text_decoration_option( 'panel_second_level_text_decoration_hover' ); ?>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='mega-name'>
-                            <?php _e("Second Level Menu Item Background (Hover)", "megamenu"); ?>
-                            <div class='mega-description'>
-                                <?php _e("Set the background hover color for second level menu items.", "megamenu"); ?>
-                            </div>
-                        </td>
-                        <td class='mega-value'>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("From", "megamenu"); ?></span>
-                                <?php $this->print_theme_color_option( 'panel_second_level_background_hover_from' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("To", "megamenu"); ?></span>
-                                <?php $this->print_theme_color_option( 'panel_second_level_background_hover_to' ); ?>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class='mega-name'>
-                            <?php _e("Second Level Menu Item Padding", "megamenu"); ?>
-                            <div class='mega-description'>
-                                <?php _e("Set the padding for the second level menu items.", "megamenu"); ?>
-                            </div>
-                        </td>
-                        <td class='mega-value'>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Top", "megamenu"); ?></span>
-                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_top' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Right", "megamenu"); ?></span>
-                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_right' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Bottom", "megamenu"); ?></span>
-                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_bottom' ); ?>
-                            </label>
-                            <label>
-                                <span class='mega-short-desc'><?php _e("Left", "megamenu"); ?></span>
-                                <?php $this->print_theme_freetext_option( 'panel_second_level_padding_left' ); ?>
                             </label>
                         </td>
                     </tr>

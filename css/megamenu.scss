@@ -388,6 +388,28 @@
 			    	text-decoration: $panel_second_level_text_decoration_hover;
 			    	@include background($panel_second_level_background_hover_from, $panel_second_level_background_hover_to);
 			    }
+
+			    /* third level menu item hover */
+			    li.mega-menu-item > a {
+					color: $panel_third_level_font_color;
+				    font-family: $panel_third_level_font;
+				    font-size: $panel_third_level_font_size;
+				    text-transform: $panel_third_level_text_transform;
+				    text-decoration: $panel_third_level_text_decoration;
+				    font-weight: $panel_third_level_font_weight;
+				    margin: 0;
+				    padding: $panel_third_level_padding_top $panel_third_level_padding_right $panel_third_level_padding_bottom $panel_third_level_padding_left;
+				    vertical-align: top;
+				    display: block;
+			    }
+
+			    /* Second level menu item hover */
+			    li.mega-menu-item > a:hover {
+			    	color: $panel_third_level_font_color_hover;
+			    	font-weight: $panel_third_level_font_weight_hover;
+			    	text-decoration: $panel_third_level_text_decoration_hover;
+			    	@include background($panel_third_level_background_hover_from, $panel_third_level_background_hover_to);
+			    }
 			}
 
 		}
