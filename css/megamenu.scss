@@ -204,15 +204,13 @@
 		        margin: 0 0 0 $menu_item_spacing;
 		    }
 
-			&.mega-toggle-on,
-			&:hover {
-				> a {
-				    @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
-				    color: $menu_item_link_color_hover;
-				    font-weight: $menu_item_link_weight_hover;
-				    text-decoration: $menu_item_link_text_decoration_hover;
-				    border-color: $menu_item_border_color_hover;
-				}
+			&.mega-toggle-on > a,
+			> a:hover {
+			    @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
+			    color: $menu_item_link_color_hover;
+			    font-weight: $menu_item_link_weight_hover;
+			    text-decoration: $menu_item_link_text_decoration_hover;
+			    border-color: $menu_item_border_color_hover;
 			}
 
 			@if $menu_item_highlight_current == 'on' {
