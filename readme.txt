@@ -94,6 +94,7 @@ See https://maxmegamenu.com for more screenshots
 * New feature: Add second and third level menu item styling and hover options to the theme editor
 * New feature: Add top level menu item border settings to theme editor
 * Fix: Apply hover styling to menu items when the link is hovered over (not the list item containing the link)
+* Change: Disable automatic regeneration of CSS after update and install, prompt user to manually regenerate CSS instead
 
 = 1.7.2 =
 
