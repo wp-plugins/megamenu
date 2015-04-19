@@ -212,6 +212,7 @@ final class Mega_Menu_Style_Manager {
             'line_height'                               => '1.7',
             'z_index'                                   => '999',
             'shadow'                                    => 'off',
+            'transitions'                               => 'off',
             'custom_css'                                => '
 #{$wrap} #{$menu} {
     /** Custom styles should be added below this line **/

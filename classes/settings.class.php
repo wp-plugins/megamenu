@@ -896,6 +896,15 @@ class Mega_Menu_Settings{
                         </td>
                         <td class='mega-value'><?php $this->print_theme_checkbox_option( 'shadow' ); ?></td>
                     </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Hover Transitions", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Apply hover transitions to menu items. Note: Transitions will not apply to gradient backgrounds.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'><?php $this->print_theme_checkbox_option( 'transitions' ); ?></td>
+                    </tr>
                 </table>
 
                 <h4><?php _e("Menu Bar", "megamenu"); ?></h4>
@@ -991,7 +1000,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Menu Item Background", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("The background color for each top level menu item. Tip: Set these values to transparent if you've already set a background color on the menu container.", "megamenu"); ?>
+                                <?php _e("The background color for each top level menu item. Tip: Set these values to transparent if you've already set a background color on the menu bar.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
@@ -1217,7 +1226,6 @@ class Mega_Menu_Settings{
                                 <span class='mega-short-desc'><?php _e("Glow Opacity", "megamenu"); ?></span>
                                 <?php $this->print_theme_freetext_option( 'menu_item_divider_glow_opacity' ); ?>
                             </label>
-                            
                         </td>
                     </tr>
                     <tr>
@@ -1239,7 +1247,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Font", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the font for second level menu items when they're displayed in a Mega Menu. Also applies to widget headers.", "megamenu"); ?>
+                                <?php _e("Set the font for second level menu items when they're displayed in a Mega Menu.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
@@ -1345,7 +1353,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Font", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the font for third level menu items when they're displayed in a Mega Menu. Also applies to widget headers.", "megamenu"); ?>
+                                <?php _e("Set the font for third level menu items when they're displayed in a Mega Menu.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
@@ -1588,7 +1596,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Widget Heading Font", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the font for second level menu items when they're displayed in a Mega Menu. Also applies to widget headers.", "megamenu"); ?>
+                                <?php _e("Set the font to use Widget headers in the mega menu. Tip: set this to the same style as the Second Level Menu Item Header font to keep your styling consistent.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
@@ -1644,7 +1652,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Widget Heading Padding", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the padding for the headings. Use this to set the gap between the widget heading and the widget content.", "megamenu"); ?>
+                                <?php _e("Set the padding for the widget headings. Use this to set the gap between the widget heading and the widget content.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
@@ -1749,7 +1757,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Flyout Menu Width", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("The width of each flyout menu.", "megamenu"); ?>
+                                <?php _e("The width of each flyout menu. This must be a fixed pixel value. Tip: Set this value to the width of your longest menu item title to stop menu items wrapping onto 2 lines.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
