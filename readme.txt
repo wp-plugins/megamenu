@@ -90,10 +90,9 @@ See https://maxmegamenu.com for more screenshots
 
 = 1.7.3 =
 
-* New feature: Add hover transition option to theme editor
-* New feature: Add second and third level menu item styling and hover options to the theme editor
-* New feature: Add top level menu item border settings to theme editor
+* Theme Editor enhancements: Add hover transition option, second and third level menu item styling, top level menu item border, flyout menu item divider, widget title border & margin settings
 * Fix: Apply hover styling to menu items when the link is hovered over (not the list item containing the link)
+* Change: Use visibility:hidden instead of display:none to hide sub menus (for compatibility with Google Map widgets)
 * Change: Disable automatic regeneration of CSS after update and install, prompt user to manually regenerate CSS instead
 
 = 1.7.2 =
@@ -101,7 +100,7 @@ See https://maxmegamenu.com for more screenshots
 * Fix: Fire open and close_panel events after the panel has opened or closed
 * Refactor: Build list of SCSS vars using an array
 * Refactor: Use wp_send_json instead of wp_die to return json
-* Refactor: Built URLs using add_query_var (WordPress Coding Standards)
+* Refactor: Build URLs using add_query_var (WordPress Coding Standards)
 * New feature: Add dropdown shadow option to theme editor
 
 = 1.7.1 =

@@ -930,7 +930,12 @@ class Mega_Menu_Settings{
                                 <?php _e("Apply hover transitions to menu items. Note: Transitions will not apply to gradient backgrounds.", "megamenu"); ?>
                             </div>
                         </td>
-                        <td class='mega-value'><?php $this->print_theme_checkbox_option( 'transitions' ); ?></td>
+                        <td class='mega-value'>
+                            <label>
+                                <span class='mega-short-desc'><?php _e("Enabled", "megamenu"); ?></span>
+                                <?php $this->print_theme_checkbox_option( 'transitions' ); ?>
+                            </label>
+                        </td>
                     </tr>
                 </table>
 
@@ -1011,11 +1016,12 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Menu Items Align", "megamenu"); ?>
                             <div class='mega-description'> 
-                                <?php _e("Align all menu items to the left (default), centrally or to the right. To align a single menu item to the right, use the Mega Menu options for the menu item.", "megamenu"); ?>
+                                <?php _e("Align <i>all</i> menu items to the left (default), centrally or to the right.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
                             <?php $this->print_theme_align_option( 'menu_item_align' ); ?>
+                            <div class='mega-info'><?php _e("This option will apply to all menu items. To align an individual menu item to the right, edit the menu item itself and set 'Menu Item Align' to 'Right'.", "megamenu"); ?>
                         </td>
                     </tr>
                 </table>
@@ -1291,11 +1297,13 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Panel Width", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Mega Panel width. Note: A 100% wide panel will only ever be as wide as the menu itself. For a fixed panel width set this to a pixel value. Advanced: enter a jQuery selector to align the sub menu to a page element.", "megamenu"); ?>
+                                <?php _e("Mega Panel width", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
                             <?php $this->print_theme_freetext_option( 'panel_width' ); ?>
+                            <div class='mega-info'><?php _e("A 100% wide panel will only ever be as wide as the menu itself. For a fixed panel width set this to a pixel value.", "megamenu"); ?></div>
+                            <div class='mega-info'><?php _e("Advanced: Enter a jQuery selector to synchronize the width and position of the sub menu with existing page element (e.g. body, #container, .page).", "megamenu"); ?></div>
                         </td>
                     </tr>
                     <tr>
@@ -1466,7 +1474,7 @@ class Mega_Menu_Settings{
                         <td class='mega-name'>
                             <?php _e("Widget Heading Padding", "megamenu"); ?>
                             <div class='mega-description'>
-                                <?php _e("Set the padding for the widget headings. Use this to set the gap between the widget heading and the widget content.", "megamenu"); ?>
+                                <?php _e("Set the padding for the widget headings.", "megamenu"); ?>
                             </div>
                         </td>
                         <td class='mega-value'>
