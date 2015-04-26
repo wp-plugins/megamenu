@@ -622,13 +622,13 @@ class Mega_Menu_Settings{
                         foreach ( $tabs as $key => $title ) {
                             $class = $tab == $key ? 'active' : '';
 
-                            $url = add_query_arg(
+                            $url = esc_url( add_query_arg(
                                 array(
                                     'page'=>'megamenu_settings',
                                     'tab' => $key
                                 ),
                                 admin_url("themes.php")
-                            );
+                            ) );
 
                             echo "<li><a class='{$class}' href='{$url}'>{$title}</a></li>";
                         }
@@ -714,6 +714,8 @@ class Mega_Menu_Settings{
             echo "<p class='success'>" . __("New Theme Created", "megamenu") . "</p>";
         }
 
+        do_action("megamenu_print_messages");
+
     }
 
 
@@ -767,36 +769,36 @@ class Mega_Menu_Settings{
         
         $this->init();
 
-        $create_url = add_query_arg(
+        $create_url = esc_url( add_query_arg(
             array(
                 'action'=>'megamenu_add_theme'
             ),
             wp_nonce_url( admin_url("admin-post.php"), 'megamenu_create_theme' )
-        );
+        ) );
 
-        $duplicate_url = add_query_arg(
+        $duplicate_url = esc_url( add_query_arg(
             array(
                 'action'=>'megamenu_duplicate_theme',
                 'theme_id' => $this->id
             ),
             wp_nonce_url( admin_url("admin-post.php"), 'megamenu_duplicate_theme' )
-        );
+        ) );
 
-        $delete_url = add_query_arg(
+        $delete_url = esc_url( add_query_arg(
             array(
                 'action'=>'megamenu_delete_theme',
                 'theme_id' => $this->id
             ),
             wp_nonce_url( admin_url("admin-post.php"), 'megamenu_delete_theme' )
-        );
+        ) );
 
-        $revert_url = add_query_arg(
+        $revert_url = esc_url( add_query_arg(
             array(
                 'action'=>'megamenu_revert_theme',
                 'theme_id' => $this->id
             ),
             wp_nonce_url( admin_url("admin-post.php"), 'megamenu_revert_theme' )
-        );
+        ) );
 
         ?>
 
