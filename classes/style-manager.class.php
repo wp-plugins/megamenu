@@ -657,8 +657,7 @@ final class Mega_Menu_Style_Manager {
                 "effect" => array(
                     "fade" => array(
                         "in" => array(
-                            "animate" => array("opacity" => "show"),
-                            "css" => array("display" => "none")
+                            "animate" => array("opacity" => "show")
                         ),
                         "out" => array(
                             "animate" => array("opacity" => "hide")

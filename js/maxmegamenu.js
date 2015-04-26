@@ -36,21 +36,32 @@
         plugin.hidePanel = function(anchor, immediate) {
 
             if (immediate) {
-                anchor.siblings('.mega-sub-menu').css('visiblity', 'hidden');
-            } else if ( megamenu.effect[plugin.settings.effect] ) {
+                anchor.siblings('.mega-sub-menu').removeClass('mega-toggle-on');
+                anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
+            } else {
 
-                var effect = megamenu.effect[plugin.settings.effect]['out'];
+                if ( megamenu.effect[plugin.settings.effect] ) {
+                    var effect = megamenu.effect[plugin.settings.effect]['out'];
 
-                if (effect.css) {
-                    anchor.siblings('.mega-sub-menu').css(effect.css);
+                    if (effect.css) {
+                        anchor.siblings('.mega-sub-menu').css(effect.css);
+                    }
+
+                    if (effect.animate) {
+                        anchor.siblings('.mega-sub-menu').animate(effect.animate, 'slow', function() {
+                            anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
+                        });
+                    } else {
+                        anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
+
+                    }
+                } else {
+                    anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
                 }
 
-                if (effect.animate) {
-                    anchor.siblings('.mega-sub-menu').animate(effect.animate, 'fast');
-                }
             }
 
-            anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
+            
 
         };
 
