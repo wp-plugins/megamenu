@@ -136,6 +136,15 @@ final class Mega_Menu_Style_Manager {
             'panel_header_padding_right'                => '0px',
             'panel_header_padding_bottom'               => '5px',
             'panel_header_padding_left'                 => '0px',
+            'panel_header_margin_top'                   => '0px',
+            'panel_header_margin_right'                 => '0px',
+            'panel_header_margin_bottom'                => '0px',
+            'panel_header_margin_left'                  => '0px',
+            'panel_header_border_color'                 => 'panel_header_color',
+            'panel_header_border_left'                  => '0px',
+            'panel_header_border_right'                 => '0px',
+            'panel_header_border_top'                   => '0px',
+            'panel_header_border_bottom'                => '0px',
             'panel_padding_left'                        => '0px',
             'panel_padding_right'                       => '0px',
             'panel_padding_top'                         => '0px',
@@ -162,22 +171,33 @@ final class Mega_Menu_Style_Manager {
             'panel_second_level_padding_right'          => '0px',
             'panel_second_level_padding_top'            => '0px',
             'panel_second_level_padding_bottom'         => '0px',
-            'panel_third_level_font_color'             => 'panel_font_color',
-            'panel_third_level_font_color_hover'       => 'panel_font_color',
-            'panel_third_level_text_transform'         => 'none',
-            'panel_third_level_font'                   => 'panel_font_family',
-            'panel_third_level_font_size'              => 'panel_font_size',
-            'panel_third_level_font_weight'            => 'normal',
-            'panel_third_level_font_weight_hover'      => 'normal',
-            'panel_third_level_text_decoration'        => 'none',
-            'panel_third_level_text_decoration_hover'  => 'none',
-            'panel_third_level_background_hover_from'  => 'transparent',
-            'panel_third_level_background_hover_to'    => 'transparent',
-            'panel_third_level_padding_left'           => '0px',
-            'panel_third_level_padding_right'          => '0px',
-            'panel_third_level_padding_top'            => '0px',
-            'panel_third_level_padding_bottom'         => '0px',
+            'panel_second_level_margin_left'            => '0px',
+            'panel_second_level_margin_right'           => '0px',
+            'panel_second_level_margin_top'             => '0px',
+            'panel_second_level_margin_bottom'          => '0px',
+            'panel_second_level_border_color'           => 'panel_header_color',
+            'panel_second_level_border_left'            => '0px',
+            'panel_second_level_border_right'           => '0px',
+            'panel_second_level_border_top'             => '0px',
+            'panel_second_level_border_bottom'          => '0px',
+            'panel_third_level_font_color'              => 'panel_font_color',
+            'panel_third_level_font_color_hover'        => 'panel_font_color',
+            'panel_third_level_text_transform'          => 'none',
+            'panel_third_level_font'                    => 'panel_font_family',
+            'panel_third_level_font_size'               => 'panel_font_size',
+            'panel_third_level_font_weight'             => 'normal',
+            'panel_third_level_font_weight_hover'       => 'normal',
+            'panel_third_level_text_decoration'         => 'none',
+            'panel_third_level_text_decoration_hover'   => 'none',
+            'panel_third_level_background_hover_from'   => 'transparent',
+            'panel_third_level_background_hover_to'     => 'transparent',
+            'panel_third_level_padding_left'            => '0px',
+            'panel_third_level_padding_right'           => '0px',
+            'panel_third_level_padding_top'             => '0px',
+            'panel_third_level_padding_bottom'          => '0px',
             'flyout_width'                              => '150px',
+            'flyout_menu_background_from'               => '#f1f1f1',
+            'flyout_menu_background_to'                 => '#f1f1f1',
             'flyout_border_color'                       => '#ffffff',
             'flyout_border_left'                        => '0px',
             'flyout_border_right'                       => '0px',
@@ -187,6 +207,12 @@ final class Mega_Menu_Style_Manager {
             'flyout_border_radius_top_right'            => '0px',
             'flyout_border_radius_bottom_left'          => '0px',
             'flyout_border_radius_bottom_right'         => '0px',
+            'flyout_menu_item_divider'                  => 'off',
+            'flyout_menu_item_divider_color'            => 'rgba(255, 255, 255, 0.1)',
+            'flyout_padding_top'                        => '0px',
+            'flyout_padding_right'                      => '0px',
+            'flyout_padding_bottom'                     => '0px',
+            'flyout_padding_left'                       => '0px',
             'flyout_link_padding_left'                  => '10px',
             'flyout_link_padding_right'                 => '10px',
             'flyout_link_padding_top'                   => '0px',
@@ -210,6 +236,11 @@ final class Mega_Menu_Style_Manager {
             'line_height'                               => '1.7',
             'z_index'                                   => '999',
             'shadow'                                    => 'off',
+            'shadow_horizontal'                         => '0px',
+            'shadow_vertical'                           => '0px',
+            'shadow_blur'                               => '5px',
+            'shadow_spread'                             => '0px',
+            'shadow_color'                              => 'rgba(0, 0, 0, 0.1)',
             'transitions'                               => 'off',
             'custom_css'                                => '
 #{$wrap} #{$menu} {
@@ -626,8 +657,7 @@ final class Mega_Menu_Style_Manager {
                 "effect" => array(
                     "fade" => array(
                         "in" => array(
-                            "animate" => array("opacity" => "show"),
-                            "css" => array("display" => "none")
+                            "animate" => array("opacity" => "show")
                         ),
                         "out" => array(
                             "animate" => array("opacity" => "hide")
@@ -640,14 +670,6 @@ final class Mega_Menu_Style_Manager {
                         ),
                         "out" => array(
                             "animate" => array("height" => "hide")
-                        )
-                    ),
-                    "disabled" => array(
-                        "in" => array(
-                            "css" => array("display" => "block")
-                        ),
-                        "out" => array(
-                            "css" => array("display" => "none")
                         )
                     )
                 ),
