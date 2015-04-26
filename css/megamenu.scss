@@ -70,7 +70,6 @@
 	line-height: $line_height;
 	box-sizing: border-box;
 	float: none;
-	visibility: visible;
 	overflow: visible;
 	display: block;
 	min-height: 0;
@@ -119,10 +118,10 @@
 
 		@if $transitions == 'on' {
 			a {
-			  -webkit-transition: all 200ms linear;
-			  -moz-transition: all 200ms linear;
-			  -o-transition: all 200ms linear;
-			  transition: all 200ms linear;
+			  -webkit-transition: background 200ms linear, color 200ms linear;
+			  -moz-transition: background 200ms linear, color 200ms linear;
+			  -o-transition: background 200ms linear, color 200ms linear;
+			  transition: background 200ms linear, color 200ms linear;
 			}
 		}
 
@@ -131,16 +130,16 @@
 		    max-width: 100%;
 		}
 
-		> li.mega-menu-item > ul.mega-sub-menu,
-		li.mega-menu-flyout li.mega-menu-item ul.mega-sub-menu {
-			display: none;
-			visibility: visible;
+		li.mega-menu-item > ul.mega-sub-menu {
+			display: block;
+			visibility: hidden;
 			opacity: 1;
 		}
 
 		&.mega-no-js li.mega-menu-item:hover > ul.mega-sub-menu,
-		li.mega-toggle-on > ul.mega-sub-menu {
-	    	display: block;
+		li.mega-menu-item.mega-toggle-on > ul.mega-sub-menu,
+		li.mega-menu-item.mega-menu-megamenu.mega-toggle-on ul.mega-sub-menu {
+	    	visibility: visible;
 	    }
 
 	    li.mega-menu-item a:before {
@@ -431,7 +430,6 @@
 
 		> li.mega-menu-flyout ul.mega-sub-menu {
 			z-index: $z_index;
-			display: none;
 		    position: absolute;
 		    width: $flyout_width;
 		    border-top: $flyout_border_top solid $flyout_border_color;

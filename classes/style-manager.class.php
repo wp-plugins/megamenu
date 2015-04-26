@@ -672,14 +672,6 @@ final class Mega_Menu_Style_Manager {
                         "out" => array(
                             "animate" => array("height" => "hide")
                         )
-                    ),
-                    "disabled" => array(
-                        "in" => array(
-                            "css" => array("display" => "block")
-                        ),
-                        "out" => array(
-                            "css" => array("display" => "none")
-                        )
                     )
                 ),
                 "fade_speed" => "fast",

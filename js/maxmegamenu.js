@@ -36,8 +36,9 @@
         plugin.hidePanel = function(anchor, immediate) {
 
             if (immediate) {
-                anchor.siblings('.mega-sub-menu').hide();
-            } else {
+                anchor.siblings('.mega-sub-menu').css('visiblity', 'hidden');
+            } else if ( megamenu.effect[plugin.settings.effect] ) {
+
                 var effect = megamenu.effect[plugin.settings.effect]['out'];
 
                 if (effect.css) {
@@ -74,17 +75,22 @@
                 });
             }
 
-            var effect = megamenu.effect[plugin.settings.effect]['in'];
+            if ( megamenu.effect[plugin.settings.effect] ) {
 
-            if (effect.css) {
-                anchor.siblings('.mega-sub-menu').css(effect.css);
+                var effect = megamenu.effect[plugin.settings.effect]['in'];
+
+                if (effect.css) {
+                    anchor.siblings('.mega-sub-menu').css(effect.css);
+                }
+
+                if (effect.animate) {
+                    anchor.siblings('.mega-sub-menu').animate(effect.animate, 'fast', 'swing', function() {
+                        $(this).css('visiblity', 'visible');
+                    });
+                }
+
             }
 
-            if (effect.animate) {
-                anchor.siblings('.mega-sub-menu').animate(effect.animate, 'fast', 'swing', function() {
-                    $(this).css('display', 'block');
-                });
-            }
 
             anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
 
