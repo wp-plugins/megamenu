@@ -270,7 +270,7 @@
 			    }
 
 			    > a {
-			    	border-radius: 0;
+					@include border-radius(0 0 0 0);
 			    	border: 0;
 			    	margin: 0;
 			        line-height: 40px;
@@ -366,13 +366,17 @@
 				    text-transform: $panel_header_text_transform;
 				    text-decoration: $panel_header_text_decoration;
 				    font-weight: $panel_header_font_weight;
-				    margin: 0;
+					margin: $panel_header_margin_top $panel_header_margin_right $panel_header_margin_bottom $panel_header_margin_left;
 				    padding: $panel_header_padding_top $panel_header_padding_right $panel_header_padding_bottom $panel_header_padding_left;
 				    vertical-align: top;
 				    display: block;
+			        border-top: $panel_header_border_top solid $panel_header_border_color;
+			        border-left: $panel_header_border_left solid $panel_header_border_color;
+			        border-right: $panel_header_border_right solid $panel_header_border_color;
+			        border-bottom: $panel_header_border_bottom solid $panel_header_border_color;
 			    }
 
-			    /* Second level menu item hover */
+			    /* Second level menu item */
 			    > a {
 					color: $panel_second_level_font_color;
 				    font-family: $panel_second_level_font;
@@ -380,10 +384,14 @@
 				    text-transform: $panel_second_level_text_transform;
 				    text-decoration: $panel_second_level_text_decoration;
 				    font-weight: $panel_second_level_font_weight;
-				    margin: 0;
+				    margin: $panel_second_level_margin_top $panel_second_level_margin_right $panel_second_level_margin_bottom $panel_second_level_margin_left;
 				    padding: $panel_second_level_padding_top $panel_second_level_padding_right $panel_second_level_padding_bottom $panel_second_level_padding_left;
 				    vertical-align: top;
 				    display: block;
+			        border-top: $panel_second_level_border_top solid $panel_second_level_border_color;
+			        border-left: $panel_second_level_border_left solid $panel_second_level_border_color;
+			        border-right: $panel_second_level_border_right solid $panel_second_level_border_color;
+			        border-bottom: $panel_second_level_border_bottom solid $panel_second_level_border_color;
 			    }
 
 			    /* Second level menu item hover */
@@ -394,7 +402,7 @@
 			    	@include background($panel_second_level_background_hover_from, $panel_second_level_background_hover_to);
 			    }
 
-			    /* third level menu item hover */
+			    /* third level menu item */
 			    li.mega-menu-item > a {
 					color: $panel_third_level_font_color;
 				    font-family: $panel_third_level_font;
