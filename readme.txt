@@ -88,6 +88,10 @@ See https://maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.7.3.1 =
+
+* Fix: A CSS conflict with Suffusion theme (and possibly others) which was uncovered in v1.7.3 
+
 = 1.7.3 =
 
 * Theme Editor enhancements: Add hover transition option, second and third level menu item styling, top level menu item border, flyout menu item divider, widget title border & margin settings

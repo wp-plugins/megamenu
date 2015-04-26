@@ -4,7 +4,7 @@
  * Plugin Name: Max Mega Menu
  * Plugin URI:  https://maxmegamenu.com
  * Description: Mega Menu for WordPress.
- * Version:     1.7.3
+ * Version:     1.7.3.1
  * Author:      Tom Hemsley
  * Author URI:  https://maxmegamenu.com
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.7.3';
+	public $version = '1.7.3.1';
 
 
 	/**
