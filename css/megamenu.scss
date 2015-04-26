@@ -89,6 +89,10 @@
     }
 }
 
+#{$wrap} #{$menu} {
+    visibility: visible;
+}
+
 #{$wrap} #{$menu} a {
     display: inline;
 }
