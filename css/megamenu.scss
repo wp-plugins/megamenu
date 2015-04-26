@@ -143,8 +143,6 @@
 	    	display: block;
 	    }
 
-
-
 	    li.mega-menu-item a:before {
 		    display: inline-block;
 		    font: inherit;
@@ -303,7 +301,7 @@
 		    }
 
 		    @if $shadow == 'on' {
-		        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		        @include box-shadow($shadow_horizontal $shadow_vertical $shadow_blur $shadow_spread $shadow_color);
 		    }
 
 		    @media only screen and (max-width : $responsive_breakpoint) { 
@@ -432,9 +430,11 @@
 		    border-left: $flyout_border_left solid $flyout_border_color;
 		    border-right: $flyout_border_right solid $flyout_border_color;
 		    border-bottom: $flyout_border_bottom solid $flyout_border_color;
+			padding: $flyout_padding_top $flyout_padding_right $flyout_padding_bottom $flyout_padding_left;
+			@include background($flyout_menu_background_from, $flyout_menu_background_to);
 
 		    @if $shadow == 'on' {
-		        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		        @include box-shadow($shadow_horizontal $shadow_vertical $shadow_blur $shadow_spread $shadow_color);
 		    }
 
 		    @media only screen and (max-width : $responsive_breakpoint) { 
@@ -444,6 +444,18 @@
 		    }
 
 		    li.mega-menu-item {
+
+				@if $flyout_menu_item_divider == 'on' {
+					border-bottom: 1px solid $flyout_menu_item_divider_color;
+
+					/* Hide divider on last menu item */
+					&:last-child {
+						border-bottom: 0;
+						-webkit-box-shadow: none;
+						-moz-box-shadow: none;
+						box-shadow: none;
+					}
+				}
 
 		    	@media only screen and (max-width : $responsive_breakpoint) {
 			    	clear: both;
