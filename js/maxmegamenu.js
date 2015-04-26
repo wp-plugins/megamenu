@@ -34,12 +34,10 @@
         };
 
         plugin.hidePanel = function(anchor, immediate) {
-
             if (immediate) {
                 anchor.siblings('.mega-sub-menu').removeClass('mega-toggle-on');
                 anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
             } else {
-
                 if ( megamenu.effect[plugin.settings.effect] ) {
                     var effect = megamenu.effect[plugin.settings.effect]['out'];
 
@@ -53,20 +51,14 @@
                         });
                     } else {
                         anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
-
                     }
                 } else {
                     anchor.parent().removeClass('mega-toggle-on').triggerHandler("close_panel");
                 }
-
             }
-
-            
-
         };
 
         plugin.showPanel = function(anchor) {
-
             // automatically hide open panels, but only for desktop.
             if ( $(window).width() > plugin.settings.breakpoint ) {
                 // all open children of open siblings
@@ -87,7 +79,6 @@
             }
 
             if ( megamenu.effect[plugin.settings.effect] ) {
-
                 var effect = megamenu.effect[plugin.settings.effect]['in'];
 
                 if (effect.css) {
@@ -99,12 +90,9 @@
                         $(this).css('visiblity', 'visible');
                     });
                 }
-
             }
 
-
             anchor.parent().addClass('mega-toggle-on').triggerHandler("open_panel");
-
         };
 
         var openOnClick = function() {
@@ -117,15 +105,12 @@
 
             $('li.mega-menu-megamenu.mega-menu-item-has-children > a, li.mega-menu-flyout.mega-menu-item-has-children > a, li.mega-menu-flyout li.mega-menu-item-has-children > a', menu).on({
                 click: function(e) {
-
                     // check for second click
                     if ( plugin.settings.second_click == 'go' || $(this).parent().hasClass("mega-click-click-go") ) {
-                        
                         if ( ! $(this).parent().hasClass("mega-toggle-on") ) {
                             e.preventDefault();
                             plugin.showPanel($(this));
                         }
-
                     } else {
                         e.preventDefault();
 
@@ -134,7 +119,6 @@
                         } else {
                             plugin.showPanel($(this));
                         }
-
                     }
                 }
             });
@@ -155,7 +139,6 @@
         };
 
         plugin.init = function() {
-
             plugin.settings = $.extend({}, defaults, options);
 
             $menu.removeClass('mega-no-js');
@@ -169,7 +152,6 @@
             } else {
                 openOnHover();
             }
-
         };
 
         plugin.init();
@@ -177,16 +159,12 @@
     };
 
     $.fn.maxmegamenu = function(options) {
-
         return this.each(function() {
-
             if (undefined === $(this).data('maxmegamenu')) {
                 var plugin = new $.maxmegamenu(this, options);
                 $(this).data('maxmegamenu', plugin);
             }
-
         });
-
     };
 
     $(function() {
