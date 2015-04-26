@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: megamenu\n"
-"POT-Creation-Date: 2015-04-25 10:06-0000\n"
-"PO-Revision-Date: 2015-04-25 10:06-0000\n"
+"POT-Creation-Date: 2015-04-26 16:16-0000\n"
+"PO-Revision-Date: 2015-04-26 16:16-0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: English\n"
@@ -15,31 +15,31 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: .\n"
 
-#: ../megamenu.php:465
+#: ../megamenu.php:455
 msgid ""
 "Max Mega Menu is not compatible with your version of WordPress. Please "
 "upgrade WordPress to the latest version or disable Max Mega Menu."
 msgstr ""
 
-#: ../megamenu.php:476
+#: ../megamenu.php:466
 msgid ""
 "Max Mega Menu is not compatible with Uber Menu. Please disable Uber Menu."
 msgstr ""
 
-#: ../megamenu.php:489
+#: ../megamenu.php:479
 msgid "click here"
 msgstr ""
 
-#: ../megamenu.php:492
+#: ../megamenu.php:482
 #, php-format
 msgid "Thanks for installing Max Mega Menu! Please %s to get started."
 msgstr ""
 
-#: ../megamenu.php:504
+#: ../megamenu.php:494
 msgid "regenerate the CSS"
 msgstr ""
 
-#: ../megamenu.php:507
+#: ../megamenu.php:497
 #, php-format
 msgid ""
 "Max Mega Menu Updated. Please %s to ensure maximum compatibility with the "
@@ -120,25 +120,29 @@ msgstr ""
 
 #: ../classes/menu-item-manager.class.php:324
 #: ../classes/menu-item-manager.class.php:349
-#: ../classes/settings.class.php:845 ../classes/settings.class.php:977
-#: ../classes/settings.class.php:1159 ../classes/settings.class.php:1189
-#: ../classes/settings.class.php:1320 ../classes/settings.class.php:1350
-#: ../classes/settings.class.php:1402 ../classes/settings.class.php:1484
-#: ../classes/settings.class.php:1590 ../classes/settings.class.php:1696
-#: ../classes/settings.class.php:1758 ../classes/settings.class.php:1789
-#: ../classes/settings.class.php:1888 ../classes/settings.class.php:2028
+#: ../classes/settings.class.php:847 ../classes/settings.class.php:984
+#: ../classes/settings.class.php:1167 ../classes/settings.class.php:1197
+#: ../classes/settings.class.php:1330 ../classes/settings.class.php:1360
+#: ../classes/settings.class.php:1412 ../classes/settings.class.php:1494
+#: ../classes/settings.class.php:1520 ../classes/settings.class.php:1550
+#: ../classes/settings.class.php:1656 ../classes/settings.class.php:1682
+#: ../classes/settings.class.php:1712 ../classes/settings.class.php:1818
+#: ../classes/settings.class.php:1880 ../classes/settings.class.php:1911
+#: ../classes/settings.class.php:2010 ../classes/settings.class.php:2150
 msgid "Left"
 msgstr ""
 
 #: ../classes/menu-item-manager.class.php:325
 #: ../classes/menu-item-manager.class.php:350
-#: ../classes/settings.class.php:849 ../classes/settings.class.php:969
-#: ../classes/settings.class.php:1151 ../classes/settings.class.php:1181
-#: ../classes/settings.class.php:1312 ../classes/settings.class.php:1342
-#: ../classes/settings.class.php:1394 ../classes/settings.class.php:1476
-#: ../classes/settings.class.php:1582 ../classes/settings.class.php:1688
-#: ../classes/settings.class.php:1750 ../classes/settings.class.php:1781
-#: ../classes/settings.class.php:1880 ../classes/settings.class.php:2030
+#: ../classes/settings.class.php:851 ../classes/settings.class.php:976
+#: ../classes/settings.class.php:1159 ../classes/settings.class.php:1189
+#: ../classes/settings.class.php:1322 ../classes/settings.class.php:1352
+#: ../classes/settings.class.php:1404 ../classes/settings.class.php:1486
+#: ../classes/settings.class.php:1512 ../classes/settings.class.php:1542
+#: ../classes/settings.class.php:1648 ../classes/settings.class.php:1674
+#: ../classes/settings.class.php:1704 ../classes/settings.class.php:1810
+#: ../classes/settings.class.php:1872 ../classes/settings.class.php:1903
+#: ../classes/settings.class.php:2002 ../classes/settings.class.php:2152
 msgid "Right"
 msgstr ""
 
@@ -225,7 +229,7 @@ msgstr ""
 msgid "Effect"
 msgstr ""
 
-#: ../classes/nav-menus.class.php:284 ../classes/settings.class.php:2050
+#: ../classes/nav-menus.class.php:284 ../classes/settings.class.php:2172
 msgid "None"
 msgstr ""
 
@@ -409,692 +413,736 @@ msgstr ""
 msgid "New Theme Created"
 msgstr ""
 
-#: ../classes/settings.class.php:806
+#: ../classes/settings.class.php:808
 msgid "Select theme to edit"
 msgstr ""
 
-#: ../classes/settings.class.php:806 ../classes/settings.class.php:807
+#: ../classes/settings.class.php:808 ../classes/settings.class.php:809
 msgid "or"
 msgstr ""
 
-#: ../classes/settings.class.php:807
+#: ../classes/settings.class.php:809
 msgid "create a new theme"
 msgstr ""
 
-#: ../classes/settings.class.php:808
+#: ../classes/settings.class.php:810
 msgid "duplicate this theme"
 msgstr ""
 
-#: ../classes/settings.class.php:816
+#: ../classes/settings.class.php:818
 msgid "Editing Theme:"
 msgstr ""
 
-#: ../classes/settings.class.php:817
+#: ../classes/settings.class.php:819
 msgid "General Theme Settings"
 msgstr ""
 
-#: ../classes/settings.class.php:822
+#: ../classes/settings.class.php:824
 msgid "Theme Title"
 msgstr ""
 
-#: ../classes/settings.class.php:830
+#: ../classes/settings.class.php:832
 msgid "Arrow"
 msgstr ""
 
-#: ../classes/settings.class.php:832
+#: ../classes/settings.class.php:834
 msgid "Select the arrow styles."
 msgstr ""
 
-#: ../classes/settings.class.php:837
+#: ../classes/settings.class.php:839
 msgid "Up"
 msgstr ""
 
-#: ../classes/settings.class.php:841
+#: ../classes/settings.class.php:843
 msgid "Down"
 msgstr ""
 
-#: ../classes/settings.class.php:856
+#: ../classes/settings.class.php:858
 msgid "Responsive Breakpoint"
 msgstr ""
 
-#: ../classes/settings.class.php:858
+#: ../classes/settings.class.php:860
 msgid ""
 "Set the width at which the menu turns into a mobile menu. Set to 0 to "
 "disable responsive menu."
 msgstr ""
 
-#: ../classes/settings.class.php:865
+#: ../classes/settings.class.php:867
 msgid "Responsive Menu Text"
 msgstr ""
 
-#: ../classes/settings.class.php:867
+#: ../classes/settings.class.php:869
 msgid "Text to display next to the mobile toggle icon."
 msgstr ""
 
-#: ../classes/settings.class.php:874
+#: ../classes/settings.class.php:876
 msgid "Line Height"
 msgstr ""
 
-#: ../classes/settings.class.php:876
+#: ../classes/settings.class.php:878
 msgid "Set the general line height to use in the panel contents."
 msgstr ""
 
-#: ../classes/settings.class.php:883
+#: ../classes/settings.class.php:885
 msgid "Z-Index"
 msgstr ""
 
-#: ../classes/settings.class.php:885
+#: ../classes/settings.class.php:887
 msgid "Set the z-index to ensure the panels appear ontop of other content."
 msgstr ""
 
-#: ../classes/settings.class.php:892
+#: ../classes/settings.class.php:894
 msgid "Shadow"
 msgstr ""
 
-#: ../classes/settings.class.php:894
+#: ../classes/settings.class.php:896
 msgid "Apply a shadow to mega and flyout menus."
 msgstr ""
 
-#: ../classes/settings.class.php:899 ../classes/settings.class.php:1243
-#: ../classes/settings.class.php:1959
+#: ../classes/settings.class.php:901 ../classes/settings.class.php:935
+#: ../classes/settings.class.php:1251 ../classes/settings.class.php:2081
 msgid "Enabled"
 msgstr ""
 
-#: ../classes/settings.class.php:903
+#: ../classes/settings.class.php:905
 msgid "Horizonal"
 msgstr ""
 
-#: ../classes/settings.class.php:907
+#: ../classes/settings.class.php:909
 msgid "Vertical"
 msgstr ""
 
-#: ../classes/settings.class.php:911
+#: ../classes/settings.class.php:913
 msgid "Blur"
 msgstr ""
 
-#: ../classes/settings.class.php:915
+#: ../classes/settings.class.php:917
 msgid "Spread"
 msgstr ""
 
-#: ../classes/settings.class.php:919 ../classes/settings.class.php:1091
-#: ../classes/settings.class.php:1125 ../classes/settings.class.php:1173
-#: ../classes/settings.class.php:1203 ../classes/settings.class.php:1247
-#: ../classes/settings.class.php:1334 ../classes/settings.class.php:1416
-#: ../classes/settings.class.php:1450 ../classes/settings.class.php:1504
-#: ../classes/settings.class.php:1538 ../classes/settings.class.php:1610
-#: ../classes/settings.class.php:1644 ../classes/settings.class.php:1773
-#: ../classes/settings.class.php:1903 ../classes/settings.class.php:1937
-#: ../classes/settings.class.php:1963
+#: ../classes/settings.class.php:921 ../classes/settings.class.php:1099
+#: ../classes/settings.class.php:1133 ../classes/settings.class.php:1181
+#: ../classes/settings.class.php:1211 ../classes/settings.class.php:1255
+#: ../classes/settings.class.php:1344 ../classes/settings.class.php:1426
+#: ../classes/settings.class.php:1460 ../classes/settings.class.php:1534
+#: ../classes/settings.class.php:1570 ../classes/settings.class.php:1604
+#: ../classes/settings.class.php:1696 ../classes/settings.class.php:1732
+#: ../classes/settings.class.php:1766 ../classes/settings.class.php:1895
+#: ../classes/settings.class.php:2025 ../classes/settings.class.php:2059
+#: ../classes/settings.class.php:2085
 msgid "Color"
 msgstr ""
 
-#: ../classes/settings.class.php:926
+#: ../classes/settings.class.php:928
 msgid "Hover Transitions"
 msgstr ""
 
-#: ../classes/settings.class.php:928
+#: ../classes/settings.class.php:930
 msgid ""
 "Apply hover transitions to menu items. Note: Transitions will not apply to "
 "gradient backgrounds."
 msgstr ""
 
-#: ../classes/settings.class.php:935
+#: ../classes/settings.class.php:942
 msgid "Menu Bar"
 msgstr ""
 
-#: ../classes/settings.class.php:940 ../classes/settings.class.php:1708
+#: ../classes/settings.class.php:947 ../classes/settings.class.php:1830
 msgid "Menu Background"
 msgstr ""
 
-#: ../classes/settings.class.php:942
+#: ../classes/settings.class.php:949
 msgid ""
 "The background color for the main menu bar. Set each value to transparent "
 "for a 'button' style menu."
 msgstr ""
 
-#: ../classes/settings.class.php:947 ../classes/settings.class.php:1033
-#: ../classes/settings.class.php:1051 ../classes/settings.class.php:1279
-#: ../classes/settings.class.php:1560 ../classes/settings.class.php:1666
-#: ../classes/settings.class.php:1715 ../classes/settings.class.php:1829
-#: ../classes/settings.class.php:1847
+#: ../classes/settings.class.php:954 ../classes/settings.class.php:1041
+#: ../classes/settings.class.php:1059 ../classes/settings.class.php:1287
+#: ../classes/settings.class.php:1626 ../classes/settings.class.php:1788
+#: ../classes/settings.class.php:1837 ../classes/settings.class.php:1951
+#: ../classes/settings.class.php:1969
 msgid "From"
 msgstr ""
 
-#: ../classes/settings.class.php:951 ../classes/settings.class.php:1037
-#: ../classes/settings.class.php:1055 ../classes/settings.class.php:1283
-#: ../classes/settings.class.php:1564 ../classes/settings.class.php:1670
-#: ../classes/settings.class.php:1719 ../classes/settings.class.php:1833
-#: ../classes/settings.class.php:1851
+#: ../classes/settings.class.php:958 ../classes/settings.class.php:1045
+#: ../classes/settings.class.php:1063 ../classes/settings.class.php:1291
+#: ../classes/settings.class.php:1630 ../classes/settings.class.php:1792
+#: ../classes/settings.class.php:1841 ../classes/settings.class.php:1955
+#: ../classes/settings.class.php:1973
 msgid "To"
 msgstr ""
 
-#: ../classes/settings.class.php:958 ../classes/settings.class.php:1739
+#: ../classes/settings.class.php:965 ../classes/settings.class.php:1861
 msgid "Menu Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:960
+#: ../classes/settings.class.php:967
 msgid "Padding for the main menu bar."
 msgstr ""
 
-#: ../classes/settings.class.php:965 ../classes/settings.class.php:1147
-#: ../classes/settings.class.php:1177 ../classes/settings.class.php:1308
-#: ../classes/settings.class.php:1338 ../classes/settings.class.php:1390
-#: ../classes/settings.class.php:1472 ../classes/settings.class.php:1578
-#: ../classes/settings.class.php:1684 ../classes/settings.class.php:1746
-#: ../classes/settings.class.php:1777 ../classes/settings.class.php:1876
+#: ../classes/settings.class.php:972 ../classes/settings.class.php:1155
+#: ../classes/settings.class.php:1185 ../classes/settings.class.php:1318
+#: ../classes/settings.class.php:1348 ../classes/settings.class.php:1400
+#: ../classes/settings.class.php:1482 ../classes/settings.class.php:1508
+#: ../classes/settings.class.php:1538 ../classes/settings.class.php:1644
+#: ../classes/settings.class.php:1670 ../classes/settings.class.php:1700
+#: ../classes/settings.class.php:1806 ../classes/settings.class.php:1868
+#: ../classes/settings.class.php:1899 ../classes/settings.class.php:1998
 msgid "Top"
 msgstr ""
 
-#: ../classes/settings.class.php:973 ../classes/settings.class.php:1155
-#: ../classes/settings.class.php:1185 ../classes/settings.class.php:1316
-#: ../classes/settings.class.php:1346 ../classes/settings.class.php:1398
-#: ../classes/settings.class.php:1480 ../classes/settings.class.php:1586
-#: ../classes/settings.class.php:1692 ../classes/settings.class.php:1754
-#: ../classes/settings.class.php:1785 ../classes/settings.class.php:1884
+#: ../classes/settings.class.php:980 ../classes/settings.class.php:1163
+#: ../classes/settings.class.php:1193 ../classes/settings.class.php:1326
+#: ../classes/settings.class.php:1356 ../classes/settings.class.php:1408
+#: ../classes/settings.class.php:1490 ../classes/settings.class.php:1516
+#: ../classes/settings.class.php:1546 ../classes/settings.class.php:1652
+#: ../classes/settings.class.php:1678 ../classes/settings.class.php:1708
+#: ../classes/settings.class.php:1814 ../classes/settings.class.php:1876
+#: ../classes/settings.class.php:1907 ../classes/settings.class.php:2006
 msgid "Bottom"
 msgstr ""
 
-#: ../classes/settings.class.php:984 ../classes/settings.class.php:1796
+#: ../classes/settings.class.php:991 ../classes/settings.class.php:1918
 msgid "Menu Border Radius"
 msgstr ""
 
-#: ../classes/settings.class.php:986
+#: ../classes/settings.class.php:993
 msgid "Set a border radius on the main menu bar."
 msgstr ""
 
-#: ../classes/settings.class.php:991 ../classes/settings.class.php:1217
-#: ../classes/settings.class.php:1364 ../classes/settings.class.php:1803
+#: ../classes/settings.class.php:998 ../classes/settings.class.php:1225
+#: ../classes/settings.class.php:1374 ../classes/settings.class.php:1925
 msgid "Top Left"
 msgstr ""
 
-#: ../classes/settings.class.php:995 ../classes/settings.class.php:1221
-#: ../classes/settings.class.php:1368 ../classes/settings.class.php:1807
+#: ../classes/settings.class.php:1002 ../classes/settings.class.php:1229
+#: ../classes/settings.class.php:1378 ../classes/settings.class.php:1929
 msgid "Top Right"
 msgstr ""
 
-#: ../classes/settings.class.php:999 ../classes/settings.class.php:1225
-#: ../classes/settings.class.php:1372 ../classes/settings.class.php:1811
+#: ../classes/settings.class.php:1006 ../classes/settings.class.php:1233
+#: ../classes/settings.class.php:1382 ../classes/settings.class.php:1933
 msgid "Bottom Right"
 msgstr ""
 
-#: ../classes/settings.class.php:1003 ../classes/settings.class.php:1229
-#: ../classes/settings.class.php:1376 ../classes/settings.class.php:1815
+#: ../classes/settings.class.php:1010 ../classes/settings.class.php:1237
+#: ../classes/settings.class.php:1386 ../classes/settings.class.php:1937
 msgid "Bottom Left"
 msgstr ""
 
-#: ../classes/settings.class.php:1010
+#: ../classes/settings.class.php:1017
 msgid "Menu Items Align"
 msgstr ""
 
-#: ../classes/settings.class.php:1012
+#: ../classes/settings.class.php:1019
 msgid ""
-"Align all menu items to the left (default), centrally or to the right. To "
-"align a single menu item to the right, use the Mega Menu options for the "
-"menu item."
+"Align <i>all</i> menu items to the left (default), centrally or to the right."
 msgstr ""
 
-#: ../classes/settings.class.php:1021
+#: ../classes/settings.class.php:1024
+msgid ""
+"This option will apply to all menu items. To align an individual menu item "
+"to the right, edit the menu item itself and set 'Menu Item Align' to 'Right'."
+msgstr ""
+
+#: ../classes/settings.class.php:1029
 msgid "Top Level Menu Items"
 msgstr ""
 
-#: ../classes/settings.class.php:1026
+#: ../classes/settings.class.php:1034
 msgid "Menu Item Background"
 msgstr ""
 
-#: ../classes/settings.class.php:1028
+#: ../classes/settings.class.php:1036
 msgid ""
 "The background color for each top level menu item. Tip: Set these values to "
 "transparent if you've already set a background color on the menu bar."
 msgstr ""
 
-#: ../classes/settings.class.php:1044
+#: ../classes/settings.class.php:1052
 msgid "Menu Item Background (Hover)"
 msgstr ""
 
-#: ../classes/settings.class.php:1046
+#: ../classes/settings.class.php:1054
 msgid "The background color for a top level menu item (on hover)."
 msgstr ""
 
-#: ../classes/settings.class.php:1062
+#: ../classes/settings.class.php:1070
 msgid "Menu Item Spacing"
 msgstr ""
 
-#: ../classes/settings.class.php:1064
+#: ../classes/settings.class.php:1072
 msgid "Define the size of the gap between each top level menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1073
+#: ../classes/settings.class.php:1081
 msgid "Menu Item Height"
 msgstr ""
 
-#: ../classes/settings.class.php:1075
+#: ../classes/settings.class.php:1083
 msgid ""
 "Define the height of each top level menu item. This value, plus the "
 "container top and bottom padding values define the overall height of the "
 "menu bar."
 msgstr ""
 
-#: ../classes/settings.class.php:1084 ../classes/settings.class.php:1497
-#: ../classes/settings.class.php:1603
+#: ../classes/settings.class.php:1092 ../classes/settings.class.php:1563
+#: ../classes/settings.class.php:1725
 msgid "Font"
 msgstr ""
 
-#: ../classes/settings.class.php:1086
+#: ../classes/settings.class.php:1094
 msgid "The font to use for each top level menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1095 ../classes/settings.class.php:1420
-#: ../classes/settings.class.php:1454 ../classes/settings.class.php:1508
-#: ../classes/settings.class.php:1614 ../classes/settings.class.php:1907
+#: ../classes/settings.class.php:1103 ../classes/settings.class.php:1430
+#: ../classes/settings.class.php:1464 ../classes/settings.class.php:1574
+#: ../classes/settings.class.php:1736 ../classes/settings.class.php:2029
 msgid "Size"
 msgstr ""
 
-#: ../classes/settings.class.php:1099 ../classes/settings.class.php:1424
-#: ../classes/settings.class.php:1458 ../classes/settings.class.php:1512
-#: ../classes/settings.class.php:1618 ../classes/settings.class.php:1911
+#: ../classes/settings.class.php:1107 ../classes/settings.class.php:1434
+#: ../classes/settings.class.php:1468 ../classes/settings.class.php:1578
+#: ../classes/settings.class.php:1740 ../classes/settings.class.php:2033
 msgid "Family"
 msgstr ""
 
-#: ../classes/settings.class.php:1103 ../classes/settings.class.php:1432
-#: ../classes/settings.class.php:1520 ../classes/settings.class.php:1626
-#: ../classes/settings.class.php:1915
+#: ../classes/settings.class.php:1111 ../classes/settings.class.php:1442
+#: ../classes/settings.class.php:1586 ../classes/settings.class.php:1748
+#: ../classes/settings.class.php:2037
 msgid "Transform"
 msgstr ""
 
-#: ../classes/settings.class.php:1107 ../classes/settings.class.php:1129
-#: ../classes/settings.class.php:1428 ../classes/settings.class.php:1516
-#: ../classes/settings.class.php:1542 ../classes/settings.class.php:1622
-#: ../classes/settings.class.php:1648 ../classes/settings.class.php:1919
-#: ../classes/settings.class.php:1941
+#: ../classes/settings.class.php:1115 ../classes/settings.class.php:1137
+#: ../classes/settings.class.php:1438 ../classes/settings.class.php:1582
+#: ../classes/settings.class.php:1608 ../classes/settings.class.php:1744
+#: ../classes/settings.class.php:1770 ../classes/settings.class.php:2041
+#: ../classes/settings.class.php:2063
 msgid "Weight"
 msgstr ""
 
-#: ../classes/settings.class.php:1111 ../classes/settings.class.php:1133
-#: ../classes/settings.class.php:1436 ../classes/settings.class.php:1524
-#: ../classes/settings.class.php:1546 ../classes/settings.class.php:1630
-#: ../classes/settings.class.php:1652 ../classes/settings.class.php:1923
-#: ../classes/settings.class.php:1945
+#: ../classes/settings.class.php:1119 ../classes/settings.class.php:1141
+#: ../classes/settings.class.php:1446 ../classes/settings.class.php:1590
+#: ../classes/settings.class.php:1612 ../classes/settings.class.php:1752
+#: ../classes/settings.class.php:1774 ../classes/settings.class.php:2045
+#: ../classes/settings.class.php:2067
 msgid "Decoration"
 msgstr ""
 
-#: ../classes/settings.class.php:1118 ../classes/settings.class.php:1531
-#: ../classes/settings.class.php:1637
+#: ../classes/settings.class.php:1126 ../classes/settings.class.php:1597
+#: ../classes/settings.class.php:1759
 msgid "Font (Hover)"
 msgstr ""
 
-#: ../classes/settings.class.php:1120
+#: ../classes/settings.class.php:1128
 msgid "Set the font to use for each top level menu item (on hover)."
 msgstr ""
 
-#: ../classes/settings.class.php:1140
+#: ../classes/settings.class.php:1148
 msgid "Menu Item Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:1142
+#: ../classes/settings.class.php:1150
 msgid "Set the padding for each top level menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1166
+#: ../classes/settings.class.php:1174
 msgid "Menu Item Border"
 msgstr ""
 
-#: ../classes/settings.class.php:1168
+#: ../classes/settings.class.php:1176
 msgid "Set the border to display on each top level menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1196
+#: ../classes/settings.class.php:1204
 msgid "Menu Item Border (Hover)"
 msgstr ""
 
-#: ../classes/settings.class.php:1198
+#: ../classes/settings.class.php:1206
 msgid "Set the hover border color."
 msgstr ""
 
-#: ../classes/settings.class.php:1210
+#: ../classes/settings.class.php:1218
 msgid "Menu Item Border Radius"
 msgstr ""
 
-#: ../classes/settings.class.php:1212
+#: ../classes/settings.class.php:1220
 msgid "Set rounded corners for each top level menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1236
+#: ../classes/settings.class.php:1244
 msgid "Menu Item Divider"
 msgstr ""
 
-#: ../classes/settings.class.php:1238
+#: ../classes/settings.class.php:1246
 msgid "Show a small divider bar between each menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1251
+#: ../classes/settings.class.php:1259
 msgid "Glow Opacity"
 msgstr ""
 
-#: ../classes/settings.class.php:1258
+#: ../classes/settings.class.php:1266
 msgid "Highlight Current Item"
 msgstr ""
 
-#: ../classes/settings.class.php:1260
+#: ../classes/settings.class.php:1268
 msgid "Apply the 'hover' styling to current menu items."
 msgstr ""
 
-#: ../classes/settings.class.php:1267
+#: ../classes/settings.class.php:1275
 msgid "Mega Panels"
 msgstr ""
 
-#: ../classes/settings.class.php:1272
+#: ../classes/settings.class.php:1280
 msgid "Panel Background"
 msgstr ""
 
-#: ../classes/settings.class.php:1274
+#: ../classes/settings.class.php:1282
 msgid "Set a background color for a whole panel."
 msgstr ""
 
-#: ../classes/settings.class.php:1290
+#: ../classes/settings.class.php:1298
 msgid "Panel Width"
 msgstr ""
 
-#: ../classes/settings.class.php:1292
-msgid ""
-"Mega Panel width. Note: A 100% wide panel will only ever be as wide as the "
-"menu itself. For a fixed panel width set this to a pixel value. Advanced: "
-"enter a jQuery selector to align the sub menu to a page element."
+#: ../classes/settings.class.php:1300
+msgid "Mega Panel width"
 msgstr ""
 
-#: ../classes/settings.class.php:1301
+#: ../classes/settings.class.php:1305
+msgid ""
+"A 100% wide panel will only ever be as wide as the menu itself. For a fixed "
+"panel width set this to a pixel value."
+msgstr ""
+
+#: ../classes/settings.class.php:1306
+msgid ""
+"Advanced: Enter a jQuery selector to synchronize the width and position of "
+"the sub menu with existing page element (e.g. body, #container, .page)."
+msgstr ""
+
+#: ../classes/settings.class.php:1311
 msgid "Panel Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:1303
+#: ../classes/settings.class.php:1313
 msgid ""
 "Set the padding for the whole panel. Set these values 0px if you wish your "
 "panel content to go edge-to-edge."
 msgstr ""
 
-#: ../classes/settings.class.php:1327
+#: ../classes/settings.class.php:1337
 msgid "Panel Border"
 msgstr ""
 
-#: ../classes/settings.class.php:1329
+#: ../classes/settings.class.php:1339
 msgid "Set the border to display on the Mega Panel."
 msgstr ""
 
-#: ../classes/settings.class.php:1357
+#: ../classes/settings.class.php:1367
 msgid "Panel Border Radius"
 msgstr ""
 
-#: ../classes/settings.class.php:1359
+#: ../classes/settings.class.php:1369
 msgid "Set rounded corners for the panel."
 msgstr ""
 
-#: ../classes/settings.class.php:1383
+#: ../classes/settings.class.php:1393
 msgid "Widget Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:1385
+#: ../classes/settings.class.php:1395
 msgid ""
 "Set the padding for each widget in the panel. Use this to define the spacing "
 "between each widget in the panel."
 msgstr ""
 
-#: ../classes/settings.class.php:1409
+#: ../classes/settings.class.php:1419
 msgid "Widget Heading Font"
 msgstr ""
 
-#: ../classes/settings.class.php:1411
+#: ../classes/settings.class.php:1421
 msgid ""
 "Set the font to use Widget headers in the mega menu. Tip: set this to the "
 "same style as the Second Level Menu Item Header font to keep your styling "
 "consistent."
 msgstr ""
 
-#: ../classes/settings.class.php:1443
+#: ../classes/settings.class.php:1453
 msgid "Widget Content Font"
 msgstr ""
 
-#: ../classes/settings.class.php:1445
+#: ../classes/settings.class.php:1455
 msgid "Set the font to use for panel contents."
 msgstr ""
 
-#: ../classes/settings.class.php:1465
+#: ../classes/settings.class.php:1475
 msgid "Widget Heading Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:1467
-msgid ""
-"Set the padding for the widget headings. Use this to set the gap between the "
-"widget heading and the widget content."
+#: ../classes/settings.class.php:1477
+msgid "Set the padding for the widget headings."
 msgstr ""
 
-#: ../classes/settings.class.php:1491
+#: ../classes/settings.class.php:1501
+msgid "Widget Heading Margin"
+msgstr ""
+
+#: ../classes/settings.class.php:1503
+msgid "Set the margin for the widget headings."
+msgstr ""
+
+#: ../classes/settings.class.php:1527 ../classes/settings.class.php:1689
+msgid "Border"
+msgstr ""
+
+#: ../classes/settings.class.php:1529
+msgid "Set the border for the widget headings."
+msgstr ""
+
+#: ../classes/settings.class.php:1557
 msgid "Second Level Menu Items"
 msgstr ""
 
-#: ../classes/settings.class.php:1499
+#: ../classes/settings.class.php:1565
 msgid ""
 "Set the font for second level menu items when they're displayed in a Mega "
 "Menu."
 msgstr ""
 
-#: ../classes/settings.class.php:1533 ../classes/settings.class.php:1639
+#: ../classes/settings.class.php:1599 ../classes/settings.class.php:1761
 msgid "Set the font style on hover."
 msgstr ""
 
-#: ../classes/settings.class.php:1553 ../classes/settings.class.php:1659
+#: ../classes/settings.class.php:1619 ../classes/settings.class.php:1781
 msgid "Background (Hover)"
 msgstr ""
 
-#: ../classes/settings.class.php:1555
+#: ../classes/settings.class.php:1621
 msgid "Set the background hover color for second level menu items."
 msgstr ""
 
-#: ../classes/settings.class.php:1571 ../classes/settings.class.php:1677
+#: ../classes/settings.class.php:1637 ../classes/settings.class.php:1799
 msgid "Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:1573
+#: ../classes/settings.class.php:1639
 msgid "Set the padding for the second level menu items."
 msgstr ""
 
-#: ../classes/settings.class.php:1597
+#: ../classes/settings.class.php:1663
+msgid "Margin"
+msgstr ""
+
+#: ../classes/settings.class.php:1665
+msgid "Set the margin for the second level menu items."
+msgstr ""
+
+#: ../classes/settings.class.php:1691
+msgid "Set the border for the second level menu items."
+msgstr ""
+
+#: ../classes/settings.class.php:1719
 msgid "Third Level Menu Items"
 msgstr ""
 
-#: ../classes/settings.class.php:1605
+#: ../classes/settings.class.php:1727
 msgid ""
 "Set the font for third level menu items when they're displayed in a Mega "
 "Menu."
 msgstr ""
 
-#: ../classes/settings.class.php:1661
+#: ../classes/settings.class.php:1783
 msgid "Set the background hover color for third level menu items."
 msgstr ""
 
-#: ../classes/settings.class.php:1679
+#: ../classes/settings.class.php:1801
 msgid "Set the padding for the third level menu items."
 msgstr ""
 
-#: ../classes/settings.class.php:1703
+#: ../classes/settings.class.php:1825
 msgid "Flyout Menus"
 msgstr ""
 
-#: ../classes/settings.class.php:1710
+#: ../classes/settings.class.php:1832
 msgid "Set the background color for the flyout menu."
 msgstr ""
 
-#: ../classes/settings.class.php:1727
+#: ../classes/settings.class.php:1849
 msgid "Menu Width"
 msgstr ""
 
-#: ../classes/settings.class.php:1729
+#: ../classes/settings.class.php:1851
 msgid "The width of each flyout menu. This must be a fixed pixel value."
 msgstr ""
 
-#: ../classes/settings.class.php:1734
+#: ../classes/settings.class.php:1856
 msgid ""
 "Set this value to the width of your longest menu item title to stop menu "
 "items wrapping onto 2 lines."
 msgstr ""
 
-#: ../classes/settings.class.php:1741
+#: ../classes/settings.class.php:1863
 msgid "Set the padding for the whole flyout menu."
 msgstr ""
 
-#: ../classes/settings.class.php:1761
+#: ../classes/settings.class.php:1883
 msgid ""
 "Only suitable for single level flyout menus. If you're using multi level "
 "flyout menus set these values to 0px."
 msgstr ""
 
-#: ../classes/settings.class.php:1766
+#: ../classes/settings.class.php:1888
 msgid "Menu Border"
 msgstr ""
 
-#: ../classes/settings.class.php:1768
+#: ../classes/settings.class.php:1890
 msgid "Set the border for the flyout menu."
 msgstr ""
 
-#: ../classes/settings.class.php:1798
+#: ../classes/settings.class.php:1920
 msgid ""
 "Set rounded corners for flyout menus. Rounded corners will be applied to all "
 "flyout menu levels."
 msgstr ""
 
-#: ../classes/settings.class.php:1822
+#: ../classes/settings.class.php:1944
 msgid "Item Background"
 msgstr ""
 
-#: ../classes/settings.class.php:1824
+#: ../classes/settings.class.php:1946
 msgid "Set the background color for a flyout menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1840
+#: ../classes/settings.class.php:1962
 msgid "Item Background (Hover)"
 msgstr ""
 
-#: ../classes/settings.class.php:1842
+#: ../classes/settings.class.php:1964
 msgid "Set the background color for a flyout menu item (on hover)."
 msgstr ""
 
-#: ../classes/settings.class.php:1858
+#: ../classes/settings.class.php:1980
 msgid "Item Height"
 msgstr ""
 
-#: ../classes/settings.class.php:1860
+#: ../classes/settings.class.php:1982
 msgid "The height of each flyout menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1869
+#: ../classes/settings.class.php:1991
 msgid "Item Padding"
 msgstr ""
 
-#: ../classes/settings.class.php:1871
+#: ../classes/settings.class.php:1993
 msgid "Set the padding for each flyout menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1896
+#: ../classes/settings.class.php:2018
 msgid "Item Font"
 msgstr ""
 
-#: ../classes/settings.class.php:1898
+#: ../classes/settings.class.php:2020
 msgid "Set the font for the flyout menu items."
 msgstr ""
 
-#: ../classes/settings.class.php:1930
+#: ../classes/settings.class.php:2052
 msgid "Item Font (Hover)"
 msgstr ""
 
-#: ../classes/settings.class.php:1932
+#: ../classes/settings.class.php:2054
 msgid "Set the font weight for the flyout menu items (on hover)."
 msgstr ""
 
-#: ../classes/settings.class.php:1952
+#: ../classes/settings.class.php:2074
 msgid "Item Divider"
 msgstr ""
 
-#: ../classes/settings.class.php:1954
+#: ../classes/settings.class.php:2076
 msgid "Show a line divider below each menu item."
 msgstr ""
 
-#: ../classes/settings.class.php:1970
+#: ../classes/settings.class.php:2092
 msgid "Custom Styling"
 msgstr ""
 
-#: ../classes/settings.class.php:1975
+#: ../classes/settings.class.php:2097
 msgid "CSS Editor"
 msgstr ""
 
-#: ../classes/settings.class.php:1977
+#: ../classes/settings.class.php:2099
 msgid ""
 "Define any custom CSS you wish to add to menus using this theme. You can use "
 "standard CSS or SCSS."
 msgstr ""
 
-#: ../classes/settings.class.php:1983
+#: ../classes/settings.class.php:2105
 msgid "Custom Styling Tips"
 msgstr ""
 
-#: ../classes/settings.class.php:1985
+#: ../classes/settings.class.php:2107
 msgid ""
 "converts to the ID selector of the menu wrapper, e.g. div#mega-menu-wrap-"
 "primary"
 msgstr ""
 
-#: ../classes/settings.class.php:1986
+#: ../classes/settings.class.php:2108
 msgid "converts to the ID selector of the menu, e.g. ul#mega-menu-primary"
 msgstr ""
 
-#: ../classes/settings.class.php:1987
+#: ../classes/settings.class.php:2109
 msgid ""
 "Use @import rules to import CSS from other plugins or your theme directory, "
 "e.g:"
 msgstr ""
 
-#: ../classes/settings.class.php:2000
+#: ../classes/settings.class.php:2122
 msgid "Delete Theme"
 msgstr ""
 
-#: ../classes/settings.class.php:2002
+#: ../classes/settings.class.php:2124
 msgid "Revert Theme"
 msgstr ""
 
-#: ../classes/settings.class.php:2029
+#: ../classes/settings.class.php:2151
 msgid "Center"
 msgstr ""
 
-#: ../classes/settings.class.php:2051
+#: ../classes/settings.class.php:2173
 msgid "Underline"
 msgstr ""
 
-#: ../classes/settings.class.php:2095
+#: ../classes/settings.class.php:2217
 msgid "Disabled"
 msgstr ""
 
-#: ../classes/settings.class.php:2152 ../classes/settings.class.php:2171
+#: ../classes/settings.class.php:2274 ../classes/settings.class.php:2293
 msgid "Normal"
 msgstr ""
 
-#: ../classes/settings.class.php:2153
+#: ../classes/settings.class.php:2275
 msgid "Bold"
 msgstr ""
 
-#: ../classes/settings.class.php:2172
+#: ../classes/settings.class.php:2294
 msgid "Capitalize"
 msgstr ""
 
-#: ../classes/settings.class.php:2173
+#: ../classes/settings.class.php:2295
 msgid "Uppercase"
 msgstr ""
 
-#: ../classes/settings.class.php:2174
+#: ../classes/settings.class.php:2296
 msgid "Lowercase"
 msgstr ""
 
-#: ../classes/settings.class.php:2209
+#: ../classes/settings.class.php:2331
 msgid "Theme Default"
 msgstr ""
 
-#: ../classes/settings.class.php:2316
+#: ../classes/settings.class.php:2438
 msgid "Are you sure?"
 msgstr ""
 
@@ -1102,7 +1150,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../classes/style-manager.class.php:503
+#: ../classes/style-manager.class.php:521
 msgid ""
 "Warning: CSS compilation failed. Please check your changes or revert the "
 "theme."
