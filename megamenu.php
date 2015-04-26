@@ -485,7 +485,10 @@ final class Mega_Menu {
 
 	    endif;
 
-		if ( did_action('megamenu_after_update') === 1 ) :
+	    $css_version = get_transient("megamenu_css_version");
+	    $css = get_transient("megamenu_css");
+
+		if ( $css && version_compare( $this->version, $css_version, '!=' ) ) :
 
 	    ?>
 	    <div class="updated">
@@ -494,7 +497,7 @@ final class Mega_Menu {
 	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings&tab=tools") . "'>" . __( "regenerate the CSS", 'megamenu' ) . "</a>"; 
 
 	    	?>
-	        <p><?php echo sprintf( __( 'Max Mega Menu Updated. Please %s to ensure maximum compatibility with the latest version.', 'megamenu' ), $link); ?></p>
+	        <p><?php echo sprintf( __( 'Max Mega Menu has been updated. Please %s to ensure maximum compatibility with the latest version.', 'megamenu' ), $link); ?></p>
 	    </div>
 	    <?php
 

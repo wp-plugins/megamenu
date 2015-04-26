@@ -435,6 +435,7 @@ final class Mega_Menu_Style_Manager {
     private function save_to_cache( $css ) {
 
         set_transient( 'megamenu_css', $css, 0 );
+        set_transient( 'megamenu_css_version', MEGAMENU_VERSION, 0 );
 
     }
 
