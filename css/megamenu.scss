@@ -82,6 +82,7 @@
     clip: auto;
     height: auto;
     outline: none;
+    visibility: inherit;
 
     &:before,
     &:after {
