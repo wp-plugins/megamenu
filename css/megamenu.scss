@@ -142,6 +142,7 @@
         }
 
         &.mega-no-js li.mega-menu-item:hover > ul.mega-sub-menu,
+        &.mega-no-js li.mega-menu-item:focus > ul.mega-sub-menu,
         li.mega-menu-item.mega-toggle-on > ul.mega-sub-menu,
         li.mega-menu-item.mega-menu-megamenu.mega-toggle-on ul.mega-sub-menu {
             visibility: visible;
@@ -220,7 +221,8 @@
             }
 
             &.mega-toggle-on > a,
-            > a:hover {
+            > a:hover,
+            > a:focus {
                 @include background($menu_item_background_hover_from, $menu_item_background_hover_to);
                 color: $menu_item_link_color_hover;
                 font-weight: $menu_item_link_weight_hover;
@@ -403,7 +405,8 @@
                 }
 
                 /* Second level menu item hover */
-                > a:hover {
+                > a:hover,
+                > a:focus {
                     color: $panel_second_level_font_color_hover;
                     font-weight: $panel_second_level_font_weight_hover;
                     text-decoration: $panel_second_level_text_decoration_hover;
@@ -425,7 +428,8 @@
                 }
 
                 /* Second level menu item hover */
-                li.mega-menu-item > a:hover {
+                li.mega-menu-item > a:hover,
+                li.mega-menu-item > a:focus {
                     color: $panel_third_level_font_color_hover;
                     font-weight: $panel_third_level_font_weight_hover;
                     text-decoration: $panel_third_level_text_decoration_hover;
@@ -500,7 +504,8 @@
                     border-bottom-left-radius: $flyout_border_radius_bottom_left;
                 }
 
-                a:hover {
+                a:hover,
+                a:focus {
                     @include background($flyout_background_hover_from, $flyout_background_hover_to);
                     font-weight: $flyout_link_weight_hover;
                     text-decoration: $flyout_link_text_decoration_hover;
