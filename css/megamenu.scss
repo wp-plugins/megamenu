@@ -147,6 +147,10 @@
             visibility: visible;
         }
 
+        li.mega-menu-item a[class^='dashicons']:before {
+            font-family: dashicons;
+        }
+
         li.mega-menu-item a:before {
             display: inline-block;
             font: inherit;
