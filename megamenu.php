@@ -4,7 +4,7 @@
  * Plugin Name: Max Mega Menu
  * Plugin URI:  https://maxmegamenu.com
  * Description: Mega Menu for WordPress.
- * Version:     1.7.3.1
+ * Version:     1.7.4
  * Author:      Tom Hemsley
  * Author URI:  https://maxmegamenu.com
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.7.3.1';
+	public $version = '1.7.4';
 
 
 	/**
@@ -51,6 +51,7 @@ final class Mega_Menu {
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'admin_init', array( $this, 'install_upgrade_check' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+        add_action( 'widgets_init', array( $this, 'register_widget' ) );
 
 		add_filter( 'wp_nav_menu_args', array( $this, 'modify_nav_menu_args' ), 9999 );
 		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
@@ -105,7 +106,7 @@ final class Mega_Menu {
 
 
 	/**
-	 * Store the current version number
+	 * Delete the current version number
 	 *
 	 * @since 1.3
 	 */
@@ -115,6 +116,16 @@ final class Mega_Menu {
 		
 	}
 
+    /**
+     * Register widget
+     *
+     * @since 1.7.4
+     */
+    public function register_widget() {
+
+        register_widget( 'Mega_Menu_Widget' );
+
+    }
 
     /**
      * Shortcode used to display a menu
@@ -177,6 +188,7 @@ final class Mega_Menu {
 			'mega_menu_nav_menus'         => MEGAMENU_PATH . 'classes/nav-menus.class.php',
 			'mega_menu_style_manager'     => MEGAMENU_PATH . 'classes/style-manager.class.php',
 			'mega_menu_settings'          => MEGAMENU_PATH . 'classes/settings.class.php',
+			'mega_menu_widget'            => MEGAMENU_PATH . 'classes/widget.class.php',
 			'scssc'                       => MEGAMENU_PATH . 'classes/scssc.inc.php',
 
 		);
@@ -290,7 +302,6 @@ final class Mega_Menu {
 	 * @return array - Menu objects including widgets
    	 */
 	public function add_widgets_to_menu( $items, $args ) {
-
 		// make sure we're working with a Mega Menu
 		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
 			return $items;

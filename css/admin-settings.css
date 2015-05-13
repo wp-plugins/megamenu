@@ -146,10 +146,21 @@
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul {
 	margin: 0;
 	float: right;
+	position: relative;
 }
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul li {
 	display: inline-block;
 	margin: 0 0 0 10px;
+	line-height: 30px;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul li.mega-highlight {
+	background: #00b7bf;
+	border-radius: 5px;
+}
+.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul li.mega-highlight a {
+	color: white;
+	line-height: 30px;
+	padding: 0 10px;
 }
 .appearance_page_megamenu_settings .megamenu_wrap {
 	background: white;

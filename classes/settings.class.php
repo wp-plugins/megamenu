@@ -425,6 +425,8 @@ class Mega_Menu_Settings{
                 
                 <h4 class='first'><?php _e("General Settings", "megamenu"); ?></h4>
 
+                <p><?php _e("These settings define the overall behaviour of Max Mega Menu.", "megamenu"); ?> <?php _e("Menu specific settings (e.g, click or hover event, menu theme, transition effect) can be found under", "megamenu"); ?> <a href='<?php echo admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a>.</p>
+
                 <table>
                     <tr>
                         <td class='mega-name'>
@@ -467,10 +469,6 @@ class Mega_Menu_Settings{
 
                 <?php do_action( "megamenu_general_settings", $saved_settings ); ?>
 
-                <h4><?php _e("Menu Settings", "megamenu"); ?></h4>
-
-                <p><i><?php _e("Menu specific settings (e.g, click or hover event, menu theme, transition effect) can be found under", "megamenu"); ?> <a href='<?php echo admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a></i></p>
-
                 <?php
 
                     submit_button();
@@ -500,9 +498,10 @@ class Mega_Menu_Settings{
                 <input type="hidden" name="action" value="megamenu_regenerate_css" />
 
                 <h4 class='first'><?php _e("Cache", "megamenu"); ?></h4>
+                <p><?php _e("Max Mega Menu automatically generates the CSS required to display your menu each time you make a change to a menu or a menu theme. The generated CSS is then cached for performance.", "megamenu"); ?></p>
+                <p><?php _e("Use this tool to manually regenerate the menu CSS and update the cache.", "megamenu"); ?></p>
 
                 <input type='submit' class='button button-primary' value='<?php _e("Regenerate CSS", "megamenu"); ?>' />
-                <p><?php _e("Regenerate the CSS.", "megamenu"); ?></p>
             </form>
 
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
@@ -510,9 +509,9 @@ class Mega_Menu_Settings{
                 <input type="hidden" name="action" value="megamenu_delete_data" />
 
                 <h4><?php _e("Plugin Data", "megamenu"); ?></h4>
+                <p><?php _e("Delete all saved Max Mega Menu plugin data from the database. Use with caution!", "megamenu"); ?></p>
 
                 <input type='submit' class='button button-primary confirm' value='<?php _e("Delete Data", "megamenu"); ?>' />
-                <p><?php _e("Delete all saved Max Mega Menu plugin data from the database. Use with caution!", "megamenu"); ?></p>
             </form>
         </div>
 
@@ -532,20 +531,26 @@ class Mega_Menu_Settings{
         $header_links = apply_filters( "megamenu_header_links", array(
             'homepage' => array(
                 'url' => 'https://maxmegamenu.com/',
+                'target' => '_mmmpro',
                 'text' => __("Homepage", "megamenu"),
                 'class' => ''
             ),
             'documentation' => array(
                 'url' => 'https://maxmegamenu.com/documentation/getting-started/installation/',
                 'text' => __("Documentation", "megamenu"),
-                'class' => ''
-            ),
-            'support' => array(
-                'url' => 'https://wordpress.org/support/plugin/megamenu/',
-                'text' => __("Support", "megamenu"),
+                'target' => '_mmmpro',
                 'class' => ''
             )
         ) );
+
+        if ( ! is_plugin_active('megamenu-pro/megamenu-pro.php') ) {
+            $header_links['pro'] = array(
+                'url' => 'https://maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro',
+                'target' => '_mmmpro',
+                'text' => __("Upgrade to Pro - $19", "megamenu"),
+                'class' => 'mega-highlight'
+            );
+        }
 
         $versions = apply_filters( "megamenu_versions", array(
             'core' => array(
@@ -553,7 +558,7 @@ class Mega_Menu_Settings{
                 'text' => __("Core version", "megamenu")
             ),
             'pro' => array(
-                'version' => "<a href='https://maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro' target='_mmpro'>not installed</a>",
+                'version' => "<a href='https://maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro' target='_mmmpro'>not installed</a>",
                 'text' => __("Pro extension", "megamenu")
             )
         ) );
@@ -565,7 +570,9 @@ class Mega_Menu_Settings{
                 <ul>
                     <?php
                         foreach ( $header_links as $id => $data ) {
-                            echo "<li class='{$data['class']}'><a href='{$data['url']}'>{$data['text']}</a></li>";
+                            echo "<li class='{$data['class']}'><a href='{$data['url']}' target='{$data['target']}'>{$data['text']}";
+                            echo "</a>";
+                            echo "</li>";
                         }
                     ?>
                 </ul>

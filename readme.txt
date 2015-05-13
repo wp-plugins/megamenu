@@ -25,27 +25,28 @@ Documentation & Demo: https://maxmegamenu.com
 * Supports Flyout (traditional) or Mega Menu sub-menu styles
 * Hover Intent or click event to open menus
 * Fade or Slide transitions
-* Add Icons to menu items
-* Hide Text and Disable Link option per menu item
-* Menu item align option
-* Sub menu align option
+* Add icons to menu items
+* 'Hide Text' and 'Disable Link' options per menu item
+* Align menu items to the left or right of the menu bar
+* Align sub menus to left or right of parent menu item
 * Supports multiple menus each with their own configuration
 * Responsive, Touch & Retina Ready
 * Tested in all modern browsers
 * Clean code with a low memory footprint
 * Valid CSS3 with no !important or inline CSS styles
-* In depth documenation
+* In depth documentation
 * Basic Support
 
 ####Pro Features:
 
 > * Sticky Menu
+> * Vertical Menus
 > * FontAwesome Icons
 > * Custom Item Styling
+> * Google Fonts
 > * Genericon Icons
 > * Custom Icons (from Media Library)
 > * Roles & Restrictions
-> * Easy installation
 > * Automatic updates
 > * Priority Support
 >
@@ -71,10 +72,10 @@ https://maxmegamenu.com/documentation/faqs/removing-residual-styling/
 == Installation ==
 
 1. Go to the Plugins Menu in WordPress
-1. Search for "Max Menu"
+1. Search for "Max Mega Menu"
 1. Click "Install"
 
-http://maxmegamenu.com/documentation/getting-started/installation/
+https://maxmegamenu.com/documentation/getting-started/installation/
 
 == Screenshots ==
 
@@ -87,6 +88,12 @@ See https://maxmegamenu.com for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.7.4 =
+
+* New Feature: Max Mega Menu widget to display a menu location within a sidebar
+* Fix: Another Suffusion theme conflict (nested UL menus set to visibility: hidden)
+* Improvement: Add :focus states
 
 = 1.7.3.1 =
 

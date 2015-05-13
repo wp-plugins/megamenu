@@ -224,7 +224,7 @@ class Mega_Menu_Widget_Manager {
 
 		foreach( $wp_widget_factory->widgets as $widget ) {
 
-			$disabled_widgets = array('megamenu');
+			$disabled_widgets = array('maxmegamenu');
 
 			$disabled_widgets = apply_filters( "megamenu_incompatible_widgets", $disabled_widgets );
 
