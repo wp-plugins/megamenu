@@ -282,7 +282,7 @@
             var widget_spinner = widget.find(".spinner");
             var expand = widget.find(".widget-expand");
             var contract = widget.find(".widget-contract");
-            var edit = widget.find(".widget-edit");
+            var edit = widget.find(".widget-action");
             var widget_inner = widget.find(".widget-inner");
             var widget_id = widget.attr("data-widget-id");
             var menu_item_id = widget.attr("data-menu-item-id");
@@ -460,6 +460,11 @@
                         widget.data("loaded", true).toggleClass("open");
 
                         widget_spinner.hide();
+
+                        // Init Black Studio TinyMCE
+                        if ( widget.is( '[id*=black-studio-tinymce]' ) ) {
+                            bstw( widget ).deactivate().activate();    
+                        }
                     });
 
                 } else {
@@ -490,13 +495,6 @@ jQuery(function ($) {
         e.preventDefault();
 
         $(this).megaMenu();
-    });
-
-    $('#megamenu_accordion').accordion({
-        heightStyle: "content", 
-        collapsible: true,
-        active: false,
-        animate: 200
     });
 
     $('#menu-to-edit li.menu-item').each(function() {

@@ -57,6 +57,7 @@ final class Mega_Menu {
 		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
 		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 10, 2 );
 		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
+		add_filter( 'black_studio_tinymce_enable_pages' , array($this, 'megamenu_blackstudio_tinymce' ) );
 
 		register_deactivation_hook( __FILE__, array( $this, 'delete_version_number') );
 
@@ -74,6 +75,20 @@ final class Mega_Menu {
 		$mega_menu_style_manager = new Mega_Menu_Style_Manager();
 		$mega_menu_style_manager->setup_actions();
 
+	}
+
+
+	/**
+	 * Black Studio TinyMCE Compatibility.
+	 * Load TinyMCE assets on nav-menus.php page.
+	 *
+	 * @since 1.8
+	 * @param array $pages
+	 * @return array $pages
+	 */
+	public function megamenu_blackstudio_tinymce( $pages ) {
+	    $pages[] = 'nav-menus.php';
+	    return $pages;
 	}
 
 

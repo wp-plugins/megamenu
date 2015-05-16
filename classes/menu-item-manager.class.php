@@ -237,12 +237,12 @@ class Mega_Menu_Menu_Item_Manager {
 
             foreach ( $panel_widgets as $widget ) {
 
-                $return .= '<div class="widget" data-columns="' . esc_attr( $widget['mega_columns'] ) . '" data-widget-id="' . esc_attr( $widget['widget_id'] ) . '">';
+                $return .= '<div class="widget" data-columns="' . esc_attr( $widget['mega_columns'] ) . '" id="' . esc_attr( $widget['widget_id'] ) . '" data-widget-id="' . esc_attr( $widget['widget_id'] ) . '">';
                 $return .= '    <div class="widget-top">';
                 $return .= '        <div class="widget-title-action">';
                 $return .= '            <a class="widget-option widget-contract"></a>';
                 $return .= '            <a class="widget-option widget-expand"></a>';
-                $return .= '            <a class="widget-option widget-edit"></a>';
+                $return .= '            <a class="widget-option widget-action"></a>';
                 $return .= '        </div>';
                 $return .= '        <div class="widget-title">';
                 $return .= '            <h4>' . esc_html( $widget['title'] ) . '</h4>';

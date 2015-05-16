@@ -30,6 +30,7 @@
 	outline: 0;
 }
 
+
 .appearance_page_megamenu_settings .megamenu_left ul li.error {
 	border-left: 3px solid #dd3d36;
 }
@@ -116,7 +117,7 @@
 	text-align: right;
 }
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right a {
-	color: red;
+	color: #a00;
 }
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header {
 	background: white;
@@ -170,6 +171,9 @@
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings tr:first-child td {
 	border-top: 0;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings th {
+	text-align: left;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings td {
 	padding-bottom: 25px;
@@ -307,10 +311,13 @@
 	border-left: 4px solid #7ad03a;
 	background: #fff;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-	padding: 7px 0 7px 15px;
+	padding: 7px 0 7px 7px;
 	margin: 0 0 20px 0;
 }
-
+.appearance_page_megamenu_settings .megamenu_wrap .success .dashicons {
+	color: #7ad03a;
+	margin-right: 7px;
+}
 .appearance_page_megamenu_settings .megamenu_right .menu_settings select.icon_dropdown {
 	margin-right: 0;
 }
@@ -367,4 +374,58 @@
 	box-shadow: inset 0 1px 0 #fff;
 	float: left;
 	cursor: default;
+}
+
+.appearance_page_megamenu_settings .megamenu_right .mega-location {
+	border: 1px solid #ccc;
+	margin-bottom: 15px;
+	border-radius: 3px;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location:hover,
+.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-open {
+	border: 1px solid #AAA;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header {
+	width: 100%;
+	cursor: pointer;
+	background: #f5f5f5;
+	border-radius: 3px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-open .mega-location-header {
+	border-bottom: 1px solid #AAA;
+	border-radius: 3px 3px 0 0;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header:hover,
+.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header {
+	background: #f7f7f7;
+}
+
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header:before {
+	font: 400 16px/1 dashicons;
+	content: "\f343";
+	speak: none;
+	color: #333;
+	padding: 0;
+	margin-right: 6px;
+	display: inline-block;
+	vertical-align: top;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-inner {
+	padding: 0 10px;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-right {
+	float: right;
+	opacity: 0.5;
+	font-style: italic;
+	font-size: 0.9em;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-inner textarea {
+	height: 30px;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header:before {
+	content: "\f347";
 }

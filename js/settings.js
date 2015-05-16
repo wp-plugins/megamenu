@@ -49,6 +49,11 @@ jQuery(function ($) {
         return false;
     });
 
+    $('.mega-location-header').on("click", function() {
+        $(this).parent().toggleClass('mega-closed').toggleClass('mega-open');
+        $(this).siblings('.mega-inner').toggle();
+    });
+
     $('.icon_dropdown').on("change", function() {
         var icon = $("option:selected", $(this)).attr('data-class');
         // clear and add selected dashicon class

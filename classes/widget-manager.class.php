@@ -499,12 +499,12 @@ class Mega_Menu_Widget_Manager {
 
 		$widget_id = $this->add_widget_to_sidebar( $id_base, $next_id );
 
-        $return  = '<div class="widget" data-columns="2" data-widget-id="' . $widget_id . '">';
+        $return  = '<div class="widget" data-columns="2" id="' . $widget_id . '" data-widget-id="' . $widget_id . '">';
         $return .= '    <div class="widget-top">';
         $return .= '        <div class="widget-title-action">';
         $return .= '            <a class="widget-option widget-contract"></a>';
         $return .= '            <a class="widget-option widget-expand"></a>';
-        $return .= '            <a class="widget-option widget-edit"></a>';
+        $return .= '            <a class="widget-option widget-action"></a>';
         $return .= '        </div>';
         $return .= '        <div class="widget-title">';
         $return .= '            <h4>' . $title . '</h4>';

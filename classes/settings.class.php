@@ -49,6 +49,7 @@ class Mega_Menu_Settings{
 
         add_action( 'megamenu_page_theme_editor', array( $this, 'theme_editor_page'));
         add_action( 'megamenu_page_tools', array( $this, 'tools_page'));
+        add_action( 'megamenu_page_menu_settings', array( $this, 'menu_settings_page'));
         add_action( 'megamenu_page_general_settings', array( $this, 'general_settings_page'));
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
@@ -425,8 +426,6 @@ class Mega_Menu_Settings{
                 
                 <h4 class='first'><?php _e("General Settings", "megamenu"); ?></h4>
 
-                <p><?php _e("These settings define the overall behaviour of Max Mega Menu.", "megamenu"); ?> <?php _e("Menu specific settings (e.g, click or hover event, menu theme, transition effect) can be found under", "megamenu"); ?> <a href='<?php echo admin_url( "nav-menus.php"); ?>'><?php _e("Appearance > Menus", "megamenu"); ?></a>.</p>
-
                 <table>
                     <tr>
                         <td class='mega-name'>
@@ -481,6 +480,200 @@ class Mega_Menu_Settings{
     }
 
 
+
+    /**
+     * Content for 'Tools' tab
+     *
+     * @since 1.8
+     */
+    public function menu_settings_page( $settings ) {
+        
+        $locations = get_registered_nav_menus();
+        
+        ?>
+
+        <div class='menu_settings'>
+
+            <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+                <input type="hidden" name="action" value="megamenu_save_settings" />
+                <input type="hidden" name="tab" value="menu_settings" />
+
+                <?php wp_nonce_field( 'megamenu_save_settings' ); ?>
+                
+                <h4 class='first'><?php _e("Menu Locations", "megamenu"); ?></h4>
+
+                <?php
+
+                if ( count ( $locations ) ) {
+
+                    foreach ( $locations as $location => $description ) {
+
+                        $menu_id = $this->get_menu_id_for_location( $location );
+
+                        ?>
+                        <div class='mega-location mega-closed'>
+                            <div class='mega-location-header'>
+
+                                <?php echo $description ?>
+
+                                <div class='mega-location-right'>
+                                    <?php
+                                        if ( $menu_id ) {
+                                            echo __("Menu", "megamenu") . ": " . $this->get_menu_name_for_location( $location );
+                                        } else {
+                                            echo __("Menu", "megamenu") . ": " . "<a href='" . admin_url('nav-menus.php?action=locations') . "'>assign menu</a>";
+                                        }
+                                    ?>
+                                </div>
+
+                            </div>
+
+                            <div class='mega-inner' style='display: none'>
+                                <table>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("Enable Max Mega Menu", "megamenu") ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <input type='checkbox' name='settings[<?php echo $location ?>][enabled]' value='1' <?php checked( isset( $settings[$location]['enabled'] ) ); ?> />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("Event", "megamenu") ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <select name='settings[<?php echo $location ?>][event]'>
+                                                <option value='hover' <?php selected( isset( $settings[$location]['event'] ) && $settings[$location]['event'] == 'hover'); ?>><?php _e("Hover", "megamenu"); ?></option>
+                                                <option value='click' <?php selected( isset( $settings[$location]['event'] ) && $settings[$location]['event'] == 'click'); ?>><?php _e("Click", "megamenu"); ?></option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("Sub Menu Effect", "megamenu") ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <select name='settings[<?php echo $location ?>][effect]'>
+                                            <?php 
+
+                                                $selected = isset( $settings[$location]['effect'] ) ? $settings[$location]['effect'] : 'disabled';
+
+                                                $options = apply_filters("megamenu_effects", array(
+                                                    "disabled" => array(
+                                                        'label' => __("None", "megamenu"),
+                                                        'selected' => $selected == 'disabled',
+                                                    ),
+                                                    "fade" => array(
+                                                        'label' => __("Fade", "megamenu"),
+                                                        'selected' => $selected == 'fade',
+                                                    ),
+                                                    "slide" => array(
+                                                        'label' => __("Slide", "megamenu"),
+                                                        'selected' => $selected == 'slide',
+                                                    )
+                                                ), $selected );
+
+                                                foreach ( $options as $key => $value ) {
+                                                    ?><option value='<?php echo $key ?>' <?php selected( $value['selected'] ); ?>><?php echo $value['label'] ?></option><?php
+                                                }
+
+                                            ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("Menu Theme", "megamenu"); ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <select name='settings[<?php echo $location ?>][theme]'>
+                                                <?php 
+                                                    $style_manager = new Mega_Menu_Style_Manager();
+                                                    $themes = $style_manager->get_themes();
+
+                                                    foreach ( $themes as $key => $theme ) {
+                                                        echo "<option value='{$key}' " . selected( $settings[$location]['theme'], $key ) . ">{$theme['title']}</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <?php do_action( 'megamenu_settings_table', $location, $settings ); ?>
+
+                                </table>
+
+                                <h4><?php _e("Menu Display", "megamenu"); ?></h4>
+                                <table>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("PHP Function", "megamenu"); ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <textarea>&lt;?php wp_nav_menu( array( 'location' => '<?php echo $location ?>' ) ); ?&gt;</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("Shortcode", "megamenu"); ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <textarea>[maxmegamenu location=<?php echo $location ?>]</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class='mega-name'>
+                                            <?php _e("Widget", "megamenu"); ?>
+                                        </td>
+                                        <td class='mega-value'>
+                                            <?php _e("Add the 'Max Mega Menu' widget to a sidebar", "megamenu") ?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+
+                submit_button();
+
+                ?>
+            </form>
+        </div>
+
+        <?php
+    }
+
+    /**
+     * Returns the menu ID for a specified menu location, defaults to 0
+     * 
+     * @since 1.8
+     */
+    private function get_menu_id_for_location( $location ) {
+        
+        $locations = get_nav_menu_locations();
+
+        $id = isset( $locations[ $location ] ) ? $locations[ $location ] : 0;
+
+        return $id;
+
+    }
+
+    private function get_menu_name_for_location( $location ) {
+
+        $id = $this->get_menu_id_for_location( $location );
+
+        $menus = wp_get_nav_menus();
+        foreach ($menus as $menu) {
+            if ($menu->term_id == $id) {
+                return $menu->name;
+            }
+        }
+
+        return false;
+    }
 
     /**
      * Content for 'Tools' tab
@@ -622,8 +815,9 @@ class Mega_Menu_Settings{
 
                         $tabs = apply_filters("megamenu_menu_tabs", array(
                             'general_settings' => __("General Settings", "megamenu"),
-                            'tools' => __("Tools", "megamenu"),
-                            'theme_editor' => __("Theme Editor", "megamenu")
+                            'menu_settings' => __("Menu Settings", "megamenu"),
+                            'theme_editor' => __("Menu Themes", "megamenu"),
+                            'tools' => __("Tools", "megamenu")
                         ));
 
                         foreach ( $tabs as $key => $title ) {
@@ -693,32 +887,31 @@ class Mega_Menu_Settings{
         }
 
         if ( isset( $_GET['regenerate_css'] ) && $_GET['regenerate_css'] == 'true' ) {
-            echo "<p class='success'>" . __("CSS cache cleared and CSS regenerated", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("CSS cache cleared and CSS regenerated", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['delete_data'] ) && $_GET['delete_data'] == 'true' ) {
-            echo "<p class='success'>" . __("All plugin data removed", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("All plugin data removed", "megamenu") . "</p>";
         }
 
-
         if ( isset( $_GET['deleted'] ) && $_GET['deleted'] == 'true' ) {
-            echo "<p class='success'>" . __("Theme Deleted", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("Theme Deleted", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['duplicated'] ) ) {
-            echo "<p class='success'>" . __("Theme Duplicated", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("Theme Duplicated", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['saved'] ) ) {
-            echo "<p class='success'>" . __("Changes Saved", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("Changes Saved", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['reverted'] ) ) {
-            echo "<p class='success'>" . __("Theme Reverted", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("Theme Reverted", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['created'] ) ) {
-            echo "<p class='success'>" . __("New Theme Created", "megamenu") . "</p>";
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("New Theme Created", "megamenu") . "</p>";
         }
 
         do_action("megamenu_print_messages");
@@ -817,7 +1010,6 @@ class Mega_Menu_Settings{
                 <a href='<?php echo $duplicate_url ?>'><?php _e("duplicate this theme", "megamenu"); ?></a>
             </div>
             
-
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                 <input type="hidden" name="theme_id" value="<?php echo $this->id; ?>" />
                 <input type="hidden" name="action" value="megamenu_save_theme" />
@@ -2132,8 +2324,8 @@ class Mega_Menu_Settings{
                         <?php endif; ?>
                     </div>
                 </div>
-
-            </div>
+            </form>
+        </div>
 
         <?php
 
