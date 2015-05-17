@@ -246,7 +246,6 @@ class Mega_Menu_Menu_Item_Manager {
                 $return .= '        </div>';
                 $return .= '        <div class="widget-title">';
                 $return .= '            <h4>' . esc_html( $widget['title'] ) . '</h4>';
-                $return .= '            <span class="spinner" style="display: none;"></span>';
                 $return .= '        </div>';
                 $return .= '    </div>';
                 $return .= '    <div class="widget-inner"></div>';
