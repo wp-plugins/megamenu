@@ -604,7 +604,7 @@ class Mega_Menu_Settings{
 
                                 </table>
 
-                                <h4><?php _e("Menu Display", "megamenu"); ?></h4>
+                                <h4><?php _e("Menu Display Options", "megamenu"); ?></h4>
                                 <table>
                                     <tr>
                                         <td class='mega-name'>
