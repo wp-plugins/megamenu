@@ -42,9 +42,16 @@ class Mega_Menu_Nav_Menus {
 
         add_action( 'admin_init', array( $this, 'register_nav_meta_box' ), 9 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_menu_page_scripts' ) );
-        add_action( 'megamenu_save_settings', array($this, 'save') );
 
         add_filter( 'hidden_meta_boxes', array( $this, 'show_mega_menu_metabox' ) );
+
+        if ( function_exists( 'siteorigin_panels_admin_enqueue_scripts' ) ) {
+            //add_action( 'admin_print_scripts-nav-menus.php', 'siteorigin_panels_admin_enqueue_scripts' );
+        }
+
+        if ( function_exists( 'siteorigin_panels_admin_enqueue_styles' ) ) {
+            //add_action( 'admin_print_styles-nav-menus.php', 'siteorigin_panels_admin_enqueue_styles' );
+        }
 
     }
 
