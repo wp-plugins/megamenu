@@ -62,7 +62,7 @@
 
                     var title = $("<div />").addClass("mm_title").html(panel.settings.menu_item_title);
 
-                    var saving = $("<div class='mm_saving '><div class='spinner'></div><div class='text'>" + megamenu.saving + "</div></div>");
+                    var saving = $("<div class='mm_saving '>" + megamenu.saving + "</div>");
 
                     header_container.append(title).append(saving);
 
@@ -268,18 +268,12 @@
         }
 
         var end_saving = function() {
-
-            $('.mm_saving').addClass("saved");
-
-            $('.mm_saving').delay(500).fadeOut('fast', function() {
-                $('.mm_saving').removeClass("saved");
-            });
-
+            $('.mm_saving').fadeOut('fast');
         }
 
         var add_events_to_widget = function (widget) {
 
-            var widget_spinner = widget.find(".spinner");
+            var widget_title = widget.find(".widget-title h4");
             var expand = widget.find(".widget-expand");
             var contract = widget.find(".widget-contract");
             var edit = widget.find(".widget-action");
@@ -405,16 +399,17 @@
 
                 if (! widget.hasClass("open") && ! widget.data("loaded")) {
 
-                    widget_spinner.show();
+                    widget_title.addClass('loading');
 
                     // retrieve the widget settings form
                     $.post(ajaxurl, {
                         action: "mm_edit_widget",
                         widget_id: widget_id,
                         _wpnonce: megamenu.nonce
-                    }, function (form) {
+                    }, function (response) {
 
-                        var $form = $(form);
+                        var $response = $(response);
+                        var $form = $response.find('form');
 
                         // bind delete button action
                         $(".delete", $form).on("click", function (e) {
@@ -455,16 +450,17 @@
 
                         });
 
-                        widget_inner.html($form);
+                        widget_inner.html($response);
 
                         widget.data("loaded", true).toggleClass("open");
 
-                        widget_spinner.hide();
+                        widget_title.removeClass('loading');
 
                         // Init Black Studio TinyMCE
                         if ( widget.is( '[id*=black-studio-tinymce]' ) ) {
                             bstw( widget ).deactivate().activate();    
                         }
+
                     });
 
                 } else {
