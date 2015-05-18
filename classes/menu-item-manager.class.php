@@ -133,6 +133,8 @@ class Mega_Menu_Menu_Item_Manager {
 
         }
 
+        if ( ob_get_contents() ) ob_clean(); // remove any warnings or output from other plugins which may corrupt the response
+
         wp_send_json_success();
 
     }
@@ -153,6 +155,8 @@ class Mega_Menu_Menu_Item_Manager {
 		$tabs = array();
 
         $tabs = apply_filters( "megamenu_tabs", $tabs, $this->menu_item_id, $this->menu_id, $this->menu_item_depth, $this->menu_item_meta );
+
+        if ( ob_get_contents() ) ob_clean(); // remove any warnings or output from other plugins which may corrupt the response
 
 		wp_send_json_success( json_encode( $tabs ) );
 	}
