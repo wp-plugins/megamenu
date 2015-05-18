@@ -91,6 +91,8 @@ class Mega_Menu_Widget_Manager {
 
         $widget_id = sanitize_text_field( $_POST['widget_id'] );
 
+        if ( ob_get_contents() ) ob_clean(); // remove any warnings or output from other plugins which may corrupt the response
+
         wp_die( trim( $this->show_widget_form( $widget_id ) ) );
 
     }
@@ -111,9 +113,9 @@ class Mega_Menu_Widget_Manager {
         $saved = $this->save_widget( $id_base );
 
         if ( $saved ) {
-            wp_send_json_success( sprintf( __("Saved %s", "megamenu"), $id_base ) );
+            $this->send_json_success( sprintf( __("Saved %s", "megamenu"), $id_base ) );
         } else {
-            wp_send_json_error( sprintf( __("Failed to save %s", "megamenu"), $id_base ) );
+            $this->send_json_error( sprintf( __("Failed to save %s", "megamenu"), $id_base ) );
         }
 
     }
@@ -134,9 +136,9 @@ class Mega_Menu_Widget_Manager {
         $updated = $this->update_columns( $widget_id, $columns );
 
         if ( $updated ) {
-            wp_send_json_success( sprintf( __( "Updated %s (new columns: %d)", "megamenu"), $widget_id, $columns ) );
+            $this->send_json_success( sprintf( __( "Updated %s (new columns: %d)", "megamenu"), $widget_id, $columns ) );
         } else {
-            wp_send_json_error( sprintf( __( "Failed to update %s", "megamenu"), $widget_id ) );
+            $this->send_json_error( sprintf( __( "Failed to update %s", "megamenu"), $widget_id ) );
         }
 
     }
@@ -158,9 +160,9 @@ class Mega_Menu_Widget_Manager {
         $added = $this->add_widget( $id_base, $menu_item_id, $title );
 
         if ( $added ) {
-            wp_send_json_success( $added );
+            $this->send_json_success( $added );
         } else {
-            wp_send_json_error( sprintf( __("Failed to add %s to %d", "megamenu"), $id_base, $menu_item_id ) );
+            $this->send_json_error( sprintf( __("Failed to add %s to %d", "megamenu"), $id_base, $menu_item_id ) );
         }
 
     }
@@ -180,9 +182,9 @@ class Mega_Menu_Widget_Manager {
         $deleted = $this->delete_widget( $widget_id );
 
         if ( $deleted ) {
-            wp_send_json_success( sprintf( __( "Deleted %s", "megamenu"), $widget_id ) );
+            $this->send_json_success( sprintf( __( "Deleted %s", "megamenu"), $widget_id ) );
         } else {
-            wp_send_json_error( sprintf( __( "Failed to delete %s", "megamenu"), $widget_id ) );
+            $this->send_json_error( sprintf( __( "Failed to delete %s", "megamenu"), $widget_id ) );
         }
 
     }
@@ -204,9 +206,9 @@ class Mega_Menu_Widget_Manager {
         $moved = $this->move_widget( $widget_to_move, $position, $menu_item_id );
 
         if ( $moved ) {
-            wp_send_json_success( sprintf( __( "Moved %s to %d (%s)", "megamenu"), $widget_to_move, $position, json_encode($moved) ) );
+            $this->send_json_success( sprintf( __( "Moved %s to %d (%s)", "megamenu"), $widget_to_move, $position, json_encode($moved) ) );
         } else {
-            wp_send_json_error( sprintf( __( "Failed to move %s to %d", "megamenu"), $widget_to_move, $position ) );
+            $this->send_json_error( sprintf( __( "Failed to move %s to %d", "megamenu"), $widget_to_move, $position ) );
         }
 
     }
@@ -772,6 +774,36 @@ class Mega_Menu_Widget_Manager {
             widget_output_cache_bump();
         }
 
+    }
+
+
+    /**
+     * Send JSON response.
+     *
+     * Remove any warnings or output from other plugins which may corrupt the response
+     *
+     * @param string $json
+     * @since 1.8
+     */
+    public function send_json_success( $json ) {
+        if ( ob_get_contents() ) ob_clean();
+
+        wp_send_json_success( $json );
+    }
+
+
+    /**
+     * Send JSON response.
+     *
+     * Remove any warnings or output from other plugins which may corrupt the response
+     *
+     * @param string $json
+     * @since 1.8
+     */
+    public function send_json_error( $json ) {
+        if ( ob_get_contents() ) ob_clean();
+
+        wp_send_json_error( $json );
     }
 
 }
