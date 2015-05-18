@@ -631,7 +631,6 @@
 
 
 .mm_launch {
-	font-family: helvetica;
 	margin-left: 10px;
 	font-size: 0.8em;
 	cursor: pointer;
@@ -643,10 +642,7 @@
 	background: #2ea2cc;
 	border-color: #0074a2;
 	border-width: 1px;
-	border-style: solid;
-	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
-	box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
-	padding: 0 3px;
+	padding: 0 5px;
 	border-radius: 3px;
 	opacity: 0;
 	-webkit-transition: all 0.3s ease;
@@ -659,7 +655,7 @@
 .mm_launch:before {
 	font-family: dashicons;
 	content: "\f111";
-	font-size: 12px;
+	font-size: 10px;
 	margin-right: 2px;
 	display: inline-block;
 	vertical-align: bottom;
@@ -675,6 +671,7 @@
 }
 #menu-settings-column .mega_menu_meta_box .inside {
 	margin: 0;
+	color: #666;
 }
 #menu-settings-column .mega_menu_meta_box div table {
 	width: 100%;
@@ -686,16 +683,18 @@
 #menu-settings-column .mega_menu_meta_box div table th,
 #menu-settings-column .mega_menu_meta_box div table td {
 	padding: 5px 0;
+	text-align: left;
 }
 #menu-settings-column .mega_menu_meta_box div table .dashicons-no:before {
 	font-size: 16px;
 }
-.mega_menu_meta_box div table .status {
+#menu-settings-column .mega_menu_meta_box div table th.status,
+#menu-settings-column .mega_menu_meta_box div table td.status {
 	text-align: right;
 }
 
 .menu-item-handle .item-title {
-	margin-right: 8em;
+	margin-right: 0;
 }
 
 .mm_saving {
