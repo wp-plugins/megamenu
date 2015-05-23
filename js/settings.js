@@ -51,7 +51,7 @@ jQuery(function ($) {
 
     $('.mega-location-header').on("click", function() {
         $(this).parent().toggleClass('mega-closed').toggleClass('mega-open');
-        $(this).siblings('.mega-inner').toggle();
+        $(this).siblings('.mega-inner').slideToggle();
     });
 
     $('.icon_dropdown').on("change", function() {
