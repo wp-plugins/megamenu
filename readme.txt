@@ -89,6 +89,16 @@ See https://maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.8 =
+
+* New Feature: Menu Theme Import/Export
+* New Feature: Create extra menu locations for use in shortcodes & the MMM widget
+* Change: Menu Settings moved from nav-menus.php to separate Menu Settings page
+* Fix: Compatibility with Black Studio TinyMCE widget
+* Fix: Save spinners not appearing in WordPress 4.2
+* Fix: Empty mega menu settings lightbox (caused by conflicting plugins outputting PHP warnings)
+* Fix: Incompatibility with Ultimate Member
+
 = 1.7.4 =
 
 * New Feature: Max Mega Menu widget to display a menu location within a sidebar

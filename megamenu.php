@@ -4,7 +4,7 @@
  * Plugin Name: Max Mega Menu
  * Plugin URI:  https://maxmegamenu.com
  * Description: Mega Menu for WordPress.
- * Version:     1.7.4
+ * Version:     1.8-dev
  * Author:      Tom Hemsley
  * Author URI:  https://maxmegamenu.com
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.7.4';
+	public $version = '1.8-dev';
 
 
 	/**
@@ -45,6 +45,7 @@ final class Mega_Menu {
 	 * @since 1.0
 	 */
 	public function __construct() {
+		
 		$this->define_constants();
 		$this->includes();
 
@@ -52,6 +53,7 @@ final class Mega_Menu {
 		add_action( 'admin_init', array( $this, 'install_upgrade_check' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
         add_action( 'widgets_init', array( $this, 'register_widget' ) );
+		add_action( 'after_setup_theme', array( $this, 'register_nav_menus' ) );
 
 		add_filter( 'wp_nav_menu_args', array( $this, 'modify_nav_menu_args' ), 9999 );
 		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
@@ -62,8 +64,9 @@ final class Mega_Menu {
 		register_deactivation_hook( __FILE__, array( $this, 'delete_version_number') );
 
 		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
+		add_shortcode( 'maxmegamenu', array( $this, 'register_shortcode' ) );
 		
-		if ( is_admin() && current_user_can('edit_theme_options') ) {
+		if ( is_admin() ) {
 
 			new Mega_Menu_Nav_Menus();
 			new Mega_Menu_Widget_Manager();
@@ -75,6 +78,27 @@ final class Mega_Menu {
 		$mega_menu_style_manager = new Mega_Menu_Style_Manager();
 		$mega_menu_style_manager->setup_actions();
 
+	}
+
+
+	/**
+	 * Register menu locations created within Max Mega Menu.
+	 *
+	 * @since 1.8
+	 */
+	public function register_nav_menus() {
+
+		$locations = get_option('megamenu_locations');
+
+		if ( is_array( $locations ) && count( $locations ) ) {
+
+			foreach ( $locations as $key => $val ) {
+			
+			  register_nav_menu( $key, $val );
+
+			}
+
+		}
 	}
 
 
@@ -155,10 +179,10 @@ final class Mega_Menu {
         }
 
         if ( has_nav_menu( $atts['location'] ) ) {
-		     return wp_nav_menu( array( 'theme_location' => $atts['location'], 'echo' => false ) );
+		    return wp_nav_menu( array( 'theme_location' => $atts['location'], 'echo' => false ) );
 		}
 
-        return "<!-- menu not found [maxmenu location={$atts['location']}] -->";
+        return "<!-- menu not found [maxmegamenu location={$atts['location']}] -->";
 
     }
 
@@ -547,3 +571,33 @@ final class Mega_Menu {
 add_action( 'plugins_loaded', array( 'Mega_Menu', 'init' ), 10 );
 
 endif;
+
+
+if ( ! function_exists( 'max_mega_menu_is_enabled' ) ) {
+
+	/**
+	 * Determines if Max Mega Menu has been enabled for a given menu location.
+	 *
+	 * Usage:
+	 *
+	 * Max Mega Menu is enabled: 
+	 * function_exists( 'max_mega_menu_is_enabled' )
+	 *
+	 * Max Mega Menu has been enabled for a theme location:
+	 * function_exists( 'max_mega_menu_is_enabled' ) && max_mega_menu_is_enabled( $location )
+	 *
+	 * @since 1.8
+	 * @param string $location - theme location identifier
+	 */
+	function max_mega_menu_is_enabled( $location = false ) {
+
+		if ( ! $location ) {
+			return true; // the plugin is enabled
+		}
+
+		// if a location has been passed, check to see if MMM has been enabled for the location
+		$settings = get_option( 'megamenu_settings' );
+
+		return is_array( $settings ) && isset( $settings[ $location ]['enabled'] ) && $settings[ $location ]['enabled'] == true;
+	}
+}

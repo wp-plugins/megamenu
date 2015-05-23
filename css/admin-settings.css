@@ -242,6 +242,14 @@
 	width: 100px;
 }
 
+.appearance_page_megamenu_settings .megamenu_right textarea {
+	width: 100%;
+	height: 150px;
+	font-family: monospace;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table textarea {
 	width: 100%;
 	height: 150px;
@@ -267,6 +275,10 @@
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
     font-size: 0.9em;
 }
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table .wide input[type=text] {
+	width: 300px;
+}
+
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=submit] {
 	width: auto;
 }
@@ -377,55 +389,78 @@
 }
 
 .appearance_page_megamenu_settings .megamenu_right .mega-location {
-	border: 1px solid #ccc;
+	border: 1px solid #e5e5e5;
+  	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+  	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 	margin-bottom: 15px;
-	border-radius: 3px;
 }
 .appearance_page_megamenu_settings .megamenu_right .mega-location:hover,
 .appearance_page_megamenu_settings .megamenu_right .mega-location.mega-open {
-	border: 1px solid #AAA;
+	border-color: #ccc;
+	opacity: 1;
 }
 .appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header {
 	width: 100%;
 	cursor: pointer;
-	background: #f5f5f5;
-	border-radius: 3px;
-	padding: 10px;
+	line-height: 40px;
+	padding: 0 15px;
 	box-sizing: border-box;
+	font-weight: bold;
+	background: #f7f7f7;
+	color: #777;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header:hover {
+	background: #f1f1f1;
+	color: #444;
 }
 .appearance_page_megamenu_settings .megamenu_right .mega-location.mega-open .mega-location-header {
-	border-bottom: 1px solid #AAA;
-	border-radius: 3px 3px 0 0;
+	background: #f1f1f1;
+	color: #444;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header:hover,
-.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header {
-	background: #f7f7f7;
-}
-
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header:before {
-	font: 400 16px/1 dashicons;
-	content: "\f343";
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-status:before,
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-assigned-menu:before,
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header-indicator:after {
+	font: 400 20px/40px dashicons;
+	content: "\f142";
 	speak: none;
-	color: #333;
 	padding: 0;
-	margin-right: 6px;
 	display: inline-block;
 	vertical-align: top;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header-indicator {
+	float: right;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header-indicator:after {
+	content: "\f140";
+}
+.appearance_page_megamenu_settings .mega-delete {
+	margin-bottom: 15px;
+}
 .appearance_page_megamenu_settings .megamenu_right .mega-location .mega-inner {
 	padding: 0 10px;
+	border-top: 1px solid #ddd;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-right {
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-assigned-menu:before {
+	content: "\f333";
+	font-size: 16px;
+	margin-right: 2px;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-status:before {
+	content: "\f147";
+	font-size: 16px;
+	margin-right: 2px;
+}
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-status,
+.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-assigned-menu {
 	float: right;
-	opacity: 0.5;
-	font-style: italic;
-	font-size: 0.9em;
+	text-transform: uppercase;
+	font-weight: bold;
+	opacity: 0.7;
+	margin-right: 15px;
+	font-size: 0.8em;
 }
 .appearance_page_megamenu_settings .megamenu_right .mega-location .mega-inner textarea {
 	height: 30px;
-}
-.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header:before {
-	content: "\f347";
 }
