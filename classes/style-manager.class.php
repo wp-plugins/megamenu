@@ -756,7 +756,7 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_css_output_method() {
 
-        return isset( $this->settings['css'] ) ? $this->settings['css'] : 'ajax';
+        return isset( $this->settings['css'] ) ? $this->settings['css'] : 'fs';
 
     }
 
