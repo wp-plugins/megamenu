@@ -150,22 +150,6 @@ class Mega_Menu_Nav_Menus {
 
         $menu_id = $this->get_selected_menu_id();
 
-        do_action("megamenu_save_settings");
-
-        $this->print_enable_megamenu_options( $menu_id );
-
-    }
-
-
-
-    /**
-     * Print the custom Meta Box settings
-     *
-     * @param int $menu_id
-     * @since 1.0
-     */
-    public function print_enable_megamenu_options( $menu_id ) {
-
         $tagged_menu_locations = $this->get_tagged_theme_locations_for_menu_id( $menu_id );
         $theme_locations = get_registered_nav_menus();
 
