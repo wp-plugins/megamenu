@@ -289,6 +289,7 @@
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table {
 	width: 100%;
+	border-collapse: collapse;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table label span.mega-short-desc {
 	font-size: 0.8em;
