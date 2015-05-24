@@ -255,9 +255,10 @@
                         content_container.append(content);
                     });
 
-                    $('#cboxLoadedContent').trigger('megamenu_content_loaded');
                     $('#cboxLoadedContent').addClass('depth-' + panel.settings.menu_item_depth).append(header_container).append(tabs_container).append(content_container);
                     $('#cboxLoadedContent').css({'width': '100%', 'height': '100%', 'display':'block'});
+                    $('#cboxLoadedContent').trigger('megamenu_content_loaded');
+
                 }
             });
 
