@@ -6,12 +6,6 @@
 jQuery(function ($) {
     "use strict";
 
-    $("input[type=range]").on('input change', function() {
-        console.log($(this).val());
-        $(this).next('.pixel_value').html($(this).val() + 'px');
-    });
-
-
     if ($('#codemirror').length) {
         var codeMirror = CodeMirror.fromTextArea(document.getElementById('codemirror'), {
             tabMode: 'indent',
@@ -28,7 +22,7 @@ jQuery(function ($) {
         showInput: true,
         showAlpha: true,
         clickoutFiresChange: true,
-        change: function(color) { 
+        change: function(color) {
             if (color.getAlpha() === 0) {
                 $(this).siblings('div.chosen-color').html('transparent');
             } else {
@@ -43,15 +37,17 @@ jQuery(function ($) {
 
     $('#theme_selector').bind('change', function () {
         var url = $(this).val();
-        if (url) { 
-            window.location = url; 
+        if (url) {
+            window.location = url;
         }
         return false;
     });
 
-    $('.mega-location-header').on("click", function() {
-        $(this).parent().toggleClass('mega-closed').toggleClass('mega-open');
-        $(this).siblings('.mega-inner').slideToggle();
+    $('.mega-location-header').on("click", function(e) {
+        if (e.target.nodeName.toLowerCase() != 'a') {
+            $(this).parent().toggleClass('mega-closed').toggleClass('mega-open');
+            $(this).siblings('.mega-inner').slideToggle();
+        }
     });
 
     $('.icon_dropdown').on("change", function() {

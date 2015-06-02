@@ -15,6 +15,7 @@
 .appearance_page_megamenu_settings .megamenu_left ul li a:hover,
 .appearance_page_megamenu_settings .megamenu_left ul li a.active {
     border-left: 2px solid #0074a2;
+    color: #0074a2;
 }
 .appearance_page_megamenu_settings *:focus {
 	box-shadow: 0 0 0;
@@ -111,7 +112,7 @@
 }
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit p {
 	margin: 0;
-	padding: 0;	
+	padding: 0;
 }
 .appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right {
 	text-align: right;
@@ -219,7 +220,6 @@
 }
 
 .appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-description {
-	text-indent: 2px;
 	margin-top: 5px;
 }
 

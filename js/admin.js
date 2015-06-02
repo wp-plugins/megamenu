@@ -38,9 +38,9 @@
             $.ajax({
                 type: 'POST',
                 url: ajaxurl,
-                data: { 
-                    action: "mm_get_lightbox_html", 
-                    _wpnonce: megamenu.nonce, 
+                data: {
+                    action: "mm_get_lightbox_html",
+                    _wpnonce: megamenu.nonce,
                     menu_item_id: panel.settings.menu_item_id,
                     menu_item_depth: panel.settings.menu_item_depth,
                     menu_id: panel.settings.menu_id
@@ -55,7 +55,7 @@
                     $('#cboxLoadingGraphic').hide();
                     $('#cboxLoadingOverlay').remove();
                 },
-                success: function(response) { 
+                success: function(response) {
                     var json = $.parseJSON(response.data);
 
                     var header_container = $("<div />").addClass("mm_header_container");
@@ -93,7 +93,7 @@
                         });
 
                         if (idx == 'menu_icon') {
-                        
+
                             var form = content.find('form');
 
                             // bind save button action
@@ -118,7 +118,7 @@
                         }
 
                         if (idx == 'general_settings') {
-                        
+
                         }
 
                         if (idx == 'mega_menu') {
@@ -245,7 +245,7 @@
                             content.show();
                         });
 
-                        if ( ( panel.settings.menu_item_depth == 0 && idx == 'mega_menu' ) || 
+                        if ( ( panel.settings.menu_item_depth == 0 && idx == 'mega_menu' ) ||
                              ( panel.settings.menu_item_depth > 0 && idx == 'general_settings' ) ) {
                             content.show();
                             tab.addClass('active');
@@ -459,7 +459,7 @@
 
                         // Init Black Studio TinyMCE
                         if ( widget.is( '[id*=black-studio-tinymce]' ) ) {
-                            bstw( widget ).deactivate().activate();    
+                            bstw( widget ).deactivate().activate();
                         }
 
                     });
@@ -492,6 +492,13 @@ jQuery(function ($) {
         e.preventDefault();
 
         $(this).megaMenu();
+    });
+
+    $('#megamenu_accordion').accordion({
+        heightStyle: "content",
+        collapsible: true,
+        active: false,
+        animate: 200
     });
 
     $('#menu-to-edit li.menu-item').each(function() {

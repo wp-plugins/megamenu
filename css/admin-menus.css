@@ -158,9 +158,9 @@
 	z-index: 999;
 }
 
-#cboxContent .mega_menu .widget:hover .widget-top, 
+#cboxContent .mega_menu .widget:hover .widget-top,
 #cboxContent .mega_menu .widget:hover .widget-inner,
-#cboxContent .mega_menu .widget.open .widget-top, 
+#cboxContent .mega_menu .widget.open .widget-top,
 #cboxContent .mega_menu .widget.open .widget-inner {
 	border: 1px solid #999;
 }
@@ -669,28 +669,102 @@
 	margin-right: 1px;
 	height: auto;
 }
-#menu-settings-column .mega_menu_meta_box .inside {
-	margin: 0;
-	color: #666;
+
+.mega_menu_meta_box div#megamenu_accordion h3 {
+    padding: 0 0 10px 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    float: left;
+    width: 100%;
+    color: #888;
 }
-#menu-settings-column .mega_menu_meta_box div table {
+
+.mega_menu_meta_box div#megamenu_accordion h3.ui-state-active,
+.mega_menu_meta_box div#megamenu_accordion h3:hover {
+	color: #333;
+}
+
+.mega_menu_meta_box div#megamenu_accordion h3:hover::before {
+	color: black;
+}
+
+.mega_menu_meta_box div#megamenu_accordion th::before,
+.mega_menu_meta_box div#megamenu_accordion h3::before {
+	right: 0;
+	content: '\f139';
+	border: 0;
+	background: 0 0;
+	font: 400 20px/1 dashicons;
+	speak: none;
+	float: left;
+	padding: 0;
+	text-indent: 0;
+	text-align: center;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-decoration: none!important;
+	margin-right: 6px;
+}
+
+.mega_menu_meta_box div#megamenu_accordion h3.ui-state-active::before {
+	content: '\f140';
+}
+
+.mega_menu_meta_box div.accordion_content {
+	padding-bottom: 20px;
+	float: left;
 	width: 100%;
-	margin-bottom: 10px;
 }
-#menu-settings-column .mega_menu_meta_box div table th {
-	border-bottom: 1px solid #dfdfdf;
+.mega_menu_meta_box div table {
+	font-size: 0.9em;
+	width: 100%;
+	margin-bottom: 5px;
 }
-#menu-settings-column .mega_menu_meta_box div table th,
-#menu-settings-column .mega_menu_meta_box div table td {
-	padding: 5px 0;
-	text-align: left;
+
+.mega_menu_meta_box div table select {
+	font-size: 0.9em;
+	max-width: 120px;
 }
-#menu-settings-column .mega_menu_meta_box div table .dashicons-no:before {
-	font-size: 16px;
+
+.mega_menu_meta_box div table tr {
+	height: 29px;
+	vertical-align: middle;
 }
-#menu-settings-column .mega_menu_meta_box div table th.status,
-#menu-settings-column .mega_menu_meta_box div table td.status {
+
+.mega_menu_meta_box div table th {
+	border-bottom: 1px solid #ccc;
+	font-size: 1.1em;
+}
+
+.mega_menu_meta_box div table td:nth-child(1) {
+	padding-left: 5px;
+}
+
+.mega_menu_meta_box div table td:nth-child(2) {
 	text-align: right;
+	min-width: 150px;
+}
+
+.mega_menu_meta_box th::before {
+	content: '\f100';
+}
+
+.mega_menu_meta_box th.settings::before {
+	content: '\f111';
+}
+
+.mega_menu_meta_box p.submit {
+	float: left;
+	text-align: right;
+	width: 100%;
+	margin: 0 0 15px 0;
+	padding: 0;
+}
+
+#nav-menu-meta .mega_menu_meta_box .accordion-section-content  {
+	padding: 0 10px;
 }
 
 .menu-item-handle .item-title {
