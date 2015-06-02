@@ -93,11 +93,12 @@ See https://maxmegamenu.com for more screenshots
 
 * New Feature: Menu Theme Import/Export
 * New Feature: Create extra menu locations for use in shortcodes & the MMM widget
-* Change: Menu Settings moved from nav-menus.php to separate Menu Settings page
 * Fix: Compatibility with Black Studio TinyMCE widget
 * Fix: Save spinners not appearing in WordPress 4.2
 * Fix: Empty mega menu settings lightbox (caused by conflicting plugins outputting PHP warnings)
 * Fix: Incompatibility with Ultimate Member
+* Fix: Icon colours in Advada Theme
+* Change: Default CSS Output set to Filesystem
 * Add max_mega_menu_is_enabled function for easier theme integration
 
 = 1.7.4 =

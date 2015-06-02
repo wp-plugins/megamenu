@@ -4,7 +4,7 @@
  * Plugin Name: Max Mega Menu
  * Plugin URI:  https://maxmegamenu.com
  * Description: Mega Menu for WordPress.
- * Version:     1.8-dev
+ * Version:     1.8
  * Author:      Tom Hemsley
  * Author URI:  https://maxmegamenu.com
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.8-dev';
+	public $version = '1.8';
 
 
 	/**
@@ -45,7 +45,7 @@ final class Mega_Menu {
 	 * @since 1.0
 	 */
 	public function __construct() {
-		
+
 		$this->define_constants();
 		$this->includes();
 
@@ -65,7 +65,7 @@ final class Mega_Menu {
 
 		add_shortcode( 'maxmenu', array( $this, 'register_shortcode' ) );
 		add_shortcode( 'maxmegamenu', array( $this, 'register_shortcode' ) );
-		
+
 		if ( is_admin() ) {
 
 			new Mega_Menu_Nav_Menus();
@@ -93,7 +93,7 @@ final class Mega_Menu {
 		if ( is_array( $locations ) && count( $locations ) ) {
 
 			foreach ( $locations as $key => $val ) {
-			
+
 			  register_nav_menu( $key, $val );
 
 			}
@@ -118,7 +118,7 @@ final class Mega_Menu {
 
 	/**
 	 * Detect new or updated installations and run actions accordingly.
-	 * 
+	 *
 	 * @since 1.3
 	 */
 	public function install_upgrade_check() {
@@ -130,7 +130,7 @@ final class Mega_Menu {
 				update_option( "megamenu_version", $this->version );
 
 				do_action( "megamenu_after_update" );
-				
+
 			}
 
 		} else {
@@ -152,7 +152,7 @@ final class Mega_Menu {
 	public function delete_version_number() {
 
 		delete_option( "megamenu_version", $this->version );
-		
+
 	}
 
     /**
@@ -305,7 +305,7 @@ final class Mega_Menu {
 	}
 
 
-	/** 
+	/**
 	 * Add the html for the responsive toggle box to the menu
 	 *
 	 * @param string $nav_menu
@@ -318,7 +318,7 @@ final class Mega_Menu {
 		// make sure we're working with a Mega Menu
 		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
 			return $nav_menu;
-		
+
 		$toggle_id = apply_filters("megamenu_toggle_id", "mega-menu-toggle-{$args->theme_location}", $args->menu, $args->theme_location );
 
 		$toggle_class = 'mega-menu-toggle';
@@ -332,7 +332,7 @@ final class Mega_Menu {
 
 
    	/**
-   	 * Append the widget objects to the menu array before the 
+   	 * Append the widget objects to the menu array before the
    	 * menu is processed by the walker.
    	 *
    	 * @since 1.0
@@ -385,8 +385,8 @@ final class Mega_Menu {
 							'db_id'             => 0, // This menu item does not have any childen
 							'ID'                => $widget['widget_id'],
 							'classes'           => array(
-								"menu-item", 
-								"menu-item-type-widget", 
+								"menu-item",
+								"menu-item-type-widget",
 								"menu-columns-{$widget['mega_columns']}-of-{$item->megamenu_settings['panel_columns']}"
 							)
 						);
@@ -410,7 +410,7 @@ final class Mega_Menu {
 
 	    $items = apply_filters( "megamenu_nav_menu_objects_after", $items, $args );
 
-		return $items;    
+		return $items;
 	}
 
 
@@ -435,7 +435,7 @@ final class Mega_Menu {
 			if ( ! isset( $locations[ $current_theme_location ] ) ) {
 				return $args;
 			}
-			
+
 			$menu_id = $locations[ $current_theme_location ];
 
 			if ( ! $menu_id ) {
@@ -524,9 +524,9 @@ final class Mega_Menu {
 
 	    ?>
 	    <div class="updated">
-	    	<?php 
+	    	<?php
 
-	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings") . "'>" . __( "click here", 'megamenu' ) . "</a>"; 
+	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings") . "'>" . __( "click here", 'megamenu' ) . "</a>";
 
 	    	?>
 	        <p><?php echo sprintf( __( 'Thanks for installing Max Mega Menu! Please %s to get started.', 'megamenu' ), $link); ?></p>
@@ -542,9 +542,9 @@ final class Mega_Menu {
 
 	    ?>
 	    <div class="updated">
-	    	<?php 
+	    	<?php
 
-	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings&tab=tools") . "'>" . __( "regenerate the CSS", 'megamenu' ) . "</a>"; 
+	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings&tab=tools") . "'>" . __( "regenerate the CSS", 'megamenu' ) . "</a>";
 
 	    	?>
 	        <p><?php echo sprintf( __( 'Max Mega Menu has been updated. Please %s to ensure maximum compatibility with the latest version.', 'megamenu' ), $link); ?></p>
@@ -580,7 +580,7 @@ if ( ! function_exists( 'max_mega_menu_is_enabled' ) ) {
 	 *
 	 * Usage:
 	 *
-	 * Max Mega Menu is enabled: 
+	 * Max Mega Menu is enabled:
 	 * function_exists( 'max_mega_menu_is_enabled' )
 	 *
 	 * Max Mega Menu has been enabled for a theme location:
