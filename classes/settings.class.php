@@ -124,7 +124,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_save");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
 
     }
 
@@ -150,12 +150,13 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_add_menu_location");
 
-        wp_redirect( admin_url( 'themes.php?page=megamenu_settings&tab=menu_settings&add_location=true' ) );
+        $this->redirect( admin_url( 'themes.php?page=megamenu_settings&tab=menu_settings&add_location=true' ) );
 
     }
 
+
     /**
-     * Clear the CSS cache.
+     * Delete a menu location.
      *
      * @since 1.8
      */
@@ -174,7 +175,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_delete_menu_location");
 
-        wp_redirect( admin_url( 'themes.php?page=megamenu_settings&tab=menu_settings&delete_location=true' ) );
+        $this->redirect( admin_url( 'themes.php?page=megamenu_settings&tab=menu_settings&delete_location=true' ) );
 
     }
 
@@ -189,7 +190,7 @@ class Mega_Menu_Settings{
 
         do_action( 'megamenu_generate_css' );
 
-        wp_redirect( admin_url( 'themes.php?page=megamenu_settings&tab=tools&regenerate_css=true' ) );
+        $this->redirect( admin_url( 'themes.php?page=megamenu_settings&tab=tools&regenerate_css=true' ) );
 
     }
 
@@ -231,7 +232,7 @@ class Mega_Menu_Settings{
         // delete custom themes
         delete_site_option( "megamenu_themes" );
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&delete_data=true" ) );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&delete_data=true" ) );
 
     }
 
@@ -249,14 +250,24 @@ class Mega_Menu_Settings{
         $existing_settings = get_option( 'megamenu_settings' );
 
         $new_settings = array_merge( (array)$existing_settings, $submitted_settings );
-        
+
         update_option( 'megamenu_settings', $new_settings );
+
+        // update location description
+        if ( isset( $_POST['location'] ) && is_array( $_POST['location'] ) ) {
+
+            $locations = get_option('megamenu_locations');
+
+            $new_locations = array_merge( (array)$locations, $_POST['location'] );
+
+            update_option( 'megamenu_locations', $new_locations );
+        }
 
         do_action("megamenu_after_save_general_settings");
 
         $tab = isset( $_POST['tab'] ) ? $_POST['tab'] : 'general_settings';
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab={$tab}&saved=true" ) );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab={$tab}&saved=true" ) );
 
     }
 
@@ -272,24 +283,32 @@ class Mega_Menu_Settings{
 
         $this->init();
 
-        $json = base64_decode($_POST['data']);
-        $import = json_decode($json, true);
+        $import = json_decode( stripslashes( html_entity_decode( $_POST['data'] ) ), true );
 
-        $saved_themes = get_site_option( "megamenu_themes" );
+        if ( is_array( $import ) ) {
 
-        $next_id = $this->get_next_theme_id();
+            $saved_themes = get_site_option( "megamenu_themes" );
 
-        $import['title'] = $import['title'] . " " . __('(Imported)', 'megamenu');
+            $next_id = $this->get_next_theme_id();
 
-        $new_theme_id = "custom_theme_" . $next_id;
+            $import['title'] = $import['title'] . " " . __('(Imported)', 'megamenu');
 
-        $saved_themes[ $new_theme_id ] = $import;
+            $new_theme_id = "custom_theme_" . $next_id;
 
-        update_site_option( "megamenu_themes", $saved_themes );
+            $saved_themes[ $new_theme_id ] = $import;
 
-        do_action("megamenu_after_theme_import");
+            update_site_option( "megamenu_themes", $saved_themes );
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=true") );
+            do_action("megamenu_after_theme_import");
+
+            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=true") );
+
+        } else {
+
+            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=true") );
+
+        }
+
 
     }
 
@@ -322,14 +341,14 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_duplicate");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&duplicated=true") );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&duplicated=true") );
 
     }
 
 
     /**
      * Delete a theme
-     * 
+     *
      * @since 1.0
      */
     public function delete_theme() {
@@ -340,7 +359,7 @@ class Mega_Menu_Settings{
 
         if ( $this->theme_is_being_used_by_menu( $theme ) ) {
 
-            wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&deleted=false") );
+            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&deleted=false") );
             return;
         }
 
@@ -354,7 +373,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_delete");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme=default&deleted=true") );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme=default&deleted=true") );
 
     }
 
@@ -380,7 +399,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_revert");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&reverted=true") );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&reverted=true") );
 
     }
 
@@ -412,7 +431,20 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_create");
 
-        wp_redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&created=true") );
+        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&created=true") );
+
+    }
+
+
+    /**
+     * Redirect and exit
+     *
+     * @since 1.8
+     */
+    public function redirect( $url ) {
+
+        wp_redirect( $url );
+        exit;
 
     }
 
@@ -423,7 +455,7 @@ class Mega_Menu_Settings{
      * @since 1.0
      */
     public function get_next_menu_location_id() {
-        
+
         $last_id = 0;
 
         if ( $locations = get_option( "megamenu_locations" ) ) {
@@ -437,7 +469,7 @@ class Mega_Menu_Settings{
 
                     if ($menu_id > $last_id) {
                         $last_id = $menu_id;
-                    }       
+                    }
 
                 }
 
@@ -456,7 +488,7 @@ class Mega_Menu_Settings{
      * @since 1.0
      */
     public function get_next_theme_id() {
-        
+
         $last_id = 0;
 
         if ( $saved_themes = get_site_option( "megamenu_themes" ) ) {
@@ -470,7 +502,7 @@ class Mega_Menu_Settings{
 
                     if ($theme_id > $last_id) {
                         $last_id = $theme_id;
-                    }       
+                    }
 
                 }
 
@@ -523,7 +555,7 @@ class Mega_Menu_Settings{
     public function megamenu_themes_page() {
 
         $page = add_theme_page(__('Max Mega Menu', 'megamenu'), __('Max Mega Menu', 'megamenu'), 'edit_theme_options', 'megamenu_settings', array($this, 'page' ) );
-    
+
     }
 
 
@@ -544,7 +576,7 @@ class Mega_Menu_Settings{
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                 <input type="hidden" name="action" value="megamenu_save_settings" />
                 <?php wp_nonce_field( 'megamenu_save_settings' ); ?>
-                
+
                 <h4 class='first'><?php _e("General Settings", "megamenu"); ?></h4>
 
                 <table>
@@ -608,22 +640,28 @@ class Mega_Menu_Settings{
      * @since 1.8
      */
     public function menu_settings_page( $settings ) {
-        
+
         $all_locations = get_registered_nav_menus();
-        $megamenu_locations = array();
+        $locations = array();
 
-        // reorder locations so custom MMM locations are listed at the bottom
-        foreach ( $all_locations as $location => $val ) {
+        if ( count( $all_locations ) ) {
 
-            if ( strpos( $location, 'max_mega_menu_' ) === FALSE ) {
-                $locations[$location] = $val;
-            } else {
-                $megamenu_locations[$location] = $val;
+            $megamenu_locations = array();
+
+            // reorder locations so custom MMM locations are listed at the bottom
+            foreach ( $all_locations as $location => $val ) {
+
+                if ( strpos( $location, 'max_mega_menu_' ) === FALSE ) {
+                    $locations[$location] = $val;
+                } else {
+                    $megamenu_locations[$location] = $val;
+                }
+
             }
 
+            $locations = array_merge( $locations, $megamenu_locations );
         }
 
-        $locations = array_merge( $locations, $megamenu_locations );
 
         ?>
 
@@ -634,14 +672,14 @@ class Mega_Menu_Settings{
                 <input type="hidden" name="tab" value="menu_settings" />
 
                 <?php wp_nonce_field( 'megamenu_save_settings' ); ?>
-                
+
                 <h4 class='first'><?php _e("Menu Settings", "megamenu"); ?></h4>
 
                 <p>
-                <?php 
-                    $string = __("Your theme supports {number} menus.", "megamenu"); 
+                <?php
+                    $string = __("Your theme supports {number} menus.", "megamenu");
 
-                    echo str_replace("{number}", count($locations), $string);
+                    echo str_replace( "{number}", count( $locations ), $string );
 
                     $add_location_url = esc_url( add_query_arg(
                         array(
@@ -720,7 +758,7 @@ class Mega_Menu_Settings{
                                         </td>
                                         <td class='mega-value'>
                                             <select name='settings[<?php echo $location ?>][effect]'>
-                                            <?php 
+                                            <?php
 
                                                 $selected = isset( $settings[$location]['effect'] ) ? $settings[$location]['effect'] : 'disabled';
 
@@ -754,7 +792,7 @@ class Mega_Menu_Settings{
                                         </td>
                                         <td class='mega-value'>
                                             <select name='settings[<?php echo $location ?>][theme]'>
-                                                <?php 
+                                                <?php
                                                     $style_manager = new Mega_Menu_Style_Manager();
                                                     $themes = $style_manager->get_themes();
 
@@ -820,7 +858,7 @@ class Mega_Menu_Settings{
 
                                 <?php else: ?>
                                     <p>
-                                        <?php 
+                                        <?php
 
                                         $string = __("{assign_a_menu} to this location to enable the Mega Menu settings.", "megamenu");
                                         $url = "<a href='" . admin_url('nav-menus.php?action=locations') . "'>" . __("Assign a menu", "megamenu") . "</a>";
@@ -832,10 +870,10 @@ class Mega_Menu_Settings{
                                     </p>
                                 <?php endif; ?>
 
-                                <?php 
+                                <?php
 
                                     if ( $is_custom_location ) {
-                    
+
                                         $delete_location_url = esc_url( add_query_arg(
                                             array(
                                                 'action' => 'megamenu_delete_menu_location',
@@ -855,7 +893,7 @@ class Mega_Menu_Settings{
 
                         <?php
                     }
-                    
+
                 }
 
                 submit_button();
@@ -869,12 +907,12 @@ class Mega_Menu_Settings{
 
     /**
      * Returns the menu ID for a specified menu location, defaults to 0
-     * 
+     *
      * @since 1.8
      * @param string $location
      */
     private function get_menu_id_for_location( $location ) {
-        
+
         $locations = get_nav_menu_locations();
 
         $id = isset( $locations[ $location ] ) ? $locations[ $location ] : 0;
@@ -953,17 +991,17 @@ class Mega_Menu_Settings{
                         <div class='mega-description'><?php _e("Export a menu theme", "megamenu"); ?></div>
                     </td>
                     <td class='mega-value'>
-                        <form method="post">
+                        <form method="post" action="<?php admin_url( "themes.php?page=megamenu_settings&tab=tools") ?>">
 
-                            <?php 
-                    
+                            <?php
+
                             if ( isset( $_POST['theme_export'] ) ) {
 
                                 $theme_to_export = $_POST['theme_export'];
 
                                 if ( isset( $this->themes[ $theme_to_export ] ) ) {
 
-                                    echo "<textarea>" . base64_encode( json_encode( $this->themes[ $theme_to_export ] ) ) . "</textarea>";
+                                    echo "<textarea>" . json_encode( $this->themes[ $theme_to_export ] ) . "</textarea>";
 
                                 }
                             } else {
@@ -1088,12 +1126,12 @@ class Mega_Menu_Settings{
                 <div class='megamenu_right'>
                     <?php $this->print_messages(); ?>
 
-                    <?php 
+                    <?php
 
                         $saved_settings = get_option("megamenu_settings");
 
                         if ( has_action( "megamenu_page_{$tab}" ) ) {
-                            do_action( "megamenu_page_{$tab}", $saved_settings ); 
+                            do_action( "megamenu_page_{$tab}", $saved_settings );
                         }
 
                     ?>
@@ -1102,7 +1140,7 @@ class Mega_Menu_Settings{
 
             <div class='megamenu_left'>
                 <ul>
-                    <?php 
+                    <?php
 
                         $tabs = apply_filters("megamenu_menu_tabs", array(
                             'menu_settings' => __("Menu Settings", "megamenu"),
@@ -1155,14 +1193,14 @@ class Mega_Menu_Settings{
             $locations = get_nav_menu_locations();
 
             foreach ($menus as $location => $description ) {
-    
+
                 if ( isset( $locations[ $location ] ) ) {
 
                     $menu_id = $locations[ $location ];
                     continue;
 
                 }
-    
+
             }
 
         }
@@ -1257,7 +1295,7 @@ class Mega_Menu_Settings{
 
         foreach ( $needles as $needle ) {
 
-            if ( strpos( $key, $needle ) !== FALSE ) { 
+            if ( strpos( $key, $needle ) !== FALSE ) {
                 return true;
             }
         }
@@ -1273,7 +1311,7 @@ class Mega_Menu_Settings{
      * @since 1.0
      */
     public function theme_editor_page( $saved_settings ) {
-        
+
         $this->init();
 
         $create_url = esc_url( add_query_arg(
@@ -1316,7 +1354,7 @@ class Mega_Menu_Settings{
                 <a href='<?php echo $create_url ?>'><?php _e("create a new theme", "megamenu"); ?></a> <?php _e("or", "megamenu"); ?>
                 <a href='<?php echo $duplicate_url ?>'><?php _e("duplicate this theme", "megamenu"); ?></a>
             </div>
-            
+
             <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                 <input type="hidden" name="theme_id" value="<?php echo $this->id; ?>" />
                 <input type="hidden" name="action" value="megamenu_save_theme" />
@@ -1521,7 +1559,7 @@ class Mega_Menu_Settings{
                     <tr>
                         <td class='mega-name'>
                             <?php _e("Menu Items Align", "megamenu"); ?>
-                            <div class='mega-description'> 
+                            <div class='mega-description'>
                                 <?php _e("Align <i>all</i> menu items to the left (default), centrally or to the right.", "megamenu"); ?>
                             </div>
                         </td>
@@ -2518,7 +2556,7 @@ class Mega_Menu_Settings{
                             </label>
                         </td>
                     </tr>
- 
+
                     <tr>
                         <td class='mega-name'>
                             <?php _e("Item Font", "megamenu"); ?>
@@ -2604,7 +2642,7 @@ class Mega_Menu_Settings{
                             <div class='mega-description'>
                                 <?php _e("Define any custom CSS you wish to add to menus using this theme. You can use standard CSS or SCSS.", "megamenu"); ?>
                             </div>
-                            
+
                         </td>
                         <td class='mega-value'>
                             <?php $this->print_theme_textarea_option( 'custom_css' ); ?>
@@ -2713,12 +2751,12 @@ class Mega_Menu_Settings{
     public function print_theme_arrow_option( $key ) {
 
         $value = $this->active_theme[$key];
-        
-        $arrow_icons = $this->arrow_icons(); 
+
+        $arrow_icons = $this->arrow_icons();
 
         ?>
             <select class='icon_dropdown' name='settings[<?php echo $key ?>]'>
-                <?php 
+                <?php
 
                     echo "<option value='disabled'>" . __("Disabled", "megamenu") . "</option>";
 
@@ -2918,7 +2956,7 @@ class Mega_Menu_Settings{
         $icons = apply_filters( "megamenu_arrow_icons", $icons );
 
         return $icons;
-        
+
     }
 
     /**
