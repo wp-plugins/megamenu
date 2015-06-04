@@ -89,6 +89,10 @@ See https://maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.8-dev =
+
+* Change: Add widget classes to menu list items
+
 = 1.8 =
 
 * New Feature: Menu Theme Import/Export

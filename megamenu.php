@@ -387,7 +387,8 @@ final class Mega_Menu {
 							'classes'           => array(
 								"menu-item",
 								"menu-item-type-widget",
-								"menu-columns-{$widget['mega_columns']}-of-{$item->megamenu_settings['panel_columns']}"
+								"menu-columns-{$widget['mega_columns']}-of-{$item->megamenu_settings['panel_columns']}",
+								"menu-widget-class-" . $widget_manager->get_widget_class( $widget['widget_id'] )
 							)
 						);
 

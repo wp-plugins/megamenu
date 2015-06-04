@@ -116,6 +116,9 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
 
         $class = join( ' ', apply_filters( 'megamenu_nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 
+        // strip widget classes back to how they're intended to be output
+        $class = str_replace( "mega-menu-widget-class-", "", $class );
+
 		// Item ID
 		$id = esc_attr( apply_filters( 'megamenu_nav_menu_item_id', "mega-menu-item-{$item->ID}", $item, $args ) );
 

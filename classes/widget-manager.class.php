@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists('Mega_Menu_Widget_Manager') ) :
 
 /**
- * Processes AJAX requests from the Mega Menu panel editor. 
+ * Processes AJAX requests from the Mega Menu panel editor.
  * Also registers our widget sidebar.
  *
  * There is very little in WordPress core to help with listing, editing, saving,
@@ -70,12 +70,12 @@ class Mega_Menu_Widget_Manager {
      */
     public function register_sidebar() {
 
-        register_sidebar( 
+        register_sidebar(
             array(
                 'id' => 'mega-menu',
                 'name' => __("Mega Menu Widgets", "megamenu"),
                 'description'   => __("Do not manually edit this area.", "megamenu")
-            ) 
+            )
         );
     }
 
@@ -279,7 +279,7 @@ class Mega_Menu_Widget_Manager {
                 if ( isset( $settings['mega_menu_parent_menu_id'] ) && $settings['mega_menu_parent_menu_id'] == $menu_item_id ) {
 
                     $name = $this->get_name_for_widget_id( $widget_id );
-                    
+
                     $widgets[ $widget_id ] = array(
                         'widget_id' => $widget_id,
                         'title' => $name,
@@ -404,6 +404,24 @@ class Mega_Menu_Widget_Manager {
             call_user_func_array( $callback, $params );
             return ob_get_clean();
         }
+
+    }
+
+
+    /**
+     * Returns the class name for a widget instance.
+     *
+     * @since 1.8.1
+     * @param string widget_id Something like meta-3
+     */
+    public function get_widget_class( $id ) {
+        global $wp_registered_widgets;
+
+        if ( isset ( $wp_registered_widgets[$id]['classname'] ) ) {
+            return $wp_registered_widgets[$id]['classname'];
+        }
+
+        return "";
 
     }
 
