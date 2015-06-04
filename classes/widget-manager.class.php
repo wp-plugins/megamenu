@@ -392,10 +392,10 @@ class Mega_Menu_Widget_Manager {
             (array) $wp_registered_widgets[$id]['params']
         );
 
-        $params[0]['before_title'] = '<h4 class="mega-block-title">';
-        $params[0]['after_title'] = '</h4>';
-        $params[0]['before_widget'] = "";
-        $params[0]['after_widget'] = "";
+        $params[0]['before_title'] = apply_filters( "megamenu_before_widget_title", '<h4 class="mega-block-title">', $wp_registered_widgets[$id] );
+        $params[0]['after_title'] = apply_filters( "megamenu_after_widget_title", '</h4>', $wp_registered_widgets[$id] );
+        $params[0]['before_widget'] = apply_filters( "megamenu_before_widget", "", $wp_registered_widgets[$id] );
+        $params[0]['after_widget'] = apply_filters( "megamenu_after_widget", "", $wp_registered_widgets[$id] );
 
         $callback = $wp_registered_widgets[$id]['callback'];
 

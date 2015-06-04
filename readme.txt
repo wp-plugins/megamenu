@@ -91,6 +91,7 @@ See https://maxmegamenu.com for more screenshots
 
 = 1.8-dev =
 
+* Change: Add filters for before_title, after_title, before_widget, after_widget
 * Change: Add widget classes to menu list items
 
 = 1.8 =
