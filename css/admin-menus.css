@@ -584,6 +584,7 @@
 }
 #cboxContent table {
 	width: 100%;
+	border-collapse: collapse;
 }
 #cboxContent #mm_enable_mega_menu:checked ~ #widgets:after {
 	display: none;

@@ -93,6 +93,7 @@ See https://maxmegamenu.com for more screenshots
 
 * Change: Add filters for before_title, after_title, before_widget, after_widget
 * Change: Add widget classes to menu list items
+* Fix: Detect protocol when enqueueing CSS file from FS
 
 = 1.8 =
 

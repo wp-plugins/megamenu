@@ -235,9 +235,6 @@
 	height: auto;
 	line-height: 1.2em;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
-	margin-right: 10px;
-}
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table input.mega-setting-title {
 	width: 100px;
 }
@@ -274,6 +271,15 @@
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
     font-size: 0.9em;
+    float: left;
+    margin-right: 10px;
+}
+.appearance_page_megamenu_settings .megamenu_right .menu_settings table label span.mega-short-desc {
+	font-size: 0.8em;
+	text-transform: uppercase;
+	color: #aaa;
+	display: block;
+	margin: 0 0 2px 1px;
 }
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table .wide input[type=text] {
 	width: 300px;
@@ -290,16 +296,6 @@
 .appearance_page_megamenu_settings .megamenu_right .menu_settings table {
 	width: 100%;
 	border-collapse: collapse;
-}
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table label span.mega-short-desc {
-	font-size: 0.8em;
-	text-transform: uppercase;
-	color: #aaa;
-	display: block;
-	margin: 0 0 2px 1px;
-}
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
-	float: left;
 }
 
 

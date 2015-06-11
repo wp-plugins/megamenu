@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Mega_Menu_Style_Manager' ) ) :
 
 /**
- * 
+ *
  */
 final class Mega_Menu_Style_Manager {
 
@@ -42,14 +42,14 @@ final class Mega_Menu_Style_Manager {
         add_action( 'wp_head', array( $this, 'head_css' ), 9999 );
 
         add_action( 'megamenu_after_save_settings', array( $this, 'generate_css' ) );
-        add_action( 'megamenu_after_save_general_settings', array( $this, 'generate_css' ) );        
+        add_action( 'megamenu_after_save_general_settings', array( $this, 'generate_css' ) );
         add_action( 'megamenu_after_theme_save', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_delete', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_revert', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_duplicate', array( $this, 'generate_css') );
         add_action( 'megamenu_after_theme_create', array( $this, 'generate_css') );
         add_action( 'megamenu_generate_css', array( $this, 'generate_css') );
-        add_action( 'after_switch_theme', array( $this, 'generate_css') );    
+        add_action( 'after_switch_theme', array( $this, 'generate_css') );
 
     }
 
@@ -246,7 +246,7 @@ final class Mega_Menu_Style_Manager {
 #{$wrap} #{$menu} {
     /** Custom styles should be added below this line **/
 }
-#{$wrap} { 
+#{$wrap} {
     clear: both;
 }'
         );
@@ -313,7 +313,7 @@ final class Mega_Menu_Style_Manager {
         uasort( $default_themes, array( $this, 'sort_by_title' ) );
 
         return $default_themes;
-        
+
     }
 
 
@@ -327,7 +327,7 @@ final class Mega_Menu_Style_Manager {
     private function sort_by_title( $a, $b ) {
 
         return strcmp( $a['title'], $b['title'] );
-        
+
     }
 
 
@@ -456,7 +456,7 @@ final class Mega_Menu_Style_Manager {
         $dir = trailingslashit( $upload_dir['basedir'] ) . 'maxmegamenu/';
 
         WP_Filesystem(false, $upload_dir['basedir'], true);
-        $wp_filesystem->mkdir( $dir ); 
+        $wp_filesystem->mkdir( $dir );
         $wp_filesystem->put_contents( $dir . $filename, $css );
 
     }
@@ -530,7 +530,7 @@ final class Mega_Menu_Style_Manager {
     /**
      * Generates a SCSS string which includes the variables for a menu theme,
      * for a particular menu location.
-     * 
+     *
      * @since 1.3
      * @return string
      * @param string $theme
@@ -599,7 +599,7 @@ final class Mega_Menu_Style_Manager {
         }
 
         $scss .= $this->load_scss_file();
-        
+
         $scss .= stripslashes( html_entity_decode( $theme['custom_css'] ) );
 
         return apply_filters( "megamenu_scss", $scss, $location, $theme, $menu_id );
@@ -609,11 +609,11 @@ final class Mega_Menu_Style_Manager {
 
     /**
      * Returns the menu ID for a specified menu location, defaults to 0
-     * 
+     *
      * @since 1.3
      */
     private function get_menu_id_for_location( $location ) {
-        
+
         $locations = get_nav_menu_locations();
 
         $menu_id = isset( $locations[ $location ] ) ? $locations[ $location ] : 0;
@@ -625,7 +625,7 @@ final class Mega_Menu_Style_Manager {
 
     /**
      * Returns the theme settings for a specified location. Defaults to the default theme.
-     * 
+     *
      * @since 1.3
      */
     private function get_theme_settings_for_location( $location ) {
@@ -653,8 +653,8 @@ final class Mega_Menu_Style_Manager {
         wp_enqueue_script( 'hoverIntent' );
         wp_enqueue_script( 'megamenu', MEGAMENU_BASE_URL . "js/maxmegamenu.js", array('jquery', 'hoverIntent'), MEGAMENU_VERSION );
 
-        $params = apply_filters("megamenu_javascript_localisation", 
-            array( 
+        $params = apply_filters("megamenu_javascript_localisation",
+            array(
                 "effect" => array(
                     "fade" => array(
                         "in" => array(
@@ -728,7 +728,14 @@ final class Mega_Menu_Style_Manager {
         // Verify the contents of the CSS file
         if ( $fs_css && $cached_css == $fs_css ) {
 
-            wp_enqueue_style( 'megamenu', trailingslashit( $upload_dir['baseurl'] ) . 'maxmegamenu/' . $filename, false, substr( md5( $cached_css ), 0, 6 ) );
+            $css_url = trailingslashit( $upload_dir['baseurl'] ) . 'maxmegamenu/' . $filename;
+
+            $protocol = is_ssl() ? 'https://' : 'http://';
+
+            // ensure we're using the correct protocol
+            $css_url = str_replace( array( "http://", "https://" ), $protocol, $css_url );
+
+            wp_enqueue_style( 'megamenu', $css_url, false, substr( md5( $cached_css ), 0, 6 ) );
 
         } else {
 
