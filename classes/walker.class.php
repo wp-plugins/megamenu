@@ -92,6 +92,10 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         	$classes[] = 'item-align-' . $settings['item_align'];
         }
 
+		if ( $settings['disable_link'] == 'true') {
+		    $classes[] = 'disable-link';
+		}
+
         // add column classes for second level menu items displayed in mega menus
         if ( $item->type != 'widget' && $depth == 1 ) {
 

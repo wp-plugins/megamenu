@@ -152,6 +152,10 @@
             font-family: dashicons;
         }
 
+        li.mega-disable-link > a {
+            cursor: default;
+        }
+
         li.mega-menu-item a:before {
             display: inline-block;
             font: inherit;
