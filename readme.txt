@@ -89,11 +89,13 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
-= 1.8-dev =
+= 1.8.1 =
 
 * Change: Add filters for before_title, after_title, before_widget, after_widget
 * Change: Add widget classes to menu list items
 * Fix: Detect protocol when enqueueing CSS file from FS
+* Fix: Compatibility with WP Widget Cache
+* Change: Convert 'enable mega menu' checkbox into a select for clarity
 
 = 1.8 =
 
