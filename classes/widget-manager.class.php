@@ -298,33 +298,20 @@ class Mega_Menu_Widget_Manager {
 
 
     /**
-     * Returns the saved settings for a specific widget.
+     * Returns the widget data as stored in the options table
      *
-     * @since 1.0
-     * @param $widget_id - id_base-ID (eg meta-3)
+     * @since 1.8.1
+     * @param string $widget_id
      */
     public function get_settings_for_widget_id( $widget_id ) {
-        global $wp_registered_widgets;
 
-        if (!isset($wp_registered_widgets[ $widget_id ])) {
-            return false;
-        }
-
-        $registered_widget = $wp_registered_widgets[ $widget_id ];
-
-        // instantiate the widget so we can get access to the settings
-        $class_name = get_class( $registered_widget['callback'][0] );
-
-        $widget_object = new $class_name;
-
-        $all_settings = $widget_object->get_settings();
+        $id_base = $this->get_id_base_for_widget_id( $widget_id );
 
         $widget_number = $this->get_widget_number_for_widget_id( $widget_id );
 
-        $widget_settings = $all_settings[$widget_number];
+        $current_widgets = get_option( 'widget_' . $id_base );
 
-        return $widget_settings;
-
+        return $current_widgets[ $widget_number ];
 
     }
 
