@@ -99,6 +99,14 @@
 	float: left;
 }
 
+#cboxContent label[for='mm_enable_mega_menu'] {
+    font-size: 0.9em;
+}
+#cboxContent .mega_menu #mm_enable_mega_menu {
+	margin-bottom: 0;
+	font-size: 0.9em;
+	margin-left: 5px;
+}
 #cboxContent .mega_menu #mm_widget_selector {
 	margin-bottom: 0;
 	font-size: 0.9em;
@@ -586,10 +594,10 @@
 	width: 100%;
 	border-collapse: collapse;
 }
-#cboxContent #mm_enable_mega_menu:checked ~ #widgets:after {
-	display: none;
+#cboxContent .mega_menu #widgets.disabled {
+	opacity: 0.5;
 }
-#cboxContent .mega_menu #widgets:after {
+#cboxContent .mega_menu #widgets.disabled:after {
 	background: #999;
 	display: block;
 	position: absolute;

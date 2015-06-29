@@ -163,18 +163,26 @@
 
                             });
 
-                            var enable_checkbox = content.find('input[type=checkbox]');
+                            var submenu_type = content.find('#mm_enable_mega_menu');
 
-                            enable_checkbox.on('change', function() {
+                            submenu_type.on('change', function() {
+
+                                if ( $(this).val() == 'megamenu' ) {
+                                    $("#widgets").removeClass('disabled');
+                                } else {
+                                    $("#widgets").addClass('disabled');
+                                }
 
                                 start_saving();
 
                                 var postdata = {
                                     action: "mm_save_menu_item_settings",
-                                    settings: { type: $(this).is(':checked') ? 'megamenu' : 'flyout'},
+                                    settings: { type: $(this).val() },
                                     menu_item_id: panel.settings.menu_item_id,
                                     _wpnonce: megamenu.nonce
                                 };
+
+
 
                                 $.post(ajaxurl, postdata, function (select_response) {
 
