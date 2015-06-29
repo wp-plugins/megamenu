@@ -2,13 +2,13 @@
 
 /*
  * Plugin Name: Max Mega Menu
- * Plugin URI:  https://maxmegamenu.com
+ * Plugin URI:  http://www.maxmegamenu.com
  * Description: Mega Menu for WordPress.
  * Version:     1.8
  * Author:      Tom Hemsley
- * Author URI:  https://maxmegamenu.com
+ * Author URI:  http://www.maxmegamenu.com
  * License:     GPL-2.0+
- * Copyright:   2015 Tom Hemsley (https://maxmegamenu.com)
+ * Copyright:   2015 Tom Hemsley (http://www.maxmegamenu.com)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

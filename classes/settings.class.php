@@ -951,13 +951,13 @@ class Mega_Menu_Settings{
 
         $header_links = apply_filters( "megamenu_header_links", array(
             'homepage' => array(
-                'url' => 'https://maxmegamenu.com/',
+                'url' => 'http://www.maxmegamenu.com/',
                 'target' => '_mmmpro',
                 'text' => __("Homepage", "megamenu"),
                 'class' => ''
             ),
             'documentation' => array(
-                'url' => 'https://maxmegamenu.com/documentation/getting-started/installation/',
+                'url' => 'http://www.maxmegamenu.com/documentation/getting-started/installation/',
                 'text' => __("Documentation", "megamenu"),
                 'target' => '_mmmpro',
                 'class' => ''
@@ -966,7 +966,7 @@ class Mega_Menu_Settings{
 
         if ( ! is_plugin_active('megamenu-pro/megamenu-pro.php') ) {
             $header_links['pro'] = array(
-                'url' => 'https://maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro',
+                'url' => 'http://www.maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro',
                 'target' => '_mmmpro',
                 'text' => __("Upgrade to Pro - $19", "megamenu"),
                 'class' => 'mega-highlight'
@@ -979,7 +979,7 @@ class Mega_Menu_Settings{
                 'text' => __("Core version", "megamenu")
             ),
             'pro' => array(
-                'version' => "<a href='https://maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro' target='_mmmpro'>not installed</a>",
+                'version' => "<a href='http://www.maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro' target='_mmmpro'>not installed</a>",
                 'text' => __("Pro extension", "megamenu")
             )
         ) );

@@ -15,7 +15,7 @@ WordPress Mega Menu Plugin. Create widgetized mega menus using the built in visu
 
 https://www.youtube.com/watch?v=44dJwP1AXT8
 
-Documentation & Demo: https://maxmegamenu.com
+Documentation & Demo: http://www.maxmegamenu.com
 
 ###Features:
 
@@ -50,7 +50,7 @@ Documentation & Demo: https://maxmegamenu.com
 > * Automatic updates
 > * Priority Support
 >
-> Find out more: https://maxmegamenu.com/upgrade/
+> Find out more: http://www.maxmegamenu.com/upgrade/
 
 Translations:
 
@@ -61,13 +61,13 @@ Translations:
 
 Getting started:
 
-https://maxmegamenu.com/documentation/getting-started/installation/
+http://www.maxmegamenu.com/documentation/getting-started/installation/
 
 Not working with your theme?
 Mobile menu not working?
 Multiple mobile menu toggle icons?
 
-https://maxmegamenu.com/documentation/faqs/removing-residual-styling/
+http://www.maxmegamenu.com/documentation/faqs/removing-residual-styling/
 
 == Installation ==
 
@@ -75,11 +75,11 @@ https://maxmegamenu.com/documentation/faqs/removing-residual-styling/
 1. Search for "Max Mega Menu"
 1. Click "Install"
 
-https://maxmegamenu.com/documentation/getting-started/installation/
+http://www.maxmegamenu.com/documentation/getting-started/installation/
 
 == Screenshots ==
 
-See https://maxmegamenu.com for more screenshots
+See http://www.maxmegamenu.com for more screenshots
 
 1. New menu changes
 2. Drag and Drop widget editor for each menu item
