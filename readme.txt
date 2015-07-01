@@ -89,6 +89,10 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.8.2 =
+
+* Fix: PHP Warning preventing mega menu settings from loading
+
 = 1.8.1 =
 
 * Change: Add filters for before_title, after_title, before_widget, after_widget

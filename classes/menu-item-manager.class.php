@@ -183,7 +183,7 @@ class Mega_Menu_Menu_Item_Manager {
 
 		$all_widgets = $widget_manager->get_available_widgets();
 
-        $return .= "<label for='mm_enable_mega_menu'>" . __("Sub menu display mode", "megamenu") . "</label>";
+        $return = "<label for='mm_enable_mega_menu'>" . __("Sub menu display mode", "megamenu") . "</label>";
 
         $return .= "<select id='mm_enable_mega_menu' name='settings[type]'>";
         $return .= "    <option value='flyout'>" . __("Flyout Menu", "megamenu") . "</option>";
