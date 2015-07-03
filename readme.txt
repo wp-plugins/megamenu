@@ -56,6 +56,7 @@ Translations:
 
 * Italian (thanks to aeco)
 * German (thanks to Thomas Meyer & dirk@d10n)
+* French (thanks to Pierre_02)
 
 == Frequently Asked Questions ==
 
@@ -88,6 +89,10 @@ See http://www.maxmegamenu.com for more screenshots
 5. Back end: Use the theme editor to change the appearance of your menus
 
 == Changelog ==
+
+= 1.8.dev =
+
+* French Language pack added (thanks to Pierre_02!)
 
 = 1.8.2 =
 
