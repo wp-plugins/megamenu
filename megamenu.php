@@ -57,7 +57,7 @@ final class Mega_Menu {
 
 		add_filter( 'wp_nav_menu_args', array( $this, 'modify_nav_menu_args' ), 9999 );
 		add_filter( 'wp_nav_menu', array( $this, 'add_responsive_toggle' ), 10, 2 );
-		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 12, 2 );
+		add_filter( 'wp_nav_menu_objects', array( $this, 'add_widgets_to_menu' ), 10, 2 );
 
 		add_filter( 'megamenu_nav_menu_objects_before', array( $this, 'apply_depth_to_menu_items' ), 5, 2 );
 		add_filter( 'megamenu_nav_menu_objects_before', array( $this, 'apply_megamenu_settings_to_menu_items' ), 6, 2 );
@@ -473,6 +473,7 @@ final class Mega_Menu {
 	 * @return array - Menu objects including widgets
    	 */
 	public function add_widgets_to_menu( $items, $args ) {
+
 		// make sure we're working with a Mega Menu
 		if ( ! is_a( $args->walker, 'Mega_Menu_Walker' ) )
 			return $items;
