@@ -4,7 +4,7 @@
  * Plugin Name: Max Mega Menu
  * Plugin URI:  http://www.maxmegamenu.com
  * Description: Mega Menu for WordPress.
- * Version:     1.8.2
+ * Version:     1.8.3
  * Author:      Tom Hemsley
  * Author URI:  http://www.maxmegamenu.com
  * License:     GPL-2.0+
@@ -26,7 +26,7 @@ final class Mega_Menu {
 	/**
 	 * @var string
 	 */
-	public $version = '1.8.2';
+	public $version = '1.8.3';
 
 
 	/**
@@ -65,6 +65,11 @@ final class Mega_Menu {
 
 		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
 		add_filter( 'black_studio_tinymce_enable_pages' , array($this, 'megamenu_blackstudio_tinymce' ) );
+
+        // add 'go pro' link to plugin options
+        $plugin = plugin_basename( __FILE__ );
+
+        add_filter( "plugin_action_links_{$plugin}", array( $this, 'upgrade_to_pro_link' ) );
 
 		register_deactivation_hook( __FILE__, array( $this, 'delete_version_number') );
 
@@ -105,6 +110,22 @@ final class Mega_Menu {
 
 		}
 	}
+
+
+    /**
+     * Add go pro link on plugin page
+     *
+     * @since 1.8.3
+     */
+    public function upgrade_to_pro_link( $links ) {
+
+        if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'megamenu-pro/megamenu-pro.php' ) ) {
+            $links[] = '<a href="http://www.maxmegamenu.com/upgrade" target="_blank"><b>' . __( "Go Pro", "megamenu" ) . '</b></a>';
+        }
+
+        return $links;
+
+    }
 
 
 	/**
