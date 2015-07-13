@@ -337,6 +337,10 @@
             }
 
             @media only screen and (max-width : $responsive_breakpoint) {
+                border: 0;
+                padding: 10px;
+                @include border-radius(0,0,0,0);
+
                 > li {
                     width: 50% !important;
                     clear: none;
@@ -465,6 +469,8 @@
                 float: left;
                 position: static;
                 width: 100% !important;
+                padding: 0;
+                border: 0;
             }
 
             li.mega-menu-item {
@@ -502,11 +508,21 @@
                 &:first-child a {
                     border-top-left-radius: $flyout_border_radius_top_left;
                     border-top-right-radius: $flyout_border_radius_top_right;
+
+                    @media only screen and (max-width : $responsive_breakpoint) {
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                    }
                 }
 
                 &:last-child a {
                     border-bottom-right-radius: $flyout_border_radius_bottom_right;
                     border-bottom-left-radius: $flyout_border_radius_bottom_left;
+
+                    @media only screen and (max-width : $responsive_breakpoint) {
+                        border-bottom-right-radius: 0;
+                        border-bottom-left-radius: 0;
+                    }
                 }
 
                 a:hover,
