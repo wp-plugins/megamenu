@@ -79,14 +79,14 @@ class Mega_Menu_Menu_Item_Manager {
 
     	check_ajax_referer( 'megamenu_edit' );
 
-        $submitted_settings = $_POST['settings'];
+        $submitted_settings = isset( $_POST['settings'] ) ? $_POST['settings'] : array();
 
         $menu_item_id = absint( $_POST['menu_item_id'] );
 
         if ( $menu_item_id > 0 && is_array( $submitted_settings ) ) {
 
             // only check the checkbox values if the general settings form was submitted
-            if ( isset( $submitted_settings['item_align'] ) ) {
+            if ( isset( $_POST['tab'] ) && $_POST['tab'] == 'general_settings' ) {
 
                 // Hide Text checkbox is unchecked
                 if ( ! isset( $submitted_settings['hide_text'] ) ) {
@@ -290,6 +290,7 @@ class Mega_Menu_Menu_Item_Manager {
         $return .= '    <input type="hidden" name="menu_item_id" value="' . $menu_item_id . '" />';
         $return .= '    <input type="hidden" name="action" value="mm_save_menu_item_settings" />';
         $return .= '    <input type="hidden" name="_wpnonce" value="' . wp_create_nonce('megamenu_edit') . '" />';
+        $return .= '    <input type="hidden" name="tab" value="general_settings" />';
         $return .= '    <h4 class="first">' . __("Menu Item Settings", "megamenu") . '</h4>';
         $return .= '    <table>';
         $return .= '        <tr>';
