@@ -90,9 +90,16 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
-= 1.8.dev =
+= 1.8.3 [13/07/2015] =
 
-* French Language pack added (thanks to Pierre_02!)
+* New feature: French Language pack added (thanks to Pierre_02!)
+* Change: Check MMM is enabled for the menu before enabling the Mega Menu button on each menu item
+* Fix: PHP warning when widget cannot be found (due to being uninstalled)
+* New feature: Add accordion style mobile menu option
+* Fix: Remove borders and excess padding from mobile menu (regardless of theme settings)
+* Fix: Inability to undisable links on second level menu items
+* Fix: Fix theme export/import when custom CSS contains double quotes
+* Fix: Compatibility fix for SlideDeck Pro
 
 = 1.8.2 =
 
