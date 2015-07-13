@@ -588,6 +588,8 @@ class Mega_Menu_Settings{
 
         $css = isset( $saved_settings['css'] ) ? $saved_settings['css'] : 'fs';
         $mobile_second_click = isset( $saved_settings['mobile_second_click'] ) ? $saved_settings['mobile_second_click'] : 'close';
+        $mobile_behaviour = isset( $saved_settings['mobile_behaviour'] ) ? $saved_settings['mobile_behaviour'] : 'standard';
+
 
         ?>
 
@@ -632,6 +634,22 @@ class Mega_Menu_Settings{
                             <select name='settings[second_click]'>
                                 <option value='close' <?php echo selected( $mobile_second_click == 'close'); ?>><?php _e("First click will open a sub menu, second click will close the sub menu.", "megamenu"); ?></option>
                                 <option value='go' <?php echo selected( $mobile_second_click == 'go'); ?>><?php _e("First click will open a sub menu, second click will follow the link.", "megamenu"); ?></option>
+                            <select>
+                            <div class='mega-description'>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='mega-name'>
+                            <?php _e("Mobile Menu Behaviour", "megamenu"); ?>
+                            <div class='mega-description'>
+                                <?php _e("Define the sub menu toggle behaviour for the mobile menu.", "megamenu"); ?>
+                            </div>
+                        </td>
+                        <td class='mega-value'>
+                            <select name='settings[mobile_behaviour]'>
+                                <option value='standard' <?php echo selected( $mobile_behaviour == 'standard'); ?>><?php _e("Standard - Open sub menus will remain open until closed by the user.", "megamenu"); ?></option>
+                                <option value='accordion' <?php echo selected( $mobile_behaviour == 'accordion'); ?>><?php _e("Accordion - Open sub menus will automatically close when another one is opened.", "megamenu"); ?></option>
                             <select>
                             <div class='mega-description'>
                             </div>

@@ -18,6 +18,7 @@
             effect: $menu.attr('data-effect'),
             panel_width: $menu.attr('data-panel-width'),
             second_click: $menu.attr('data-second-click'),
+            mobile_behaviour: $menu.attr('data-mobile-behaviour'),
             breakpoint: $menu.attr('data-breakpoint')
         };
 
@@ -60,9 +61,9 @@
 
         plugin.showPanel = function(anchor) {
             // automatically hide open panels, but only for desktop.
-            if ( $(window).width() > plugin.settings.breakpoint ) {
+            if ( plugin.settings.mobile_behaviour == 'accordion' || $(window).width() > plugin.settings.breakpoint ) {
                 // all open children of open siblings
-                anchor.parent().siblings().find('.mega-toggle-on').andSelf().children('a').each(function() { 
+                anchor.parent().siblings().find('.mega-toggle-on').andSelf().children('a').each(function() {
                     plugin.hidePanel($(this), true);
                 });
             }
@@ -115,7 +116,7 @@
                         e.preventDefault();
 
                         if ( $(this).parent().hasClass("mega-toggle-on") ) {
-                            plugin.hidePanel($(this), false);                            
+                            plugin.hidePanel($(this), false);
                         } else {
                             plugin.showPanel($(this));
                         }

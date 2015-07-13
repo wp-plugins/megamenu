@@ -582,6 +582,7 @@ final class Mega_Menu {
 				"data-effect" => isset( $menu_settings['effect'] ) ? $menu_settings['effect'] : 'disabled',
 				"data-panel-width" => preg_match('/^\d/', $menu_theme['panel_width']) !== 1 ? $menu_theme['panel_width'] : '',
 				"data-second-click" => isset( $settings['second_click'] ) ? $settings['second_click'] : 'close',
+				"data-mobile-behaviour" => isset( $settings['mobile_behaviour'] ) ? $settings['mobile_behaviour'] : 'standard',
 				"data-breakpoint" => absint( $menu_theme['responsive_breakpoint'] )
 			), $menu_id, $menu_settings, $settings, $current_theme_location );
 
