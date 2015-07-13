@@ -307,6 +307,10 @@ class Mega_Menu_Widget_Manager {
 
         $id_base = $this->get_id_base_for_widget_id( $widget_id );
 
+        if ( ! $id_base ) {
+            return false;
+        }
+
         $widget_number = $this->get_widget_number_for_widget_id( $widget_id );
 
         $current_widgets = get_option( 'widget_' . $id_base );
@@ -355,6 +359,10 @@ class Mega_Menu_Widget_Manager {
      */
     public function get_id_base_for_widget_id( $widget_id ) {
         global $wp_registered_widget_controls;
+
+        if ( ! isset( $wp_registered_widget_controls[ $widget_id ] ) ) {
+            return false;
+        }
 
         $control = $wp_registered_widget_controls[ $widget_id ];
 
