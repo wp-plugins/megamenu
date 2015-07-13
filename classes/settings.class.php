@@ -282,7 +282,7 @@ class Mega_Menu_Settings{
 
         $this->init();
 
-        $import = json_decode( stripslashes( html_entity_decode( $_POST['data'] ) ), true );
+        $import = json_decode( stripslashes( $_POST['data'] ), true );
 
         if ( is_array( $import ) ) {
 
@@ -304,7 +304,7 @@ class Mega_Menu_Settings{
 
         } else {
 
-            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=true") );
+            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=false") );
 
         }
 
@@ -900,7 +900,7 @@ class Mega_Menu_Settings{
 
                                 if ( isset( $this->themes[ $theme_to_export ] ) ) {
 
-                                    echo "<textarea>" . json_encode( $this->themes[ $theme_to_export ] ) . "</textarea>";
+                                    echo "<textarea>" . htmlentities( json_encode( $this->themes[ $theme_to_export ] ) ) . "</textarea>";
 
                                 }
                             } else {
@@ -1149,8 +1149,12 @@ class Mega_Menu_Settings{
             echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("Menu Location Deleted", "megamenu") . "</p>";
         }
 
-        if ( isset( $_GET['theme_imported'] ) ) {
+        if ( isset( $_GET['theme_imported'] ) && $_GET['theme_imported'] == 'true' ) {
             echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("Theme Imported", "megamenu") . "</p>";
+        }
+
+        if ( isset( $_GET['theme_imported'] ) && $_GET['theme_imported'] == 'false' ) {
+            echo "<p class='fail'>" . __("Theme Import Failed", "megamenu") . "</p>";
         }
 
         if ( isset( $_POST['theme_export'] ) ) {
