@@ -637,8 +637,10 @@
 }
 /** END TRIBE IMAGE WIDGET **/
 
-
-
+.megamenu_enabled .mm_launch {
+	background: #2ea2cc;
+	border-color: #0074a2;
+}
 .mm_launch {
 	margin-left: 10px;
 	font-size: 0.8em;
@@ -648,8 +650,8 @@
 	width: auto;
 	font-weight: normal;
 	height: auto;
-	background: #2ea2cc;
-	border-color: #0074a2;
+	background: #999;
+	border-color: #222;
 	border-width: 1px;
 	padding: 0 5px;
 	border-radius: 3px;

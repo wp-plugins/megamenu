@@ -136,6 +136,7 @@ class Mega_Menu_Nav_Menus {
             array(
                 'debug_launched' => __("Launched for Menu ID", "megamenu"),
                 'launch_lightbox' => __("Mega Menu", "megamenu"),
+                'is_disabled_error' => __("Please enable Max Mega Menu using the settings on the left of this page.", "megamenu"),
                 'saving' => __("Saving", "megamenu"),
                 'nonce' => wp_create_nonce('megamenu_edit'),
                 'nonce_check_failed' => __("Oops. Something went wrong. Please reload the page.", "megamenu")
@@ -270,7 +271,7 @@ class Mega_Menu_Nav_Menus {
             <tr>
                 <td><?php _e("Enable", "megamenu") ?></td>
                 <td>
-                    <input type='checkbox' name='megamenu_meta[<?php echo $location ?>][enabled]' value='1' <?php checked( isset( $settings[$location]['enabled'] ) ); ?> />
+                    <input type='checkbox' class='megamenu_enabled' name='megamenu_meta[<?php echo $location ?>][enabled]' value='1' <?php checked( isset( $settings[$location]['enabled'] ) ); ?> />
                 </td>
             </tr>
             <tr>
