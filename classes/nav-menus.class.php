@@ -116,6 +116,10 @@ class Mega_Menu_Nav_Menus {
             $image_widget->admin_setup();
         }
 
+        // Compatibility fix for SlideDeck Pro
+        wp_deregister_script('codemirror');
+        wp_deregister_style('codemirror');
+
         wp_enqueue_style( 'colorbox', MEGAMENU_BASE_URL . 'js/colorbox/colorbox.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'mega-menu', MEGAMENU_BASE_URL . 'css/admin-menus.css', false, MEGAMENU_VERSION );
 
