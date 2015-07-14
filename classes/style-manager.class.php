@@ -590,6 +590,11 @@ final class Mega_Menu_Style_Manager {
 
         }
 
+        // Non-standard characters in the title will break CSS compilation, unset it here as it's not needed.
+        if ( isset( $vars['title'] ) ) {
+            unset( $vars['title'] );
+        }
+
         $vars = apply_filters( "megamenu_scss_variables", $vars, $location, $theme, $menu_id );
 
         $scss = "";
