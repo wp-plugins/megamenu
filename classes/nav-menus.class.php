@@ -88,7 +88,7 @@ class Mega_Menu_Nav_Menus {
 
             add_meta_box(
                 'mega_menu_meta_box',
-                __("Mega Menu Settings", "megamenu"),
+                __("Max Mega Menu Settings", "megamenu"),
                 array( $this, 'metabox_contents' ),
                 'nav-menus',
                 'side',

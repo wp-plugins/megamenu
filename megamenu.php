@@ -674,7 +674,7 @@ final class Mega_Menu {
 	    <div class="updated">
 	    	<?php
 
-	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings") . "'>" . __( "click here", 'megamenu' ) . "</a>";
+	    		$link = "<a href='" . admin_url("admin.php?page=maxmegamenu") . "'>" . __( "click here", 'megamenu' ) . "</a>";
 
 	    	?>
 	        <p><?php echo sprintf( __( 'Thanks for installing Max Mega Menu! Please %s to get started.', 'megamenu' ), $link); ?></p>
@@ -692,7 +692,7 @@ final class Mega_Menu {
 	    <div class="updated">
 	    	<?php
 
-	    		$link = "<a href='" . admin_url("themes.php?page=megamenu_settings&tab=tools") . "'>" . __( "regenerate the CSS", 'megamenu' ) . "</a>";
+	    		$link = "<a href='" . admin_url("admin.php?page=maxmegamenu&tab=tools") . "'>" . __( "regenerate the CSS", 'megamenu' ) . "</a>";
 
 	    	?>
 	        <p><?php echo sprintf( __( 'Max Mega Menu has been updated. Please %s to ensure maximum compatibility with the latest version.', 'megamenu' ), $link); ?></p>

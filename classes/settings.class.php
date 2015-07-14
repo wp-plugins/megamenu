@@ -56,7 +56,8 @@ class Mega_Menu_Settings{
         add_action( 'megamenu_page_general_settings', array( $this, 'general_settings_page'));
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_theme_editor_scripts' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts_hook' ) );
+        add_action( 'megamenu_enqueue_scripts', array( $this, 'enqueue_theme_editor_scripts' ) );
 
     }
 
@@ -123,7 +124,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_save");
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&saved=true" ) );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=theme_editor&theme={$theme}&saved=true" ) );
 
     }
 
@@ -149,7 +150,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_add_menu_location");
 
-        $this->redirect( admin_url( 'themes.php?page=megamenu_settings&tab=general_settings&add_location=true' ) );
+        $this->redirect( admin_url( 'admin.php?page=maxmegamenu&tab=general_settings&add_location=true' ) );
 
     }
 
@@ -174,7 +175,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_delete_menu_location");
 
-        $this->redirect( admin_url( 'themes.php?page=megamenu_settings&tab=general_settings&delete_location=true' ) );
+        $this->redirect( admin_url( 'admin.php?page=maxmegamenu&tab=general_settings&delete_location=true' ) );
 
     }
 
@@ -189,7 +190,7 @@ class Mega_Menu_Settings{
 
         do_action( 'megamenu_generate_css' );
 
-        $this->redirect( admin_url( 'themes.php?page=megamenu_settings&tab=tools&regenerate_css=true' ) );
+        $this->redirect( admin_url( 'admin.php?page=maxmegamenu&tab=tools&regenerate_css=true' ) );
 
     }
 
@@ -231,7 +232,7 @@ class Mega_Menu_Settings{
         // delete custom themes
         delete_site_option( "megamenu_themes" );
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&delete_data=true" ) );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=tools&delete_data=true" ) );
 
     }
 
@@ -266,7 +267,7 @@ class Mega_Menu_Settings{
 
         $tab = isset( $_POST['tab'] ) ? $_POST['tab'] : 'general_settings';
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab={$tab}&saved=true" ) );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab={$tab}&saved=true" ) );
 
     }
 
@@ -300,11 +301,11 @@ class Mega_Menu_Settings{
 
             do_action("megamenu_after_theme_import");
 
-            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=true") );
+            $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=tools&theme_imported=true") );
 
         } else {
 
-            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=tools&theme_imported=false") );
+            $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=tools&theme_imported=false") );
 
         }
 
@@ -340,7 +341,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_duplicate");
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&duplicated=true") );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=theme_editor&theme={$new_theme_id}&duplicated=true") );
 
     }
 
@@ -358,7 +359,7 @@ class Mega_Menu_Settings{
 
         if ( $this->theme_is_being_used_by_menu( $theme ) ) {
 
-            $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&deleted=false") );
+            $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=theme_editor&theme={$theme}&deleted=false") );
             return;
         }
 
@@ -372,7 +373,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_delete");
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme=default&deleted=true") );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=theme_editor&theme=default&deleted=true") );
 
     }
 
@@ -398,7 +399,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_revert");
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$theme}&reverted=true") );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=theme_editor&theme={$theme}&reverted=true") );
 
     }
 
@@ -430,7 +431,7 @@ class Mega_Menu_Settings{
 
         do_action("megamenu_after_theme_create");
 
-        $this->redirect( admin_url( "themes.php?page=megamenu_settings&tab=theme_editor&theme={$new_theme_id}&created=true") );
+        $this->redirect( admin_url( "admin.php?page=maxmegamenu&tab=theme_editor&theme={$new_theme_id}&created=true") );
 
     }
 
@@ -553,10 +554,18 @@ class Mega_Menu_Settings{
      */
     public function megamenu_themes_page() {
 
-        $page = add_theme_page(__('Max Mega Menu', 'megamenu'), __('Max Mega Menu', 'megamenu'), 'edit_theme_options', 'megamenu_settings', array($this, 'page' ) );
+        $page = add_menu_page( __('Max Mega Menu', 'megamenu'), __('Mega Menu', 'megamenu'), 'edit_theme_options', 'maxmegamenu', array($this, 'page') );
+
+        add_action( 'admin_print_styles', array( $this, 'enqueue_menu_styles' ) );
 
     }
 
+    /**
+     *
+     */
+    public function enqueue_menu_styles() {
+        wp_enqueue_style( 'maxmegamenu-global', MEGAMENU_BASE_URL . 'css/global.css', array(), MEGAMENU_VERSION );
+    }
 
     /**
      * Content for 'Settings' tab
@@ -908,7 +917,7 @@ class Mega_Menu_Settings{
                         <div class='mega-description'><?php _e("Export a menu theme", "megamenu"); ?></div>
                     </td>
                     <td class='mega-value'>
-                        <form method="post" action="<?php admin_url( "themes.php?page=megamenu_settings&tab=tools") ?>">
+                        <form method="post" action="<?php admin_url( "admin.php?page=maxmegamenu&tab=tools") ?>">
 
                             <?php
 
@@ -1070,10 +1079,10 @@ class Mega_Menu_Settings{
 
                             $url = esc_url( add_query_arg(
                                 array(
-                                    'page'=>'megamenu_settings',
+                                    'page'=>'maxmegamenu',
                                     'tab' => $key
                                 ),
-                                admin_url("themes.php")
+                                admin_url("admin.php")
                             ) );
 
                             echo "<li><a class='{$class}' href='{$url}'>{$title}</a></li>";
@@ -1196,7 +1205,7 @@ class Mega_Menu_Settings{
         foreach ( $this->themes as $id => $theme ) {
             $selected = $id == $this->id ? 'selected=selected' : '';
 
-            $list_items .= "<option {$selected} value='" . admin_url("themes.php?page=megamenu_settings&tab=theme_editor&theme={$id}") . "'>{$theme['title']}</option>";
+            $list_items .= "<option {$selected} value='" . admin_url("admin.php?page=maxmegamenu&tab=theme_editor&theme={$id}") . "'>{$theme['title']}</option>";
         }
 
         return $list_items .= "</select>";
@@ -2734,9 +2743,18 @@ class Mega_Menu_Settings{
 
         $value = $this->active_theme[$key];
 
+        $options = apply_filters("megamenu_font_weights", array(
+            '300' => __("Light (300)", "megamenu"),
+            'normal' => __("Normal (400)", "megamenu"),
+            'bold' => __("Bold (700)", "megamenu")
+        ));
+
         echo "<select name='settings[$key]'>";
-        echo "    <option value='normal' " . selected( $value, 'normal', true) . ">" . __("Normal", "megamenu") . "</option>";
-        echo "    <option value='bold'"    . selected( $value, 'bold', true) . ">" . __("Bold", "megamenu") . "</option>";
+
+        foreach ( $options as $weight => $name ) {
+            echo "<option value='{$weight}' " . selected( $value, $weight, true) . ">{$name}</option>";
+        }
+
         echo "</select>";
 
     }
@@ -2884,11 +2902,14 @@ class Mega_Menu_Settings{
      *
      * @since 1.0
      */
-    public function enqueue_theme_editor_scripts( $hook ) {
+    public function register_scripts_hook( $hook ) {
 
-        if( 'appearance_page_megamenu_settings' != $hook )
-            return;
+        if( 'toplevel_page_maxmegamenu' == $hook || 'appearance_page_megamenu_settings' == $hook ) {
+            do_action("megamenu_enqueue_scripts");
+        }
+    }
 
+    public function enqueue_theme_editor_scripts() {
         wp_enqueue_style( 'spectrum', MEGAMENU_BASE_URL . 'js/spectrum/spectrum.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'mega-menu-settings', MEGAMENU_BASE_URL . 'css/admin-settings.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'codemirror', MEGAMENU_BASE_URL . 'js/codemirror/codemirror.css', false, MEGAMENU_VERSION );

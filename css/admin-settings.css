@@ -2,25 +2,25 @@
 /**
  * theme EDITOR
  */
-.appearance_page_megamenu_settings .megamenu_wrap {
+.toplevel_page_maxmegamenu .megamenu_wrap {
 	width: 100%;
 	float: left;
 }
-.appearance_page_megamenu_settings .megamenu_left {
+.toplevel_page_maxmegamenu .megamenu_left {
 	float: left;
 	width: 190px;
 	margin-left: -100%;
 }
 
-.appearance_page_megamenu_settings .megamenu_left ul li a:hover,
-.appearance_page_megamenu_settings .megamenu_left ul li a.active {
+.toplevel_page_maxmegamenu .megamenu_left ul li a:hover,
+.toplevel_page_maxmegamenu .megamenu_left ul li a.active {
     border-left: 2px solid #0074a2;
     color: #0074a2;
 }
-.appearance_page_megamenu_settings *:focus {
+.toplevel_page_maxmegamenu *:focus {
 	box-shadow: 0 0 0;
 }
-.appearance_page_megamenu_settings .megamenu_left ul li a {
+.toplevel_page_maxmegamenu .megamenu_left ul li a {
 	text-decoration: none;
 	color: #333;
 	width: 100%;
@@ -32,13 +32,13 @@
 }
 
 
-.appearance_page_megamenu_settings .megamenu_left ul li.error {
+.toplevel_page_maxmegamenu .megamenu_left ul li.error {
 	border-left: 3px solid #dd3d36;
 }
-.appearance_page_megamenu_settings .megamenu_left ul li.mega_active {
+.toplevel_page_maxmegamenu .megamenu_left ul li.mega_active {
 	font-weight: bold;
 }
-.appearance_page_megamenu_settings .megamenu_left ul li.mega_active a:after {
+.toplevel_page_maxmegamenu .megamenu_left ul li.mega_active a:after {
 	right: 0;
 	content: '\f139';
 	border: 0;
@@ -56,7 +56,7 @@
 	margin-right: 0;
 }
 
-.appearance_page_megamenu_settings .megamenu_right {
+.toplevel_page_maxmegamenu .megamenu_right {
 	margin-left: 190px;
 	padding: 20px;
 	box-sizing: border-box;
@@ -64,63 +64,63 @@
 	min-height: 400px;
 }
 
-.appearance_page_megamenu_settings .megamenu_right h4.first {
+.toplevel_page_maxmegamenu .megamenu_right h4.first {
 	margin: 0em 0 0.7em 0;
 }
-.appearance_page_megamenu_settings .megamenu_right h4 {
+.toplevel_page_maxmegamenu .megamenu_right h4 {
 	clear: both;
 	border-bottom: 1px solid #cccccc;
 	padding: 0 0 10px 0;
 	font-size: 1.2em;
 	margin: 1.33em 0 0.7em 0;
 }
-.appearance_page_megamenu_settings .megamenu_right h5 {
+.toplevel_page_maxmegamenu .megamenu_right h5 {
 	clear: both;
 	padding: 0 0 10px 0;
 	font-size: 1.1em;
 	margin: 1.33em 0 0.7em 0;
 }
-.appearance_page_megamenu_settings .megamenu_right ul.bullets {
+.toplevel_page_maxmegamenu .megamenu_right ul.bullets {
 	list-style-type: disc;
 	margin-left: 30px;
 }
-.appearance_page_megamenu_settings a {
+.toplevel_page_maxmegamenu a {
 	text-decoration: none;
 }
-.appearance_page_megamenu_settings .theme_selector {
+.toplevel_page_maxmegamenu .theme_selector {
 	background: #fbfbfb;
 	padding: 10px;
 	border: 1px solid #e5e5e5;
 	margin-bottom: 33px;
 }
-.appearance_page_megamenu_settings h3 {
+.toplevel_page_maxmegamenu h3 {
 	margin: 0 0 40px 0;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings .duplicate {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings .duplicate {
 	margin-left: 15px;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap {
 	padding: 20px 20px 0 0;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_submit {
 	margin-bottom: 40px;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_left,
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_submit .mega_left,
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_submit .mega_right {
     float: left;
     width: 50%;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit p {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_submit p {
 	margin: 0;
 	padding: 0;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_submit .mega_right {
 	text-align: right;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_submit .mega_right a {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_submit .mega_right a {
 	color: #a00;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header {
 	background: white;
 	padding: 10px 17px;
 	border-bottom: 1px solid #f1f1f1;
@@ -129,14 +129,14 @@
 	box-sizing: border-box;
 }
 
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header .version {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header .version {
 	font-style: italic;
 	color: #888;
 	margin-bottom: 15px;
 }
 
 
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header_top {
 	font-size: 0.9em;
 	display: block;
 	width: 100%;
@@ -145,59 +145,59 @@
 	margin-bottom: 10px;
 	box-sizing: border-box;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header_top ul {
 	margin: 0;
 	float: right;
 	position: relative;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul li {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header_top ul li {
 	display: inline-block;
 	margin: 0 0 0 10px;
 	line-height: 30px;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul li.mega-highlight {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header_top ul li.mega-highlight {
 	background: #00b7bf;
 	border-radius: 5px;
 }
-.appearance_page_megamenu_settings .megamenu_outer_wrap .megamenu_header_top ul li.mega-highlight a {
+.toplevel_page_maxmegamenu .megamenu_outer_wrap .megamenu_header_top ul li.mega-highlight a {
 	color: white;
 	line-height: 30px;
 	padding: 0 10px;
 }
-.appearance_page_megamenu_settings .megamenu_wrap {
+.toplevel_page_maxmegamenu .megamenu_wrap {
 	background: white;
 }
-.appearance_page_megamenu_settings .megamenu_right .nav-tab-active {
+.toplevel_page_maxmegamenu .megamenu_right .nav-tab-active {
 	background: white;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings tr:first-child td {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings tr:first-child td {
 	border-top: 0;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings th {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings th {
 	text-align: left;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td {
 	padding-bottom: 25px;
 	padding-top: 10px;
 	border-top: 1px solid #efefef;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-name {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-name {
 	width: 27%;
 	line-height: 2em;
 	padding-right: 30px;
 	vertical-align: top;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-value {
 	padding-top: 10px;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-name .mega-description,
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-description {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-name .mega-description,
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-value .mega-description {
 	font-size: 0.9em;
 	color: #aaa;
 	line-height: 1.5em;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-info {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-value .mega-info {
 	clear: both;
 	margin-top: 15px;
 	display: block;
@@ -207,7 +207,7 @@
 	line-height: 20px;
 	width: 100%;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-info:before {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-value .mega-info:before {
 	font: 400 20px/1 dashicons;
 	content: "\f348";
 	speak: none;
@@ -219,27 +219,27 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings td.mega-value .mega-description {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings td.mega-value .mega-description {
 	margin-top: 5px;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table textarea,
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table input,
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table select {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table textarea,
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table input,
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table select {
 	font-size: 0.9em;
 	height: 28px;
 	line-height: 28px;
 	vertical-align: top;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=number] {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table input[type=number] {
 	height: auto;
 	line-height: 1.2em;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table input.mega-setting-title {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table input.mega-setting-title {
 	width: 100px;
 }
 
-.appearance_page_megamenu_settings .megamenu_right textarea {
+.toplevel_page_maxmegamenu .megamenu_right textarea {
 	width: 100%;
 	height: 150px;
 	font-family: monospace;
@@ -247,59 +247,59 @@
 	font-size: 0.8em;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table textarea {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table textarea {
 	width: 100%;
 	height: 150px;
 	font-family: monospace;
 	line-height: 1.5em;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table .CodeMirror {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table .CodeMirror {
 	height: 150px;
 	border: 1px solid #aaa;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table ul.custom_styling_tips {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table ul.custom_styling_tips {
 	list-style-type: disc;
 	list-style-position: inside;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table ul.custom_styling_tips code {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table ul.custom_styling_tips code {
 	margin: 10px 0 0 0;
 	font-size: 0.9em;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table input {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table input {
 	width: 70px;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table label {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table label {
     font-size: 0.9em;
     float: left;
     margin-right: 10px;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table label span.mega-short-desc {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table label span.mega-short-desc {
 	font-size: 0.8em;
 	text-transform: uppercase;
 	color: #aaa;
 	display: block;
 	margin: 0 0 2px 1px;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table .wide input[type=text] {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table .wide input[type=text] {
 	width: 300px;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=submit] {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table input[type=submit] {
 	width: auto;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table input[type=checkbox] {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table input[type=checkbox] {
 	width: 16px;
 	height: 16px;
 	vertical-align: middle;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings table {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
 
-.appearance_page_megamenu_settings .megamenu_right .menu_settings .row h5 {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings .row h5 {
 	margin: 0;
 	font-weight: normal;
 	float: left;
@@ -307,7 +307,7 @@
 	font-size: 1em;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .fail {
+.toplevel_page_maxmegamenu .megamenu_right .fail {
 	border: 1px solid #aaa;
 	border-left: 4px solid #dd3d36;
 	background: #fff;
@@ -315,7 +315,7 @@
 	padding: 7px 0 7px 15px;
 	margin: 0 0 20px 0;
 }
-.appearance_page_megamenu_settings .megamenu_wrap .success {
+.toplevel_page_maxmegamenu .megamenu_wrap .success {
 	border: 1px solid #aaa;
 	border-left: 4px solid #7ad03a;
 	background: #fff;
@@ -323,14 +323,14 @@
 	padding: 7px 0 7px 7px;
 	margin: 0 0 20px 0;
 }
-.appearance_page_megamenu_settings .megamenu_wrap .success .dashicons {
+.toplevel_page_maxmegamenu .megamenu_wrap .success .dashicons {
 	color: #7ad03a;
 	margin-right: 7px;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings select.icon_dropdown {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings select.icon_dropdown {
 	margin-right: 0;
 }
-.appearance_page_megamenu_settings .megamenu_right .menu_settings .selected_icon::before {
+.toplevel_page_maxmegamenu .megamenu_right .menu_settings .selected_icon::before {
 	font: 400 20px/1 dashicons;
 	speak: none;
 	padding: 5px 0 0 0;
@@ -341,18 +341,18 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.appearance_page_megamenu_settings .mm-picker-container .sp-replacer {
+.toplevel_page_maxmegamenu .mm-picker-container .sp-replacer {
 	margin: 0;
 	float: left;
 }
 
-.appearance_page_megamenu_settings .mm-picker-container .sp-replacer .sp-preview {
+.toplevel_page_maxmegamenu .mm-picker-container .sp-replacer .sp-preview {
 	border: 0;
 	height: 26px;
 	width: 26px;
 	margin: 0;
 }
-.appearance_page_megamenu_settings .mm-picker-container input.mm_colorpicker {
+.toplevel_page_maxmegamenu .mm-picker-container input.mm_colorpicker {
 	float: left;
 	border: 0;
 	height: 23px;
@@ -360,7 +360,7 @@
 	margin: 0;
 }
 
-.appearance_page_megamenu_settings .mm-picker-container {
+.toplevel_page_maxmegamenu .mm-picker-container {
 	border-radius: 3px;
 	box-shadow: 0 1px 0 rgba(0,0,0,.08);
 	border: 1px solid #ccc;
@@ -369,7 +369,7 @@
 	float: left;
 }
 
-.appearance_page_megamenu_settings .mm-picker-container div.chosen-color {
+.toplevel_page_maxmegamenu .mm-picker-container div.chosen-color {
 	background: #f7f7f7;
 	-webkit-border-radius: 0 2px 2px 0;
 	border-radius: 0 2px 2px 0;
@@ -385,18 +385,18 @@
 	cursor: default;
 }
 
-.appearance_page_megamenu_settings .megamenu_right .mega-location {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location {
 	border: 1px solid #e5e5e5;
   	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);
   	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 	margin-bottom: 15px;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location:hover,
-.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-open {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location:hover,
+.toplevel_page_maxmegamenu .megamenu_right .mega-location.mega-open {
 	border-color: #ccc;
 	opacity: 1;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-location-header {
 	width: 100%;
 	cursor: pointer;
 	line-height: 40px;
@@ -406,17 +406,17 @@
 	background: #f7f7f7;
 	color: #777;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header:hover {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-location-header:hover {
 	background: #f1f1f1;
 	color: #444;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-open .mega-location-header {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location.mega-open .mega-location-header {
 	background: #f1f1f1;
 	color: #444;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-status:before,
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-assigned-menu:before,
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header-indicator:after {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-status:before,
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-assigned-menu:before,
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-location-header-indicator:after {
 	font: 400 20px/40px dashicons;
 	content: "\f142";
 	speak: none;
@@ -426,31 +426,31 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-location-header-indicator {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-location-header-indicator {
 	float: right;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location.mega-closed .mega-location-header-indicator:after {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location.mega-closed .mega-location-header-indicator:after {
 	content: "\f140";
 }
-.appearance_page_megamenu_settings .mega-delete {
+.toplevel_page_maxmegamenu .mega-delete {
 	margin-bottom: 15px;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-inner {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-inner {
 	padding: 0 10px;
 	border-top: 1px solid #ddd;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-assigned-menu:before {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-assigned-menu:before {
 	content: "\f333";
 	font-size: 16px;
 	margin-right: 2px;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-status:before {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-status:before {
 	content: "\f147";
 	font-size: 16px;
 	margin-right: 2px;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-status,
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-assigned-menu {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-status,
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-assigned-menu {
 	float: right;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -458,6 +458,6 @@
 	margin-right: 15px;
 	font-size: 0.8em;
 }
-.appearance_page_megamenu_settings .megamenu_right .mega-location .mega-inner textarea {
+.toplevel_page_maxmegamenu .megamenu_right .mega-location .mega-inner textarea {
 	height: 30px;
 }
