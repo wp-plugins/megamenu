@@ -66,6 +66,8 @@ final class Mega_Menu {
 		add_filter( 'megamenu_nav_menu_css_class', array( $this, 'prefix_menu_classes' ) );
 		add_filter( 'black_studio_tinymce_enable_pages' , array($this, 'megamenu_blackstudio_tinymce' ) );
 
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts'), 9 );
+
         // add 'go pro' link to plugin options
         $plugin = plugin_basename( __FILE__ );
 
@@ -90,6 +92,23 @@ final class Mega_Menu {
 
 	}
 
+
+	/**
+	 * Add custom actions to allow enqueuing scripts on specific pages
+	 *
+	 * @since 1.8.3
+	 */
+	public function admin_enqueue_scripts( $hook ) {
+
+        if ( 'nav-menus.php' == $hook ) {
+        	do_action("megamenu_nav_menus_scripts", $hook );
+        }
+
+        if( 'toplevel_page_maxmegamenu' == $hook ) {
+        	do_action("megamenu_admin_scripts", $hook );
+        }
+
+	}
 
 	/**
 	 * Register menu locations created within Max Mega Menu.

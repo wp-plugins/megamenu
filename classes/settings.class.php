@@ -56,8 +56,7 @@ class Mega_Menu_Settings{
         add_action( 'megamenu_page_general_settings', array( $this, 'general_settings_page'));
 
         add_action( 'admin_menu', array( $this, 'megamenu_themes_page') );
-        add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts_hook' ) );
-        add_action( 'megamenu_enqueue_scripts', array( $this, 'enqueue_theme_editor_scripts' ) );
+        add_action( 'megamenu_admin_scripts', array( $this, 'enqueue_scripts' ) );
 
     }
 
@@ -2897,19 +2896,13 @@ class Mega_Menu_Settings{
 
     }
 
+
     /**
-     * Enqueue required CSS and JS for Mega Menu
+     * Enqueue nav-menus.php scripts
      *
-     * @since 1.0
+     * @since 1.8.3
      */
-    public function register_scripts_hook( $hook ) {
-
-        if( 'toplevel_page_maxmegamenu' == $hook || 'appearance_page_megamenu_settings' == $hook ) {
-            do_action("megamenu_enqueue_scripts");
-        }
-    }
-
-    public function enqueue_theme_editor_scripts() {
+    public function enqueue_scripts() {
         wp_enqueue_style( 'spectrum', MEGAMENU_BASE_URL . 'js/spectrum/spectrum.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'mega-menu-settings', MEGAMENU_BASE_URL . 'css/admin-settings.css', false, MEGAMENU_VERSION );
         wp_enqueue_style( 'codemirror', MEGAMENU_BASE_URL . 'js/codemirror/codemirror.css', false, MEGAMENU_VERSION );

@@ -41,7 +41,7 @@ class Mega_Menu_Nav_Menus {
     public function __construct() {
 
         add_action( 'admin_init', array( $this, 'register_nav_meta_box' ), 9 );
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_menu_page_scripts' ), 9 );
+        add_action( 'megamenu_nav_menus_scripts', array( $this, 'enqueue_menu_page_scripts' ), 9 );
         add_action( 'megamenu_save_settings', array($this, 'save') );
         add_filter( 'hidden_meta_boxes', array( $this, 'show_mega_menu_metabox' ) );
 
