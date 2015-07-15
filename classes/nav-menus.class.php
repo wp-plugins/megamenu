@@ -212,7 +212,9 @@ class Mega_Menu_Nav_Menus {
 
             $link = '<a href="http://www.maxmegamenu.com/documentation/getting-started/max-mega-menu-widget/" target="_blank">' . __("here", "megamenu") . '</a>';
 
-            echo "<p>" . str_replace( "{link}", $link, __("This theme does not register any menu locations. You will need to create a new menu location and use the Max Mega Menu widget or shortcode to display the menu on your site. Click {link} for instructions.", "megamenu") ) . "</p>";
+            echo "<p>" . __("This theme does not register any menu locations.", "megamenu") . "</p>";
+            echo "<p>" . __("You will need to create a new menu location and use the Max Mega Menu widget or shortcode to display the menu on your site.", "megamenu") . "</p>";
+            echo "<p>" . str_replace( "{link}", $link, __("Click {link} for instructions.", "megamenu") ) . "</p>";
 
         } else if ( ! count ( $tagged_menu_locations ) ) {
 
