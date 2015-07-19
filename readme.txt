@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: megamenu
-Tags: menu, mega menu, navigation, hamburger, menu icons, menu style, responsive menu, megamenu, widget, dropdown menu, drag and drop, hover, click, responsive, retina, theme editor, menu widget, sidebar, icons, dashicons
+Tags: menu, mega menu, navigation, mobile, menu icons, menu style, responsive menu, megamenu, widget, dropdown menu, drag and drop, theme editor, menu widget, sidebar, icons
 Requires at least: 3.8
 Tested up to: 4.2
 Stable tag: 1.8.2
