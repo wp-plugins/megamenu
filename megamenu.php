@@ -100,15 +100,18 @@ final class Mega_Menu {
 	 */
 	public function admin_enqueue_scripts( $hook ) {
 
+        wp_enqueue_style( 'maxmegamenu-global', MEGAMENU_BASE_URL . 'css/global.css', array(), MEGAMENU_VERSION );
+
         if ( 'nav-menus.php' == $hook ) {
         	do_action("megamenu_nav_menus_scripts", $hook );
         }
 
-        if( 'toplevel_page_maxmegamenu' == $hook ) {
+        if ( 'toplevel_page_maxmegamenu' == $hook ) {
         	do_action("megamenu_admin_scripts", $hook );
         }
 
 	}
+
 
 	/**
 	 * Register menu locations created within Max Mega Menu.
@@ -611,7 +614,7 @@ final class Mega_Menu {
 			$style_manager = new Mega_Menu_Style_Manager();
 			$themes = $style_manager->get_themes();
 
-			$menu_theme = $themes[ $settings[ $current_theme_location ]['theme'] ];
+			$menu_theme = isset( $themes[ $settings[ $current_theme_location ]['theme'] ] ) ? $themes[ $settings[ $current_theme_location ]['theme'] ] : $themes['default'];
 
 			$menu_settings = $settings[ $current_theme_location ];
 
