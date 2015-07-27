@@ -142,7 +142,7 @@ final class Mega_Menu {
     public function upgrade_to_pro_link( $links ) {
 
         if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( 'megamenu-pro/megamenu-pro.php' ) ) {
-            $links[] = '<a href="http://www.maxmegamenu.com/upgrade" target="_blank"><b>' . __( "Go Pro", "megamenu" ) . '</b></a>';
+            $links[] = '<a href="http://www.maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro" target="_blank"><b>' . __( "Go Pro", "megamenu" ) . '</b></a>';
         }
 
         return $links;
