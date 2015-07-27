@@ -210,7 +210,7 @@ class Mega_Menu_Nav_Menus {
 
         if ( ! count( $theme_locations ) ) {
 
-            $link = '<a href="http://www.maxmegamenu.com/documentation/getting-started/max-mega-menu-widget/" target="_blank">' . __("here", "megamenu") . '</a>';
+            $link = '<a href="http://www.maxmegamenu.com/documentation/getting-started/max-mega-menu-widget/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro" target="_blank">' . __("here", "megamenu") . '</a>';
 
             echo "<p>" . __("This theme does not register any menu locations.", "megamenu") . "</p>";
             echo "<p>" . __("You will need to create a new menu location and use the Max Mega Menu widget or shortcode to display the menu on your site.", "megamenu") . "</p>";
