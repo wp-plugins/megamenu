@@ -730,8 +730,7 @@ final class Mega_Menu_Style_Manager {
 
         $fs_css = @file_get_contents( trailingslashit( $upload_dir['basedir'] ) . 'maxmegamenu/' . $filename );
 
-        // Verify the contents of the CSS file
-        if ( $fs_css && $cached_css == $fs_css ) {
+        if ( $fs_css && ( $cached_css == $fs_css || ! $this->do_css_comparison_before_enqueue() ) ) {
 
             $css_url = trailingslashit( $upload_dir['baseurl'] ) . 'maxmegamenu/' . $filename;
 
@@ -748,6 +747,18 @@ final class Mega_Menu_Style_Manager {
 
         }
 
+    }
+
+
+    /**
+     * The CSS is generated whenever a menu or a menu theme is saved. A copy of the CSS is always cached using set_transient.
+     * If CSS output is set to "Save to File System" then a copy of the CSS is also stored in the uploads directory.
+     * Before the static CSS file is enqueued on the site, we compare the contents of the static file to the contents of the
+     * transient - they should match. If they don't match then the CSS file on the filesystem has been modified (maliciously or not).
+     * In this case we fall back to enqueing the 'safe' CSS via AJAX.
+     */
+    private function do_css_comparison_before_enqueue() {
+        return apply_filters( 'megamenu_do_css_comparison_before_enqueue', true );
     }
 
 
