@@ -399,17 +399,17 @@ class Mega_Menu_Menu_Item_Manager {
             'fontawesome' => array(
                 'title' => __("Font Awesome", "megamenu"),
                 'active' => false,
-                'content' => str_replace( "{link}", "<a href='http://www.maxmegamenu.com/upgrade'>" . __("Max Mega Menu Pro", "megamenu") . "</a>", __("Get access to over 400 Font Awesome Icons with {link}", "megamenu") )
+                'content' => str_replace( "{link}", "<a href='http://www.maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro'>" . __("Max Mega Menu Pro", "megamenu") . "</a>", __("Get access to over 400 Font Awesome Icons with {link}", "megamenu") )
             ),
             'genericons' => array(
                 'title' => __("Genericons", "megamenu"),
                 'active' => false,
-                'content' => str_replace( "{link}", "<a href='http://www.maxmegamenu.com/upgrade'>" . __("Max Mega Menu Pro", "megamenu") . "</a>", __("Choose from over 100 genericons with {link}", "megamenu") )
+                'content' => str_replace( "{link}", "<a href='http://www.maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro'>" . __("Max Mega Menu Pro", "megamenu") . "</a>", __("Choose from over 100 genericons with {link}", "megamenu") )
             ),
             'custom' => array(
                 'title' => __("Custom Icon", "megamenu"),
                 'active' => false,
-                'content' => str_replace( "{link}", "<a href='http://www.maxmegamenu.com/upgrade'>" . __("Max Mega Menu Pro", "megamenu") . "</a>", __("Select icons from your media library with {link}", "megamenu") )
+                'content' => str_replace( "{link}", "<a href='http://www.maxmegamenu.com/upgrade/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro'>" . __("Max Mega Menu Pro", "megamenu") . "</a>", __("Select icons from your media library with {link}", "megamenu") )
             ),
         );
 
