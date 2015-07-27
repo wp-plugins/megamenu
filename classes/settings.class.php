@@ -553,17 +553,29 @@ class Mega_Menu_Settings{
      */
     public function megamenu_themes_page() {
 
-        $page = add_menu_page( __('Max Mega Menu', 'megamenu'), __('Mega Menu', 'megamenu'), 'edit_theme_options', 'maxmegamenu', array($this, 'page') );
+        $appearance_page = add_theme_page(__('Max Mega Menu', 'megamenu'), __('Max Mega Menu', 'megamenu'), 'edit_theme_options', 'megamenu_settings', array($this, 'appearance_page' ) );
 
-        add_action( 'admin_print_styles', array( $this, 'enqueue_menu_styles' ) );
+        $page = add_menu_page( __('Max Mega Menu', 'megamenu'), __('Mega Menu', 'megamenu'), 'edit_theme_options', 'maxmegamenu', array($this, 'page') );
 
     }
 
     /**
      *
      */
-    public function enqueue_menu_styles() {
-        wp_enqueue_style( 'maxmegamenu-global', MEGAMENU_BASE_URL . 'css/global.css', array(), MEGAMENU_VERSION );
+    public function appearance_page() {
+
+        $url = admin_url('admin.php?page=maxmegamenu');
+
+        echo "<p>" . __("The Max Mega Menu settings have moved to their own top level menu page.", "megamenu") . "</p>";
+        echo "<p>" . str_replace( "{link}", "<a href='" . $url . "'>" . __("click here", "megamenu") . "</a>", __("If you are not automatically redirected within 5 seconds, please {link}.", "megamenu") ) . "</p>";
+        echo "<p>" . __("This redirect will be removed in the next version of Max Mega Menu.", "megamenu") . "</p>";
+
+        echo "<script type='text/javascript'>";
+        // redirect to google after 5 seconds
+        echo "window.setTimeout(function() {";
+        echo "    window.location.href = '{$url}';";
+        echo "}, 5000);";
+        echo "</script>";
     }
 
     /**
@@ -977,13 +989,13 @@ class Mega_Menu_Settings{
 
         $header_links = apply_filters( "megamenu_header_links", array(
             'homepage' => array(
-                'url' => 'http://www.maxmegamenu.com/',
+                'url' => 'http://www.maxmegamenu.com/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro',
                 'target' => '_mmmpro',
                 'text' => __("Homepage", "megamenu"),
                 'class' => ''
             ),
             'documentation' => array(
-                'url' => 'http://www.maxmegamenu.com/documentation/getting-started/installation/',
+                'url' => 'http://www.maxmegamenu.com/documentation/getting-started/installation/?utm_source=free&amp;utm_medium=link&amp;utm_campaign=pro',
                 'text' => __("Documentation", "megamenu"),
                 'target' => '_mmmpro',
                 'class' => ''
@@ -2742,16 +2754,29 @@ class Mega_Menu_Settings{
 
         $value = $this->active_theme[$key];
 
-        $options = apply_filters("megamenu_font_weights", array(
+        $options = apply_filters( "megamenu_font_weights", array(
+            'inherit' => __("Theme Default", "megamenu"),
             '300' => __("Light (300)", "megamenu"),
             'normal' => __("Normal (400)", "megamenu"),
-            'bold' => __("Bold (700)", "megamenu")
-        ));
+            'bold' => __("Bold (700)", "megamenu"),
+        ) );
+
+        /**
+         *   '100' => __("Thin (100)", "megamenu"),
+         *   '200' => __("Extra Light (200)", "megamenu"),
+         *   '300' => __("Light (300)", "megamenu"),
+         *   'normal' => __("Normal (400)", "megamenu"),
+         *   '500' => __("Medium (500)", "megamenu"),
+         *   '600' => __("Semi Bold (600)", "megamenu"),
+         *   'bold' => __("Bold (700)", "megamenu"),
+         *   '800' => __("Extra Bold (800)", "megamenu"),
+         *   '900' => __("Black (900)", "megamenu")
+        */
 
         echo "<select name='settings[$key]'>";
 
         foreach ( $options as $weight => $name ) {
-            echo "<option value='{$weight}' " . selected( $value, $weight, true) . ">{$name}</option>";
+            echo "<option value='{$weight}' " . selected( $value, $weight, true ) . ">{$name}</option>";
         }
 
         echo "</select>";
