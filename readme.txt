@@ -105,6 +105,7 @@ See http://www.maxmegamenu.com for more screenshots
 * Fix: Compatibility fix for SlideDeck Pro
 * Fix: Compatibility fix for TemplatesNext Toolkit
 * Fix: Widget title widths in mega menu editor
+* Fix: IE9 blue background when semi transparent colors are selected in the theme editor
 
 = 1.8.2 =
 
