@@ -491,7 +491,7 @@ final class Mega_Menu {
 						$parents[ $item->menu_item_parent ] = $parents[ $item->menu_item_parent ] + $column_count;
 
 						if ( $parents[ $item->menu_item_parent ] > $total_columns ) {
-							unset( $parents[ $item->menu_item_parent ] );
+							$parents[ $item->menu_item_parent ] = $column_count;
 							$item->classes[] = 'menu-clear';
 						}
 					}

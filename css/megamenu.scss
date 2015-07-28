@@ -35,7 +35,7 @@
         background: -ms-linear-gradient(top, $from, $to);
         background: -o-linear-gradient(top, $from, $to);
         background: linear-gradient(to bottom, $from, $to);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie_hex_str($from)}', endColorstr='#{ie_hex_str($to)}');
     }
 }
 

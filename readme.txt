@@ -90,14 +90,14 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
-= 1.8.3 [27/07/2015] =
+= 1.8.3 [28/07/2015] =
 
 * New feature: Add accordion style mobile menu option
 * New feature: French Language pack added (thanks to Pierre_02!)
 * Change: Check MMM is enabled for the menu before enabling the Mega Menu button on each menu item
 * Change: Add '300' and 'inherit' options to font weight, add 'megamenu_font_weights' filter
 * Change: Move mega menu settings page from under Appearance to it's own Top Level menu item (since the plugin options are no longer purely appearance related)
-* Fix: Second row menu items not correctly being forced onto a new row
+* Fix: Second row menu items not correctly being forced onto a new line
 * Fix: PHP warning when widget cannot be found (due to being uninstalled)
 * Fix: Remove borders and excess padding from mobile menu (regardless of theme settings)
 * Fix: Inability to undisable links on second level menu items
@@ -105,6 +105,7 @@ See http://www.maxmegamenu.com for more screenshots
 * Fix: Compatibility fix for SlideDeck Pro
 * Fix: Compatibility fix for TemplatesNext Toolkit
 * Fix: Widget title widths in mega menu editor
+* Fix: IE9 blue background when semi transparent colors are selected in the theme editor
 
 = 1.8.2 =
 
