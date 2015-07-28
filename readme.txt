@@ -2,8 +2,8 @@
 Contributors: megamenu
 Tags: menu, megamenu, mega menu, navigation, widget, dropdown menu, drag and drop, mobile, responsive, retina, theme editor, widget, shortcode, sidebar, icons, dashicons
 Requires at least: 3.8
-Tested up to: 4.2
-Stable tag: 1.8.2
+Tested up to: 4.2.3
+Stable tag: 1.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,8 @@ Documentation & Demo: http://www.maxmegamenu.com
 ####Pro Features:
 
 > * Sticky Menu
+> * WooCommerce cart total in menu
+> * Easy Digital Downloads cart total in menu
 > * Vertical Menus
 > * FontAwesome Icons
 > * Custom Item Styling
