@@ -92,6 +92,10 @@ See http://www.maxmegamenu.com for more screenshots
 
 == Changelog ==
 
+= 1.8.3.2 [30/07/2015] =
+
+* Fix: Conflict with Add Descendents as Sub Menu Items plugin, where items are added resulting in an unordered list of menu items
+
 = 1.8.3.1 [30/07/2015] =
 
 * Fix: Conflict with Add Descendents as Sub Menu Items plugin, where items are added to the menu and given a menu_item_parent ID of an item that doesn't exist in the menu
