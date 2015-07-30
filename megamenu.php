@@ -393,7 +393,7 @@ final class Mega_Menu {
 	    $stack = array('0');
 
 	    foreach ( $items as $key => $item ) {
-	        while ( $item->menu_item_parent != array_pop( $stack ) ) {
+	        while ( count( $stack ) && $item->menu_item_parent != array_pop( $stack ) ) {
 	            $level--;
 	        }
 
