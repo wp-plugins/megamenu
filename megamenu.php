@@ -389,18 +389,25 @@ final class Mega_Menu {
    	 */
 	public function apply_depth_to_menu_items( $items, $args ) {
 
-	    $level = 0;
-	    $stack = array('0');
+		// We can't assume the menu items are in any particular order.
+		// (for example, the  "Add Descendants as sub menu items" adds all items to the 'bottom' of the menu)
+		// We only need to know about top level menu items and their immediate children
+
+	    $parents = array();
 
 	    foreach ( $items as $key => $item ) {
-	        while ( count( $stack ) && $item->menu_item_parent != array_pop( $stack ) ) {
-	            $level--;
+	        if ( $item->menu_item_parent == 0 ) {
+	            $parents[] = $item->ID;
+	            $item->depth = 0;
 	        }
+	    }
 
-	        $level++;
-	        $stack[] = $item->menu_item_parent;
-	        $stack[] = $item->ID;
-	        $items[ $key ]->depth = $level - 1;
+	    if ( count( $parents ) ) {
+		    foreach ( $items as $key => $item ) {
+		        if ( in_array( $item->menu_item_parent, $parents ) ) {
+		            $item->depth = 1;
+		        }
+		    }
 	    }
 
 	    return $items;
