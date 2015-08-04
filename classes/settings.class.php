@@ -48,7 +48,7 @@ class Mega_Menu_Settings{
         add_action( 'admin_post_megamenu_delete_menu_location', array( $this, 'delete_menu_location') );
 
         add_action( 'admin_post_megamenu_save_settings', array( $this, 'save_settings') );
-        add_action( 'admin_post_megamenu_regenerate_css', array( $this, 'tools_regenerate_css') );
+        add_action( 'admin_post_megamenu_clear_css_cache', array( $this, 'tools_clear_css_cache') );
         add_action( 'admin_post_megamenu_delete_data', array( $this, 'delete_data') );
 
         add_action( 'megamenu_page_theme_editor', array( $this, 'theme_editor_page'));
@@ -183,13 +183,13 @@ class Mega_Menu_Settings{
      *
      * @since 1.5
      */
-    public function tools_regenerate_css() {
+    public function tools_clear_css_cache() {
 
-        check_admin_referer( 'megamenu_regenerate_css' );
+        check_admin_referer( 'megamenu_clear_css_cache' );
 
         do_action( 'megamenu_generate_css' );
 
-        $this->redirect( admin_url( 'admin.php?page=maxmegamenu&tab=tools&regenerate_css=true' ) );
+        $this->redirect( admin_url( 'admin.php?page=maxmegamenu&tab=tools&clear_css_cache=true' ) );
 
     }
 
@@ -897,14 +897,14 @@ class Mega_Menu_Settings{
                 <tr>
                     <td class='mega-name'>
                         <?php _e("Cache", "megamenu"); ?>
-                        <div class='mega-description'><?php _e("Use this tool to manually regenerate the menu CSS and update the cache.", "megamenu"); ?></div>
+                        <div class='mega-description'><?php _e("Use this tool to clear the CSS cache.", "megamenu"); ?></div>
                     </td>
                     <td class='mega-value'>
                         <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
-                            <?php wp_nonce_field( 'megamenu_regenerate_css' ); ?>
-                            <input type="hidden" name="action" value="megamenu_regenerate_css" />
+                            <?php wp_nonce_field( 'megamenu_clear_css_cache' ); ?>
+                            <input type="hidden" name="action" value="megamenu_clear_css_cache" />
 
-                            <input type='submit' class='button button-secondary' value='<?php _e("Regenerate CSS", "megamenu"); ?>' />
+                            <input type='submit' class='button button-secondary' value='<?php _e("Clear CSS Cache", "megamenu"); ?>' />
                         </form>
                     </td>
                 </tr>
@@ -1151,8 +1151,8 @@ class Mega_Menu_Settings{
             echo "<p class='fail'>" . __("Failed to delete theme. The theme is in use by a menu.", "megamenu") . "</p>";
         }
 
-        if ( isset( $_GET['regenerate_css'] ) && $_GET['regenerate_css'] == 'true' ) {
-            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("CSS cache cleared and CSS regenerated", "megamenu") . "</p>";
+        if ( isset( $_GET['clear_css_cache'] ) && $_GET['clear_css_cache'] == 'true' ) {
+            echo "<p class='success'><i class='dashicons dashicons-yes'></i>" . __("CSS cache cleared", "megamenu") . "</p>";
         }
 
         if ( isset( $_GET['delete_data'] ) && $_GET['delete_data'] == 'true' ) {
