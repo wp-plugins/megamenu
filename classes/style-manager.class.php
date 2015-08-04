@@ -41,15 +41,15 @@ final class Mega_Menu_Style_Manager {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_head', array( $this, 'head_css' ), 9999 );
 
-        add_action( 'megamenu_after_save_settings', array( $this, 'generate_css' ) );
-        add_action( 'megamenu_after_save_general_settings', array( $this, 'generate_css' ) );
-        add_action( 'megamenu_after_theme_save', array( $this, 'generate_css') );
-        add_action( 'megamenu_after_theme_delete', array( $this, 'generate_css') );
-        add_action( 'megamenu_after_theme_revert', array( $this, 'generate_css') );
-        add_action( 'megamenu_after_theme_duplicate', array( $this, 'generate_css') );
-        add_action( 'megamenu_after_theme_create', array( $this, 'generate_css') );
-        add_action( 'megamenu_generate_css', array( $this, 'generate_css') );
-        add_action( 'after_switch_theme', array( $this, 'generate_css') );
+        add_action( 'megamenu_after_save_settings', array( $this, 'delete_cache' ) );
+        add_action( 'megamenu_after_save_general_settings', array( $this, 'delete_cache' ) );
+        add_action( 'megamenu_after_theme_save', array( $this, 'delete_cache') );
+        add_action( 'megamenu_after_theme_delete', array( $this, 'delete_cache') );
+        add_action( 'megamenu_after_theme_revert', array( $this, 'delete_cache') );
+        add_action( 'megamenu_after_theme_duplicate', array( $this, 'delete_cache') );
+        add_action( 'megamenu_after_theme_create', array( $this, 'delete_cache') );
+        add_action( 'megamenu_generate_css', array( $this, 'delete_cache') );
+        add_action( 'after_switch_theme', array( $this, 'delete_cache') );
 
     }
 
@@ -692,17 +692,7 @@ final class Mega_Menu_Style_Manager {
     }
 
 
-    /**
-     * Return the filename to use for the stylesheet, ensuring the filename is unique
-     * for multi site setups
-     *
-     * @since 1.6.1
-     */
-    private function get_css_filename() {
 
-        return apply_filters( "megamenu_css_filename", "style.css" );
-
-    }
 
 
     /**
@@ -767,6 +757,27 @@ final class Mega_Menu_Style_Manager {
 
     }
 
+
+    /**
+     * Delete the cached CSS
+     *
+     * @since 1.8.4
+     * @return mixed
+     */
+    public function delete_cache() {
+        global $polylang;
+
+        if ( function_exists( 'pll_current_language' ) ) {
+            foreach ( $polylang->model->get_languages_list() as $term ) {
+                delete_transient( apply_filters( 'megamenu_css_transient_key', 'megamenu_css_' . $term->slug ) );
+            }
+        }
+
+        return delete_transient( $this->get_transient_key() );
+
+    }
+
+
     /**
      * Return the key to use for the CSS transient
      *
@@ -775,11 +786,35 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_transient_key() {
 
-        $key = apply_filters( 'megamenu_css_transient_key', 'megamenu_css' );
+        $key = 'megamenu_css';
+
+        if ( function_exists( 'pll_current_language' ) ) {
+            $key .= "_" . pll_current_language();
+        }
+
+        $key = apply_filters( 'megamenu_css_transient_key', $key );
 
         return $key;
     }
 
+
+    /**
+     * Return the filename to use for the stylesheet, ensuring the filename is unique
+     * for multi site setups
+     *
+     * @since 1.6.1
+     */
+    private function get_css_filename() {
+
+        $filename = 'style';
+
+        if ( function_exists( 'pll_current_language' ) ) {
+            $filename .= "_" . pll_current_language();
+        }
+
+        return apply_filters( "megamenu_css_filename", $filename ) . '.css';
+
+    }
 
     /**
      * The CSS is generated whenever a menu or a menu theme is saved. A copy of the CSS is always cached using set_transient.
