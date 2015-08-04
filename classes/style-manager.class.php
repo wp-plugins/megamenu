@@ -364,7 +364,7 @@ final class Mega_Menu_Style_Manager {
      */
     public function get_css() {
 
-        if ( ( $css = get_transient('megamenu_css') ) && ! $this->is_debug_mode() ) {
+        if ( ( $css = $this->get_cached_css() ) && ! $this->is_debug_mode() ) {
 
             return $css;
 
@@ -418,25 +418,15 @@ final class Mega_Menu_Style_Manager {
 
         }
 
-        $this->save_to_cache( $css );
+        $css .= "/** " . date('l jS \of F Y h:i:s A') . " **/";
+
+        $this->set_cached_css( $css );
 
         if ( $this->get_css_output_method() == 'fs' ) {
             $this->save_to_filesystem( $css );
         }
 
         return $css;
-    }
-
-
-    /**
-     *
-     * @since 1.6.1
-     */
-    private function save_to_cache( $css ) {
-
-        set_transient( 'megamenu_css', $css, 0 );
-        set_transient( 'megamenu_css_version', MEGAMENU_VERSION, 0 );
-
     }
 
 
@@ -724,7 +714,7 @@ final class Mega_Menu_Style_Manager {
 
         $upload_dir = wp_upload_dir();
 
-        $cached_css = get_transient( 'megamenu_css' );
+        $cached_css = $this->get_cached_css();
 
         $filename = $this->get_css_filename();
 
@@ -743,10 +733,51 @@ final class Mega_Menu_Style_Manager {
 
         } else {
 
+            // regenerate the CSS and save to filesystem
+            $this->generate_css();
+
+            // enqueue via AJAX for this request
             $this->enqueue_ajax_style();
 
         }
 
+    }
+
+    /**
+     *
+     * @since 1.6.1
+     */
+    private function set_cached_css( $css ) {
+
+        set_transient( $this->get_transient_key(), $css, 0 );
+        set_transient( 'megamenu_css_version', MEGAMENU_VERSION, 0 );
+
+    }
+
+
+    /**
+     * Return the cached css if it exists
+     *
+     * @since 1.8.4
+     * @return mixed
+     */
+    private function get_cached_css() {
+
+        return get_transient( $this->get_transient_key() );
+
+    }
+
+    /**
+     * Return the key to use for the CSS transient
+     *
+     * @since 1.8.4
+     * @return string
+     */
+    private function get_transient_key() {
+
+        $key = apply_filters( 'megamenu_css_transient_key', 'megamenu_css' );
+
+        return $key;
     }
 
 
@@ -758,7 +789,9 @@ final class Mega_Menu_Style_Manager {
      * In this case we fall back to enqueing the 'safe' CSS via AJAX.
      */
     private function do_css_comparison_before_enqueue() {
+
         return apply_filters( 'megamenu_do_css_comparison_before_enqueue', true );
+
     }
 
 
@@ -775,13 +808,16 @@ final class Mega_Menu_Style_Manager {
 
 
     /**
+     * Return the CSS output method, default to filesystem
      *
+     * @return string
      */
     private function get_css_output_method() {
 
         return isset( $this->settings['css'] ) ? $this->settings['css'] : 'fs';
 
     }
+
 
     /**
      * Print CSS to <head> to avoid an extra request to WordPress through admin-ajax.
