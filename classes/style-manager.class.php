@@ -51,6 +51,21 @@ final class Mega_Menu_Style_Manager {
         add_action( 'megamenu_generate_css', array( $this, 'delete_cache') );
         add_action( 'after_switch_theme', array( $this, 'delete_cache') );
 
+        // PolyLang
+        if ( function_exists( 'pll_current_language' ) ) {
+            add_filter( 'megamenu_css_transient_key', array( $this, 'polylang_transient_key') );
+            add_filter( 'megamenu_css_filename', array( $this, 'polylang_css_filename') );
+            add_action( 'megamenu_delete_cache', array( $this, 'polylang_delete_cache') );
+        }
+
+        // WPML
+        if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+            add_filter( 'megamenu_css_transient_key', array( $this, 'wpml_transient_key') );
+            add_filter( 'megamenu_css_filename', array( $this, 'wpml_css_filename') );
+            add_action( 'megamenu_delete_cache', array( $this, 'wpml_delete_cache') );
+        }
+
+
     }
 
 
@@ -765,13 +780,8 @@ final class Mega_Menu_Style_Manager {
      * @return mixed
      */
     public function delete_cache() {
-        global $polylang;
 
-        if ( function_exists( 'pll_current_language' ) ) {
-            foreach ( $polylang->model->get_languages_list() as $term ) {
-                delete_transient( apply_filters( 'megamenu_css_transient_key', 'megamenu_css_' . $term->slug ) );
-            }
-        }
+        do_action('megamenu_delete_cache');
 
         return delete_transient( $this->get_transient_key() );
 
@@ -786,16 +796,10 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_transient_key() {
 
-        $key = 'megamenu_css';
+        return apply_filters( 'megamenu_css_transient_key', 'megamenu_css' );
 
-        if ( function_exists( 'pll_current_language' ) ) {
-            $key .= "_" . pll_current_language();
-        }
-
-        $key = apply_filters( 'megamenu_css_transient_key', $key );
-
-        return $key;
     }
+
 
 
     /**
@@ -806,15 +810,10 @@ final class Mega_Menu_Style_Manager {
      */
     private function get_css_filename() {
 
-        $filename = 'style';
-
-        if ( function_exists( 'pll_current_language' ) ) {
-            $filename .= "_" . pll_current_language();
-        }
-
-        return apply_filters( "megamenu_css_filename", $filename ) . '.css';
+        return apply_filters( "megamenu_css_filename", 'style' ) . '.css';
 
     }
+
 
     /**
      * The CSS is generated whenever a menu or a menu theme is saved. A copy of the CSS is always cached using set_transient.
@@ -870,6 +869,98 @@ final class Mega_Menu_Style_Manager {
         }
 
     }
+
+
+    /**
+     * Delete language specific transients created when PolyLang is installed
+     *
+     * @since 1.8.4
+     */
+    public function polylang_delete_cache() {
+        global $polylang;
+
+        foreach ( $polylang->model->get_languages_list() as $term ) {
+            delete_transient( apply_filters( 'megamenu_css_transient_key', 'megamenu_css_' . $term->slug ) );
+        }
+
+    }
+
+
+    /**
+     * Modify the CSS transient key to make it unique to the current language
+     *
+     * @since 1.8.4
+     * @return string
+     */
+    public function polylang_transient_key( $key ) {
+
+        $key .= "_" . pll_current_language();
+
+        return $key;
+
+    }
+
+
+    /**
+     * Modify the CSS filename to make it unique to the current language
+     *
+     * @since 1.8.4
+     * @return string
+     */
+    public function polylang_css_filename( $filename ) {
+
+        $filename .= "_" . pll_current_language();
+
+        return $filename;
+
+    }
+
+
+    /**
+     * Delete language specific transients created when WPML is installed
+     *
+     * @since 1.8.4
+     */
+    public function wpml_delete_cache() {
+
+        $languages = icl_get_languages('skip_missing=N');
+
+        foreach ( $languages as $language ) {
+            delete_transient( apply_filters( 'megamenu_css_transient_key', 'megamenu_css_' . $language['language_code'] ) );
+        }
+
+    }
+
+
+    /**
+     * Modify the CSS transient key to make it unique to the current language
+     *
+     * @since 1.8.4
+     * @return string
+     */
+    public function wpml_transient_key( $key ) {
+
+        $key .= "_" . ICL_LANGUAGE_CODE;
+
+        return $key;
+
+    }
+
+
+    /**
+     * Modify the CSS filename to make it unique to the current language
+     *
+     * @since 1.8.4
+     * @return string
+     */
+    public function wpml_css_filename( $filename ) {
+
+        $filename .= "_" . ICL_LANGUAGE_CODE;
+
+        return $filename;
+
+    }
+
 
 }
 
